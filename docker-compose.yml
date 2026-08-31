@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: skillgap-postgres
+    environment:
+      POSTGRES_USER: skillgap
+      POSTGRES_PASSWORD: skillgap
+      POSTGRES_DB: skillgap
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U skillgap -d skillgap"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: skillgap-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
