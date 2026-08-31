@@ -73,7 +73,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_jd = sub.add_parser("jd-analyze",
                           help="粘贴 JD → 结构化分析（M1，不落库）")
     p_col = sub.add_parser("collect",
-                           help="交互式收集器：问答录入→自动推断→写批次 CSV")
+                           help="交互式收集器：粘贴 JD→字段自动识别→回车确认→写批次 CSV")
     p_col.add_argument("--out", default="data/batch_1.csv",
                        help="输出批次 CSV 路径")
     p_jd.add_argument("--file", required=True, help="JD 文本文件")

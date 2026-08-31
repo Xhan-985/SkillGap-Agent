@@ -5,12 +5,63 @@
 from pathlib import Path
 
 from skillgap.ingest.collector import (
-    append_row, build_row, load_alias_table, prepare_text, suggest_skills,
+    append_row, build_row, detect_city, detect_company, extract_title,
+    load_alias_table, prepare_text, suggest_skills,
 )
 from skillgap.ingest.importer import parse_file
 
 JD = ("岗位职责：负责大模型应用开发，搭建 RAG 检索链路与 Agent 编排，"
       "精通 Python，熟悉 LangChain，了解 Docker 部署。")
+
+
+# ---------- 粘贴优先：字段自动识别 ----------
+
+def test_extract_title_from_headline_line():
+    text = "AI 应用开发工程师\n岗位职责：负责大模型应用开发。\n任职要求：精通 Python。"
+    assert extract_title(text) == "AI 应用开发工程师"
+
+
+def test_extract_title_strips_recruit_prefix():
+    text = "招聘岗位：LLM 平台工程师\n岗位职责：负责推理服务。"
+    assert extract_title(text) == "LLM 平台工程师"
+
+
+def test_extract_title_from_company_recruit_sentence():
+    text = "某科技公司诚聘资深算法工程师，负责大模型应用开发。"
+    assert extract_title(text) == "资深算法工程师"
+
+
+def test_extract_title_english():
+    text = "Senior LLM Engineer\nResponsibilities: Build RAG pipelines."
+    assert extract_title(text) == "Senior LLM Engineer"
+
+
+def test_extract_title_skips_responsibility_lines():
+    # 首行是 JD 套话时不应误当标题；从后续行找岗位信号
+    text = "岗位职责：负责大模型应用开发，搭建 RAG 链路。\n岗位名称：AI 工程师"
+    assert extract_title(text) == "AI 工程师"
+
+
+def test_extract_title_none_when_no_signal():
+    assert extract_title("这是一段没有任何岗位信号的文字。") is None
+
+
+def test_detect_company():
+    text = "关于我们：北京某科技有限公司致力于 AI 应用。\n岗位职责：负责开发。"
+    assert detect_company(text) == "北京某科技有限公司"
+
+
+def test_detect_company_none():
+    assert detect_company(JD) is None
+
+
+def test_detect_city():
+    assert detect_city("工作地点：上海浦东\n岗位职责：开发。") == "上海"
+    assert detect_city("Base 杭州，负责大模型应用开发。") == "杭州"
+
+
+def test_detect_city_none():
+    assert detect_city(JD) is None
 
 
 def test_alias_table_loaded_and_sorted():

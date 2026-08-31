@@ -41,6 +41,66 @@ INTENSITY_WORDS = ("精通", "熟练", "熟悉", "了解")
 DEFAULT_SOURCE_TYPE = "public_job_page"
 DEFAULT_SOURCE_NAME = "company_career_page"
 
+# ---------- 粘贴优先：字段自动识别 ----------
+
+# 岗位信号词（中英；命中即认为该片段是岗位名称）
+_TITLE_SIGNALS = (
+    "工程师", "架构师", "分析师", "经理", "专员", "总监", "主管", "开发",
+    "研发", "算法", "顾问", "实习生",
+    "engineer", "developer", "manager", "analyst", "scientist", "architect",
+)
+# JD 套话行——绝不当作标题
+_BOILERPLATE_RE = re.compile(
+    r"岗位职责|工作职责|任职要求|职位描述|工作内容|关于我们|工作地点|"
+    r"薪资|薪酬|福利|responsibilit|requirement|qualification|job description|"
+    r"about us|location|salary|benefit", re.IGNORECASE)
+_TITLE_PREFIX_RE = re.compile(
+    r"^(?:高薪招聘|岗位名称|职位名称|招聘岗位|诚聘|急聘|招聘|岗位|职位)"
+    r"\s*[:：]?\s*")
+_RECRUIT_WORD_RE = re.compile(r"(?:高薪招聘|诚聘|急聘|招聘)\s*[:：]?\s*")
+_CUT_RE = re.compile(r"[，,。;；.·|/～~\-—\s]+$")
+
+CITIES = (
+    "北京", "上海", "广州", "深圳", "杭州", "成都", "武汉", "西安", "南京",
+    "重庆", "长沙", "苏州", "天津", "合肥", "郑州", "青岛", "无锡", "厦门",
+    "福州", "济南", "东莞", "佛山",
+)
+
+
+def extract_title(text: str) -> str | None:
+    """从前几行非套话文本提取岗位名称（确定性规则，无 LLM）。"""
+    lines = [ln.strip() for ln in text.splitlines() if ln.strip()][:5]
+    for raw in lines:
+        if _BOILERPLATE_RE.search(raw):
+            continue
+        candidate = _TITLE_PREFIX_RE.sub("", raw)
+        m = _RECRUIT_WORD_RE.search(candidate)
+        if m:
+            candidate = candidate[m.end():]
+        # 截到首个句读符（"某公司诚聘X工程师，负责…" → "X工程师"）
+        candidate = re.split(r"[，,。;；]", candidate)[0].strip()
+        candidate = _CUT_RE.sub("", candidate).strip("：: 　")
+        if 2 <= len(candidate) <= 40 and _has_title_signal(candidate):
+            return candidate
+    return None
+
+
+def _has_title_signal(candidate: str) -> bool:
+    low = candidate.casefold()
+    return any(s in low for s in _TITLE_SIGNALS)
+
+
+def detect_company(text: str) -> str | None:
+    m = re.search(r"([\u4e00-\u9fa5A-Za-z0-9·（）()]{2,25}公司)", text)
+    return m.group(1) if m else None
+
+
+def detect_city(text: str) -> str | None:
+    for city in CITIES:
+        if city in text:
+            return city
+    return None
+
 
 # ---------- 纯函数层（可测） ----------
 
@@ -199,23 +259,14 @@ def _confirm_skills(suggs: list[SkillSuggestion]) -> list[dict]:
 
 
 def run_collect(out: str) -> int:
-    """交互主循环：逐条录入 → 推断 → 确认 → 追加写入 CSV。"""
+    """交互主循环：粘贴 JD → 字段自动识别 → 回车确认 → 追加写入 CSV。"""
     out_path = Path(out)
     alias_table = load_alias_table()
     count = 0
-    print(f"交互式收集器 → 写入 {out_path}（表头自动生成，转义/JSON 全自动）")
+    print(f"交互式收集器 → 写入 {out_path}（粘贴 JD 后自动识别，回车即接受）")
     try:
         while True:
             print(f"\n=== 第 {count + 1} 条 ===")
-            title = _ask("岗位名称（必填）")
-            if not title:
-                print("岗位名称为空，本条作废")
-                continue
-            company = _ask("公司（可空）")
-            city = _ask("城市（可空）")
-            country = _ask("国家（可空，默认中国）", "中国") if city else ""
-            region = _ask("区域（可空，如 华北）")
-            source_url = _ask("来源链接 URL（public_job_page 必填）")
             raw_text = _read_jd()
             if not raw_text:
                 print("JD 全文为空，本条作废")
@@ -224,6 +275,27 @@ def run_collect(out: str) -> int:
             raw_text, pii_report = prepare_text(raw_text)
             if pii_report:
                 print(f"PII 已自动替换：{pii_report['hits']}")
+
+            title_guess = extract_title(raw_text)
+            title = _ask("岗位名称" + (f"（识别：{title_guess}）" if title_guess else ""),
+                         title_guess or "")
+            if not title:
+                print("岗位名称为空，本条作废")
+                continue
+
+            company_guess = detect_company(raw_text)
+            company = _ask("公司" + (f"（识别：{company_guess}）" if company_guess else ""),
+                           company_guess or "")
+
+            city_guess = detect_city(raw_text)
+            city = _ask("城市" + (f"（识别：{city_guess}）" if city_guess else ""),
+                        city_guess or "")
+
+            language = "zh" if any("\u4e00" <= ch <= "\u9fa5" for ch in raw_text) else "en"
+            country_default = "中国" if language == "zh" and (city or company) else ""
+            country = _ask("国家（可空）", country_default)
+            region = _ask("区域（可空，如 华北）")
+
             verdict = validate_jd(title, raw_text)
             if verdict.verdict != "pass":
                 print(f"质检提醒（{verdict.verdict}）：{verdict.reasons}"
@@ -244,10 +316,11 @@ def run_collect(out: str) -> int:
                         salary_currency = "CNY"
 
             category = classify_job_category(title, raw_text)
-            job_category = _ask("岗位类别（识别：" + category + "，可回车接受）",
-                                category)
+            job_category = _ask("岗位类别（识别：" + category + "）", category)
 
             skills = _confirm_skills(suggest_skills(raw_text, alias_table))
+
+            source_url = _ask("来源链接 URL（public_job_page 必填；从浏览器地址栏复制）")
 
             row = build_row(
                 title=title, raw_text=raw_text, company=company or None,
