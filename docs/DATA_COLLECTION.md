@@ -6,12 +6,16 @@
 
 ## 0. 模板文件与格式要求
 
-- 模板：`data/collect_template.csv`（19 列，**中文表头**，含 2 条示例行）
+- **推荐用交互式收集器录入**：`skillgap collect --out data/batch_1.csv`
+  - 问答式录入（岗位/公司/城市/URL → 粘贴 JD → END 结束），自动识别：薪资范围（15k-25k 等）、岗位类别、技能建议（词表 alias 扫描 + 证据原文 + 强度词）、PII 自动替换、质检提醒
+  - 技能逐条确认（[m]必须 [n]加分 [s]跳过）——**建议不代替标注**，importance 由人定
+  - CSV 转义/JSON 序列化/中文表头/BOM 全自动；可随时中断，已保存的条不丢
+- 手工模板：`data/collect_template.csv`（19 列，**中文表头**，含 2 条示例行）
 - **仅支持 CSV / JSON**（导入器 `parse_file` 只认这两种后缀）；Excel 用户请在 Excel 中编辑、最后"另存为 → CSV UTF-8"
 - 编码 UTF-8（模板已带 BOM，Excel 双击不乱码；无 BOM 也能读，读取用 utf-8-sig）
 - **表头可用中文（模板默认）或英文**（旧格式），导入时自动映射（importer.HEADER_ALIASES）；但**列的取值/枚举仍是英文**（如 source_type 填 `public_job_page`）
 - 中文表头对照：岗位名称=title / 公司=company / 城市=city / 国家=country / 区域=region / 最低薪资=salary_min / 最高薪资=salary_max / 薪资货币=salary_currency / 岗位类别=job_category / JD全文=raw_text / 软性要求=soft_requirements / 技能标注=skills / 来源类型=source_type / 来源名称=source_name / 来源链接=source_url / 采集日期=collected_at / 提交时间=submitted_at / 同意状态=consent_status / 数据质量=data_quality
-- 含逗号的字段用双引号包裹；`软性要求`/`技能标注` 两列填 JSON 数组，JSON 内的双引号在 CSV 中写成两个双引号（Excel 会自动处理）；JSON 的**键名保持英文**（raw_name/importance 等，管道按英文键解析）
+- 手工填写时：含逗号的字段用双引号包裹；`软性要求`/`技能标注` 两列填 JSON 数组，JSON 内的双引号在 CSV 中写成两个双引号（Excel 会自动处理）；JSON 的**键名保持英文**（raw_name/importance 等，管道按英文键解析）
 - `JD全文` 允许换行（字段用双引号包裹即可）；为降低 Excel 换行出错风险，也可把换行替换为空格后再填
 
 ## 1. 通道定位（本批怎么选）
