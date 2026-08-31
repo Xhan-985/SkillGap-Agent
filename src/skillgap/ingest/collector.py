@@ -109,6 +109,17 @@ class SkillSuggestion:
     canonical: str
     evidence_text: str
     intensity: str | None
+    inferred: bool = False   # True = 措辞推断（非技术名直接命中）
+
+
+# 措辞推断：JD 写能力不写技术名时的补充建议（低误报措辞；已命中的不重复）
+_HINT_PATTERNS: list[tuple[re.Pattern, str]] = [
+    (re.compile(r"(检索增强|知识库问答|文档问答|语义检索|向量检索)"),
+     "RAG"),
+    (re.compile(r"(提示词|(?<![A-Za-z])[Pp]rompt(?![A-Za-z]))"),
+     "Prompt Engineering"),
+    (re.compile(r"(容器化)"), "Docker"),
+]
 
 
 def load_alias_table(path: Path = TAXONOMY_CSV) -> list[tuple[str, str]]:
@@ -151,7 +162,7 @@ def _intensity_before(text: str, pos: int) -> str | None:
 
 def suggest_skills(text: str,
                    alias_table: list[tuple[str, str]]) -> list[SkillSuggestion]:
-    """词表 alias 扫描：每个 canonical 只保留首个（最长 alias）命中。"""
+    """词表 alias 扫描 + 措辞推断：每个 canonical 只保留一个证据。"""
     found: dict[str, SkillSuggestion] = {}
     for alias, canonical in alias_table:
         if canonical in found:
@@ -162,6 +173,14 @@ def suggest_skills(text: str,
                 canonical=canonical,
                 evidence_text=m.group(0),
                 intensity=_intensity_before(text, m.start()))
+    for pattern, canonical in _HINT_PATTERNS:
+        if canonical in found:
+            continue
+        m = pattern.search(text)
+        if m:
+            found[canonical] = SkillSuggestion(
+                canonical=canonical, evidence_text=m.group(0),
+                intensity=_intensity_before(text, m.start()), inferred=True)
     return list(found.values())
 
 
@@ -246,10 +265,11 @@ def _confirm_skills(suggs: list[SkillSuggestion]) -> list[dict]:
         print("（词表未命中任何技能——本条可不标注，入库后由 LLM 补抽）")
         return []
     skills: list[dict] = []
-    print("技能建议（词表命中；[m]必须 [n]加分 [s]跳过）：")
+    print("技能建议（[m]必须 [n]加分 [s]跳过；“推断”=由措辞推断，非技术名命中）：")
     for s in suggs:
         intensity = f"，强度识别：{s.intensity}" if s.intensity else ""
-        ans = _ask(f"  {s.canonical}（证据“{s.evidence_text}”{intensity}）", "m")
+        tag = "，推断" if s.inferred else ""
+        ans = _ask(f"  {s.canonical}（证据“{s.evidence_text}”{intensity}{tag}）", "m")
         if ans == "s":
             continue
         importance = "nice_to_have" if ans == "n" else "must_have"

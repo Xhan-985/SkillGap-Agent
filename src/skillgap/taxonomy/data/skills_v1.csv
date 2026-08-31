@@ -17,10 +17,10 @@ PostgreSQL,data,-,low,-,PG数据库|postgres数据库,postgresql|postgres|psql,�
 MySQL,data,-,low,-,-,mysql,关系型数据库
 Redis,data,-,mid,-,-,redis,缓存与消息队列
 pgvector,retrieval,-,mid,-,PG向量插件,pgvector|pg vector,PostgreSQL 向量扩展
-Milvus,retrieval,-,high,-,向量数据库,milvus,向量数据库
-Chroma,retrieval,-,low,-,向量数据库,chroma|chromadb,嵌入式向量数据库
-Qdrant,retrieval,-,mid,-,向量数据库,qdrant,向量数据库
-Neo4j,retrieval,-,mid,-,图数据库,neo4j,图数据库
+Milvus,retrieval,-,high,-,-,milvus,向量数据库
+Chroma,retrieval,-,low,-,-,chroma|chromadb,嵌入式向量数据库
+Qdrant,retrieval,-,mid,-,-,qdrant,向量数据库
+Neo4j,retrieval,-,mid,-,-,neo4j,图数据库
 SFT/LoRA,serving,-,high,-,微调|大模型微调|LoRA微调,sft|lora|fine-tuning|finetuning,监督微调与低秩适配
 vLLM,serving,-,high,-,推理引擎,vllm|v-llm,高吞吐推理服务
 Evaluation（LLM 评测）,engineering,-,mid,-,LLM评测|大模型评测|评测体系,llm evaluation|eval,LLM 评测方法

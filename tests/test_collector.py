@@ -72,6 +72,41 @@ def test_alias_table_loaded_and_sorted():
     assert lens == sorted(lens, reverse=True)   # 长 alias 优先匹配
 
 
+def test_alias_table_has_no_generic_aliases():
+    """通用技术词不得挂任何具体产品（否则"向量数据库"被硬归 Milvus）。"""
+    table = load_alias_table()
+    names = {a for a, _ in table}
+    assert "向量数据库" not in names
+    assert "图数据库" not in names
+
+
+def test_suggest_skills_infers_from_capability_words():
+    """措辞推断：不写具体技术名也能给出建议（标 inferred，evidence=措辞原文）。"""
+    table = load_alias_table()
+    text = "负责企业知识库问答系统的建设与优化，熟悉容器化部署。"
+    by_name = {s.canonical: s for s in suggest_skills(text, table)}
+    rag = by_name["RAG"]
+    assert rag.inferred is True
+    assert rag.evidence_text == "知识库问答"        # 证据=可定位的措辞原文
+    assert by_name["Docker"].inferred is True
+    assert by_name["Docker"].evidence_text == "容器化"
+
+
+def test_suggest_skills_inferred_prompt():
+    text = "Optimize prompt quality for LLM applications."
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["Prompt Engineering"].evidence_text == "prompt"
+
+
+def test_suggest_skills_inferred_not_duplicated_with_alias():
+    # 同一技能已被 alias 命中时，推断层不再重复给出
+    text = "搭建 RAG 检索链路与知识库问答系统。"
+    rags = [s for s in suggest_skills(text, load_alias_table())
+            if s.canonical == "RAG"]
+    assert len(rags) == 1
+    assert rags[0].inferred is False
+
+
 def test_suggest_skills_evidence_is_original_text():
     suggs = suggest_skills(JD, load_alias_table())
     by_name = {s.canonical: s for s in suggs}
