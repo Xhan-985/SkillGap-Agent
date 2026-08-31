@@ -29,17 +29,6 @@ class RecordOutcome:
     reasons: list[str] = field(default_factory=list)
 
 
-def _stage_raw(conn, rec: RawRecord) -> int:
-    """S2：原始暂存（payload = 脱敏后载荷 for PII 通道，见 DATA_GOVERNANCE §3 双轨）。"""
-    with conn.cursor() as cur:
-        cur.execute(
-            """INSERT INTO raw_jobs (payload, source_fields, status)
-               VALUES (%s::jsonb, %s::jsonb, 'pending') RETURNING id""",
-            (rec.model_dump_json(), rec.source.model_dump_json()),
-        )
-        return cur.fetchone()["id"]
-
-
 def _resolve_company(conn, name: str | None) -> int | None:
     if not name:
         return None
