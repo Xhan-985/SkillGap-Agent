@@ -31,7 +31,7 @@ DATA_TABLES = [
     "match_result", "recommendation", "candidate_evidence", "candidate_skill",
     "candidate", "job", "company", "raw_jobs", "ingest_batch",
     "ingest_checkpoint", "ingest_request_log", "market_snapshot",
-    "evaluation_sample",
+    "llm_cache", "eval_run", "evaluation_sample",
 ]
 
 
