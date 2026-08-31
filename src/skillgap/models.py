@@ -54,6 +54,21 @@ class RawRecord(BaseModel):
     source: SourceFields
 
 
+SoftReqTypeEnum = Literal["experience", "education", "language"]
+
+
+class SoftRequirement(BaseModel):
+    type: SoftReqTypeEnum
+    value: str
+    evidence_text: str
+
+
+class JDExtraction(BaseModel):
+    """LLM 抽取输出契约（ADR-009）。证据可溯由 extract 层程序校验。"""
+    skills: list[SkillAnnotation]
+    soft_requirements: list[SoftRequirement] = Field(default_factory=list)
+
+
 class RowError(BaseModel):
     row: int
     stage: str
