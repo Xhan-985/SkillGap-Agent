@@ -1,0 +1,13 @@
+skill,related_skill,relation_type,note
+Java,Python,transferable_to,工程能力与基础编程范式可迁移
+Python,Java,transferable_to,工程能力与基础编程范式可迁移
+MySQL,PostgreSQL,transferable_to,SQL 与关系型数据库经验可迁移
+PostgreSQL,MySQL,transferable_to,SQL 与关系型数据库经验可迁移
+LangChain,LangGraph,related,同属 LangChain 生态编排框架
+LangGraph,LangChain,related,同属 LangChain 生态编排框架
+Milvus,Chroma,related,同为向量数据库
+Chroma,Milvus,related,同为向量数据库
+Chroma,Qdrant,related,同为向量数据库
+Qdrant,Chroma,related,同为向量数据库
+pgvector,Chroma,related,同为向量检索方案
+Chroma,pgvector,related,同为向量检索方案
