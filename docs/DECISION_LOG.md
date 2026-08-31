@@ -65,6 +65,12 @@
 - **决策**：当日修复全部 BLOCKER 与 HIGH（涉及 DATA_MODEL / API / ARCHITECTURE / PRODUCT_SPEC / EVALUATION_PLAN / DATA_PIPELINE 六份文档）；MEDIUM 按阶段关闭：英文程度词映射→Phase 3 词表冻结时、candidate level 映射规则→Phase 5 前、skill_relation 种子数据→Phase 2 词表建档时
 - **终判**：**PASS WITH RISKS**（详见 PHASE_1_REVIEW.md 评审章节）——交付物 100% 齐备、硬约束全部合规、无范围膨胀；保留 heuristic 待 E2 校准与中国数据积累两项已识别风险
 
+## D-2026-08-31-10 ｜ 持久层选型：psycopg3 + SQL 迁移文件（无 ORM）
+
+- **决策**：持久层采用 psycopg3 + 版本化 SQL 迁移文件（无 ORM）；新增依赖 httpx / pydantic-settings（均为最小依赖）
+- **关联**：ADR-010
+- **影响**：Phase 2 启动——迁移以 .sql 文件为单一事实源，统计/约束/口径全部 SQL 可审计；后续 FastAPI 层同样走 psycopg + Pydantic
+
 ---
 
 ## 待议决策（进入 Phase 2 前）
