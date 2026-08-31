@@ -1,8 +1,8 @@
 # PHASE_3_REVIEW —— Phase 3 完成自检（六维）
 
-> 状态：**PASS WITH RISKS**（代码与评测管道全绿 133 项测试；风险 = 真实 LLM 基线跑分未执行——LLM_API_KEY 未配置，属用户执行项，见 §4）
+> 状态：**PASS WITH RISKS**（代码与评测管道全绿 138 项测试；风险 = 真实 LLM 基线跑分未执行——LLM_API_KEY 未配置，属用户执行项，见 §4。交叉审查 2 major + 3 minor 已于 2026-08-31 全部修复）
 > 验收：ROADMAP Phase 3 验收逐项核验结果（见 §2 表）
-> 日期：2026-08-31 ｜ 测试：133 passed（pytest 全量，PostgreSQL 经 docker compose）
+> 日期：2026-08-31 ｜ 测试：138 passed（pytest 全量，PostgreSQL 经 docker compose）
 
 ## 1. 交付物清单（对照 ROADMAP Phase 3 产出）
 
@@ -41,7 +41,14 @@ LLM 仅一个出口：S8 技能抽取（Structured Output，temperature=0）。m
 抽取结果每条技能带 evidence_text 且必须可在 JD 原文定位（规范化字符串匹配，容忍全角/空白差异）；不可定位即整体失败重试。词表外抽取不静默入统计，进 new_skill_candidate（周级裁决）。
 
 ### Evaluation（可验证？）
-E1 评测器口径冻结：micro P/R/F1（池化去重）+ macro F1 + 重要度准确率 + 样本级证据可溯率；阈值预声明跑分前冻结（f1 与 recall 双闸）；每次跑分入 eval_run（版本三元组 + 指标），回归历史可查。测试 133 项全绿（含：空抽取 precision=1 无误报约定、失败样本计漏不中断、词表外不计误报、缓存命中幂等、重试计数=首次+2）。
+E1 评测器口径冻结：micro P/R/F1——池化全部 (样本,技能) 决策，同名跨样本各计一次、样本内同名去重（与 EVALUATION_PLAN §2.2 一致）+ macro F1 + 重要度准确率 + 样本级证据可溯率；阈值预声明跑分前冻结（f1 与 recall 双闸）；每次跑分入 eval_run（版本三元组 + 指标），回归历史可查。测试 138 项全绿（含：空抽取 precision=1 无误报约定、失败样本计漏不中断、词表外不计误报、缓存命中幂等、重试计数=首次+2）。
+
+交叉审查修复（2026-08-31，主审 + 双独立子代理验证，无远端推送）：
+1. **E1 口径改 micro**（major）：原实现池化后按技能名并集去重（≈集合口径），高频技能任一样本命中即全局 TP，recall 被系统性高估——已改为 (样本,技能) 决策池化 + 样本内 `_dedupe_by_name`，修正 docstring 与测试口径
+2. **backfill 行级容错**（major）：`LLMError`（网络/限流）原先穿透中断整批回填并使 CLI 裸崩——已改为单条跳过保持 pending（对齐 pipeline/importer 行级失败不中断纪律）
+3. eval-e1 前置校验词表非空（fresh DB 漏跑 seed 时明确提示，不再产出误导性 block 记录）；修正 run_e1 报错信息中的命令名
+4. provider 末次重试不再无谓退避（边界检查与网络错误分支对齐）
+5. Retry-After HTTP-date 格式回退默认退避（不再抛裸 ValueError 逃逸）
 
 ### Resume（可讲什么）
 "我实现了 LLM Gateway 防腐层（Provider 抽象 + DB 响应缓存 + 指数退避重试），技能抽取用 Structured Output + 证据原文可溯程序校验（不可定位即失败），并建了 20 条人工标注的 E1 评测集与冻结阈值的回归评测器——Prompt 任何变更都有 F1 历史可比对。"

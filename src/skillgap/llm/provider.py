@@ -65,9 +65,19 @@ class OpenAICompatibleProvider:
                     f"LLM 调用失败（重试 {self.max_retries} 次）: {last}")
             if resp.status_code in RETRYABLE_STATUS:
                 last = f"HTTP {resp.status_code}"
-                delay = resp.headers.get("Retry-After")
-                _sleep(min(float(delay), 30.0) if delay else 2 ** attempt)
-                continue
+                if attempt < self.max_retries:
+                    delay = resp.headers.get("Retry-After")
+                    if delay:
+                        try:    # RFC 7231 允许 HTTP-date 格式，回退默认退避
+                            backoff = min(float(delay), 30.0)
+                        except ValueError:
+                            backoff = 2 ** attempt
+                    else:
+                        backoff = 2 ** attempt
+                    _sleep(backoff)
+                    continue
+                raise LLMError(
+                    f"LLM 调用失败（重试 {self.max_retries} 次）: {last}")
             if resp.status_code != 200:
                 raise LLMError(
                     f"LLM HTTP {resp.status_code}: {resp.text[:200]}")

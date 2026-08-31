@@ -17,6 +17,7 @@ from skillgap.ingest.extract import (
     alias_map_from_db, record_candidates, resolve_skill_id,
 )
 from skillgap.ingest.normalize import classify_job_category, detect_language
+from skillgap.llm.provider import LLMError
 from skillgap.models import JDExtraction
 
 MIN_LEN, MAX_LEN = 50, 20000   # 与 quality.py 口径一致
@@ -79,7 +80,7 @@ def backfill_pending(conn: psycopg.Connection, extractor,
     for row in rows:
         try:
             anns = extractor.extract(row["raw_text"])
-        except ExtractionFailed:
+        except (ExtractionFailed, LLMError):
             continue
         unresolved: list[str] = []
         with conn.cursor() as cur:

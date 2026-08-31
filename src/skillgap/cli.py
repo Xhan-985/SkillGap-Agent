@@ -177,6 +177,12 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             extractor = _make_extractor(conn)
             if extractor is None:
                 return 2
+            with conn.cursor() as cur:
+                cur.execute("SELECT 1 FROM skill LIMIT 1")
+                if cur.fetchone() is None:
+                    print("错误：词表未初始化，请先运行 skillgap seed",
+                          file=sys.stderr)
+                    return 2
             seed_eval(conn)
             _print(run_e1(conn, extractor,
                           dataset_version=args.dataset_version))

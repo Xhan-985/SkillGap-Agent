@@ -60,6 +60,28 @@ def test_backfill_without_key_exits_clean(clean_db, capsys, no_llm_key):
     assert "LLM_API_KEY" in capsys.readouterr().err
 
 
+def test_eval_e1_without_taxonomy_exits_with_hint(
+        clean_db, capsys, monkeypatch):
+    """fresh DB 漏跑 seed：词表为空时给出明确提示，不产出误导性 block 报告。"""
+    from skillgap.taxonomy.seed import seed_all
+
+    monkeypatch.setattr("skillgap.cli.settings", Settings(llm_api_key="k"))
+    with clean_db.cursor() as cur:
+        cur.execute("TRUNCATE skill, skill_alias RESTART IDENTITY CASCADE")
+    clean_db.commit()
+    try:
+        rc = main(["eval-e1"], db_url=TEST_URL)
+        assert rc == 2
+        assert "seed" in capsys.readouterr().err
+        with clean_db.cursor() as cur:
+            cur.execute("SELECT count(*) AS c FROM eval_run")
+            assert cur.fetchone()["c"] == 0
+            cur.execute("SELECT count(*) AS c FROM evaluation_sample")
+            assert cur.fetchone()["c"] == 0
+    finally:
+        seed_all(clean_db)          # 恢复后续测试所需的词表
+
+
 def test_stats_command_outputs_json(clean_db, capsys):
     rc = main(["stats", "--market", "china"], db_url=TEST_URL)
     assert rc == 0

@@ -70,7 +70,7 @@ Phase 11 Docker + CI + Documentation
 | 验收 | E1 F1 ≥ 0.75（Warn 线起步，迭代冲 0.85）；证据可溯率 100%；失败用例（超长/乱码/无技能 JD）明示不静默 |
 | 自检重点 | AI：LLM 是否被滥用（只抽取，无统计）；Evaluation：基线入库进回归历史 |
 | 依赖 | Phase 2 数据集（标注集从中抽样） |
-| 完成状态 | ✅ 代码与评测管道完成（2026-08-31，133 测试全绿；用户决策：DeepSeek + 种子集 20 条先行）；**真实基线待 LLM_API_KEY 配置后跑分**——详见根目录 PHASE_3_REVIEW.md |
+| 完成状态 | ✅ 代码与评测管道完成（2026-08-31，138 测试全绿，交叉审查 2 major + 3 minor 已修复；用户决策：DeepSeek + 种子集 20 条先行）；**真实基线待 LLM_API_KEY 配置后跑分**——详见根目录 PHASE_3_REVIEW.md |
 
 ## Phase 4：Market Intelligence
 
@@ -254,7 +254,7 @@ LLM 仅两处受控节点：S8 技能抽取（Schema 校验 + 失败明示）、
 
 详见根目录 PHASE_3_REVIEW.md（六维全文 + 验收核验表）。
 
-- **状态**：PASS WITH RISKS——代码与评测管道全绿（133 项测试全过），风险为用户执行项：LLM_API_KEY 配置后真实基线跑分。
+- **状态**：PASS WITH RISKS——代码与评测管道全绿（138 项测试全过，含交叉审查修复），风险为用户执行项：LLM_API_KEY 配置后真实基线跑分。
 - **Product**：jd-analyze 一条命令输出 API §2.1 契约结构（含证据与 extraction_meta）；Phase 2 遗留 pending 抽取可回填。
 - **Engineering**：migration 003 两表均为计划冻结项；模块依赖单向（analyzer → extractor → gateway → provider，eval 只读）；零新依赖（httpx 复用不加 SDK）。
 - **AI**：LLM 仅 S8 抽取一个出口（Structured Output，temperature=0）；确定性字段由规则计算；E1 指标全部程序计算（红线：LLM 不参与指标）。

@@ -116,3 +116,37 @@ def test_backfill_no_pending_is_noop(clean_db):
                     OpenAICompatibleProvider("https://t", "k", "m", http=http),
                     "v1")
     assert backfill_pending(clean_db, LLMSkillExtractor(gw)) == 0
+
+
+def test_backfill_llm_error_skips_row_not_batch(clean_db, monkeypatch):
+    """LLMError（网络/限流）单条跳过保持 pending，不中断整批（行级容错纪律）。"""
+    from skillgap.ingest.contribute import contribute_jd
+    from skillgap.llm import provider as pm
+    from skillgap.taxonomy.seed import seed_all
+
+    monkeypatch.setattr(pm, "_sleep", lambda s: None)
+    seed_all(clean_db)
+    r1 = contribute_jd(clean_db, JD, True, "AI 应用开发工程师")
+    r2 = contribute_jd(clean_db, "职位说明：" + JD, True, "平台开发工程师")
+    assert r1.job_id != r2.job_id          # 两条不同 pending job
+
+    calls = {"n": 0}
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        calls["n"] += 1
+        if calls["n"] <= 3:                # job1 的首次 + 2 次重试全部 500
+            return httpx.Response(500)
+        return httpx.Response(200, json=LLM_OK)
+
+    http = httpx.Client(transport=httpx.MockTransport(handler))
+    gw = LLMGateway(clean_db,
+                    OpenAICompatibleProvider("https://t", "k", "m", http=http),
+                    "v1")
+    n = backfill_pending(clean_db, LLMSkillExtractor(gw))
+    assert n == 1                           # job2 成功；job1 失败不中断
+    with clean_db.cursor() as cur:
+        cur.execute("SELECT id, parsed_metadata->>'extraction_status' AS s "
+                    "FROM job ORDER BY id")
+        rows = cur.fetchall()
+    assert rows[0]["s"] == "pending"        # job1 LLMError → 保持 pending
+    assert rows[1]["s"] is None             # job2 回填成功

@@ -1,10 +1,11 @@
 """E1 评测器（技能抽取质量回归——EVALUATION_PLAN §2）。
 
-口径（预声明，跑分前冻结——§2.3）：
+口径（预声明，跑分前冻结——§2.2/§2.3）：
 - 匹配单位：alias 归一后的 taxonomy canonical_name；词表外抽取不进 P/R
   （归 new_skill_candidate 属抽取器职责，不计误报）
-- 指标：micro P/R/F1（池化按技能并集去重）+ macro F1（低频技能不隐身）
-  + 重要度准确率（TP 项上 must/nice 一致率）
+- 指标：micro P/R/F1——池化全部 (样本,技能) 决策，同名技能跨样本各计
+  一次（样本内同名由 _dedupe_by_name 去重）；macro F1 逐技能平均
+  （低频技能不隐身）；重要度准确率在名字命中的决策对上多重集匹配
 - 证据可溯率：样本级——抽取成功且全部 evidence_text 可定位的样本占比；
   <100% 一票 block（纯程序判定，LLM 不参与指标计算——红线）
 - 阈值：F1 与 Recall 同表——pass ≥0.85；warn ≥0.75；block <0.75
@@ -12,6 +13,7 @@
 from __future__ import annotations
 
 import json
+from collections import Counter
 
 import psycopg
 
@@ -23,33 +25,51 @@ from skillgap.ingest.extract import (
 THRESHOLDS = {"pass": 0.85, "warn": 0.75}
 
 
+def _dedupe_by_name(pairs: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    """样本内同名去重（首个 importance 生效）；跨样本不去重（micro 决策）。"""
+    seen: set[str] = set()
+    out: list[tuple[str, str]] = []
+    for name, importance in pairs:
+        if name in seen:
+            continue
+        seen.add(name)
+        out.append((name, importance))
+    return out
+
+
 def compute_metrics(extracted: list[tuple[str, str]],
                     truth: list[tuple[str, str]]) -> dict:
-    """(canonical_name, importance) 列表 → 指标（纯函数，无 DB/LLM）。
+    """(canonical_name, importance) 决策列表 → 指标（纯函数，无 DB/LLM）。
 
-    约定：空抽取 precision=1.0（无误报）；同名重复按集合计；
-    importance_accuracy 仅在 TP（名字命中）项上比对。
+    约定：空抽取 precision=1.0（无误报）；importance_accuracy 在名字
+    命中的决策对上按 importance 多重集匹配计数。
     """
-    ext: dict[str, str] = {}
-    for name, importance in extracted:
-        ext.setdefault(name, importance)
-    tru: dict[str, str] = {}
-    for name, importance in truth:
-        tru.setdefault(name, importance)
-    tp = set(ext) & set(tru)
-    precision = len(tp) / len(ext) if ext else 1.0
-    recall = len(tp) / len(tru) if tru else 1.0
+    ext_c = Counter(name for name, _ in extracted)
+    tru_c = Counter(name for name, _ in truth)
+    names = set(ext_c) | set(tru_c)
+    tp = sum(min(ext_c[n], tru_c[n]) for n in names)
+    precision = tp / len(extracted) if extracted else 1.0
+    recall = tp / len(truth) if truth else 1.0
     f1 = 2 * precision * recall / (precision + recall) if tp else 0.0
-    union = set(ext) | set(tru)
-    macro_f1 = (sum(1.0 if n in tp else 0.0 for n in union) / len(union)
-                if union else 0.0)
-    imp_ok = sum(1 for n in tp if ext[n] == tru[n])
+    per_skill: list[float] = []
+    for n in names:
+        tp_n = min(ext_c[n], tru_c[n])
+        p_n = tp_n / ext_c[n] if ext_c[n] else 1.0
+        r_n = tp_n / tru_c[n] if tru_c[n] else 1.0
+        per_skill.append(2 * p_n * r_n / (p_n + r_n) if tp_n else 0.0)
+    imp_ok = 0
+    for n in names:
+        ext_i = Counter(i for m, i in extracted if m == n)
+        tru_i = Counter(i for m, i in truth if m == n)
+        imp_ok += sum(min(ext_i[k], tru_i[k])
+                      for k in set(ext_i) | set(tru_i))
     return {
         "precision": round(precision, 4),
         "recall": round(recall, 4),
         "f1": round(f1, 4),
-        "macro_f1": round(macro_f1, 4),
-        "importance_accuracy": round(imp_ok / len(tp), 4) if tp else 0.0,
+        "macro_f1": round(sum(per_skill) / len(per_skill), 4)
+        if per_skill else 0.0,
+        "importance_accuracy": round(imp_ok / tp, 4) if tp else 0.0,
     }
 
 
@@ -97,7 +117,8 @@ def run_e1(conn: psycopg.Connection, extractor,
         rows = cur.fetchall()
     if not rows:
         raise ValueError(
-            f"评测集 {dataset_version} 为空，请先 seed（skillgap eval-seed）")
+            f"评测集 {dataset_version} 为空，请运行 skillgap eval-e1"
+            "（自动入库种子集）")
 
     amap = alias_map_from_db(conn)
     with conn.cursor() as cur:
@@ -111,9 +132,10 @@ def run_e1(conn: psycopg.Connection, extractor,
     for row in rows:
         jd_text = row["input_payload"]["jd_text"]
         truth = row["ground_truth"] or {}
-        pooled_tru.extend(
+        # micro：池化 (样本,技能) 决策——样本内同名去重，跨样本不去重
+        pooled_tru.extend(_dedupe_by_name([
             (s["canonical_name"], s.get("importance", "must_have"))
-            for s in truth.get("skills", []))
+            for s in truth.get("skills", [])]))
         try:
             anns = extractor.extract(jd_text)
         except Exception:
@@ -121,11 +143,13 @@ def run_e1(conn: psycopg.Connection, extractor,
             continue
         if all(locate_evidence(jd_text, a.evidence_text) for a in anns):
             n_evidence_ok += 1
+        ext_pairs = []
         for a in anns:
             sid = resolve_skill_id(a.raw_name, amap)
             if sid is None:
                 continue          # 词表外：不进 P/R（候选表属抽取器职责）
-            pooled_ext.append((sid_to_name[sid], a.importance))
+            ext_pairs.append((sid_to_name[sid], a.importance))
+        pooled_ext.extend(_dedupe_by_name(ext_pairs))
 
     metrics = compute_metrics(pooled_ext, pooled_tru)
     metrics["evidence_rate"] = round(n_evidence_ok / len(rows), 4)

@@ -100,3 +100,34 @@ def test_network_error_retries_then_raises(monkeypatch):
 
     with pytest.raises(pm.LLMError, match="网络错误"):
         _provider(handler).chat([{"role": "user", "content": "x"}])
+
+
+def test_no_sleep_on_final_retryable_attempt(monkeypatch):
+    """末次尝试遇可重试状态码：直接抛 LLMError，不再无谓退避。"""
+    sleeps: list[float] = []
+    monkeypatch.setattr(pm, "_sleep", sleeps.append)
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        return httpx.Response(503)
+
+    with pytest.raises(pm.LLMError, match="LLM 调用失败"):
+        _provider(handler).chat([{"role": "user", "content": "x"}])
+    assert sleeps == [1, 2]      # 2**0、2**1；末次（第 3 次）不 sleep
+
+
+def test_retry_after_http_date_falls_back(monkeypatch):
+    """RFC 7231 允许 Retry-After 为 HTTP-date：解析失败回退默认退避，不抛 ValueError。"""
+    sleeps: list[float] = []
+    monkeypatch.setattr(pm, "_sleep", sleeps.append)
+    n = {"i": 0}
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        n["i"] += 1
+        if n["i"] == 1:
+            return httpx.Response(429, headers={
+                "Retry-After": "Wed, 21 Oct 2015 07:28:00 GMT"})
+        return httpx.Response(200, json=OK_BODY)
+
+    resp = _provider(handler).chat([{"role": "user", "content": "x"}])
+    assert resp.content == '{"skills": []}'
+    assert sleeps == [1]          # HTTP-date 不可解析 → 回退 2**0 = 1

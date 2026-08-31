@@ -11,6 +11,8 @@ def _anns(*pairs):
 
 
 # ---------- compute_metrics（纯函数，无 DB/LLM） ----------
+# 口径（EVALUATION_PLAN §2.2）：micro = 池化全部 (样本,技能) 决策，
+# 同名技能跨样本各计一次；样本内同名去重由 run_e1 调 _dedupe_by_name 完成。
 
 def test_metrics_perfect():
     m = compute_metrics(
@@ -41,12 +43,22 @@ def test_metrics_macro_f1():
     assert abs(m["macro_f1"] - round(1 / 3, 4)) < 1e-9
 
 
-def test_metrics_duplicate_extracted_collapsed():
-    """同一技能抽两次按集合计（不重复计数）。"""
+def test_metrics_micro_counts_each_decision():
+    """micro 口径：同名跨样本/跨决策各计一次（不做并集去重）。"""
     m = compute_metrics(
         extracted=[("RAG", "must_have"), ("RAG", "must_have")],
         truth=[("RAG", "must_have")])
-    assert m["precision"] == 1.0 and m["f1"] == 1.0
+    assert m["precision"] == 0.5      # 2 个抽取决策，1 个命中
+    assert m["recall"] == 1.0
+    assert m["f1"] == round(2 * 0.5 * 1.0 / 1.5, 4)
+
+
+def test_dedupe_by_name_within_sample():
+    """样本内同名去重（首个 importance 生效），跨样本不去重。"""
+    from skillgap.eval.e1 import _dedupe_by_name
+    assert _dedupe_by_name([("RAG", "must_have"), ("RAG", "must_have"),
+                            ("Docker", "nice_to_have")]) == [
+        ("RAG", "must_have"), ("Docker", "nice_to_have")]
 
 
 # ---------- 阈值判定（预声明，跑分前冻结——E1 §2.3） ----------
