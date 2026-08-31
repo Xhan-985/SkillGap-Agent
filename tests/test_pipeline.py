@@ -105,16 +105,21 @@ def test_user_submitted_pii_redacted_before_insert(clean_db):
     rec.source.source_type = "user_submitted"
     rec.source.source_name = "user_contribution"
     rec.source.consent_status = "market_analysis"
-    rec.raw_text = "联系张三 13812345678。" + GOOD_JD
+    rec.raw_text = "联系张三 13812345678。" + rec.raw_text
     outcome, _ = process_record(clean_db, rec)
     assert outcome.status == "inserted"
     with clean_db.cursor() as cur:
         cur.execute("SELECT raw_text, parsed_metadata FROM job WHERE id=%s",
                     (outcome.job_id,))
         row = cur.fetchone()
+        cur.execute("SELECT payload::text AS p FROM raw_jobs")
+        raw_payload = cur.fetchone()["p"]
     assert "13812345678" not in row["raw_text"]
     assert "[PHONE_REDACTED]" in row["raw_text"]
     assert row["parsed_metadata"]["pii_redaction"]["hits"]["phone"] == 1
+    # raw 暂存 payload 同样必须是脱敏后载荷（DATA_GOVERNANCE §3 双轨）
+    assert "13812345678" not in raw_payload
+    assert "[PHONE_REDACTED]" in raw_payload
 
 
 def test_run_batch_report_counts(clean_db):
@@ -138,3 +143,25 @@ def test_batch_idempotent_rerun(clean_db):
     run_batch(clean_db, [_rec()])
     report = run_batch(clean_db, [_rec()])
     assert report.duplicates == 1 and report.inserted == 0
+
+
+def test_run_batch_row_error_counted(clean_db):
+    """行级 DB 约束错误：不中断批次，error_count 与 total 闭合。"""
+    rec = _rec()
+    rec.source.source_type = "public_job_page"
+    rec.source.source_name = "company_career_page"
+    # source_url 缺失 → DDL CHECK 拒绝 → 行级 error
+    report = run_batch(clean_db, [rec])
+    assert report.total == 1
+    assert len(report.errors) == 1
+    with clean_db.cursor() as cur:
+        cur.execute(
+            "SELECT total, inserted, duplicates, quarantined, rejected, "
+            "extraction_failed, error_count FROM ingest_batch")
+        row = cur.fetchone()
+    assert (row["inserted"], row["duplicates"], row["quarantined"],
+            row["rejected"], row["extraction_failed"],
+            row["error_count"]) == (0, 0, 0, 0, 0, 1)
+    assert row["total"] == sum(row[k] for k in (
+        "inserted", "duplicates", "quarantined", "rejected",
+        "extraction_failed", "error_count"))

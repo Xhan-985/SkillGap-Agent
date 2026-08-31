@@ -45,7 +45,8 @@ def full_scan(conn: psycopg.Connection) -> dict:
                source_type IS NULL OR collected_at IS NULL OR
                content_hash IS NULL OR data_quality IS NULL OR
                (source_type = 'public_job_page' AND source_url IS NULL) OR
-               (source_type = 'user_submitted' AND consent_status IS NULL)""")
+               (source_type = 'user_submitted' AND
+                consent_status IS DISTINCT FROM 'market_analysis')""")
         missing = cur.fetchone()["c"]
         cur.execute(
             """SELECT count(*) AS c FROM job

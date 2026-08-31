@@ -36,3 +36,18 @@ def test_quality_report_command(clean_db, capsys):
     assert rc == 0
     out = json.loads(capsys.readouterr().out)
     assert "pii_detection" in out and "missing_field_rate" in out
+
+
+def test_contribute_without_consent_returns_clean_error(clean_db, tmp_path,
+                                                        capsys):
+    jd = tmp_path / "jd.txt"
+    jd.write_text("岗位职责：负责大模型应用开发，搭建 RAG 检索链路与 Agent 编排。" * 3,
+                  encoding="utf-8")
+    rc = main(["contribute", "--title", "AI 应用开发工程师", "--file", str(jd)],
+              db_url=TEST_URL)
+    assert rc == 1
+    err = capsys.readouterr().err
+    assert "--consent" in err
+    with clean_db.cursor() as cur:
+        cur.execute("SELECT count(*) AS c FROM job")
+        assert cur.fetchone()["c"] == 0   # 未入库

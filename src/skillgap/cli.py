@@ -13,7 +13,9 @@ from pathlib import Path
 
 from skillgap import db
 from skillgap.ingest.adzuna import fetch_adzuna
-from skillgap.ingest.contribute import contribute_jd, delete_contribution
+from skillgap.ingest.contribute import (
+    ConsentRequired, QuarantinedContribution, contribute_jd, delete_contribution,
+)
 from skillgap.ingest.importer import parse_file
 from skillgap.ingest.pipeline import run_batch
 from skillgap.quality_metrics import quality_report
@@ -81,9 +83,18 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             _print(report.model_dump())
         elif args.command == "contribute":
             jd_text = Path(args.file).read_text(encoding="utf-8")
-            result = contribute_jd(conn, jd_text=jd_text, consent=args.consent,
-                                   title=args.title,
-                                   source_hint=args.source_hint)
+            try:
+                result = contribute_jd(conn, jd_text=jd_text,
+                                       consent=args.consent,
+                                       title=args.title,
+                                       source_hint=args.source_hint)
+            except ConsentRequired as e:
+                print(f"错误：{e}（未同意贡献，未入库；需显式传 --consent）",
+                      file=sys.stderr)
+                return 1
+            except QuarantinedContribution as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
             _print({
                 "job_id": result.job_id,
                 "deduplicated": result.deduplicated,

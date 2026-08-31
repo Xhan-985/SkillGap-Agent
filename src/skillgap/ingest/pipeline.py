@@ -70,6 +70,8 @@ def process_record(conn, rec: RawRecord, row_index: int = 0) -> tuple[RecordOutc
     if rec.source.source_type in PII_REQUIRED_SOURCE_TYPES:
         findings = detect_pii(text)
         text, pii_report = redact(text, findings)
+        # raw 暂存 payload 必须为脱敏后载荷（DATA_GOVERNANCE §3 双轨）
+        rec = rec.model_copy(update={"raw_text": text})
     if rec.source.source_type == "public_api" and market != "global":
         return RecordOutcome("rejected", reasons=["market_guard_violation"]), meta
 
@@ -207,10 +209,11 @@ def run_batch(conn, records: list[RawRecord]) -> BatchReport:
     with conn.cursor() as cur:
         cur.execute(
             """UPDATE ingest_batch SET inserted=%s, duplicates=%s, quarantined=%s,
-               rejected=%s, extraction_failed=%s, finished_at=now(), errors=%s
+               rejected=%s, extraction_failed=%s, error_count=%s,
+               finished_at=now(), errors=%s
                WHERE id=%s""",
             (report.inserted, report.duplicates, report.quarantined,
-             report.rejected, report.extraction_failed, _jsonb(
-                 [e.model_dump() for e in report.errors]), batch_id))
+             report.rejected, report.extraction_failed, len(report.errors),
+             _jsonb([e.model_dump() for e in report.errors]), batch_id))
     conn.commit()
     return report

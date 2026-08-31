@@ -33,7 +33,8 @@ class AdzunaClient:
         self.base_url = base_url.rstrip("/")
         self.http = http or httpx.Client(timeout=10.0)
 
-    def fetch_page(self, country: str, query: str, page: int) -> list[RawRecord]:
+    def fetch_page(self, country: str, query: str, page: int,
+                   log_request=None) -> list[RawRecord]:
         params = {
             "app_id": self.app_id, "app_key": self.app_key,
             "results_per_page": RESULTS_PER_PAGE, "what": query, "page": page,
@@ -43,6 +44,9 @@ class AdzunaClient:
         for attempt in range(MAX_RETRIES + 1):
             try:
                 resp = self.http.get(url, params=params)
+                if log_request:
+                    # 每次 HTTP 尝试记录真实状态码（额度守卫按此计数，含重试）
+                    log_request(resp.status_code)
                 if resp.status_code in (429, 500, 502, 503, 504):
                     retry_after = resp.headers.get("Retry-After")
                     delay = float(retry_after) if retry_after else 2 ** attempt
@@ -114,10 +118,25 @@ def _save_checkpoint(conn, country: str, query: str, page: int) -> None:
     conn.commit()
 
 
+def _load_checkpoint(conn, country: str, query: str) -> int:
+    """续拉：返回上次成功拉取的页号（0 = 无 checkpoint）。"""
+    with conn.cursor() as cur:
+        cur.execute(
+            "SELECT last_page FROM ingest_checkpoint "
+            "WHERE source_name='adzuna' AND scope_key=%s",
+            (f"country:{country}|query:{query}",))
+        row = cur.fetchone()
+    return row["last_page"] if row else 0
+
+
 def fetch_adzuna(conn: psycopg.Connection, country: str, query: str,
                  max_results: int = 500,
                  client: AdzunaClient | None = None) -> BatchReport:
-    """拉取 → S3-S10 管道入库。market=global 由 data_source + 服务层双保险。"""
+    """拉取 → S3-S10 管道入库。market=global 由 data_source + 服务层双保险。
+
+    失败语义（S1）：某页重试耗尽仍失败时，已拉取页照常入库（不丢弃），
+    checkpoint 停在最后成功页，次日续拉从 last_page+1 开始。
+    """
     from skillgap.config import settings
 
     check_daily_quota(conn, limit=settings.adzuna_daily_quota)
@@ -125,10 +144,17 @@ def fetch_adzuna(conn: psycopg.Connection, country: str, query: str,
                                     settings.adzuna_app_key,
                                     base_url=settings.adzuna_base_url)
     pages = (max_results + RESULTS_PER_PAGE - 1) // RESULTS_PER_PAGE
+    start = _load_checkpoint(conn, country, query) + 1
     all_records: list[RawRecord] = []
-    for page in range(1, pages + 1):
-        _log_request(conn, 200)
-        records = client.fetch_page(country, query, page)
+    for page in range(start, start + pages):
+        try:
+            records = client.fetch_page(
+                country, query, page,
+                log_request=lambda code: _log_request(conn, code))
+        except RuntimeError:
+            if not all_records:
+                raise  # 首页即失败：无数据可入库，向上报错
+            break   # 已拉记录照常入库；checkpoint 次日续拉
         all_records.extend(records)
         _save_checkpoint(conn, country, query, page)
         if len(records) < RESULTS_PER_PAGE:
