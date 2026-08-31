@@ -6,11 +6,13 @@
 
 ## 0. 模板文件与格式要求
 
-- 模板：`data/collect_template.csv`（19 列，含 2 条示例行）
+- 模板：`data/collect_template.csv`（19 列，**中文表头**，含 2 条示例行）
 - **仅支持 CSV / JSON**（导入器 `parse_file` 只认这两种后缀）；Excel 用户请在 Excel 中编辑、最后"另存为 → CSV UTF-8"
-- 编码 UTF-8（带不带 BOM 均可，读取用 utf-8-sig）
-- 含逗号的字段用双引号包裹；`soft_requirements`/`skills` 两列填 JSON 数组，JSON 内的双引号在 CSV 中写成两个双引号（Excel 会自动处理）
-- `raw_text` 允许换行（字段用双引号包裹即可）；为降低 Excel 换行出错风险，也可把换行替换为空格后再填
+- 编码 UTF-8（模板已带 BOM，Excel 双击不乱码；无 BOM 也能读，读取用 utf-8-sig）
+- **表头可用中文（模板默认）或英文**（旧格式），导入时自动映射（importer.HEADER_ALIASES）；但**列的取值/枚举仍是英文**（如 source_type 填 `public_job_page`）
+- 中文表头对照：岗位名称=title / 公司=company / 城市=city / 国家=country / 区域=region / 最低薪资=salary_min / 最高薪资=salary_max / 薪资货币=salary_currency / 岗位类别=job_category / JD全文=raw_text / 软性要求=soft_requirements / 技能标注=skills / 来源类型=source_type / 来源名称=source_name / 来源链接=source_url / 采集日期=collected_at / 提交时间=submitted_at / 同意状态=consent_status / 数据质量=data_quality
+- 含逗号的字段用双引号包裹；`软性要求`/`技能标注` 两列填 JSON 数组，JSON 内的双引号在 CSV 中写成两个双引号（Excel 会自动处理）；JSON 的**键名保持英文**（raw_name/importance 等，管道按英文键解析）
+- `JD全文` 允许换行（字段用双引号包裹即可）；为降低 Excel 换行出错风险，也可把换行替换为空格后再填
 
 ## 1. 通道定位（本批怎么选）
 
@@ -89,10 +91,10 @@
 
 ## 7. 完整示例（一条）
 
-CSV 行（模板第 1 行，字段逐项解读见右）：
+CSV 行（模板第 1 行，中文表头）：
 
 ```csv
-title,company,city,country,region,salary_min,salary_max,salary_currency,job_category,raw_text,soft_requirements,skills,source_type,source_name,source_url,collected_at,submitted_at,consent_status,data_quality
+岗位名称,公司,城市,国家,区域,最低薪资,最高薪资,薪资货币,岗位类别,JD全文,软性要求,技能标注,来源类型,来源名称,来源链接,采集日期,提交时间,同意状态,数据质量
 AI 应用开发工程师,示例公司,北京,中国,华北,15000,25000,CNY,ai_application_dev,"岗位职责：负责大模型应用开发，搭建 RAG 检索链路与 Agent 编排，优化 Prompt 工程。任职要求：1-3年大模型应用开发经验，熟悉 LangChain、LangGraph，精通 Python，了解 Docker 部署。","[{""type"":""experience"",""value"":""1-3年"",""evidence_text"":""1-3年大模型应用开发经验""}]","[{""raw_name"":""RAG"",""importance"":""must_have"",""intensity"":""熟悉"",""evidence_text"":""搭建 RAG 检索链路""},{""raw_name"":""Python"",""importance"":""must_have"",""intensity"":""精通"",""evidence_text"":""精通 Python""},{""raw_name"":""Docker"",""importance"":""nice_to_have"",""intensity"":""了解"",""evidence_text"":""了解 Docker 部署""}]",public_job_page,company_career_page,https://hr.example.com/job/1001,2026-08-31,,none,human_reviewed
 ```
 

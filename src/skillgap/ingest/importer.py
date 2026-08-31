@@ -1,4 +1,8 @@
-"""S1 CSV/JSON 批量导入器（Tier C；列规格 = DATA_MODEL §7）。"""
+"""S1 CSV/JSON 批量导入器（Tier C；列规格 = DATA_MODEL §7）。
+
+CSV 表头支持中文（collect_template.csv 现用）或英文（旧格式），
+导入时统一映射为内部字段名后再校验/解析。
+"""
 from __future__ import annotations
 
 import csv
@@ -12,12 +16,43 @@ REQUIRED_COLUMNS = {
     "title", "raw_text", "source_type", "source_name", "collected_at",
 }
 
+# 中文表头 → 内部字段名（值/枚举仍为英文；仅表头可中文）
+HEADER_ALIASES = {
+    "岗位名称": "title",
+    "标题": "title",
+    "公司": "company",
+    "城市": "city",
+    "国家": "country",
+    "区域": "region",
+    "最低薪资": "salary_min",
+    "最高薪资": "salary_max",
+    "薪资货币": "salary_currency",
+    "岗位类别": "job_category",
+    "JD全文": "raw_text",
+    "软性要求": "soft_requirements",
+    "技能标注": "skills",
+    "来源类型": "source_type",
+    "来源名称": "source_name",
+    "来源链接": "source_url",
+    "采集日期": "collected_at",
+    "提交时间": "submitted_at",
+    "同意状态": "consent_status",
+    "数据质量": "data_quality",
+}
+
+
+def _map_headers(rows: list[dict]) -> list[dict]:
+    """把中文表头键映射为内部字段名（未知键原样保留，None 键丢弃）。"""
+    return [{HEADER_ALIASES.get(k, k): v for k, v in r.items()
+             if k is not None} for r in rows]
+
 
 def parse_file(path: str | Path) -> list[RawRecord]:
     p = Path(path)
     if p.suffix.lower() == ".csv":
         with p.open(encoding="utf-8-sig", newline="") as f:
             rows = list(csv.DictReader(f))
+        rows = _map_headers(rows)
         if rows and not REQUIRED_COLUMNS.issubset(rows[0].keys()):
             missing = REQUIRED_COLUMNS - set(rows[0].keys())
             raise ValueError(f"CSV 缺少必需列: {sorted(missing)}（整批拒绝）")
