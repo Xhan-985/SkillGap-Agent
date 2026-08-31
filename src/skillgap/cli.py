@@ -1,8 +1,9 @@
-"""skillgap CLI——Phase 2 数据层入口（FastAPI 属后续 Phase）。
+"""skillgap CLI——数据层 + LLM 抽取入口（FastAPI 属后续 Phase）。
 
 命令清单：
   db-upgrade / seed / import / ingest-adzuna / contribute /
   delete-contribution / quarantine-list / raw-cleanup / quality-report / stats
+  jd-analyze / eval-e1 / backfill-extraction（Phase 3，需 LLM_API_KEY）
 """
 from __future__ import annotations
 
@@ -12,12 +13,24 @@ import sys
 from pathlib import Path
 
 from skillgap import db
+from skillgap.config import settings
+from skillgap.eval.e1 import run_e1
+from skillgap.eval.seed import seed_eval
+from skillgap.extract.analyzer import (
+    JDValidationError, analyze_jd, backfill_pending,
+)
+from skillgap.extract.llm_extractor import (
+    ExtractionFailed, LLMSkillExtractor,
+)
+from skillgap.extract.prompt import PROMPT_VERSION
 from skillgap.ingest.adzuna import fetch_adzuna
 from skillgap.ingest.contribute import (
     ConsentRequired, QuarantinedContribution, contribute_jd, delete_contribution,
 )
 from skillgap.ingest.importer import parse_file
 from skillgap.ingest.pipeline import run_batch
+from skillgap.llm.gateway import LLMGateway
+from skillgap.llm.provider import LLMError, OpenAICompatibleProvider
 from skillgap.quality_metrics import quality_report
 from skillgap.stats import skill_frequency
 from skillgap.taxonomy.seed import seed_all
@@ -56,7 +69,32 @@ def build_parser() -> argparse.ArgumentParser:
     p_st = sub.add_parser("stats", help="频率统计空跑（S11 口径）")
     p_st.add_argument("--market", choices=["china", "global"], default="china")
 
+    p_jd = sub.add_parser("jd-analyze",
+                          help="粘贴 JD → 结构化分析（M1，不落库）")
+    p_jd.add_argument("--file", required=True, help="JD 文本文件")
+    p_jd.add_argument("--title", default="")
+
+    p_ev = sub.add_parser("eval-e1", help="E1 抽取评测跑分（需 LLM_API_KEY）")
+    p_ev.add_argument("--dataset-version", default="e1_seed_v1")
+
+    sub.add_parser("backfill-extraction",
+                   help="回填 extraction_status=pending 的 job 抽取")
+
     return p
+
+
+def _make_extractor(conn):
+    """DeepSeek provider + gateway + extractor；未配置 key → None（rc=2）。"""
+    if not settings.llm_api_key:
+        print("错误：未配置 LLM_API_KEY（.env 或环境变量），无法调用 LLM",
+              file=sys.stderr)
+        return None
+    provider = OpenAICompatibleProvider(
+        base_url=settings.llm_base_url, api_key=settings.llm_api_key,
+        model=settings.llm_model, timeout=settings.llm_timeout,
+        max_retries=settings.llm_max_retries)
+    gateway = LLMGateway(conn, provider, PROMPT_VERSION)
+    return LLMSkillExtractor(gateway)
 
 
 def _print(obj) -> None:
@@ -124,6 +162,29 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             _print(quality_report(conn))
         elif args.command == "stats":
             _print(skill_frequency(conn, args.market))
+        elif args.command == "jd-analyze":
+            extractor = _make_extractor(conn)   # key 检查先于文件读取
+            if extractor is None:
+                return 2
+            jd_text = Path(args.file).read_text(encoding="utf-8")
+            try:
+                _print(analyze_jd(conn, jd_text, extractor=extractor,
+                                  title=args.title))
+            except (JDValidationError, ExtractionFailed, LLMError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "eval-e1":
+            extractor = _make_extractor(conn)
+            if extractor is None:
+                return 2
+            seed_eval(conn)
+            _print(run_e1(conn, extractor,
+                          dataset_version=args.dataset_version))
+        elif args.command == "backfill-extraction":
+            extractor = _make_extractor(conn)
+            if extractor is None:
+                return 2
+            _print({"backfilled": backfill_pending(conn, extractor)})
         return 0
     finally:
         conn.close()
