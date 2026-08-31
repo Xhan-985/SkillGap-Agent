@@ -44,6 +44,14 @@ def test_parse_salary_range():
     assert parse_salary_range("面议") == (None, None)
 
 
+def test_parse_salary_range_rejects_date():
+    # 日期区间不得误判为薪资（真实案例：发布日期 2026-08-25）
+    assert parse_salary_range("上海校招生 2026-08-25") == (None, None)
+    # 无上下文的大数区间同样拒绝；带上下文才采信
+    assert parse_salary_range("薪资范围 20000-35000") == (20000, 35000)
+    assert parse_salary_range("编号 20000-35000 仅供参考") == (None, None)
+
+
 def test_classify_job_category():
     assert classify_job_category("AI 应用开发工程师") == "ai_application_dev"
     assert classify_job_category("Agent 算法工程师") == "agent_dev"
@@ -53,3 +61,14 @@ def test_classify_job_category():
     assert classify_job_category("Python 后端开发") == "python_ai_dev"
     assert classify_job_category("Dify 工作流编排师") == "dify_dev"
     assert classify_job_category("运营专员") == "other"
+
+
+def test_classify_job_category_title_takes_priority():
+    # 真实案例：标题是 Agent 岗，正文前 500 字出现"AI产品"——标题优先
+    assert classify_job_category(
+        "Agent开发工程师（2027届秋招）",
+        "参与Agent应用工程开发，完成AI产品的上线;参与Agent基础开发框架。"
+    ) == "agent_dev"
+    # 标题无信号时仍回落到正文
+    assert classify_job_category(
+        "软件工程师", "负责 Dify 工作流编排与平台建设") == "dify_dev"

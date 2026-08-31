@@ -258,19 +258,33 @@ def _confirm_skills(suggs: list[SkillSuggestion]) -> list[dict]:
     return skills
 
 
-def run_collect(out: str) -> int:
-    """交互主循环：粘贴 JD → 字段自动识别 → 回车确认 → 追加写入 CSV。"""
+def run_collect(out: str, jd_file: str | None = None) -> int:
+    """交互主循环：粘贴 JD（或 --file 读取）→ 字段自动识别 → 确认 → 写入 CSV。
+
+    --file：一个文件一条 JD（绕开终端多行粘贴丢字/乱码问题），处理后退出。
+    """
     out_path = Path(out)
     alias_table = load_alias_table()
     count = 0
-    print(f"交互式收集器 → 写入 {out_path}（粘贴 JD 后自动识别，回车即接受）")
+    mode = f"读取 {jd_file}" if jd_file else "粘贴 JD 后自动识别"
+    print(f"交互式收集器 → 写入 {out_path}（{mode}，回车即接受）")
     try:
         while True:
             print(f"\n=== 第 {count + 1} 条 ===")
-            raw_text = _read_jd()
+            if jd_file:
+                raw_text = Path(jd_file).read_text(
+                    encoding="utf-8-sig").strip()
+            else:
+                raw_text = _read_jd()
             if not raw_text:
                 print("JD 全文为空，本条作废")
+                if jd_file:
+                    return 1
                 continue
+            if not jd_file:
+                n_lines = len([l for l in raw_text.splitlines() if l.strip()])
+                print(f"已接收 JD：{n_lines} 行 / {len(raw_text)} 字符"
+                      "（若明显少于原文，说明粘贴被截断，请改用 --file 模式）")
 
             raw_text, pii_report = prepare_text(raw_text)
             if pii_report:
@@ -333,6 +347,8 @@ def run_collect(out: str) -> int:
             count += 1
             print(f"已保存第 {count} 条 → {out_path}")
 
+            if jd_file:
+                break               # 一个文件一条 JD，处理完即退出
             if _ask("继续下一条？[y]/n", "y") == "n":
                 break
     except EOFError:

@@ -42,22 +42,31 @@ def determine_market(language: str | None, covers_market: str) -> str | None:
 
 _SALARY_RE = re.compile(
     r"(\d+(?:\.\d+)?)\s*(万|[kK])?\s*[-~至到～]\s*(\d+(?:\.\d+)?)\s*(万|[kK])?")
+_SALARY_CTX_RE = re.compile(r"[元薪]|/月|月薪")
 
 
 def parse_salary_range(text: str) -> tuple[int | None, int | None]:
-    m = _SALARY_RE.search(text)
-    if not m:
-        return None, None
-    lo, hi = float(m.group(1)), float(m.group(3))
-    unit = m.group(2) or m.group(4)
-    if unit == "万":
-        lo, hi = lo * 10000, hi * 10000
-    elif unit in ("k", "K"):
-        lo, hi = lo * 1000, hi * 1000
-    else:  # 无单位：小数值按 K 处理
-        if lo < 200 and hi < 200:
+    """提取薪资范围。
+
+    无单位且数值 ≥200 的区间（如 15000-25000）必须有薪资上下文
+    （元/薪/月薪）才采信——否则日期"2026-08-25"会被误判成薪资区间。
+    """
+    for m in _SALARY_RE.finditer(text):
+        lo, hi = float(m.group(1)), float(m.group(3))
+        unit = m.group(2) or m.group(4)
+        if unit == "万":
+            lo, hi = lo * 10000, hi * 10000
+            return int(lo), int(hi)
+        if unit in ("k", "K"):
             lo, hi = lo * 1000, hi * 1000
-    return int(lo), int(hi)
+            return int(lo), int(hi)
+        # 无单位：小数值按 K；大数值须有薪资上下文（排除日期等数字区间）
+        if lo < 200 and hi < 200:
+            return int(lo * 1000), int(hi * 1000)
+        ctx = text[max(0, m.start() - 8):m.end() + 8]
+        if _SALARY_CTX_RE.search(ctx):
+            return int(lo), int(hi)
+    return None, None
 
 
 _CATEGORY_KEYWORDS: dict[str, list[str]] = {
@@ -77,10 +86,13 @@ _CATEGORY_KEYWORDS: dict[str, list[str]] = {
 def classify_job_category(title: str, text: str = "") -> str:
     """岗位类别词表 v1 规则归类（DATA_MODEL §5.1）。
 
+    两阶段：标题优先（岗位信号最强），标题无命中再看正文前 500 字。
     匹配前去除空白：标题中英/中词间空格（"AI 应用"）不应造成漏配。
     """
-    hay = _WS_RE.sub("", f"{title}\n{text[:500]}").casefold()
-    for category, keywords in _CATEGORY_KEYWORDS.items():
-        if any(_WS_RE.sub("", k) in hay for k in keywords):
-            return category
+    hay_title = _WS_RE.sub("", title).casefold()
+    hay_body = hay_title + _WS_RE.sub("", text[:500]).casefold()
+    for hay in (hay_title, hay_body):
+        for category, keywords in _CATEGORY_KEYWORDS.items():
+            if any(_WS_RE.sub("", k) in hay for k in keywords):
+                return category
     return "other"

@@ -76,6 +76,8 @@ def build_parser() -> argparse.ArgumentParser:
                            help="交互式收集器：粘贴 JD→字段自动识别→回车确认→写批次 CSV")
     p_col.add_argument("--out", default="data/batch_1.csv",
                        help="输出批次 CSV 路径")
+    p_col.add_argument("--file", dest="jd_file", default=None,
+                       help="从文本文件读取一条 JD（绕开终端粘贴问题），处理后退出")
     p_jd.add_argument("--file", required=True, help="JD 文本文件")
     p_jd.add_argument("--title", default="")
 
@@ -109,7 +111,7 @@ def _print(obj) -> None:
 def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "collect":        # 纯本地交互，无需数据库
-        return run_collect(args.out)
+        return run_collect(args.out, jd_file=getattr(args, "jd_file", None))
     conn = db.connect(db_url)
 
     try:
