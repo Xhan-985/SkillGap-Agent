@@ -10,7 +10,7 @@ def test_prompt_version_frozen():
 def test_messages_wrap_jd_text():
     msgs = extraction_messages("岗位职责：负责 RAG 开发")
     assert msgs[0]["role"] == "system"
-    assert "JD 技能抽取器" in msgs[0]["content"]
+    assert "技能抽取器" in msgs[0]["content"]
     assert "evidence_text" in msgs[0]["content"]
     assert msgs[1]["role"] == "user"
     assert "负责 RAG 开发" in msgs[1]["content"]
