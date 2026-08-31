@@ -3,7 +3,7 @@ from pathlib import Path
 
 from skillgap.eval.seed import DATASET_VERSION, SEED_PATH, seed_eval
 
-TAXONOMY = (Path(__file__).resolve().parents[2] / "src" / "skillgap"
+TAXONOMY = (Path(__file__).resolve().parents[1] / "src" / "skillgap"
             / "taxonomy" / "data" / "skills_v1.csv")
 
 
