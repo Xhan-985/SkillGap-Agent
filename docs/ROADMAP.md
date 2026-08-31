@@ -70,6 +70,7 @@ Phase 11 Docker + CI + Documentation
 | 验收 | E1 F1 ≥ 0.75（Warn 线起步，迭代冲 0.85）；证据可溯率 100%；失败用例（超长/乱码/无技能 JD）明示不静默 |
 | 自检重点 | AI：LLM 是否被滥用（只抽取，无统计）；Evaluation：基线入库进回归历史 |
 | 依赖 | Phase 2 数据集（标注集从中抽样） |
+| 完成状态 | ✅ 代码与评测管道完成（2026-08-31，133 测试全绿；用户决策：DeepSeek + 种子集 20 条先行）；**真实基线待 LLM_API_KEY 配置后跑分**——详见根目录 PHASE_3_REVIEW.md |
 
 ## Phase 4：Market Intelligence
 
@@ -246,4 +247,18 @@ LLM 仅两处受控节点：S8 技能抽取（Schema 校验 + 失败明示）、
 - **Data**：九字段 DB 强制（B1 以 IS NOT DISTINCT FROM 修复三值逻辑漏洞）；content_hash 双层去重；市场分离双保险；统计口径 SQL 常量冻结。
 - **Evaluation**：E5 三项自动指标 + 阈值表 + 全库扫描 + PII 命中聚合；市场零混淆/幂等重跑/fail-closed/防探测删除等验收红线用例全绿。
 - **Resume**："带 PII 三层防线与 fail-closed 语义的合规数据管道，统计口径冻结可复现，批次级数据质量指标入回归历史。"
+
+---
+
+## Phase 3 自我 Review 记录（2026-08-31）
+
+详见根目录 PHASE_3_REVIEW.md（六维全文 + 验收核验表）。
+
+- **状态**：PASS WITH RISKS——代码与评测管道全绿（133 项测试全过），风险为用户执行项：LLM_API_KEY 配置后真实基线跑分。
+- **Product**：jd-analyze 一条命令输出 API §2.1 契约结构（含证据与 extraction_meta）；Phase 2 遗留 pending 抽取可回填。
+- **Engineering**：migration 003 两表均为计划冻结项；模块依赖单向（analyzer → extractor → gateway → provider，eval 只读）；零新依赖（httpx 复用不加 SDK）。
+- **AI**：LLM 仅 S8 抽取一个出口（Structured Output，temperature=0）；确定性字段由规则计算；E1 指标全部程序计算（红线：LLM 不参与指标）。
+- **Data**：每条抽取技能带原文可定位证据；词表外进候选表不静默；缓存键含模型与 prompt 上下文防串味。
+- **Evaluation**：E1 口径与阈值冻结（f1+recall 双闸、证据可溯率一票 block）；eval_run 回归历史；失败样本计漏不中断。
+- **Resume**："LLM Gateway 防腐层（缓存+重试）+ 证据可溯校验的 Structured Output 抽取 + 20 条人工标注集与冻结阈值的回归评测器。"
 
