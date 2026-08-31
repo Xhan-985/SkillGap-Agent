@@ -121,6 +121,38 @@ def test_suggest_intensity_from_preceding_word():
     assert by_name["Docker"].intensity == "了解"
 
 
+# ---------- importance 自动判定（加分项章节/措辞） ----------
+
+def test_importance_nice_when_in_bonus_section():
+    text = ("任职要求：\n1. 精通 Python；\n2. 熟悉 FastAPI。\n"
+            "加分项：\n1. 了解 Kubernetes；\n2. 有 Cursor 使用经验。")
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["Python"].importance_hint == "must_have"
+    assert by_name["Kubernetes"].importance_hint == "nice_to_have"
+
+
+def test_importance_hard_section_after_bonus_wins():
+    text = ("加分项：\n1. 了解 Milvus。\n"
+            "任职要求：\n1. 精通 Docker。")
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["Milvus"].importance_hint == "nice_to_have"
+    assert by_name["Docker"].importance_hint == "must_have"
+
+
+def test_importance_intensity_word_leaning_nice():
+    # 不在加分章节，但"了解"级技能倾向 nice_to_have
+    by_name = {s.canonical: s for s in suggest_skills(JD, load_alias_table())}
+    assert by_name["Docker"].importance_hint == "nice_to_have"
+    assert by_name["Python"].importance_hint == "must_have"
+
+
+def test_importance_nice_words_in_sentence():
+    text = "熟悉 Redis，有 LangChain 经验者优先。"
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["LangChain"].importance_hint == "nice_to_have"
+    assert by_name["Redis"].importance_hint == "must_have"
+
+
 def test_short_ascii_alias_requires_word_boundary():
     text = "我们使用 Python，团队氛围 happy"
     assert "Python" in {s.canonical for s in suggest_skills(text, load_alias_table())}

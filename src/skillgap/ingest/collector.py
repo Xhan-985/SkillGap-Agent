@@ -110,6 +110,40 @@ class SkillSuggestion:
     evidence_text: str
     intensity: str | None
     inferred: bool = False   # True = 措辞推断（非技术名直接命中）
+    importance_hint: str = "must_have"   # 加分项章节/措辞推断的默认 importance
+
+
+# importance 判定：加分章节标题 / 硬性章节标题 / 句内加分措辞
+_NICE_SECTION_RE = re.compile(
+    r"加分项|加分|优先条件| preferred |nice to have|plus", re.IGNORECASE)
+_HARD_SECTION_RE = re.compile(
+    r"任职要求|岗位要求|招聘要求|我们期望|职责|要求[:：]|requirement|"
+    r"qualification|responsibilit", re.IGNORECASE)
+_NICE_SENT_WORDS = ("加分", "优先", "者优先", "nice", "plus")
+
+
+def _importance_hint(text: str, start: int, end: int,
+                     intensity: str | None) -> str:
+    """按证据位置推断 importance：加分章节/邻近加分措辞/了解级 → nice_to_have。"""
+    if intensity == "了解":
+        return "nice_to_have"
+    # 邻近窗口：证据前 6 字符 + 证据后 12 字符（"者优先/加分"通常紧邻技能词；
+    # 不用整句，避免同句其他技能的加分措辞误判本技能）
+    near = text[max(0, start - 6):start] + text[end:end + 12]
+    if any(w in near for w in _NICE_SENT_WORDS):
+        return "nice_to_have"
+    # 最近的上文章节标题（加分 vs 硬性，取更近者）
+    nice_m = None
+    for m in _NICE_SECTION_RE.finditer(text[:start]):
+        nice_m = m
+    if nice_m is None:
+        return "must_have"
+    hard_m = None
+    for m in _HARD_SECTION_RE.finditer(text[:start]):
+        hard_m = m
+    if hard_m and hard_m.start() > nice_m.start():
+        return "must_have"
+    return "nice_to_have"
 
 
 # 措辞推断：JD 写能力不写技术名时的补充建议（低误报措辞；已命中的不重复）
@@ -169,18 +203,24 @@ def suggest_skills(text: str,
             continue
         m = _match_pattern(alias).search(text)
         if m:
+            intensity = _intensity_before(text, m.start())
             found[canonical] = SkillSuggestion(
                 canonical=canonical,
                 evidence_text=m.group(0),
-                intensity=_intensity_before(text, m.start()))
+                intensity=intensity,
+                importance_hint=_importance_hint(text, m.start(), m.end(),
+                                                 intensity))
     for pattern, canonical in _HINT_PATTERNS:
         if canonical in found:
             continue
         m = pattern.search(text)
         if m:
+            intensity = _intensity_before(text, m.start())
             found[canonical] = SkillSuggestion(
                 canonical=canonical, evidence_text=m.group(0),
-                intensity=_intensity_before(text, m.start()), inferred=True)
+                intensity=intensity, inferred=True,
+                importance_hint=_importance_hint(text, m.start(), m.end(),
+                                                 intensity))
     return list(found.values())
 
 
@@ -265,11 +305,14 @@ def _confirm_skills(suggs: list[SkillSuggestion]) -> list[dict]:
         print("（词表未命中任何技能——本条可不标注，入库后由 LLM 补抽）")
         return []
     skills: list[dict] = []
-    print("技能建议（[m]必须 [n]加分 [s]跳过；“推断”=由措辞推断，非技术名命中）：")
+    print("技能建议（[m]必须 [n]加分 [s]跳过；回车=建议默认；“推断”=由措辞推断，非技术名命中）：")
     for s in suggs:
         intensity = f"，强度识别：{s.intensity}" if s.intensity else ""
         tag = "，推断" if s.inferred else ""
-        ans = _ask(f"  {s.canonical}（证据“{s.evidence_text}”{intensity}{tag}）", "m")
+        hint = "n" if s.importance_hint == "nice_to_have" else "m"
+        hint_disp = "加分" if hint == "n" else "必须"
+        ans = _ask(f"  {s.canonical}（证据“{s.evidence_text}”{intensity}{tag}，"
+                   f"建议：{hint_disp}）", hint)
         if ans == "s":
             continue
         importance = "nice_to_have" if ans == "n" else "must_have"
