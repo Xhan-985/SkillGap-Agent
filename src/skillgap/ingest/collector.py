@@ -91,8 +91,17 @@ def _has_title_signal(candidate: str) -> bool:
 
 
 def detect_company(text: str) -> str | None:
-    m = re.search(r"([\u4e00-\u9fa5A-Za-z0-9·（）()]{2,25}公司)", text)
-    return m.group(1) if m else None
+    # 排除"负责公司/在…公司/分公司"等动词/结构搭配，只认公司名
+    for m in re.finditer(r"([\u4e00-\u9fa5A-Za-z0-9·（）()]{2,25}公司)", text):
+        name = m.group(1)
+        if not _COMPANY_STOP_RE.search(name):
+            return name
+    return None
+
+
+_COMPANY_STOP_RE = re.compile(
+    r"^(负责|在|于|加入|所在|任职|隶属|上市|分)公司?$"
+    r"|分公司|子公司|总公司|集团公司$|负责公司")
 
 
 def detect_city(text: str) -> str | None:

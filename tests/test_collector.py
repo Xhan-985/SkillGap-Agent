@@ -55,6 +55,15 @@ def test_detect_company_none():
     assert detect_company(JD) is None
 
 
+def test_detect_company_ignores_verb_phrases():
+    # 真实案例：JD 以"负责公司…"开头，不得把动词搭配当公司名
+    text = ("Python研发工程师-北京\n工作职责\n负责公司相关平台的后端开发与维护，"
+            "参与系统架构设计。")
+    assert detect_company(text) is None
+    # 分公司/子公司等结构词同样不算公司名
+    assert detect_company("任职于上海分公司，负责业务。") is None
+
+
 def test_detect_city():
     assert detect_city("工作地点：上海浦东\n岗位职责：开发。") == "上海"
     assert detect_city("Base 杭州，负责大模型应用开发。") == "杭州"
