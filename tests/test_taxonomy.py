@@ -1,12 +1,22 @@
+import csv
+from pathlib import Path
+
 from skillgap.ingest.sources import get_source
 from skillgap.taxonomy.seed import seed_all, seed_taxonomy
+
+CSV_PATH = Path(__file__).parents[1] / "src/skillgap/taxonomy/data/skills_v1.csv"
+
+
+def _csv_skill_rows() -> int:
+    with CSV_PATH.open(encoding="utf-8-sig", newline="") as f:
+        return sum(1 for r in csv.DictReader(f) if r.get("canonical_name"))
 
 
 def test_seed_idempotent(clean_db):
     a = seed_taxonomy(clean_db)
     b = seed_taxonomy(clean_db)
     assert a == b                      # 重跑不翻倍
-    assert a["skills"] == 30
+    assert a["skills"] == _csv_skill_rows()   # 与词表行数一致（防漏种）
     assert a["relations"] == 12
     assert a["aliases"] > 60
 

@@ -9,7 +9,7 @@ from __future__ import annotations
 import csv
 import json
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 
@@ -176,8 +176,9 @@ def load_alias_table(path: Path = TAXONOMY_CSV) -> list[tuple[str, str]]:
 
 
 def _match_pattern(alias: str) -> re.Pattern:
-    # 短 ASCII alias（如 py/mcp）加词边界，避免命中 happy 之类内部子串
-    if alias.isascii() and len(alias) <= 3:
+    # 短 ASCII alias（如 py/mcp/java）加词边界：
+    # 避免命中 happy 内部子串、JavaScript 里的 "java"
+    if alias.isascii() and len(alias) <= 4:
         return re.compile(
             rf"(?<![A-Za-z0-9]){re.escape(alias)}(?![A-Za-z0-9])",
             re.IGNORECASE)
@@ -194,10 +195,44 @@ def _intensity_before(text: str, pos: int) -> str | None:
     return best
 
 
+# 择一（alternation）检测：组内技能是"或"关系，无单独必需 → nice_to_have
+_ALT_MARK_RE = re.compile(
+    r"至少[^，,。；;\n]{0,12}一(?!\s*(?:年|个?月))"      # 至少一门/至少掌握一种
+    r"|任选其一|(?:其中|以下)任一"
+    r"|\bat least one\b(?!\s*(?:year|month))"            # 排除 at least one year
+    r"|\bone of (?:them|which|the following)\b"
+    r"|\bone or more\b|\beither\b")
+_ALT_SEP_RE = re.compile(r"^\s*(?:/|\||或|or)\s*$", re.IGNORECASE)
+_CLAUSE_BOUNDS = "。；;！？\n"
+
+
+def _clause_of(text: str, start: int, end: int) -> str:
+    """证据所在的子句（句读分号感叹问号换行为界；逗号不断句）。"""
+    c0 = max(text.rfind(b, 0, start) for b in _CLAUSE_BOUNDS) + 1
+    ends = [i for i in (text.find(b, end) for b in _CLAUSE_BOUNDS) if i != -1]
+    return text[c0:min(ends) if ends else len(text)]
+
+
+def _apply_alternation(text: str, found: dict[str, SkillSuggestion],
+                       pos: dict[str, tuple[int, int]]) -> None:
+    """规则A：子句含择一标记（至少一门/任选其一/one of）→ 组内技能降为加分。
+    规则B：相邻两个证据之间只有 / 或 |（纯分隔符）→ 两者都降为加分。"""
+    for canonical, (s, e) in pos.items():
+        if _ALT_MARK_RE.search(_clause_of(text, s, e)):
+            found[canonical] = replace(found[canonical],
+                                       importance_hint="nice_to_have")
+    ordered = sorted(pos.items(), key=lambda kv: kv[1][0])
+    for (c1, span1), (c2, span2) in zip(ordered, ordered[1:]):
+        if _ALT_SEP_RE.fullmatch(text[span1[1]:span2[0]]):
+            for c in (c1, c2):
+                found[c] = replace(found[c], importance_hint="nice_to_have")
+
+
 def suggest_skills(text: str,
                    alias_table: list[tuple[str, str]]) -> list[SkillSuggestion]:
     """词表 alias 扫描 + 措辞推断：每个 canonical 只保留一个证据。"""
     found: dict[str, SkillSuggestion] = {}
+    pos: dict[str, tuple[int, int]] = {}
     for alias, canonical in alias_table:
         if canonical in found:
             continue
@@ -210,6 +245,7 @@ def suggest_skills(text: str,
                 intensity=intensity,
                 importance_hint=_importance_hint(text, m.start(), m.end(),
                                                  intensity))
+            pos[canonical] = (m.start(), m.end())
     for pattern, canonical in _HINT_PATTERNS:
         if canonical in found:
             continue
@@ -221,6 +257,8 @@ def suggest_skills(text: str,
                 intensity=intensity, inferred=True,
                 importance_hint=_importance_hint(text, m.start(), m.end(),
                                                  intensity))
+            pos[canonical] = (m.start(), m.end())
+    _apply_alternation(text, found, pos)
     return list(found.values())
 
 

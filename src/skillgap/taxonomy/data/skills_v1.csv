@@ -3,6 +3,13 @@ Python,language,-,low,-,派森|Python语言,python|python3|py,Python 编程语�
 Java,language,-,mid,-,爪哇|Java语言,java|jdk,Java 编程语言
 Go,language,-,mid,-,Go语言|Golang开发,golang|go,Go 编程语言
 C++,language,-,mid,-,C++语言,c++|cpp,C++ 编程语言
+JavaScript,language,-,mid,-,JS开发,javascript|js,JavaScript 编程语言
+TypeScript,language,-,mid,-,TS开发,typescript,TypeScript 编程语言
+Rust,language,-,high,-,Rust语言,rust,Rust 编程语言
+C#,language,-,mid,-,C#语言,c#|c sharp,C# 编程语言
+PHP,language,-,mid,-,PHP开发,php,PHP 编程语言
+Kotlin,language,-,mid,-,Kotlin开发,kotlin,Kotlin 编程语言
+Scala,language,-,high,-,Scala语言,scala,Scala 编程语言
 LLM 应用开发,engineering,-,mid,-,大模型应用开发|LLM应用开发,llm application|llm app,LLM 应用开发总体能力
 LangChain,agent_framework,-,mid,-,兰链,langchain|lang chain,LLM 应用编排框架
 LangGraph,agent_framework,LangChain,mid,-,-,langgraph|lang graph,图结构 Agent 编排
@@ -35,3 +42,32 @@ Linux,engineering,-,mid,-,Linux系统|Linux操作,linux,Linux 操作系统与 Sh
 SQL,data,-,low,-,SQL查询|SQL语言,sql,结构化查询语言
 网络协议,engineering,-,mid,-,TCP/IP|HTTP协议|网络编程,tcp/ip|tcpip|http|network protocol,网络与协议基础
 Git,engineering,-,low,-,版本控制|Git版本管理,git|github|gitlab,版本控制工具
+Shell 脚本,engineering,-,low,-,Shell编程|脚本编写,shell|bash|shell scripting,Shell 脚本编写
+Spring Boot,engineering,-,mid,-,SpringBoot框架,spring boot|springboot,Java 后端框架
+Spring AI,engineering,-,mid,-,-,spring ai,Spring 生态 LLM 框架
+Django,engineering,-,mid,-,-,django,Python Web 框架
+Flask,engineering,-,low,-,-,flask,Python Web 框架
+Node.js,engineering,-,mid,-,Node开发,node.js|nodejs|node js,JavaScript 运行时
+Nginx,engineering,-,low,-,-,nginx,反向代理与 Web 服务器
+Jenkins,engineering,-,low,-,-,jenkins,CI 服务器
+CI/CD,engineering,-,low,-,持续集成|持续交付,ci/cd|ci cd|cicd|continuous integration,持续集成与交付
+gRPC,engineering,-,mid,-,-,grpc,高性能 RPC 框架
+GraphQL,engineering,-,mid,-,-,graphql,API 查询语言
+微服务,engineering,-,mid,-,微服务架构,microservice|microservices|micro-service,微服务架构
+分布式系统,engineering,-,high,-,分布式架构,distributed system|distributed systems,分布式系统设计
+MongoDB,data,-,mid,-,-,mongodb|mongo,文档数据库
+Elasticsearch,data,-,mid,-,ES搜索引擎|全文检索引擎,elasticsearch|elastic search,搜索与日志分析引擎
+Kafka,data,-,mid,-,-,kafka,分布式消息流平台
+RabbitMQ,data,-,low,-,-,rabbitmq|rabbit mq,消息队列
+ClickHouse,data,-,mid,-,-,clickhouse|click house,列式分析数据库
+Spark,data,-,mid,-,-,spark|apache spark,大数据计算引擎
+Flink,data,-,high,-,-,flink|apache flink,流计算引擎
+PyTorch,serving,-,mid,-,-,pytorch|torch,深度学习框架
+TensorFlow,serving,-,mid,-,-,tensorflow,深度学习框架
+scikit-learn,serving,-,low,-,机器学习库,scikit-learn|sklearn,经典机器学习库
+Hugging Face,serving,-,low,-,-,hugging face|huggingface,模型社区与库
+LlamaIndex,retrieval,-,mid,-,-,llamaindex|llama index,数据编排检索框架
+Coze,engineering,-,low,-,扣子,coze,字节 Bot 开发平台
+Embedding,retrieval,-,mid,-,向量化|向量表示,embedding|embeddings,文本向量化
+多智能体协作,agent_framework,-,mid,-,多Agent协作|多智能体,multi-agent|multi agent|multi-agent system,多 Agent 系统协作
+推理优化,serving,-,high,-,推理加速|模型加速,inference optimization|inference acceleration,推理性能优化

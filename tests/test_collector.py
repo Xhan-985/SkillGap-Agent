@@ -153,6 +153,53 @@ def test_importance_nice_words_in_sentence():
     assert by_name["Redis"].importance_hint == "must_have"
 
 
+# ---------- 择一逻辑（至少一门 / 或） ----------
+
+def test_alternation_at_least_one():
+    # "Go/Python/C++ 至少一门"——择一组内每个都是 nice_to_have（无单独必需）
+    text = "任职要求：熟练掌握 Go/Python/C++ 至少一门编程语言。"
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    for name in ("Go", "Python", "C++"):
+        assert by_name[name].importance_hint == "nice_to_have", name
+
+
+def test_alternation_or_separator():
+    text = "熟悉 LangChain 或 LlamaIndex 框架。"
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["LangChain"].importance_hint == "nice_to_have"
+    assert by_name["LlamaIndex"].importance_hint == "nice_to_have"
+
+
+def test_conjunctive_list_stays_must():
+    # 顿号/逗号=并列（都要），不触发择一
+    text = "精通 Python、Docker，熟悉 Kubernetes。"
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["Python"].importance_hint == "must_have"
+    assert by_name["Docker"].importance_hint == "must_have"
+    assert by_name["Kubernetes"].importance_hint == "must_have"
+
+
+def test_alternation_not_leak_across_clause():
+    text = "精通 Go、Python 至少一门；熟悉 Docker。"
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["Go"].importance_hint == "nice_to_have"
+    assert by_name["Docker"].importance_hint == "must_have"
+
+
+def test_at_least_one_year_not_alternation():
+    # "至少一年工作经验"不是技能择一，不得误降级
+    text = "至少一年工作经验，熟悉 Docker。"
+    by_name = {s.canonical: s for s in suggest_skills(text, load_alias_table())}
+    assert by_name["Docker"].importance_hint == "must_have"
+
+
+def test_java_not_matched_inside_javascript():
+    text = "熟悉 JavaScript 与 TypeScript。"
+    names = {s.canonical for s in suggest_skills(text, load_alias_table())}
+    assert "Java" not in names
+    assert {"JavaScript", "TypeScript"} <= names
+
+
 def test_short_ascii_alias_requires_word_boundary():
     text = "我们使用 Python，团队氛围 happy"
     assert "Python" in {s.canonical for s in suggest_skills(text, load_alias_table())}
