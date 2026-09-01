@@ -359,6 +359,22 @@ def _confirm_skills(suggs: list[SkillSuggestion]) -> list[dict]:
     return skills
 
 
+def drop_last(out: str) -> int:
+    """删除批次 CSV 的最后一条记录（录错了重录用；库中已导入的需另行处理）。"""
+    p = Path(out)
+    with p.open(encoding="utf-8-sig", newline="") as f:
+        rows = list(csv.reader(f))
+    if len(rows) < 2:
+        print("没有可删的数据行")
+        return 1
+    removed = rows.pop()
+    with p.open("w", encoding="utf-8-sig", newline="") as f:
+        csv.writer(f).writerows(rows)
+    print(f"已删除最后一条: 岗位名称={removed[0] if removed else '?'}")
+    print(f"剩余记录数: {len(rows) - 1}")
+    return 0
+
+
 def run_collect(out: str, jd_file: str | None = None) -> int:
     """交互主循环：粘贴 JD（或 --file 读取）→ 字段自动识别 → 确认 → 写入 CSV。
 
