@@ -324,25 +324,35 @@ def _confirm_skills(suggs: list[SkillSuggestion]) -> list[dict]:
 def run_collect(out: str, jd_file: str | None = None) -> int:
     """交互主循环：粘贴 JD（或 --file 读取）→ 字段自动识别 → 确认 → 写入 CSV。
 
-    --file：一个文件一条 JD（绕开终端多行粘贴丢字/乱码问题），处理后退出。
+    --file：从文本文件读 JD（绕开终端多行粘贴丢字/乱码问题）。
+    连续模式：每条处理完不退出——更新文件内容后回车读下一条，q 退出。
     """
     out_path = Path(out)
     alias_table = load_alias_table()
     count = 0
-    mode = f"读取 {jd_file}" if jd_file else "粘贴 JD 后自动识别"
+    mode = (f"读取 {jd_file}（每条保存后：更新文件→回车继续，q 退出）"
+            if jd_file else "粘贴 JD 后自动识别")
     print(f"交互式收集器 → 写入 {out_path}（{mode}，回车即接受）")
+    last_text: str | None = None
+    first_round = True
     try:
         while True:
             print(f"\n=== 第 {count + 1} 条 ===")
             if jd_file:
+                if not first_round:
+                    ans = _ask(f"更新 {jd_file} 后回车继续（q 退出）", "")
+                    if ans.strip().lower() == "q":
+                        raise EOFError
                 raw_text = Path(jd_file).read_text(
                     encoding="utf-8-sig").strip()
+                if raw_text == last_text:
+                    print("文件内容未变化，跳过（避免重复录入同一条 JD）")
+                    continue
             else:
                 raw_text = _read_jd()
+            first_round = False
             if not raw_text:
                 print("JD 全文为空，本条作废")
-                if jd_file:
-                    return 1
                 continue
             if not jd_file:
                 n_lines = len([l for l in raw_text.splitlines() if l.strip()])
@@ -408,12 +418,12 @@ def run_collect(out: str, jd_file: str | None = None) -> int:
                 source_url=source_url or None)
             append_row(out_path, row)
             count += 1
+            last_text = raw_text
             print(f"已保存第 {count} 条 → {out_path}")
 
-            if jd_file:
-                break               # 一个文件一条 JD，处理完即退出
-            if _ask("继续下一条？[y]/n", "y") == "n":
-                break
+            if not jd_file:
+                if _ask("继续下一条？[y]/n", "y") == "n":
+                    break
     except EOFError:
         pass
     print(f"\n完成：共 {count} 条 → {out_path}")
