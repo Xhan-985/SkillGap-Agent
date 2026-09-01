@@ -88,6 +88,19 @@ def test_unresolvable_skill_goes_to_candidates(clean_db):
     assert row["raw_name"] == "某未知新框架" and row["status"] == "pending"
 
 
+def test_free_text_job_category_falls_back_to_enum(clean_db):
+    # 真实案例：批次 CSV 录入自由文本类别曾触发 CHECK 约束整行失败
+    rec = _rec()
+    rec.title = "飞书项目工程师"
+    rec.job_category = "AI全栈"
+    outcome, _ = process_record(clean_db, rec)
+    assert outcome.status == "inserted"
+    with clean_db.cursor() as cur:
+        cur.execute("SELECT job_category FROM job WHERE id = %s",
+                    (outcome.job_id,))
+        assert cur.fetchone()["job_category"] == "llm_fullstack"
+
+
 def test_evidence_not_locatable_marks_extraction_failed(clean_db):
     rec = _rec()
     rec.suggested_skills = [

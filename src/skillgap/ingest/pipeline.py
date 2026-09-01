@@ -9,7 +9,7 @@ from skillgap.ingest.extract import (
     ManualSkillExtractor, load_alias_map, record_candidates, resolve_skill_id,
 )
 from skillgap.ingest.normalize import (
-    classify_job_category, content_hash, detect_language, determine_market,
+    content_hash, detect_language, determine_market, normalize_job_category,
     parse_salary_range,
 )
 from skillgap.ingest.pii import detect_pii, redact
@@ -100,7 +100,7 @@ def process_record(conn, rec: RawRecord, row_index: int = 0) -> tuple[RecordOutc
             extraction_error = str(e)
 
     # S10 入库（事务：job + job_skill）
-    job_category = rec.job_category or classify_job_category(rec.title, text)
+    job_category = normalize_job_category(rec.job_category, rec.title, text)
     salary_min, salary_max = rec.salary_min, rec.salary_max
     if salary_min is None and text:
         salary_min, salary_max = parse_salary_range(text)

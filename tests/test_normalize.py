@@ -1,6 +1,7 @@
 from skillgap.ingest.normalize import (
-    canonicalize_for_hash, classify_job_category, content_hash,
-    detect_language, determine_market, parse_salary_range,
+    JOB_CATEGORIES, canonicalize_for_hash, classify_job_category,
+    content_hash, detect_language, determine_market, normalize_job_category,
+    parse_salary_range,
 )
 
 
@@ -72,3 +73,24 @@ def test_classify_job_category_title_takes_priority():
     # 标题无信号时仍回落到正文
     assert classify_job_category(
         "软件工程师", "负责 Dify 工作流编排与平台建设") == "dify_dev"
+
+
+def test_normalize_job_category_valid_passthrough():
+    assert (normalize_job_category("agent_dev", "任意标题")
+            == "agent_dev")
+    assert normalize_job_category(None, "Agent开发工程师") == "agent_dev"
+
+
+def test_normalize_job_category_free_text_falls_back():
+    # 真实案例：采集批次中的自由文本类别 → 按关键词回退归类
+    assert normalize_job_category(
+        "AI全栈", "AI全栈工程师 - 飞书项目") == "llm_fullstack"
+    assert normalize_job_category(
+        "Agent研发", "资深Agent研发工程师") == "agent_dev"
+    assert normalize_job_category(
+        "AI应用", "AI应用工程师 应届生") == "ai_application_dev"
+    assert normalize_job_category(
+        "AI Infra", "AI Infra工程师") == "ai_platform"
+    # 无任何关键词命中 → other（合法枚举，不再触发 CHECK 约束）
+    assert normalize_job_category(
+        "AI Native", "AI-Native 开发工程师") in JOB_CATEGORIES

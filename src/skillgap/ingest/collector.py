@@ -15,7 +15,8 @@ from pathlib import Path
 
 from skillgap.ingest.importer import HEADER_ALIASES
 from skillgap.ingest.normalize import (
-    classify_job_category, parse_salary_range,
+    JOB_CATEGORIES, classify_job_category, normalize_job_category,
+    parse_salary_range,
 )
 from skillgap.ingest.pii import detect_pii, redact
 from skillgap.ingest.quality import validate_jd
@@ -467,6 +468,10 @@ def run_collect(out: str, jd_file: str | None = None) -> int:
 
             category = classify_job_category(title, raw_text)
             job_category = _ask("岗位类别（识别：" + category + "）", category)
+            if job_category not in JOB_CATEGORIES:
+                fixed = normalize_job_category(job_category, title, raw_text)
+                print(f"类别 '{job_category}' 不在枚举内，按规则归为：{fixed}")
+                job_category = fixed
 
             skills = _confirm_skills(suggest_skills(raw_text, alias_table))
 

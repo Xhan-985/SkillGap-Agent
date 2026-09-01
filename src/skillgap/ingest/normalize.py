@@ -83,6 +83,26 @@ _CATEGORY_KEYWORDS: dict[str, list[str]] = {
 }
 
 
+# job.job_category 的 CHECK 约束枚举（001_init.sql）
+JOB_CATEGORIES = frozenset({
+    "ai_application_dev", "agent_dev", "llm_fullstack", "mcp_dev",
+    "ai_platform", "python_ai_dev", "dify_dev", "other",
+})
+
+
+def normalize_job_category(value: str | None, title: str, text: str = "") -> str:
+    """外部传入的岗位类别不在枚举内时，回退规则归类。
+
+    自由文本（如 "AI全栈"、"Agent研发"）作为提示拼入标题参与关键词匹配，
+    保留录入者意图；无任何命中则归 other。
+    """
+    value = (value or "").strip()
+    if value in JOB_CATEGORIES:
+        return value
+    hint = f"{value} {title}" if value else title
+    return classify_job_category(hint, text)
+
+
 def classify_job_category(title: str, text: str = "") -> str:
     """岗位类别词表 v1 规则归类（DATA_MODEL §5.1）。
 
