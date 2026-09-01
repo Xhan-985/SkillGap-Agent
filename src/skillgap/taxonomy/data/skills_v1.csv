@@ -1,6 +1,8 @@
 canonical_name,category,parent,learning_cost,esco_id,aliases_zh,aliases_en,description
 Python,language,-,low,-,派森|Python语言,python|python3|py,Python 编程语言
 Java,language,-,mid,-,爪哇|Java语言,java|jdk,Java 编程语言
+Go,language,-,mid,-,Go语言|Golang开发,golang|go,Go 编程语言
+C++,language,-,mid,-,C++语言,c++|cpp,C++ 编程语言
 LLM 应用开发,engineering,-,mid,-,大模型应用开发|LLM应用开发,llm application|llm app,LLM 应用开发总体能力
 LangChain,agent_framework,-,mid,-,兰链,langchain|lang chain,LLM 应用编排框架
 LangGraph,agent_framework,LangChain,mid,-,-,langgraph|lang graph,图结构 Agent 编排
