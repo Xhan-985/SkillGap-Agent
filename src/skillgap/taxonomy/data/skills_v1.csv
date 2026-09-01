@@ -29,3 +29,7 @@ Function Calling,agent_framework,-,low,-,函数调用|工具调用,function call
 ReAct,agent_framework,-,low,-,ReAct模式,react,推理+行动范式
 上下文管理,retrieval,-,mid,-,长上下文|context管理,context management|long context,上下文窗口管理
 AI Coding,engineering,-,low,-,AI编程|AI辅助编程,ai coding|cursor|copilot,AI 辅助编程
+Linux,engineering,-,mid,-,Linux系统|Linux操作,linux,Linux 操作系统与 Shell 环境
+SQL,data,-,low,-,SQL查询|SQL语言,sql,结构化查询语言
+网络协议,engineering,-,mid,-,TCP/IP|HTTP协议|网络编程,tcp/ip|tcpip|http|network protocol,网络与协议基础
+Git,engineering,-,low,-,版本控制|Git版本管理,git|github|gitlab,版本控制工具
