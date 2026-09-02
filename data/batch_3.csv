@@ -1,0 +1,2220 @@
+﻿岗位名称,公司,城市,国家,区域,最低薪资,最高薪资,薪资货币,岗位类别,JD全文,软性要求,技能标注,来源类型,来源名称,来源链接,采集日期,提交时间,同意状态,数据质量
+AI Agent 应用开发实习生,新希望化工,成都,中国,锦江区,3262,4350,CNY,agent_dev,"团队情况
+我们是新希望化工事业部旗下的贸易公司,专注于大宗现货贸易,经营品种覆盖氯化钾、黄磷、木薯淀粉、PET瓶片等品类,业务遍及国内及东南亚市场。公司目前约50人规模,正处于业务快速增长与数字化转型并行的高速发展期。
+
+我们的AI技术中心不做演示级产品,做的系统直接跑在真实的贸易业务流程里,为运营、风控、人事、财务等部门提供自动化提效工具。
+
+
+岗位职责:
+1. 负责公司业务运营场景(客商准入、合同履约、招聘提效等)中 AI Agent 应用的功能开发与迭代,根据明确的业务需求,完成开发、测试与上线;
+2. 参与现有业务工具与流程的 Agent 化改造;
+3. 负责业务相关工具与 Agent 应用的日常运维,保障稳定运行,及时处理问题;
+4. 参与Agent应用稳定性与性能的持续优化,持续评估并改进 Agent 的输出质量;
+5. 完成团队交办的其他任务。
+
+任职要求:
+1. 能使用AI编程工具(Claude Code/Codex/Cursor/ZCode等)独立完成开发,有从需求理解到上线维护的端到端交付经历;
+2. 具备Python开发能力,有Web服务或自动化脚本的开发经验,能读懂并迭代已有代码;
+3. 具备较强的自主学习能力,能快速掌握Agent与AI Coding新能力、新特性,主动解决项目中遇到的技术问题;
+4. 了解软件工程的基础知识,做事有质量意识,出问题追到底;
+5. 具备良好的沟通协调能力和团队协作意识,有较强的责任心和执行力。
+
+加分项:
+- 有AI Agent应用(OpenClaw等)方面实践经验
+- 有独立开发并上线过完整项目(个人项目、开源项目、课程项目均可)
+
+你需要提前知道的事:
+- 你负责的工具已真实投产、做出来的东西真的有人在用
+- 你需要专注技术实现,遇到不清楚的先问再动手
+- 我们不重复造轮子,我们的价值在于解决业务问题
+
+你会得到什么:
+- 你负责的工具从第一天起就在真实业务里运行,不是练手项目
+- 从读懂一套已投产的系统,到独立迭代,再到把它 agent 化——每一步都写得进简历
+- 表现优异者实习满三个月可参与转正答辩,通过者毕业即转正
+
+实习信息
+- 在读本科或研究生,专业不限
+- 能保证3个月以上实习,每周到岗4天以上,长期实习者优先
+- 工作地点:成都
+
+招聘流程
+
+简历初筛,线上沟通确认意向,笔试(发题后一周内提交),面试(含现场动手环节)。",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/1dffc0459aee85660nJz2Nq-ElBU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent研发工程师,阿里巴巴集团,成都,中国,武侯区,25000,45000,CNY,agent_dev,"【base】北京,杭州,深圳,上海,广州
+这是一个综合的AI推理、优化的技术岗位,适合希望从事以下工作的候选人投递:
+● 希望从事AI应用构建与模型优化工作的候选人
+● 希望从事AI应用数据构建与自动化评测工作的候选人
+● 希望从事多模态AI应用构建与算法优化工作的候选人
+
+围绕真实业务核心场景,参与AI应用的系统化构建与优化,把AI变为业务增长引擎,具体职责包括以下相关方向的一项或多项:
+1、AI应用全生命周期演进:深度参与业务问题建模、应用架构设计、上下文工程、训练数据构建、自动化评估体系、模型后训练优化等;
+2、数据飞轮构建:打造高质量数据生产链路,探索合成数据(Synthetic Data)与高效蒸馏技术方案,跑通“业务-模型-反馈”迭代闭环;
+3、评测体系构建:面向业务目标,设计完备的AI应用效果评估体系,构建自动化评估框架,建立离线评估与在线业务指标联动的量化评估能力;
+4、强化学习与奖励机制设计:构建可工程化的Reward体系与RL训练环境,提升模型在垂直业务场景中的可控性与泛化能力;
+5、AI外部能力体系搭建:实现AI应用所需的知识库(RAG)、长短期记忆系统(Memory)、工具调用、多Agent协作框架等
+6、多模态AI应用开发:构建AI应用的多模态感知与推理能力,解决在UI自动化、视觉理解与审核、多模态会话等场景的落地应用问题。",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多Agent协作""}, {""raw_name"": ""自动化测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""UI自动化""}, {""raw_name"": ""Context Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文工程""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""评测体系""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/2675d1b17097b8550nN60tm6E1BY.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent 研发(实习生),数智奇点,成都,中国,,4350,5438,CNY,agent_dev,"职位描述:
+我们是一家专注 AI Agent 产品研发与落地的团队,正在寻找对大模型、智能体、后端工程和 AI 应用开发有热情的研发实习生。你将参与真实 AI Agent 产品的核心研发工作,接触从技术方案、功能开发到效果优化和上线迭代的完整过程。
+
+工作地点:成都。  
+工作方式:线下到岗实习,不接受远程。
+
+岗位职责:
+1. 参与 AI Agent 产品核心能力研发,包括任务规划、工具调用、上下文管理、工作流编排与执行链路优化。
+2. 使用 Rust / Go 参与后端服务、业务接口、异步任务、数据处理与系统集成等模块开发。
+3. 参与 RAG 知识库、模型调用策略、Prompt 与 Agent Workflow 的效果优化,提升任务完成率、稳定性和用户体验。
+4. 跟进 AI Agent、LLM 应用工程、开源模型生态等前沿方向,并结合真实业务场景进行验证和落地。
+5. 与产品、算法、后端和设计同事协作,参与从需求分析、技术方案到开发上线的完整研发流程。
+
+任职要求:
+1. 本科或研究生在读,计算机、人工智能、软件工程、自动化、数学等相关专业优先。
+2. 能保证每周 5 天及以上实习,连续实习 6 个月及以上。
+3. 编程基础扎实,熟悉 Rust / Go 中至少一种语言;有 Python / TypeScript / JavaScript 使用经验者优先。
+4. 熟悉数据结构、操作系统、网络、数据库、并发编程等计算机基础,有较强的问题拆解和工程实现能力。
+5. 了解大语言模型基本原理及应用方式,对 AI Agent、RAG、工具调用、工作流编排等方向有实际探索。
+6. 自驱力和学习能力强,能主动阅读英文文档、论文或开源项目,并将技术方案转化为可落地实现。
+
+加分项:
+1. 来自重点高校、双一流院校,或有高质量 AI / 后端 / 系统工程项目经历者优先。
+2. 有 AI Agent、RAG 知识库、Chatbot、自动化工具、AI 插件等项目经验。
+3. 有 Rust / Go 后端项目经验,熟悉高并发、异步编程、微服务、数据库或消息队列等工程实践。
+4. 有 GitHub 项目、开源贡献、技术博客、竞赛获奖、论文复现或科研项目经历。
+5. 对 AI 产品有强烈好奇心,愿意思考模型能力边界、用户体验和工程落地之间的平衡。
+
+你将获得:
+1. 参与真实 AI Agent 产品核心研发,而不是边缘辅助工作。
+2. 接触大模型应用落地的完整链路,包括需求、方案、开发、评测、上线和迭代。
+3. 与核心团队直接协作,在高密度项目实践中快速提升工程能力。
+4. 表现优秀者可获得长期实习、转正机会或核心模块负责机会。
+
+投递说明:
+投递时欢迎附上 GitHub、项目链接、技术博客、竞赛经历或其他能体现工程能力的作品材料。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Rust"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Rust""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""微服务"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""微服务""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/bd1e662c94530c890nN73di8EFJQ.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent工程师,青瓷游戏,成都,中国,武侯区,8000,12000,CNY,agent_dev,"岗位职责:
+聚焦游戏用户增长、社群运营及内容传播等核心场景,开发基于大模型与AI工具的智能化解决方案。
+负责AI Agent、智能客服、内容生成工具等应用的功能设计、代码实现、部署与效果迭代。
+协同运营与产品团队,将运营策略转化为可落地、可量化的AI驱动功能,提升运营效率与用户体验。
+
+任职要求:
+计算机、软件工程、人工智能等相关专业本科及以上学历。
+必备技能:精通Python开发,熟悉常用数据结构与算法;有使用 LangChain/Dify 等框架进行AI应用开发的经验。
+技术加分项:掌握大模型提示词优化、RAG应用开发;了解C++/Java;有机器学习项目经历。
+对游戏行业有强烈兴趣,具备良好的业务理解力和跨团队沟通能力。",,"[{""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Java""}, {""raw_name"": ""Dify"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Dify""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""提示词""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/38f9185e113f6d680nF83t6-EFNU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI agent工程师,有见,成都,中国,锦江区,3262,3915,CNY,agent_dev,"1、负责设计、构建和优化AI智能体及其应用产品,快速响应产品业务需求;
+2、设计和实现基于LLM的智能体架构,包括任务规划、对话管理、意图识别、知识库、流程工程等;
+3、开发和维护智能体的后端服务,确保系统的稳定性和可扩展性,并能推动AI Agents在架构和性能上的持续优化;
+4、参与和主导大模型智能客服系统的设计和开发,提升客户交互体验和系统响应效率,并能对智能体进行评测和调优;职位要求:
+1、计算机相关专业,硕士及以上学历;
+2、动手能力强,精通Python、Java、Go其中一种或多种编程语言,具备良好的软件框架和应用设计能力;
+3、深入了解AI Agents技术栈,掌握
+LangChain/Llamaindex等LLM开发工具框架,有丰富的智能体开发和Prompt Engineering经验;
+4、熟练使用各种开源或SaaS版的Agent开发平台,熟练掌握LLM应用程序的部署和运维;
+5、熟悉NLP、ML和模型微调者优先,有 LLMOps应用和开发经验者优先。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""LlamaIndex"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Llamaindex""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""NLP"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""NLP""}, {""raw_name"": ""Go"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""微调""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""ML""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/8c00b32c571ca83703V_3921EVtW.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法,众辰奥米,上海,中国,松江区,12000,22000,CNY,agent_dev,"我们公司基于OpenClaw的框架进行多智能体开发、角色设定、基本边界设定、记忆优选、学习成长、安全架构等智能体全栈落地。对员工要求主要OpenClaw的熟练应用--如果不熟悉和擅长OpenClaw的,请不要报名联系。",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/cca48ea52dde0b8f0nJ43921EFVU.html,2026-09-02,2026-09-02,none,human_reviewed
+智驾大模型算法,华为技术有限公司,上海,中国,浦东新区,4350,5438,CNY,llm_fullstack,"【我们是谁】
+我们是华为车BU乾崑智驾核心技术研发团队,作为行业头部智驾公司,我们凭借前沿技术路径与扎实工程实力,已深度赋能鸿蒙智行等超30款量产车型,智驾系统累计搭载量超过100万辆;
+
+【我们在做什么】
+面对端到端大模型所面临的海量数据处理挑战,我们正构建全球领先的驾驶数据闭环平台,通过分布式计算引擎、多模态检索、向量数据库等前沿技术手段,通过数据驱动的方法推动端到端大模型持续迭代升级,打造下一代量产智驾产品,真正实现“越开越好开,越用越智能”;
+
+【我们的岗位职责】
+1、前沿智驾技术攻坚:基于海量真实数据,参与大模型+多模态+端到端等技术落地与部署,探索感知-决策-控制全栈智能化;
+2、负责数据闭环开发:覆盖数据采集、挖掘、标注、模型训练、评测与部署全流程,构建高效自动化数据产线;
+3、搭建高性能数据引擎与分布式系统:参与大数据调度平台开发与部署,处理亿级真实驾驶数据,挑战分钟级高效检索与分析;
+4、参与行业前沿技术探索:在电车业务爆发期深度融入智能生态建设,加速技术落地与应用创新;
+5、参与量产问题攻关与体验优化:依托量产车型真实路测数据,推动算法与系统迭代,直接影响千万用户体验;
+
+【我们需要什么样的你】
+算法与模型方向:
+1、具备大模型/多模态/强化学习/端到端(如BEV、Occupancy、Diffusion、LLM等)等AI相关技术栈,或预测、决策、规划、控制等智驾算法相关技术栈;
+2、具备数据闭环、模型训练优化或分布式计算相关经验;
+3、对前沿端到端或智驾相关技术有深入实践的经验与持续学习的热情;
+3、精通Python/C++,具备高性能算法开发能力与大型项目开发经验;
+
+软件与数据平台方向:
+1、熟悉后台开发机制,熟悉python/java/c++任一后端开发语言;
+2、对大数据处理、高并发服务、分布式系统性能优化有所了解或感兴趣;
+3、了解凸优化、聚类等机器学习方法,数学建模基础扎实;
+4、对新型数据组织方式、向量检索、高速IO存储方案有了解;
+5、对技术有追求,对代码感兴趣
+
+【我们可以提供】
+1、头部平台:深度参与智驾行业顶尖量产项目,技术成果直接赋能数款车型;
+2、业务爆发期:合作车型持续增加,技术影响力行业顶尖;
+3、丰厚年终奖:业绩导向,回报远超市场水平;
+4、高自由度技术探索:从数据到模型再到实车,全链路参与前沿研发;",,"[{""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""分布式系统"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""java""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""向量检索""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/822332d7a121bbe70nZ83NS9EVdS.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法应用工程师,上海从鲸信息技术,上海,中国,长宁区,40000,70000,CNY,ai_application_dev,"岗位职责:
+1、负责生成式语言模型应用的设计,开发,和落地,为用户使用场景提供更好的体验;
+2、在已部署的大模型服务中,调研不同模型与架构对服务指标的影响;
+3、结合提示词工程 (prompt engineering),模型微调 (supervised/parameter efficient fine-tuning),函数调用 (function calling),配合向量数据库的检索增强生成 (RAG)等大模型技术,研发关键功能,实现稳定,可复现的模型产出;
+4、跟进业界的最新产出结果,根据业务需求,为团队调研引入新的大模型应用场景。
+任职要求:
+1、扎实的编程技术,适应Linux环境下的开发,熟悉以Python为主的大模型开发流程,并掌握一定Java/C++编程语言的能力;
+2、了解业界新模型的发展方向和技术知识,包括但不限于:向量方法、多模态、模型构架、训练数据集收集、指令微调数据集生成、模型微调、 模型对齐、推理性能加速等;
+3、熟悉Langchain,Haystack,LlamaIndex等开源大模型应用框架,了解如vLLM,LmDeploy,Ollama,Llama.cpp等的开源推理框架;
+4、熟悉深度学习技术,并了解 Pytorch 环境下,基于如 Deepspeed 架构下的模型开发和训练;
+5、对分布式计算有一定的了解;
+6、良好的团队沟通和协作能力,有能力为非大模型背景的听众提炼技术要点。
+加分项:
+1、有利用大模型落地应用或解决实际个人问题的经验;
+2、在分布式集群上有训练大模型的经验;
+3、熟悉GPU构架,有一定模型推理性能优化经验;
+4、有对LLM社区有一定贡献或有相关领域的学术文章发表。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""prompt engineering""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""function calling""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""fine-tuning""}, {""raw_name"": ""LlamaIndex"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LlamaIndex""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Langchain""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Pytorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""vLLM""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""深度学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/76f150df08aeee8e0nFy29m_F1dT.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法工程师,北京某大型计算机软件上市公司,上海,中国,,70000,100000,CNY,agent_dev,"岗位职责:
+• 负责 AI 评测方向的核心研究与迭代,围绕角色对话、行为决策、长期互动与生成内容建立系统化评测方法 
+• 设计并推动 benchmark、judge model、评测数据与实验框架建设,持续提升评测的区分度、稳定性与可信度
+ • 提升离线评测与真实产品表现之间的相关性,使评测体系能够真正服务模型优化和产品决策 • 研究模型能力边界与关键失败模式,帮助团队更快定位问题并形成可靠研究方向 
+• 与 AI research、data、infra、产品团队紧密协作,将评测结论转化为训练、后训练与模型选择中的有效信号
+
+任职要求:
+• 扎实的机器学习、深度学习与统计基础,对大语言模型或多模态模型的训练、后训练与评估有系统理解 
+• 有 LLM evaluation、benchmark construction、model-as-judge、reward modeling 或 agent evaluation 相关经验 
+• 能够独立设计评测任务、评测标准与分析框架,理解评估指标与真实产品表现之间的关系 
+• 具备较强的 research taste,能够围绕开放问题定义研究目标并设计严谨实验 
+• 具备优秀的工程能力,能够独立完成从问题拆解到结果分析的完整闭环 
+• 具备较强的分析与归因能力,能够从复杂实验结果中提炼有效结论并推动决策 
+• 对游戏、互动叙事、角色系统或 AI 驱动内容系统有强烈兴趣
+
+加分项:
+• 在机器学习、NLP、强化学习、HCI 或相关方向有高质量研究经历 
+• 有 agent、multi-agent systems、long-horizon planning 或 memory systems 相关项目经验
+• 有从研究走向线上系统落地的经验,包括数据闭环与灰度迭代 
+• 有游戏、互动叙事、虚拟角色或线上 AI 产品相关经验",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""multi-agent system""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LLM evaluation""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""NLP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/bd971a6b125f3fc40nN639y9EFtX.html,2026-09-02,2026-09-02,none,human_reviewed
+AI大模型部署系统研发工程师实习生,上海行吟信息科技,上海,中国,黄浦区,6525,7612,CNY,ai_platform,"核心职责
+1.参与小红书大模型平台推理部署等流程及工具的研发建设,完善平台现有功能
+2.参与平台Quota管理模块的开发,实现多机房、多集群环境下的,各种异构计算资源的配额管理功能
+3.参与平台大模型训练/压缩/推理/数据集/资源调度等流程及工具的研发建设
+
+任职要求
+1.计算机/软件工程相关专业在校生,熟悉Go/Python/Java至少一门语言
+2.了解Linux系统及算法基础,熟悉MySQL/Redis/MQ等组件使用
+3.熟悉 Kubernetes 技术栈,有一定的云原生机器学习系统实践和开发经验
+4.有大模型部署经验,对 vLLM/SGLang/Dynamo 等至少一种推理框架有使用经验
+5.具备快速学习能力,熟练使用 Git,熟练使用 github copilot/cursor 等 AI 编程工具
+
+加分项
+1.接触过Volcano/联邦集群/OpenKruise等云原生技术,有分布式系统实践经验
+2.熟悉大模型推理基本原理,了解大模型分布式部署架构,例如多机部署和 PD 分离部署
+3.熟悉常见的大模型如 DeepSeek/Qwen 等的架构及主要特点,有英伟达 GPU、华为 Ascend NPU 使用经验
+4.熟悉常见调度算法,对多租户Quota治理、抢占、弹性、碎片、潮汐、混部等问题有一定的理解和实践经验",,"[{""raw_name"": ""Kubernetes"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Kubernetes""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""copilot""}, {""raw_name"": ""Linux"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Linux系统""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""github""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Redis""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/e9f5c20a402759f60nV-2dS1EVNS.html,2026-09-02,2026-09-02,none,human_reviewed
+端侧大模型部署,上海某中型人工智能公司,上海,中国,,70000,100000,CNY,ai_platform,"岗位内容:
+1.负责端侧(手机/驾舱/智能硬件)大模型的部署,包括但不限于框架开发,算子优化,硬件适配;
+2.负责端侧大模型的前沿优化技术调研与落地;
+3.参与模型、系统与硬件的协同优化与联合设计。
+职位要求:
+1.熟悉 linux,熟悉C/C++/Python,具有良好的编程风格;
+2.熟悉主流的 LLM,VLM 模型架构以及常用的 LLM 优化技术,例如 Continous-Batching, Speculative-Decoding, Quantization 等;
+3.熟悉 GAN、Diffusion、Flow-Matching 多种生成式技术与 DiT 等代表性模型架构;
+4.掌握语音核心技术(ASR、TTS)与模型架构(Whisper、Tacotron),具备端到端的工业级落地经验;
+5.熟悉至少一款主流的推理引擎框架,如 llama.cpp、MNN、vLLM、TensorRT;
+6.熟悉 OpenCL、CUDA 等并行编程;
+7.有异构系统开发经验,熟悉 QualComm NPU 开发流程;
+8.有系统顶会(OSDI、NSDI、MLSys)一作者优先。",,"[{""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""linux""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""C++""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/ea989a8b4c345c480nd72t26GFtU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI大模型应用开发实习生(远程居家办公),智乐活,南京,中国,雨花台区,3915,4785,CNY,ai_application_dev,"【职位描述】
+1. 参与核心研发:深度参与AI招聘、AI运营老师、AI化邮件报销整理等项目的研发,基于大模型API(如OpenAI、智谱、千问等)实现智能问答、内容生成、知识库等应用。
+2. Prompt工程与优化:协助进行Prompt设计、优化与效果评估,提升模型输出准确性与稳定性。
+3. RAG系统构建:协助完成RAG系统相关数据处理、流程调试与效果验证。
+4. 技术落地&优化:配合团队将AI能力在实际招聘业务中进行落地、问题分析与迭代。
+【任职要求】
+1. 学历背景:本科/研究生在读(985/211优先,但更看重实际动手能力),计算机、软件、AI、大数据等相关专业优先。
+2. 编程能力:熟悉至少一门编程语言(C/C++、Java、Go、JavaScript、TypeScript 等均可);有AI类课程/产品设计、竞赛或GitHub项目经验者优先。
+3. AI产品深度用户:对大模型、AIGC、LLM 应用有浓厚兴趣;主动使用过 ChatGPT、千问、豆包等AI产品,对提示词敏感,喜欢研究“如何让AI回答得更好”。
+4. 学习与逻辑:逻辑清晰,学习能力强,能快速理解新技术并落地实践。
+5. 耐心与细致:责任心强,认真细致,具备良好的沟通能力与团队协作意识。
+6. 心态相关:心态开放程度更高,自主发现业务AI化需求并可以整理实现。
+7. 实习时长:一周至少到岗5天,每周至少工作40小时,能持续实习6个月以上。
+【加分项】
+1. 了解API调用、接口文档、后端开发基本流程。
+2. 做过课程设计、竞赛项目、小工具开发。
+3. 有提示词工程、AI对话调试、知识库搭建经验。
+4. 动手能力强,喜欢折腾AI工具与工作流。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""提示词工程""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b4df0aab278cfdf90nd839m7FVRU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI实习生(可转正・AI技术工程师FDE),快粉科技,南京,中国,江宁区,4350,5438,CNY,agent_dev,"字节跳动 AI 业务核心服务商,做企业级大模型落地。
+实习 3 个月可转正,转正后 = FDE(AI 技术工程师)正式岗。
+原华为高级工程师培训。
+
+工作内容:
+1,全程跟 AI 项目:客户需求→方案设计→部署上线→验收
+2,动手搭环境、调接口、接数据、接知识库 / 模型
+3,配合售前做 POC 演示和技术答疑
+4,排查现场技术问题,输出实施文档
+
+岗位要求:
+1,2026/2027 届本科或硕士,工科专业(计算机 / 软工 / AI / 自动化等优先,其他工科技术硬也行)
+2,会 Java/Python/Go 至少一门,能写代码能排错
+3,了解 Web / 数据库 / Linux/Docker/Git 中几样就行,不用全会
+沟通不怯场,能把需求聊明白
+
+加分:奖学金 / 工科竞赛 / AI 实习经历;了解 RAG/Agent/Prompt/ 大模型 API;用过 Dify/Coze/LangChain
+
+薪资与作息:
+1,200-250 元 / 天,按月发放
+2, 早 10:00 - 晚 19:00,周末单休,法定节假日正常放假",,"[{""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Docker"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Docker""}, {""raw_name"": ""Linux"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Dify"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Dify""}, {""raw_name"": ""Coze"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Coze""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""RAG""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Git""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/4b55209e6864a18b0nN73NW0FlJX.html,2026-09-02,2026-09-02,none,human_reviewed
+Agent应用开发,外企德科数字,南京,中国,雨花台区,13000,24000,CNY,agent_dev,"社招岗位需毕业后投递,谢谢
+【主要职责】
+参与核心AIAgent架构的设计与实现,深入探索并应用RAG、Function Calling、ToolUse、规划与推理、记忆机制等关键技术。
+研发具备自主执行复杂任务能力的智能体,应用场景包括但不限于:智能客服、自动化办公、代码助手、深度研究与决策支持系统。
+构建高可用、可扩展的大规模AIAgent服务平台,确保系统在生产环境中的稳定性、安全性和高性能。紧跟学术界与工业界最新进展(如LangChain、Llamalndex、AutoGPT等框架与理念),并将前沿技术快速应用到业务实践中。与相关算法、产品和工程团队紧密协作,共同推动AIAgent技术的规模化落地和持续迭代。
+【职位要求】
+1、计算机科学、人工智能、电子工程等相关专业。
+2、在AI领域,特别是NLP、LLM或Agent相关方向的工作经验,为优选。
+3、核心技术能力:·精通Agent技术栈:对RAG、Function Calling、Agent Memory、规划与推理、工具调用等有深入理解和实践经验。
+4、强大的算法基础:扎实的机器学习/深度学习基础,熟悉主流大语言模型的原理、微调及应用。
+5、出众的工程实现能力:熟练掌握Python,具备优秀的代码开发与调试能力。有使用至少一种主流深度学习框架的经验。
+【薪资福利】
+1、技术面定级定薪,10-30k不卡涨幅,14~16薪,五险一金全额缴纳;
+2、班车、自选夜宵、年度体检、健身房、食堂、优质办公环境;
+3、大厂平台,与业内技术大牛共事;入职即配专属导师一对一带教;内部定期举办技术讲座与分享会,助力快速成长。",,"[{""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Function Calling""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/eb2deb077db35f210nN72tm1ElZT.html,2026-09-02,2026-09-02,none,human_reviewed
+全栈开发(Golang / Java / Python ),小西科技集团,南京,中国,雨花台区,3915,5438,CNY,llm_fullstack,"岗位要求
+1. 编程语言与 AI 辅助开发
+    熟练使用 Golang / Java / Python 中至少一门语言,理解其运行时特性。
+    熟练使用 AI 编程助手(如 GitHub Copilot、Cursor、通义灵码等)进行代码生成、重构和测试编写,并能通过精准的 Prompt 引导 AI 产出高质量代码。
+2. 数据结构、算法与设计模式
+    掌握常见数据结构、算法及设计模式。
+3. 网络与服务器编程
+    熟悉网络通信、同步/异步服务器编程模型,了解主流服务框架(如 Go kit、Spring Boot、Netty 等)。
+4. 数据库与存储
+    熟悉 MySQL / MongoDB / Redis 等至少一种数据库,掌握索引优化、事务隔离、缓存策略等。
+5. 专业背景
+    计算机、软件、通信、数学、人工智能等相关专业,统招本科及以上学历,2027 届毕业生。
+6. 学习与 AI 工具链探索
+    具备极强的自主学习和新技术探索能力,尤其对 LLM 应用、RAG、Agent 等前沿方向有好奇心。
+     乐于分享 AI 提效实践,能快速将新工具融入开发流程并沉淀团队经验。
+7.加分项
+   能够在 AI 生成方案的基础上进行合理性判断、复杂度分析及模式选型,不盲从 AI 建议,具备人工校验与兜底能力。
+   能借助 AI 辅助进行框架选型、性能瓶颈排查和异常场景模拟,但需理解底层原理,避免“黑盒依赖”。
+   能利用 AI 辅助生成复杂查询、分析执行计划,并对 AI 给出的优化建议进行实际压试验证。
+每周实习五天,能连续实习三个月以上优先",,"[{""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Copilot""}, {""raw_name"": ""MongoDB"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MongoDB""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Golang""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/40c341ec46962bdc0nJ73NS7EVNY.html,2026-09-02,2026-09-02,none,human_reviewed
+RAG/智能体应用开发实习生,江苏纬创智能,南京,中国,雨花台区,5000,10000,CNY,agent_dev,"一、岗位职责
+1、RAG系统开发,参与基于大语言模型(LLM)的RAG(检索增强生成)系统设计与开发,包括知识库构建、向量数据库接入、检索效果优化等;
+2、智能体(Agent)开发,参与AI Agent核心能力研发,涵盖任务规划、工具调用(Function Calling / MCP)、工作流编排、多智能体协同等
+应用落地	将RAG和Agent技术集成至实际业务场景(如智能问答、知识库助手、自动化办公等),完成端到端应用交付;
+3、效果评估与优化,参与智能体/RAG系统的效果评估体系搭建,通过Bad Case分析、Prompt调优、检索参数优化等手段持续提升系统表现;
+4、技术调研,跟踪大模型、Agent、RAG等前沿技术进展,完成技术调研报告和Demo验证。
+二、任职要求
+1、本科及以上,计算机、人工智能、软件工程等相关专业,本科或硕士在读;
+2、熟练掌握Python,具备良好的代码规范意识;熟悉Git版本控制
+3、基础知识,数据结构、算法、操作系统基础扎实,熟悉Linux环境。",,"[{""raw_name"": ""Function Calling"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Function Calling""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Linux""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""版本控制""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/f65bf3b0b04ae0a90nB83929EFtX.html,2026-09-02,2026-09-02,none,human_reviewed
+AI大大模型应用开发工程师,深圳某大型计算机软件公司,深圳,中国,,15000,30000,CNY,ai_application_dev,"岗位职责
+基于大语言模型API或开源模型,开发面向业务的智能对话、知识检索(RAG)及文档处理等应用功能;
+
+设计并优化Prompt策略,提升模型输出质量;
+
+参与模型推理服务的封装、部署与性能测试;
+
+协同产品及后端团队,完成AI功能与业务系统的集成联调。
+
+任职要求
+本科及以上学历,计算机、软件工程、电子信息等相关专业,接受优秀2026届应届毕业生;
+
+熟悉Python开发,掌握至少一种Web框架(如Flask、FastAPI);
+
+了解HTTP协议、RESTful接口设计及数据库基础操作;
+
+对大语言模型应用(如ChatGPT、通义千问等)有使用或调用经验;
+
+逻辑清晰,具备良好的问题定位和文档撰写能力。
+
+优先条件
+接触过LangChain、LlamaIndex等应用开发框架;
+
+了解向量数据库(如Milvus、Pinecone)或检索增强生成(RAG)流程;
+
+有Linux环境下的部署调试经验。",,"[{""raw_name"": ""LlamaIndex"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LlamaIndex""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""FastAPI"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""FastAPI""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Milvus"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Milvus""}, {""raw_name"": ""网络协议"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""HTTP协议""}, {""raw_name"": ""Linux"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""Flask"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Flask""}, {""raw_name"": ""性能测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""性能测试""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/52dc98dd447419e10nJ73tq-EFJZ.html,2026-09-02,2026-09-02,none,human_reviewed
+ai应用开发工程师,华为技术有限公司,深圳,中国,,15000,25000,CNY,ai_application_dev,"基于自研cpu的开源驱动,cpu+npu的基础设施建设及优化等",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b7bc85b3d8d677670nN62tS0ElVW.html,2026-09-02,2026-09-02,none,human_reviewed
+AI 应用岗位(一号位 / 技术骨干),北京某大型计算机软件上市公司,深圳,中国,,100000,150000,CNY,ai_application_dev,"岗位背景
+- 方向:AI 应用(非模型),做汽车诊断数据的智能化
+- 目前团队不到6人,需要 技术能力优先、有创业精神 的一号位
+- 汇报给老板(目前由研发总兼任),长期希望独立设岗
+- 目标:2027年实现付费
+- base 深圳(总部)
+要求与薪资
+- 无年龄限制,看重项目经验与技术能力
+- 现金范围:150-200万人民币 + 股权
+- 公司提供充足算力与存储预算(不卡预算),有100多万用户基础,行业数据量大但清洗工作繁重",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/fd5c0ff551852de80nBz0tu5FlpR.html,2026-09-02,2026-09-02,none,human_reviewed
+字节-深圳-服务端实习生(AI 应用),字节跳动,深圳,中国,南山区,8700,10875,CNY,ai_application_dev,"‍‍AI 赋能短剧服务端开发实习生 - 抖音文娱团队
+ 加入 AI 浪潮,创造未来内容消费新体验
+我们正在打造下一代短剧全链路技术平台,将 AI 技术与短剧内容深度融合,每日为亿级用户带来前所未有的内容体验。在这里,你将有机会参与构建 AI 驱动的内容生态,让技术与创意碰撞出无限可能!
+短剧业务的核心优势
+市场增长迅猛,用户规模庞大,每日亿级用户深度观看,千亿级别利润,已经形成飞轮效应(用户爱看->收入增加->更多供给),创作者、用户、平台多方受益
+
+多样化变现方式与优质用户体验
+变现形式多元 :支持 IAP 付费、IAA 激励广告、中插广告等模式,满足不同用户付费习惯
+用户体验优化 :合集形态支持续播、内流沉浸观看,保障内容消费完整性;广告融入自然
+强大的内容分发与供给能力
+分发场景丰富 :通过 feed 推荐、搜索、tab 入口、内流选集、排行榜等多渠道触达用户
+内容供给繁荣 :自有版权与外部合作影视合集均表现亮眼,覆盖短剧、影
+视、动漫等多种类型
+ 激进的 AI 转型:
+AI 增强的内容推荐系统
+开发基于用户行为和内容特征的智能推荐算法,实现个性化短剧推荐,提升用户体验和内容分发效率
+AI 素材生成与处理
+参与开发 AI 解说素材生产系统,利用线上数据,跑通高光和 AI 素材的数据飞轮,提升分发效率
+探索利用 AI 技术实现短剧高光重投、广告复投、免费集拼接等功能,提升用户体验和变现能力
+AI 编码效率提升
+使用团队自研的 AI Coding 工具,参与开发能够提升代码贡献效率的 AI 辅助开发系统
+探索 AI 技术在需求分析、技术方案生成方面的应用,提升团队研发效率
+智能内容理解与处理
+构建基于 AI 的内容理解系统,实现对短剧内容的深度分析和智能处理
+参与短剧画风大模型的应用,识别短剧内容质量标签,扶持优质内容分发
+AI 辅助的内容创作平台
+参与开发 AI 辅助内容创作工具,降低创作门槛,提升内容生产效率
+探索 AI 在短剧番外内容生成中的应用,实现""热门 IP 永不停更的番外制造机""
+我们期待你具备
+本科及以上学历在读,计算机、软件工程等相关专业
+热爱计算机科学和互联网技术,有扎实的数据结构和算法基础
+精通至少一门编程语言,如 Java、Go、Python 等
+了解常用数据库如 MySQL、Redis,有分布式系统开发经验更佳
+对 AI 技术有强烈兴趣,具备学习和应用 AI 相关技术的能力
+每周可工作 4 天以上,能持续实习 3 个月及以上 
+你将获得
+前沿 AI 技术实践
+接触字节跳动内部最前沿的 AI 技术平台,包括方舟、Coze、AGI Hub 等
+参与构建 AI Native 开发环境,提升个人技术能力和开发效率
+高竞争力的实习补贴
+我们提供行业领先的实习薪资,让你无需为生活担忧,专注于技术成长 
+1:1 导师指导
+每位实习生都有资深工程师作为导师,手把手带你成长 
+转正机会
+表现优秀者有机会获得转正 Offer,直接加入字节跳动大家庭 
+免费三餐+零食饮料
+食堂提供三餐和夜宵,办公区有无限量零食和饮料,工作能量满满 
+
+为什么选择我们?
+AI 赋能文娱
+我们正在用 AI 技术重塑文娱内容的创作、分发和消费方式,处于行业最前沿
+团队内部 AI 代码贡献率达 34%,开发流程和工具都已深度融入 AI
+技术挑战丰富
+亿级用户、高并发场景,让你在实战中快速提升技术能力
+参与解决高并发、数据隔离、系统解耦等技术难题
+创新氛围浓厚
+扁平化管理,鼓励创新和尝试,没有过多的层级限制
+技术团队积极探索 AI 技术在短剧业务中的应用,为你提供广阔的创新空间
+工作地点
+深圳(深圳湾)、北京(大钟寺)",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""分布式系统"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Coze"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Coze""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/c08f39826a9295be0nR-3Nq7FVBZ.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态大模型评测-广告方向,慧博云通,北京,中国,海淀区,15000,18000,CNY,ai_application_dev,"职位描述
+针对视频结果进行专业评估:评测同学需基于自身行业经验,从专业视角判断视频内容是否符合对应行业的实际使用标准,识别当前模型生成结果中的问题与不足,并通过反馈推动模型能力持续迭代优化。
+职位要求
+真人剧
+有影视、短剧、短视频等相关行业制作经历,对真人影视内容的基本制作流程有一定了解; 有视频类评测经验,熟悉视频质量评测、问题标注及归因,能够按照评测标准稳定完成批量评测任务; 具备基础的影视审美和内容判断能力,能够识别人物表演、镜头运动、场景衔接、剧情逻辑、人物一致性等常见问题; 使用或接触过 AIGC 图片 / 视频生成工具,对 AI 生成视频的常见问题有一定了解; 有真人短剧、影视类 AI 视频评测经验者优先。
+效果广告(原电商)
+有电商、视觉设计、商品运营、商品拍摄 / 后期等相关学习或从业经历,对商品展示及电商内容有基本认知; 有视频类评测经验,能够按照评测标准完成商品视频的效果判断、问题标注及归因; 对不同商品品类有一定认知,能够识别商品外观、结构、材质、文字、展示场景及人物与商品交互等常见问题; 使用或接触过 AIGC 图片 / 视频生成工具,对 AI 生成商品素材的常见问题有一定判断能力; 有电商图片 / 视频、商品素材或 AI 多模态评测经验者优先。
+品牌广告(原广告)
+有品牌营销、广告创意、市场传播、视觉设计、影视广告等相关学习或从业经历,对品牌广告内容策划、创意表达及传播逻辑有一定了解; 有视频类评测经验,能够按照评测标准完成品牌广告视频的质量判断、问题标注及归因; 具备较好的广告审美和内容分析能力,能够从品牌调性、创意表现、视觉风格、叙事逻辑、情绪传递、信息表达等角度判断视频效果; 使用或接触过 AIGC 图片 / 视频生成工具,对 AI 生成品牌广告素材中的画面质量、创意合理性及内容一致性问题有一定了解; 有品牌广告、TVC、营销创意素材或 AI 广告视频评测经验者优先。
+动画
+有建模渲染、动画、动漫、漫剧、美术、视觉设计等相关学习或从业经历,对二维 / 三维动画及常见动画内容形式有一定了解; 有视频类评测经验,能够按照评测标准完成视频效果判断、问题定位及标签归因; 具备基础的动画审美和判断能力,能够识别角色一致性、动作表现、画面稳定性、镜头衔接、场景及物体异常等常见问题; 使用或接触过 AIGC 图片 / 视频生成工具,了解 AI 动画内容中常见的生成问题; 有动画、漫剧或 AI 动画视频评测经验者优先:
+动漫动画:以横屏为主,单集 5 至 24 分钟,具备明确的美术风格设定(二维、三维或三渲二),制作管线高度标准化。
+AI 漫剧:竖屏,单条 30 秒至 2 分钟,以 ""分镜格 + 动态效果 + 配音 + BGM"" 为主要表现形式,不属于完整动画。",,"[{""raw_name"": ""多模态"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/8d5b714bcab2a1d70nN73N67FlFW.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态算法研究(实习)-校招 秋招 面议!,无垠跃迁,北京,中国,海淀区,8700,17400,CNY,other,"职位:【实习]多模态算法研究
+(校招、秋招也有)
+
+[待遇-福利]
+早10/11点-晚7/8点,双休,午休,下午茶,零食+休息区+节假日福利。
+自研大模型,算力丰富,支持同学论文,以业务落地为导向。
+入职即配万元电脑+干元座椅。设有年终奖,全额社保12公积金。
+应届生,公司能协助申请1000-1500元/月房补。
+
+若在我司实习且想留在公司继续工作,毕业表现正常(不要三天打网两天晒鱼的,不犯重大错误,正常工作就行,不会压榨人),毕业公司给到转正机会,换市场价,双方商定重新定薪,童叟无欺!!!
+
+岗位描述:
+1.参与模型的多阶段训练优化,研究内容包括前沿多模态大模型训练算法,模型架构设计,数据参数配比等。
+2.负责垂类应用的数据收集处理,包括图文和视频等数据。
+3.开发前沿应用能力,包括prompt设计,记忆机制,function call等功能。
+4.模型开源的仓库建设与建设。
+
+
+任职要求:
+1.有扎实的NLP理论知识基础,熟悉Transformer,CLIP等主流模型原理。
+2.优秀的代码能力,熟练掌握Python以及pytorch,熟悉多模态大模型的训练推理pipeline。
+3.有过多模态大模型的训练调优经验。
+4.有过大规模大模型训练经验的优先。
+5.有过多模态大模型应用开发经验的优先。
+
+我们提供:
+1.与顶尖研究员一起突破技术边界的研发学习机会。
+2.产品实战环境:从技术到产品落地的全流程参与,直接参与产品的核心技术迭代。
+3.充足的算力支持充分的探索实验。",,"[{""raw_name"": ""LLM 应用开发"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""pytorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/5e49bb8a0e5d6ebb0nJ82du6E1pX.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态-预训练数据研究员,上海阶跃星辰智能科技,北京,中国,海淀区,10875,21750,CNY,agent_dev,"我们相信,多模态大模型的能力上限由数据决定——而今天最好的数据还远未被构建出来。我们要做的,是把多模态预训练数据从""靠经验和人力堆砌""变成一门可验证、可复现、由模型自身驱动的工程科学。如果你想亲手定义下一代模型认知世界的方式,这里有真实的数据、算力和问题等你。
+
+岗位职责
+1. 主导阶跃多模态大模型预训练数据的生产与质控体系建设,覆盖采集、解析、合成、清洗、配比全链路,规模达万亿 token 量级。质控体系的设计本身即为核心交付。
+2. 以 data-centric 方法量化""数据 → 模型能力""的因果关系:设计配比与采样策略,通过对照实验沉淀可复现结论,而非依赖经验判断。
+3. 探索 agentic data construction——由模型自主完成数据的生成、清洗、质检与配比决策,将数据构建从人工流程升级为模型驱动的 agent 系统,使数据生产能随模型能力同步进化。
+4. 攻坚领域多模态数据(工程图 / CAD / 文档 / 学科题等)的合成与对齐,构建通用语料难以覆盖且可验证的高价值数据。
+
+任职要求
+5. 从根本上认可数据的价值,相信""做好数据""本身就是一等公民的研究工作,而非模型训练的附属环节。
+6. 熟悉大规模数据处理技术栈,有 TB~PB 级数据 pipeline 的实战经验,能独立完成数据的处理、合成与质控。
+7. 具备数据科学性的认知:习惯用对照实验和量化指标判断数据价值,对""数据 → 模型效果""有可验证的因果认知,而非凭直觉与经验。
+8. 计算机 / 人工智能等相关专业,1 年以上大规模数据或多模态预训练相关经验。
+
+加分项
+9. 具备 agentic data construction、model-in-the-loop、可验证数据自动生成等方向的实战经验。
+10. 具备领域数据(工程图 / CAD / 文档 / 学科题)的合成与对齐经验。
+11. 主导或深度参与过有影响力的开源数据集 / benchmark。",,"[{""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/a37dfcd167546ab30nF72Nu9EVFY.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态美学评测(影视美学),纬致芯创科技,北京,中国,海淀区,13000,15000,CNY,ai_application_dev,"JD
+本科及以上学历,影视、艺术设计、数字媒体、计算机、多媒体技术等相关专业优先; 具备 AI 产品、图像生成、内容理解、多媒体算法测试、质量评估或 AIGC 相关项目经验者优先; 熟悉文生图、图生图、多模态大模型等基础概念,了解主流图像生成产品及其能力边界,对生成图像效果具备较强的审美判断、问题识别和质量评估能力; 具备良好的逻辑分析能力,能够将主观图像效果拆解为可评估、可量化、可复盘的测试维度,并沉淀评估标准与问题归因方法; 具备较强的数据整理、问题分析、Badcase 归因和报告撰写能力,能够清晰输出评测结论、风险判断及优化建议; 认真细致,责任心强,对图像质量和评测标准有较高敏感度,能够保证评测结果的准确性、一致性和可复用性; 具备良好的沟通协作能力,能够与算法、产品、测试、标注等多角色高效配合,推动评测问题闭环; 熟练使用 Excel、飞书、语雀、Notion 等办公及协作工具;具备 Python 脚本处理数据、自动化统计或数据分析能力者优先。 加分项 有文生图模型、图像生成模型、AIGC 产品测试或生成式模型评测经验; 熟悉 Stable Diffusion、Midjourney、DALL·E、可灵、即梦、可图等图像 / 视频生成产品,并对不同产品的生成效果特点有一定理解; 有 Prompt 设计、评测集构建、人工标注规范制定、主观评测流程搭建经验; 对图像审美、摄影语言、设计原则、影视构图、视觉质量评估等方向有一定理解,能够识别构图、光影、色彩、质感、人物表现等维度的问题; 有大模型评测、RLHF 数据建设、内容安全评估、世界知识评测、多模态理解评测相关经验者优先。
+  职责
+1、建立快手模型算法质量体系,建设效果算法评测标准; 2、评估多媒体应用中的文生图等算法,为算法优化提供方向; 3、高质量测试集建设",,"[{""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""大模型评测""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/d1d845097e8e5b1d0nJ_2Nm-EVFS.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态大模型评测-大厂核心 五险一金包三餐,位来小猎(上海)...,北京,中国,海淀区,9000,13000,CNY,ai_application_dev,"如果我收藏了你,也是一样有意向的,非常欢迎主动联系我!
+拒绝虚假招聘!写的内容都是真实的哦!放心观看
+大厂核心项目,北京、成都多地base
+
+【岗位含金量很高】
+大厂核心AI产品——大模型评测!
+包含电商、视觉模型、海外资源引入、图搜索运营多个岗位
+市场缺口大、跳槽溢价高;
+办公环境好,福利待遇好,还有更多成长晋升机会
+北京核心地段办公(北京-方恒)
+
+岗位1——飞书驻场-大模型数据交付专家(电商方向)
+工作地点:北京-方恒
+
+职位描述: 
+1、负责大模型图文、音视频数据项目的标注及评测工作,制定详细的交付计划,并对交付过程中的潜在风险进行及时评估和分析,制定相应的风险应对策略;
+2、对数据质量和数据敏感,能够快速定位问题 基于业务场景,通过自动化提效手段,落地提效方案并辅助人效&质量提升; 
+3、能够统筹跨部门资源,牵引数据团队和算法、产品团队的深度融合,共同制定并明确标注规范与交付标准,确保项目目标高质量达成;
+职位要求: 
+1、本科及以上学历,电商相关背景优先;
+2、熟悉Python等编程语言的加分; 在多模态领域的PE、Agent等技术的使用上有落地成果,了解并且使用过市面上多种大模型,处理过数据项目优先; 
+3、1年以上大模型领域相关工作经验,熟悉数据生产全流程,对大模型训练、评测或应用领域、各项AI工具有浓厚兴趣和热情,持续关注前沿研究与技术趋势,
+
+
+
+
+岗位2——搜索驻场-AI大模型图搜图运营
+工作地点:北京-方恒
+职位描述: 
+1、根据业务目标参与图搜评测方案制定、建设评估标准,能够站在用户视角和模型视角构建理想态搜索结果; 
+2、对图搜效果进行定性和定量的评估分析,能够从全链路中进行问题拆解和分析,帮助产研侧定位问题并推动优化; 
+3、能够利用AI工具搭建自动化评估链路,提升团队评测效率和准确性。
+职位要求: 
+本科及以上学历,1 年及以上互联网相关工作经验;有 AI Search、搜索策略、数据分析或国际化业务经验者优先。 具备良好的英语读写及沟通能力,能够使用英语作为工作语言;掌握西班牙语、印尼语等小语种者优先。 熟悉Workflow与智能体Agent系统设计与开发,具有Prompt Engineering实践经验或Cursor/DeepResearch/Manus等相关项目经验; 对搜索产品有深刻理解和研究,能够持续跟进策略迭代与产品优化; 自驱力、抗压能力与学习能力强(含前沿论文研究),具备独立思考与判断能力; 沟通表达清晰准确,拥有优秀的跨团队协作与推动能力。
+
+
+三、大厂优势
+
+【薪资真实】
+9K~13K,都给到,不虚标,不压薪
+根据经验+面试能力,综合定薪
+绝对是市场中能给到咱们的最好、最公平的薪资水平~
+【包三餐】
+每月节省最少2K开支
+自有员工餐厅,每餐对标市场50-70元,自取式,伙食非常好!
+【每年1次涨薪涨薪】
+每年都有一次涨薪机会,每年固定节点全员参与,根据全年工作表现确定是否涨薪&涨薪多少,切实可落
+【入职1-2年后有晋升答辩机会】
+入职1年以上同学,会根据工作表现,优秀的同学会给予提拔,进行晋升答辩,成长切实可依!
+【双休+加班少】
+早10-晚7,双休,加班少
+【长期稳定+不裁员】:
+核心事业线,重要部门,不存在裁员,基于项目组成员组织发展扩编的岗位,放心大胆干吧~
+3年劳动合同,稳稳的,3年一个续签
+【入职缴纳五险一金】:
+首月即缴,每月15号发工资
+【高培养】:
+完善的入职后培训,工作期间有多项赋能、培训等
+所有入职的同学都会说 “成长很快” “能学到很多东西”~
+【免费健身房&KTV】
+公司有专门的健身房、KTV等,下班后免费享受
+【下午茶到位】
+每周2-3次下午茶,蛋糕+水果+奶茶等超棒组合,切切实实落实到位!
+【活动&礼品】
+享有丰富多彩的各项公司活动、节日礼品、多种奖金等
+
+四、【薪资】
+9K~13K,12薪(所见即所得,实标,都有可能面到的哦!)
+每月15号发工资
+入职缴纳五险一金
+法定年假、法定假日、员工体检、节日礼品等等该有的都有
+
+五、【稳定性】:
+我们签署3年劳动合同,只要不是个人原因离职,干满3年不是问题,
+大厂非常看重人选稳定性,因为这个岗位的岗位性质是基于AI研发核心项目组,基于项目组编制为原因申请扩编的HC,所以非项目制。
+大模型项目也没有产品终止日期,所以非常稳定~
+产研都需要长期进行,所以面试也很看重稳定性,岗位是非常稳定的
+
+六、【工作性质】:
+正规长期派遣性质,长期稳定,工作感受0差异。
+和正编唯一差别就是没有十几薪,我们是12薪,以及五险一金缴纳基数的差异,其余待遇都一样!没有差别!
+享有同样组织架构,各种公司设施和福利待遇 ,
+【涨薪】、【晋升】、【培训】...等等都有,都一样
+发展完全看个人工作表现和想法。
+
+【欢迎大家踊跃投递~】
+欢迎各位小伙伴主动投递简历来~以及踊跃互相介绍哦
+HC还多,先到先得,面试流程推进很快,更好拿Offer~",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Cursor""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""大模型评测""}, {""raw_name"": ""多模态"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/2e727a630e1fa9930nN609W5EVZQ.html,2026-09-02,2026-09-02,none,human_reviewed
+langchain + 全栈工程师,新岚文化,北京,中国,朝阳区,20000,40000,CNY,llm_fullstack,"需要针对 文生图 图生视频 rag 微调 以及搭建AGENT workflow 的经验
+
+0. 负责AIGC应用及AGENT系统从0-1的搭建与开发
+
+1. 了解相关开发流程、平台架构和配置
+
+2. 负责AI AGENT整体架构设计和开发,搭建全栈系统,并独立部署
+
+3. 负责统筹前端与后端团队协同,确保系统高效协同运行
+
+4. 与产品、运营、设计团队合作,不断优化系统功能和用户体验
+
+5. 持续跟踪AI多模态内容生成等前沿技术,探索多模态交互的新方案
+
+6. 训练和优化大语言模型(LLM),如 OpenAI GPT-4、Claude、Llama 等
+
+7  使用 LangChain 构建智能应用,如 AI聊天机器人
+
+8. 采用 RAG 优化质量
+
+PyTorch / TensorFlow / Transformers
+LangChain、LlamaIndex",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""LlamaIndex"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LlamaIndex""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""rag""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b7c07e41e97eda0603B509i6ElFT.html,2026-09-02,2026-09-02,none,human_reviewed
+Java/AI应用/餐饮零售,北京新都远景网络,北京,中国,大兴区,13000,17000,CNY,ai_application_dev,"1、 参与系统概要设计,主导模块详细设计,并负责核心代码开发;
+2、 根据研发规范与流程,独立完成模块的编码、单元测试、文档编写及上线部署;
+3、 将业务需求高效转化为可落地的技术方案,基于微服务与分布式架构实现高可用系统;
+4、 主动识别并解决项目中的技术难点,持续进行性能调优与架构演进;
+5、 负责公司内部管理/运营类系统的维护、迭代及用户支持;
+6、 推动团队技术能力建设,积极参与代码评审、技术分享与工程效能提升;
+7、将 AI 作为研发提效工具,贯穿“需求→设计→编码→单测→排障→运维”全流程,并沉淀为标准流程
+
+要求:
+
+E2
+1、 大学本科及以上学历,计算机科学、软件工程或相关专业背景,5 年以上 Java 后端开发经验。
+2、 具备扎实的 JAVA 基础,具备主导技术架构设计、跨域系统架构设计经验者优先。有“用 AI 提效并落地为规范/流程”经验者优先。
+• 精通:Java 语言及生态(集合框架、并发编程、JVM 调优基础);Spring Boot 框架及微服务架构设计;MySQL 数据库开发与优化(SQL 编写、索引设计、事务管理)。
+• 熟悉:Redis 缓存应用场景及高并发设计;Nginx 配置与负载均衡原理;分布式系统开发经验(服务治理、容错机制);Apache Flink 实时数据处理框架。
+• 能将 AI 生成代码纳入既有规范:遵循编码规范、补单测、过 Code Review 与安全/静态扫描;坚持“AI 写、人负责”,对并发安全、资源释放、SQL/缓存正确性负责。
+3、AI 应用能力与研发提效 SOP
+• 工具熟练:熟练使用 AI 编程辅助工具与 AI IDE(GitHub Copilot、通义灵码、Cursor、Trae、Claude Code 等),覆盖代码补全/生成/重构/调试/单测与注释生成;了解 Agent/计划模式(先出计划、人工确认再编码)。
+• Prompt 与协作:能写带上下文(技术栈、模块约束、编码规范、依赖版本、接口契约、历史代码)的结构化提示,运用分步拆解、few-shot、先方案后编码,而非“一句话 Vibe Coding”。
+• 工程化处理:对 AI 代码人工 Review,重点查边界、并发与线程安全、资源/连接释放、异常处理、SQL/缓存正确性、依赖与 API 时效性,补单测并跑静态扫描/漏洞检查后合入。
+• SOP 沉淀:把高频 AI 用法标准化为可执行 SOP 与 Prompt 模板(明确环节/工具/模板/步骤/校验人),并设人工校验卡点。
+4、 工具与运维能力
+• 熟练使用 Docker 容器化部署、ELK 日志分析系统、ZooKeeper 分布式协调服务、Git 版本控制;
+• 具备 PaaS 平台(如阿里云 ACE、AWS Elastic Beanstalk)使用经验者优先;
+• 熟悉 AI 编程辅助工具(如 GitHub Copilot、通义灵码等),具备在实际开发中应用 AI 生成代码、提升研发效率的经验。
+5、 专业素养
+• 系统性分析能力:能快速定位复杂问题根源,提供创新性解决方案(如性能优化、高可用设计);
+• 深入理解设计模式、代码重构及架构演进原则。
+• 能用 AI 加速根因分析与与方案调研,理解 AI 局限(幻觉、过时/不存在 API、不安全写法、忽略隐性规则),保持审慎校验。
+6、 软技能
+• 高效沟通能力,能清晰传递技术方案并协调跨团队协作;
+• 主动技术分享意识,推动团队能力提升;
+• 快速学习新技术并落地实践(如云原生、Serverless 架构)。
+• 乐于分享 AI 提效实践、推动 AI 研发规范与 Prompt 资产沉淀;对 AI 产出“信任但验证”,用数据说话。
+需要有软件开发、测试经验,小程序APP、BS架构的方向、既要懂软件开发,有要有测试经验",,"[{""raw_name"": ""Flink"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Apache Flink""}, {""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Copilot""}, {""raw_name"": ""Docker"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Docker""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Redis""}, {""raw_name"": ""Nginx"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Nginx""}, {""raw_name"": ""微服务"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微服务架构""}, {""raw_name"": ""分布式系统"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""系统架构"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""系统架构""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/8ec145db8ec78c540nJz3tq7EVBY.html,2026-09-02,2026-09-02,none,human_reviewed
+Java(AI编程方向),西赛洛,北京,中国,丰台区,30000,60000,CNY,other,"【岗位名称】:Java开发技术人员(AI编程方向)
+【公司性质】:大型军工央企,主营业务为中小型涡轮喷气发动机、涡轮风扇发动机、固体火箭发动机、冲压发动机、组合发动机等动力装置的研制与生产。
+【工作地点】:北京市丰台区云岗西路
+【薪资待遇】:薪资面议
+【岗位职责】:
+1、负责加强企业内部信息系统 SAP ERP、PDM、MES等核心系统自主化开发运维能力,负责需求分析、系统架构设计、核心模块编码、测试优化及上线交付,确保系统稳定、高效、可扩展。
+2、主导AI编程相关技术在内部系统中的落地应用,结合Java技术栈,整合AI工具提升开发效率,优化系统智能化体验。
+3、参与系统架构的迭代升级,结合AI技术特性,优化系统性能、安全性及可维护性,解决开发过程中的技术难题。
+4、配合产品、测试及运维团队,完成系统需求对接、测试支持、上线部署及后期迭代维护工作。
+5、关注Java技术及AI编程领域的前沿动态,将合适的技术方案引入项目,推动团队技术能力提升,规范开发流程。
+6、完成领导交办的其他工作。
+【任职条件】:
+1、熟悉了解相关企业内部信息系统SAP ERP、PDM、MES等核心系统,掌握应用系统接口及数据管理知识技能。
+2、具备AI编程相关经验,熟悉至少1种AI开发工具,能熟练运用AI工具辅助代码编写、调试、优化。
+3、Java基础扎实,熟练掌握 JDK8及以上版本特性,精通 Spring Boot、Spring Cloud、MyBatis等主流Java框架,熟悉微服务架构设计与开发。
+4、熟悉数据库技术,熟练使用MySQL、Oracle等关系型数据库,掌握SQL 优化、事务管理等核心技能;了解Redis、MongoDB等非关系型数据库。
+5、具备系统架构设计能力,能独立完成中小型内部系统的架构设计、模块划分,具备良好的编码规范和技术文档编写能力。
+6、掌握AI编程核心逻辑,能结合业务需求,运用AI工具提升开发效率,能独立解决AI与Java系统集成过程中的技术问题。
+7、具有5年以上企业内部系统开发经验,硕士及以上学历。",,"[{""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""MongoDB"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""MongoDB""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Redis""}, {""raw_name"": ""微服务"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""微服务架构""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI编程""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""系统架构""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/4e04bbd52e5a0cb00nd60tm_FldR.html,2026-09-02,2026-09-02,none,human_reviewed
+Java(AI/学信统本/中华保险),青蓝致远,北京,中国,丰台区,12000,15000,CNY,other,"工作职责
+负责车险个客经营平台的需求开发工作,包括架构设计、系分设计、接口开发、发布上线等,保障与其他业务平台、业务中台系统的交互,保证研发交付稳定高效;
+任职资格
+公办全日制本科及以上学历,学信网可查。加班有加班费
+1、有5年~10年工作经验,有保险行业经验优先,主动性及创新能力好者优先,有管理经验优先,具备解决生产事项能力者优先;
+2、频繁换工作者不考虑,如5年换3家以上者不考虑。
+3、必须具备ai辅助编程能力,对ai深度理解、AI能力强者优先。
+4、java基础扎实,熟练掌握Spring、多线程、JVM、Redis等技术原理。
+5、熟悉常用开源框架springboot,springcloud,mybaits,mq的实现原理,研读过源码者加分。
+6、熟练掌握Mysql数据库、Git、Maven 等版本控制和版本构建的工具。
+7、具备良好的系统设计、方案设计能力,能够独立承担设计及开发工作。
+8、具备较强的学习能力与业务理解能力,能够快速吃透业务规则、转化为产品需求,并按期保质交付。
+9、具备良好的沟通及协作技能,良好的抗压能力。",,"[{""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""springboot""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""ai辅助编程""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Mysql""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""java""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""版本控制""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/57d3d06c2f48b8e60nF73t-9EVdY.html,2026-09-02,2026-09-02,none,human_reviewed
+Java-AI方向-现场面试,法本,北京,中国,丰台区,11000,12000,CNY,agent_dev,"熟练掌握Java、精通Spring boot框架编程,熟悉Mybatis、MySQL数据库操作,具有一定SQL调优能力,能够独立完成后端模块开发。了解分布式任务调度、有Flink流计算、大模型、AI智能体应用开发经验优先。",,"[{""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Spring boot""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""Flink"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Flink""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Java""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/cdb3b8112c203b330nN73ti1EFFW.html,2026-09-02,2026-09-02,none,human_reviewed
+"后端开发实习生(Java,AI经验优先)",多屏看看,北京,中国,朝阳区,4785,6525,CNY,ai_application_dev,"岗位职责
+参与公司后端系统的设计、开发与维护,主要技术栈为 Java 
+参与基于 Spring Boot / Spring Cloud 的微服务系统开发,协助完成业务功能实现
+参与 AI Agent / AI 应用相关模块 的研发,包括但不限于:Agent 调度逻辑,Prompt 设计与优化,与大模型 API(如 OpenAI / Claude / 本地模型等)的对接
+使用 AI 辅助编码工具(如 Cursor、Copilot、ChatGPT 等)完成部分简单前端页面或工具型功能开发
+参与系统部署、调试与问题排查,支持 Linux 环境下的服务运行与维护
+编写基础技术文档,参与代码 Review 和技术讨论
+基础要求
+本科及以上在读(计算机相关专业优先),可保证稳定实习时间
+具备 Java 开发基础
+了解常见后端开发基础概念:HTTP、RESTful API、数据库、缓存等
+有 Spring Boot / Spring Cloud 生态使用经验,了解微服务基本架构
+了解或实践过 AI Agent / LLM 应用开发,包括但不限于:多轮对话,工具调用(Tool / Function Calling),Agent 框架(Dify Coze等)
+能使用 AI 辅助编码工具,在引导下完成简单前端开发(如 React / Vue 页面或管理后台)
+具备 Linux 基础,熟悉常用命令
+加分项
+有Python使用经验
+有完整项目经验(课程设计 / 个人项目 / 开源项目)
+有 Docker / 容器化基础,了解 CI/CD 流程
+有云服务使用经验(阿里云 / AWS 等)
+对 AI、Agent、自动化工具、效率提升类技术有强烈兴趣",,"[{""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Function Calling""}, {""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""LLM 应用开发"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LLM 应用开发""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Copilot""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Docker"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Docker""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""CI/CD"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""CI/CD""}, {""raw_name"": ""React"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Dify"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Dify""}, {""raw_name"": ""网络协议"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""HTTP""}, {""raw_name"": ""Coze"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Coze""}, {""raw_name"": ""前端开发"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""前端开发""}, {""raw_name"": ""微服务"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微服务""}, {""raw_name"": ""Vue"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Vue""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/6fe782618a0a9b520nJ539W4F1dY.html,2026-09-02,2026-09-02,none,human_reviewed
+AI 大模型算法,上海万宝盛华信息科技,上海,中国,青浦区,15000,30000,CNY,llm_fullstack,"职位类型:
+大模型算法
+我们专注于打造下一代高性能AI算力底座与大模型核心技术,面向通用大模型、多模态、推理优化、训练框架与集群调度等前沿方向,构建从算子、框架、集群到模型应用的全栈技术体系。在这里,你将深度参与业界顶尖规模的大模型训练与推理工程,用算法与系统能力定义下一代AI基础设施。
+你将负责:
+• 大模型(LLM/多模态)架构创新、训练策略与效果优化
+• 大模型推理性能、精度、时延、吞吐的极致优化
+• 分布式训练、并行策略、集群调度与算力效率提升
+• 算子优化、量化、蒸馏、稀疏化等低成本高效能方案
+• 与工程、硬件、框架团队协同,落地工业级大规模系统
+岗位要求
+
+• 计算机、电子、自动化、数学、统计等相关专业,本科及以上
+• 扎实的深度学习基础:Transformer、注意力机制、预训练/微调、对齐等
+• 熟练使用至少一种主流框架:PyTorch/TensorFlow/JAX
+• 有大模型训练、推理、优化、多模态任一方向经验优先
+• 具备良好的工程实现能力,能将算法快速落地为稳定系统
+• 自我驱动,热爱技术,追求极致性能与用户体验
+(全国多城市都有,城市可协调)",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""推理优化"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""推理优化""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/4426e7c26ab2871e0ndz2965FVtZ.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法,引望,上海,中国,浦东新区,40000,70000,CNY,agent_dev,"1.参与learning-based planning算法设计、模型训练、模型评测等相关工作。
+2.围绕语言、多模态、Agent能力,探索后训练SFT数据配比、SFT策略、SFT&RL协同策略、RL训练算法;参与研究强化学习算法、提升强化学习训练稳定性,包括但不限于探索重要性釆样策略、细粒度Reward设计、Credit Assignment策略、Off-policy Masking等提升RL训推一致性策略。
+3.设计并实现自动驾驶汽车的决策算法(路径规划、行为预测、运动控制等),追求极致的类人性驾驶体验。
+4.设计并实现自动驾驶汽车的导航算法,掌握大模型领域的常见算法,了解端到端自动驾驶的业界常见方案
+5.AI背景,对AI模型有深入理解,基础扎实
+具备以上能力其一即可
+任职要求:
+1、有机器人/智能车强化学习、大模型/rlft、决策规划相关项目设计和开发经验。
+2、编程能力强,熟练掌握c++/python编程,有Linux开发经验",,"[{""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""python""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""c++""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/003637ba96baceed0nJz3tm1EVRV.html,2026-09-02,2026-09-02,none,human_reviewed
+算法工程师(推荐系统/大模型),上海从鲸信息技术,上海,中国,长宁区,35000,65000,CNY,other,"拼多多集团-PDD 2027届校园招聘
+部门公司比较重视,算法机会多多,团队氛围比较好,通过此链接直达部门内推:
+https://careers.pddglobalhr.com/campus/grad/detail?t=zJ2VGpzHgZ
+
+岗位职责:
+1.利用大模型技术/机器学习/深度学习技术,优化app内外搜索、推荐、广告、图像、风控、智能客服、平台等效果,提升数亿用户的购物体验和平台的变现效率;
+2.深入产品和业务,发现算法和机制中的不足,提出改进方案并且推动实现;
+3.跟踪业界和学术界最新进展,将先进的大模型能力与电商业务场景结合,提升业务效果。
+
+任职要求:
+1.2027 届毕业生,硕士及以上学历,计算机相关专业,对算法有浓厚兴趣;
+2.具备强悍的编码能力,熟悉 linux 开发环境,熟悉 TensorFlow、PyTorch、Hive 优先;
+3.具备扎实的数据结构功底,熟悉机器学习、深度学习、图计算、自然语言处理、数据挖掘中一项或多项;
+4.对大语言模型、用户增长、搜索引擎、推荐系统、计算广告、图像、互联网风控、智能客服、平台等相关领域有经验者优先;
+5.具备较好的数理基础和逻辑分析能力,对解决具有挑战性的问题充满激情,具备较好的主动性和团队合作精神。
+
+加分项:
+1.参与过大模型应用、智能体相关开源项目核心开发,或在技术社区具备一定影响力;
+2.在ACM/ICPC、Kaggle、天池等顶级算法/程序竞赛取得优异成绩;
+3.有AI核心业务实习经历,主导过大模型应用从0到1落地。",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""自然语言处理""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""linux""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/60bf7b43888a19fa0nF_0t-_EldY.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态大模型算法实习生-国际化搜索,小红书,上海,中国,,10875,11962,CNY,other,"上海base优先
+
+岗位职责
+1.负责小红书国际化搜索及内容理解相关算法的研发与优化,覆盖搜索模型与策略的调研、设计、开发、评估和部署,持续提升搜索效果与用户体验。
+2.深入搜索及内容业务场景,解决意图识别、多语言理解、召回与排序、相关性、内容质量与时效性、AI 搜索等核心问题。
+3.研发计算机视觉、自然语言处理及多模态方向的先进算法,包括但不限于多模态分类与融合、细粒度分类、文本匹配、属性识别、目标检测与分割、Metric Learning、大规模特征检索及内容质量评价等。
+4.探索并应用多语言大模型、机器学习、数据挖掘、知识工程等前沿技术,更高效地满足用户的搜索和内容消费需求。
+5.负责算法的快速实现、持续迭代及大规模工业化部署,结合小红书丰富的业务场景推动技术落地与创新。
+6.持续跟进搜索、推荐、内容理解、多模态及大模型领域的前沿研究,并将具有价值的技术成果应用于实际业务。
+
+岗位要求
+1. 计算机/电子信息/自动控制/软件工程/数学等相关专业,硕士及以上学历
+2. 优秀的分析、解决问题能力,对新技术充满好奇,敢于挑战高难度,善于提出解决方案并快速验证;
+3. 熟练掌握TensorFlow/PyTorch/Caffe/ MXNet等深度学习框架中的至少一种;
+4. 具备优秀的编程能力和经验,熟悉Python、C/C++、Java等编程语言,具有扎实的数据结构和算法功底;
+5. 具备优秀的研究和创新能力,在CVPR/ICCV/ECCV/ACL/EMNLP/NIPS/ICML/SIGGRAPH等会议上发表过论文者优先;参加过acm竞赛者优先;",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""自然语言处理""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""C++"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/164c2cfa2f11a6820nJz39u-EltQ.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法,某大型知名互联网公司,上海,中国,,85000,110000,CNY,ai_application_dev,"岗位描述
+1.主导基于SFT、强化学习及Agent等的大模型技术方案研发,针对投保、理赔等核心场景中的关键决策痛点,设计技术解决方案并落地;
+2.构建高严谨性、高精度的行业垂直领域大模型决策能力;
+3.探索大模型前沿技术,将实际业务需求转化为技术课题,产出可解决实际问题的创新方案,并形成技术文章、专利和学术论文等成果。
+岗位要求
+1. 计算机、人工智能相关专业或基础学科硕士及以上学历,在大模型领域内的国际权威期刊/顶会发表过论文优先,在顶级计算机竞赛、或计算机榜单成绩优异者优先;
+2. 扎实的算法功底和编程能力,熟练掌握Python,熟悉PyTorch等深度学习框架,有CV或多模态经验优先;
+3. 具备大模型全流程优化经验,包括数据构建、SFT/RLHF调优、评测体系设计等;
+4. 对技术前沿高度敏感,具备强自驱力与跨团队协作能力,能够独立攻坚算法应用过程中的难题。",,"[{""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""评测体系""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""多模态"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/ed36eab3cf08373e03160ty_F1ZT.html,2026-09-02,2026-09-02,none,human_reviewed
+AI-infra实习生,北京荆华密算科技,北京,中国,海淀区,6525,10875,CNY,other,"实习职责 :
+参与密态推理系统研发,将计算引擎与主流大模型推理框架(如 vLLM 等)深度集成与优化,参与大模型推理 Pipeline 设计与实现分析和优化 GPU 上计算执行效率,包括 Kernel 融合、显存管理、通信优化等,用 profiling 工具定位瓶颈
+在多节点 GPU 集群上进行模型并行 / 流水线并行部署,处理模型切分、数据流调度、节点间高效通信等问题协助搭建云原生环境下的自动化部署、监控和弹性伸缩体系,保障线上服务稳定性和高可用性跟进 AI-infra 和系统安全领域最新研究成果,探索新技术在计算平台的应用
+
+任职要求 :
+学历背景:国内外名校计算机、人工智能、数学等相关专业本科 / 硕士 / 博士在读
+代码能力:熟练掌握 Python、CUDA 等,具备一定 AI-Infra 知识经验
+系统底层认知:对人工智能、大模型、计算机体系结构、操作系统等有一定理解
+出勤要求:一周能保证至少 4 天线下工作时间
+加分项:有 vLLM、PyTorch 等框架源码贡献经验;在系统方向 CCF-A 类会议发表过第一作者 Paper;在 ICPC/CCPC 等赛事获得银牌及以上奖励
+满足基础条件后的加分项
+1.生产级LLM serving、MaaS、GPU云或AI Infra经验;
+2.熟悉vLLM、SGLang、TensorRT-LLM、Dynamo、Triton中任一技术栈;
+3.熟悉Kubernetes、Prometheus/Grafana、OpenTelemetry或服务网格;
+4.做过大模型API网关、流量调度、CDN/RTC、数据库、搜索推荐、消息队列等性能敏感系统;
+5.设计过大模型API多租户资源调度、配额、容量或成本治理系统;
+6.有AI Agent在线负载的大模型API服务与优化经验;
+7.在OSDI、SOSP、PPoPP、HPCA、SC、ASPLOS、ISCA、ATC、EuroSys等CCF-A类会议上以第一作者发表过论文;
+8.在超算、ICPC、CCPC等比赛中获得佳绩。
+
+为什么加入我们?
+1.直接参与定义核心AI服务QoS架构和工程标准的机会;
+2.从API、流量调度、推理、容量到稳定性治理的完整问题空间,而不是维护单一组件;
+3.与资深专家和一线学者直接协作,以真实负载和用户体验验证每项优化;
+4.有竞争力的薪酬。",,"[{""raw_name"": ""Kubernetes"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Kubernetes""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""vLLM"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/047bbbaafa8caa580nN62dW8EVZT.html,2026-09-02,2026-09-02,none,human_reviewed
+Ai infra实习生,Loopit,北京,中国,海淀区,7612,8700,CNY,ai_platform,"岗位职责:参与 SOTA 世界模型的训练和推理基建建设(ai infra)。
+1、负责搭建和优化 PyTorch  / SGLang 的 训练和推理效率。
+2、负责 Transformer / DiT / Diffusion 等模型训练、推理和性能优化工作。
+3、负责训练任务调度、日志监控、性能 profiling 等工程工作。
+
+
+任职要求
+1、计算机、人工智能、软件工程等相关专业本科及以上在读,能连续实习5个月以上。
+2、熟悉 PyTorch,有深度学习模型训练经验。
+3、了解 Transformer、Diffusion、DiT 等模型结构,有相关项目经验优先。
+4、了解分布式训练、各种并行方式,有上手经验者优先。
+5、具备良好的工程能力和学习能力,能快速阅读代码、定位问题、完成实验和复现。
+
+
+
+加分项
+1、使用过 Megatron、veOmni、DeepSpeed、FSDP、vLLM 等框架。
+2、有大模型训练/推理、AIGC 视频生成、DiT/Diffusion 模型相关项目经验。
+3、熟悉 CUDA、Triton、FlashAttention、性能 profiling 或 GPU 优化。
+4、有开源项目贡献、论文复现或算法竞赛经历。
+5、每周可实习 4 天及以上,能长期实习优先。",,"[{""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/31b03e2c9cfb825f0nJ73t66EFBU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Infra 研发实习生(agent 方向),百度在线,北京,中国,海淀区,6525,8700,CNY,agent_dev,"工作职责
+- 负责LLM推理和训练引擎优化;
+- 负责GPU平台算子的评估与优化;
+- 负责使能Agent技术为基础设施研发提效;
+- 负责AI Infra领域前沿技术调研与落地实践;
+任职资格
+- 本科及以上学历,有一定程度的计算机相关专业知识背景;
+- 熟悉Python/C/C++等至少一种编程语言,有扎实的算法及数据结构基础,有良好的编程习惯;
+- 熟悉PyTorch,有 SGLang/vLLM/Megatron 引擎优化工作经历者优先;
+- 熟悉GPU平台架构且有过深度优化经历者优先;
+- 有独立的分析问题和解决问题的能力;
+- 有强烈的责任心,较强的学习能力和沟通能力;",,"[{""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""vLLM"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/9af718feb4c097870nJ72tu_FFdV.html,2026-09-02,2026-09-02,none,human_reviewed
+【2027校招】AI Infra/高性能/训练推理加速,深圳元戎启行科技,北京,中国,海淀区,20000,40000,CNY,ai_platform,"需要内部推荐请找我!
+
+【工程开发】
+软件工程师
+后端开发工程师
+前端开发工程师
+AI Infra工程师
+
+【自动驾驶算法】
+感知算法工程师
+规划算法工程师
+端到端算法工程师
+SLAM算法工程师
+导航地图算法工程师
+强化学习算法工程师
+系统评测工程师
+
+【AI 与大模型】
+大模型算法工程师
+AI Agent 算法工程师
+训练优化工程师
+数据生成算法工程师
+
+【数据工程】
+数据挖掘工程师
+数据湖仓工程师
+
+【产品 / 项目 / 商业】
+产品经理
+项目经理
+商业分析师
+
+【运营与品牌】
+品牌及艺术创意专员
+用户增长运营专员
+
+【AI 与大模型】
+
+【2027秋招】大模型算法工程师
+【你将参与什么】
+大模型正在从互联网走进物理世界。你将探索VLM/VLA在自动驾驶中的应用——让车不仅能“看”,还能“理解”和“推理”。你在做的不再是传统感知任务,而是让大模型在封闭道路中拥有常识。
+【你的工作内容】
+大模型应用落地:探索多模态大模型(VLM)在长尾场景理解、数据自动标注、场景生成、模型评测中的应用。
+模型微调与适配:参与VLM的SFT、RLHF全流程,探索自动驾驶场景下的数据配比与prompt engineering。
+VLA前沿探索:参与视觉-语言-动作模型的设计与训练,推动大模型从“理解”走向“决策”。
+架构优化:探索大模型在车端部署的可行性,参与量化、蒸馏等压缩技术的实践。
+【对你的期待】
+计算机、人工智能等专业。
+扎实的Python与PyTorch能力。
+有LLM/VLM微调、RLHF/RAG或Diffusion Model实战经验。
+熟悉Transformer架构,理解注意力机制的底层原理。
+【加分项】
+在ACL/EMNLP/NeurIPS/ICLR/CVPR等发表过论文。
+有大模型头部实验室(如智源/清华/北大/上海AI Lab等)实习经历。
+参与过开源大模型项目(LLaMA/Qwen/DeepSeek等)。
+
+【2027秋招】AI Agent 算法工程师
+职位描述
+参与 AI Agent 的设计与开发,负责特定领域诊断/分析 Agent 的 Prompt 设计与效果迭代;
+通过 Chain-of-Thought、多轮推理等策略优化 Agent 在复杂场景下的准确率和鲁棒性;
+构建和维护评测数据集(Benchmark),定义评估指标,量化分析 Agent 效果并持续改进;
+与团队协作完成 Agent Pipeline 的集成与调试,推动 Agent 能力的实际落地。
+职位要求
+计算机、人工智能、软件工程等相关专业在读硕士或优秀本科生;
+熟悉 Python 编程,有实际项目经验;
+了解大语言模型基本原理,有使用 LLM API(如 OpenAI、Claude、Gemini 等)的实际经验;
+对 Prompt Engineering 有实践经验或浓厚兴趣,了解 Few-shot、CoT、Tool-calling 等常见技术;
+具备良好的逻辑分析能力,能够从复杂问题中提炼规则和判断标准;
+主动性强,善于沟通,能在快节奏的研发环境中高效协作。
+加分项
+有 LangChain / LangGraph 等 Agent 框架使用经验;
+有多模态模型(VLM)相关项目经验,如图像理解、视频分析等;
+有 RAG、知识库问答或结构化数据分析相关经验;
+熟悉 Cursor / Claude 等 AI 辅助开发工具。
+
+【2027秋招】训练优化工程师
+工作内容:
+框架可用性拓展:负责自动驾驶大模型分布式训练框架的可用性优化,降低模型接入的成本。
+稳定性与可观测性建设:建设训练集群的监控与告警体系,实时追踪训练吞吐、网络通信、集群健康度等指标,参与长周期训练的自动容错与断点续训优化。
+全链路性能调优(Profiling):使用专业调优工具(如 TensorBoard, Nsight)对大模型训练进行性能画像(Profiling),找出计算、通信和 I/O 上的长尾卡点,并进行优化。
+岗位要求:
+教育背景:计算机、软件工程、电子信息、系统结构等相关专业。
+底层功底:精通 C/C++ 或 Python,对计算机体系结构(如 CPU 缓存、内存管理、多线程/多进程)有扎实的理解。
+框架了解:熟练使用 PyTorch,了解其底层的分布式训练基本概念(如 DDP、数据并行)。
+系统基础:熟悉 Linux 操作系统原理,掌握基本的 Shell 脚本编写。
+加分项:
+选修或自学过 CUDA 编程,写过简单的自定义算子,或了解 GPU 硬件架构。
+在校期间有分布式系统、高性能计算(HPC)、或者深度学习模型工程化部署(TensorRT等)的实验/项目背景。
+
+【2027秋招】数据生成算法工程师
+【你将参与什么】
+高质量数据是自动驾驶的燃料,而3D重建与AIGC正在重新定义数据的生产方式。你将融合NeRF/3DGS的场景重建和扩散模型/视频生成的创造力,为算法训练造出源源不断的“虚拟燃料”。
+【你的工作内容】
+1.场景重建:基于SfM/MVS/SLAM实现3D场景重建,或利用NeRF/3DGS进行新视角合成。
+2.生成式数据创造:利用扩散模型(Stable Diffusion/Flux等)生成多样化驾驶场景图像或视频。
+3.工具链构建:协助搭建从数据生成、质量评估到训练反馈的自动化管线。
+【对你的期待】
+1.人工智能/计算机图形学/数学等专业在读。
+2.熟练使用Python、PyTorch,了解C++/CUDA更佳。
+3.有NeRF/3DGS项目经验,或对扩散模型/VAE/GAN有实践经验。
+4.在SIGGRAPH/CVPR/ICCV等发表过论文或参与开源项目者优先。
+
+【数据工程】
+
+【2027秋招】数据挖掘工程师
+工作内容
+数据处理与筛选:参与自动驾驶大规模图像、点云和车载传感器数据的预处理,协助构建自动化数据挖掘、清洗流程。
+场景挖掘支持:协助算法工程师利用聚类、分类或异常检测等基础算法,从日常海量数据中识别出高价值场景(如极端天气、突发路况、复杂交互等)。
+数据质量分析:负责对挖掘出的数据集进行统计和可视化分析,协助评估训练数据的多样性与质量。
+岗位要求
+教育背景:计算机、自动化、数学、统计学等相关专业。
+编程基础:熟练掌握 Python,具有良好的编程习惯,熟悉常见的数据结构与算法。
+算法基础:了解基本的机器学习/深度学习概念,能够使用 PyTorch 或 TensorFlow 跑通基础的分类、聚类或回归模型。
+基本功:了解基础的统计学知识(如概率分布、样本采样),能够使用 Pandas、NumPy 等工具进行数据分析。
+加分项
+在校期间有机器学习、计算机视觉(CV)、大模型等相关经验。
+熟悉 Linux 开发环境,了解 Git 代码管理。
+
+【2027秋招】数据湖仓工程师
+工作内容:
+数据管线开发:使用 Spark/Flink 参与自动驾驶车端回传数据的 ETL(提取、转换、加载)流水线开发。
+湖仓日常运维:参与分布式存储与湖仓表(如 Iceberg/Hudi)的日常维护、Schema 变更与数据校验。
+查询支持与优化:协助算法团队编写高效的 SQL 查询,提取训练所需的元数据,逐步参与查询性能调优。
+岗位要求:
+教育背景:计算机、软件工程、数据科学、信息管理等相关专业。
+SQL基本功:精通 SQL,能够熟练编写复杂的查询语句,理解基本的数据库原理(索引、事务、执行计划)。
+开发语言:熟悉 Java、Scala 或 Python 至少一种,具备扎实的面向对象编程思想。
+大数据概念:了解大数据生态的基本概念,知道 Hadoop、Spark 或 Hive 的基本原理,并在学校或实验室环境中有过简单的使用经验。
+加分项:
+了解数据湖(Apache Iceberg / Hudi / Delta Lake)的开源概念,或者在 Linux 下搭建过 Hadoop/Spark 伪分布式集群。
+具备良好的沟通能力和文档习惯,对非结构化数据(视频、音频、点云)管理感兴趣。
+
+【工程开发】
+
+【2027秋招】软件工程师
+职位描述 :
+深度参与自动驾驶硬件、驱动、算法、数据闭环、仿真平台、智驾准出等模块的开发。推进高级别辅助驾驶落地量产业务,打造更智能、更高效、更安全的人类出行方式。
+职位要求:
+1. 熟练掌握C/C++、Python、Go中至少一门开发语言;
+2. 有Linux平台上的开发经验,有ROS开发经验,熟练掌握Git等工具;
+3. 对学习新知识充满热情;愿意学习新的编程语言、软件开发技能以及智能驾驶领域的新知识;
+4. 有团队合作意识,有主人翁意识,愿意以积极主动的心态迎接工作中的挑战,与团队一起完成目标。
+加分项:
+1. 相关领域Master或PhD教育经历;
+2. 丰富的工程项目相关的实习或工作经历;
+3. 有参与开源代码库经历;
+4. 有ACM获奖经历;
+5. 熟悉TCP/IP、HTTPS/2.0、WebScoket通讯协议,对常见的RPC调用有一定使用经验。
+
+【2027秋招】后端开发工程师
+【你将参与什么】
+你写的代码将调度真实的Robotaxi车队,处理5G远程接管的毫秒级通信,保证高并发下的订单派发和车辆协同。这不是课堂里的玩具项目,而是直面商业化运营的分布式系统挑战。
+【你的工作内容】
+参与Robotaxi运营后台的开发与维护,包括:
+1. 订单派发与车辆调度逻辑。
+2. 远程接管(5G云代驾)模块。
+3. 合规数据上报与云端协同。
+【对你的期待】
+1. 计算机相关专业本科及以上,对自动驾驶/大任务流调度有兴趣。
+2. 熟练掌握至少一门主流语言(C++/Go/Java等),代码可读性好。
+3. 有NOI/ACM获奖经历或参与过大型开源项目者优先。
+
+【2027秋招】前端开发工程师
+【你将参与什么】
+你构建的Web界面,将帮助算法工程师可视化海量驾驶数据、管理模型实验、监控车端状态。你是连接人与AI的“界面建筑师”。
+【你的工作内容】
+1. 负责移动端H5和业务平台的前端页面设计与开发。
+2. 参与UI组件库建设和前端工程化(构建工具、性能优化)。
+3. 与产品、后端协作,推动需求落地和版本交付。
+【对你的期待】
+1. 计算机相关专业,扎实的HTML/CSS/JS基础,熟悉Vue或React。
+2. 了解小程序开发或跨端框架,有实际项目经验。
+3. 逻辑清晰,代码质量意识强。
+
+【2027秋招】AI Infra工程师
+【你将参与什么】
+大模型(VLA/World Model/Foundation Model等)的分布式训练和车端芯片部署,是当今 AI 工程化最困难的问题之一。你将参与构建支撑“端到端”智驾的大模型底座,在有限算力与显存约束下,压榨出极致性能。如果你对分布式训练并行策略、GPU 原语、Transformer 推理加速和编译器后端着迷,这里是个理想的实践场。
+【你的工作内容】
+1. 大模型训练加速:协助开发大规模分布式训练框架,RL训练框架,探索混合精度训练(FP8/BF16),解决千卡集群下的通信瓶颈与 MFU 优化等问题。
+2. 训练数据吞吐引擎:针对智驾所需的视频流数据,优化高性能数据加载器(DataLoader)与分布式缓存系统,提升多模态数据的 IO 效率。
+3. 模型量化和部署:参与推理引擎与高性能算子的设计与优化,参与模型结构优化(剪枝、蒸馏)及量化工具开发,帮助大模型“减肥上车”并确保精度闭环。
+【对你的期待】
+1. 计算机相关专业,熟练掌握 C++/Python,具备扎实的计算机体系结构知识。
+2. 对深度学习框架底层有好奇,熟悉 Transformer 架构,有 CUDA/Triton 经验或 ACM 竞赛经历者优先。
+3. 有分布式训练(Megatron/DeepSpeed)、推理加速(vLLM/TensorRT-LLM)或模型量化经验者优先。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""prompt engineering""}, {""raw_name"": ""TensorFlow"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""LangGraph"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""Shell 脚本"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Shell 脚本""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""AI Coding"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Cursor""}, {""raw_name"": ""网络协议"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""TCP/IP""}, {""raw_name"": ""Scala"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Scala""}, {""raw_name"": ""ReAct"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""React""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Linux""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Spark"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Spark""}, {""raw_name"": ""Flink"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Flink""}, {""raw_name"": ""React"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Java""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}, {""raw_name"": ""推理优化"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""推理加速""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""前端开发"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""前端开发""}, {""raw_name"": ""C++"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""SQL"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""SQL""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Git""}, {""raw_name"": ""Vue"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Vue""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JS""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/bbdc532a98318e060nFz29u5GFNR.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent优化工程师,阿里巴巴集团,武汉,中国,武昌区,25000,45000,CNY,agent_dev,"【base】北京,杭州
+这是一个综合的AI推理、优化的技术岗位,适合希望从事以下工作的候选人投递:
+● 希望从事AI应用构建与模型优化工作的候选人
+● 希望从事AI应用数据构建与自动化评测工作的候选人
+● 希望从事多模态AI应用构建与算法优化工作的候选人
+
+围绕真实业务核心场景,参与AI应用的系统化构建与优化,把AI变为业务增长引擎,具体职责包括以下相关方向的一项或多项:
+1、AI应用全生命周期演进:深度参与业务问题建模、应用架构设计、上下文工程、训练数据构建、自动化评估体系、模型后训练优化等;
+2、数据飞轮构建:打造高质量数据生产链路,探索合成数据(Synthetic Data)与高效蒸馏技术方案,跑通“业务-模型-反馈”迭代闭环;
+3、评测体系构建:面向业务目标,设计完备的AI应用效果评估体系,构建自动化评估框架,建立离线评估与在线业务指标联动的量化评估能力;
+4、强化学习与奖励机制设计:构建可工程化的Reward体系与RL训练环境,提升模型在垂直业务场景中的可控性与泛化能力;
+5、AI外部能力体系搭建:实现AI应用所需的知识库(RAG)、长短期记忆系统(Memory)、工具调用、多Agent协作框架等
+6、多模态AI应用开发:构建AI应用的多模态感知与推理能力,解决在UI自动化、视觉理解与审核、多模态会话等场景的落地应用问题。",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多Agent协作""}, {""raw_name"": ""自动化测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""UI自动化""}, {""raw_name"": ""Context Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文工程""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""评测体系""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/6ec6eea8457507830nN60tm7GFBR.html,2026-09-02,2026-09-02,none,human_reviewed
+ai应用工程师,华为,武汉,中国,江夏区,20000,40000,CNY,ai_application_dev,"方向1:AI技术应用
+1、参与实际产品的AI大模型与AI算法在各类业务场景中的应用开发、集成与迭代优化;
+2、参与AI大模型与AI算法应用相关的需求分析、模型微调、RAG检索 ,提升模型在各类场景下的应用效果;
+3、参与产品、数据、业务等团队协作,建立AI大模型与AI应用相关的数据分析、效果评估、问题定位与持续优化,提升用户体验和业务价值。
+岗位要求
+1、人工智能、计算机、软件工程、电子信息、自动化等相关专业;
+2、熟悉主流大模型应用开发框架,掌握大模型原理(如Transformer架构、微调技术、向量数据库等)或AI算法原理(如神经网络、强化学习、树模型、知识图谱等);或有大模型(如GPT、DeepSeek、Qwen系列等)应用或神经网络(CNN、RNN、GNN等)开发经验,熟悉NLP/知识图谱/智能问答/对话系统/文生图/文生视频等领域;
+3、具备扎实的编程能力,熟练掌握 Python、C++、Java 等至少一种编程语言。
+
+方向2:AI系统软件
+1、参与AI领域系统软件(如分布式训练框架、推理引擎、模型服务化平台等)的工程化设计与开发,参与完成中间件、工具链等核心组件的软件设计与产品化开发;
+2、参与多个模块或特性的系统设计,需求分解,特性分析、代码编写、代码测试、资料编纂等工作;
+3、参与AI系统软件产品的性能调优、可扩展性、稳定性及安全性工作。
+岗位要求
+1、计算机或人工智能相关专业,参与过相关子模块的开发工作;
+2、熟练运用至少一门编程语言(C++ /Java /Python/Rust等);
+3、熟悉Tensorflow/scikit-learn/xgboost/Caffe/MindSpore/pytorch等主流深度学习框架的使用,具备AI算法开发及应用经验者优先;
+4、熟悉计算机系统架构与操作系统,熟练掌握异构算力计算平台原理和典型硬件加速器的使用方法,熟练运用并发编程和底层调试,熟悉Linux/ROS;
+5、熟悉语言大模型、多模态大模型、深度神经网络、机器学习算法和知识图谱等的至少一种。",,"[{""raw_name"": ""scikit-learn"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""scikit-learn""}, {""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Tensorflow""}, {""raw_name"": ""LLM 应用开发"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""pytorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""机器学习算法""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Linux""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Rust"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Rust""}, {""raw_name"": ""vLLM"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""推理引擎""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""系统架构""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""NLP""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/291651d29095c2890nN63t69GVFZ.html,2026-09-02,2026-09-02,none,human_reviewed
+前端开发实习生(AI应用开发方向),武汉光御生成智能科技,武汉,中国,,5002,10005,CNY,ai_application_dev,"岗位职责
+1. 协助正式前端工程师完成AI产品页面开发,包含AI对话、智能生图、知识库后台、Prompt工具等模块页面编写;
+2. 参与基础业务组件开发与复用,使用Vue3/React+TS实现页面布局、交互效果,完成简单需求迭代;
+3. 协助对接后端接口,调试SSE流式输出、对话展示、文件上传预览等AI产品基础交互逻辑;
+4. 负责页面兼容性调试、简单性能优化、bug修复,整理开发注释与基础文档;
+5. 配合团队完成需求评审、UI还原、测试验收,跟进产品日常迭代;
+6. 学习前端+AIGC相关新技术,参与组件库、工具函数的简单封装与沉淀。
+
+
+
+任职要求
+1. 本科及以上,计算机、软件工程、数字媒体等相关专业,在校大学生,可实习3个月及以上,每周到岗5天优先;
+2. 掌握HTML、CSS、JavaScript基础,了解ES6语法,熟悉Vue3或React任意一种框架;
+3. 了解TypeScript、Git版本管理、Vite/Webpack基础打包流程;
+4. 具备基础接口调试能力,能看懂简单接口文档,会使用Axios发起请求;
+5. 熟悉Flex、Grid布局,可精准还原UI页面,有简单项目作品(个人网站、管理后台、简易对话页面)优先;
+6. 热爱AI、大模型、AIGC行业,愿意主动学习流式渲染、前端AI相关技术;
+7. 逻辑清晰,细心耐心,沟通顺畅,有良好代码规范与学习能力。
+
+
+加分项
+1. 有AI对话、AI绘图、知识库类前端Demo开发经验;
+2. 了解SSE、WebSocket、Markdown渲染、代码高亮等相关开发;
+3. 会使用ECharts、Canvas做简单可视化;
+4. 有React Hooks、Element Plus/Ant Design组件库使用经验;
+5. 熟悉前端工程化、会写简单通用工具函数。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Git版本管理""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""前端开发"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""前端工程师""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/0913554f6595fcf80nF-2Ni_EFVY.html,2026-09-02,2026-09-02,none,human_reviewed
+全栈开发工程师(AI 应用方向),红鲤文化,武汉,中国,江夏区,12000,15000,CNY,ai_application_dev,"岗位职责
+1. 负责内部业务系统和 AI 应用相关功能的前后端开发。
+2. 根据业务需求完成页面开发、接口开发、数据库设计和功能迭代。
+3. 参与模型调用、内容生成、文件处理等 AI 应用基础能力建设。
+4. 负责功能联调、问题排查、体验优化和上线后的持续迭代。
+5. 使用 AI 编程工具提升开发效率,并能对生成代码进行理解、调试和优化。
+6. 和业务同事沟通需求,把实际业务问题拆成可落地的系统功能。
+
+任职要求
+1. 有全栈开发能力,能独立完成小型 Web 系统或后台系统开发。
+2. 熟悉 Vue / React / Next.js 等前端框架之一。
+3. 熟悉 Node.js / Python / FastAPI / NestJS / Django / Flask 等后端技术之一。
+4. 熟悉 MySQL / PostgreSQL / MongoDB / Redis 等常见数据库之一。
+5. 熟悉接口开发、权限控制、文件上传下载、后台管理系统等常见业务开发场景。
+6. 能使用 AI 编程工具辅助开发,并能看懂、调试、修改 AI 生成的代码。
+7. 对 AI 应用、知识库、文档生成、自动化工作流有兴趣,愿意持续学习。
+8. 有执行力和责任心,能主动拆问题、查资料、验证方案。
+
+加分项
+1. 做过后台管理系统、OA、CRM、任务系统、项目管理系统或数据看板。
+2. 做过文件解析、文档生成、PPT / Word / PDF / Excel 相关功能。
+3. 做过简单 AI 应用功能,如模型调用、提示词配置、内容生成、知识库问答等。
+4. 有个人项目、GitHub、技术博客或可展示作品。
+5. 能适应小团队节奏,愿意主动沟通和推进问题。
+
+岗位亮点
+1. 上市公司体系内真实业务场景,不是纯 Demo。
+2. 能参与内部系统和 AI 应用从 0 到 1 的建设。
+3. 技术决策链路短,项目上线反馈快。
+4. 可以大量使用 AI 工具进行真实开发。
+5. 后续有机会参与知识库、RAG、Agent 工作流等更核心模块。",,"[{""raw_name"": ""PostgreSQL"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PostgreSQL""}, {""raw_name"": ""FastAPI"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""FastAPI""}, {""raw_name"": ""Node.js"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Node.js""}, {""raw_name"": ""MongoDB"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MongoDB""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""Django"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Django""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""ReAct"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Flask"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Flask""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Vue"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Vue""}, {""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""js""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""提示词""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/db24a017e8ab18b20nF83tq8FVFQ.html,2026-09-02,2026-09-02,none,human_reviewed
+初级全栈工程师,星启智能体,长沙,中国,岳麓区,5000,10000,CNY,llm_fullstack,"岗位职责:  
+1、负责Web应用的前端与后端功能开发与迭代;  
+2、参与系统架构设计,协助完成技术方案落地;  
+3、持续优化系统性能,保障服务稳定性与可扩展性;  
+4、配合产品与设计团队,实现业务需求的技术闭环;  
+
+任职要求:  
+1、掌握主流前后端开发技术,具备全栈开发基础能力;  
+2、熟悉常见Web开发框架,能够独立完成模块开发;  
+3、具备良好的代码规范意识和问题排查能力;  
+4、具备较强的学习能力与团队协作意识;",,"[{""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""系统架构""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/c4ffbc55b3a6741c0nJ43Nu-EFRY.html,2026-09-02,2026-09-02,none,human_reviewed
+全栈工程师(AI Agent 平台方向),国网信息通信股份...,北京,中国,西城区,15000,20000,CNY,agent_dev,"1.参与多租户Agent运行时的核心架构设计,负责Rust原生实现的沙箱调度器、执行引擎与RAG检索管道。
+2.设计并实现高并发的Go业务网关,处理海量会话、租户隔离、流量控制与状态同步。
+3.负责React(Web端)或Flutter(移动端) 的前端交互层开发,封装标准化SDK,交付流畅的Agent交互体验。
+4.专精方向(请在简历中注明首选方向,四选一)根据所选专精方向,攻坚平台落地中的深水区系统级难题。
+A. 实时全双工音频会话引擎(语音采集 + 识别 + 合成)
+这不是简单的“录音上传”,而是构建Agent的实时听觉与口语中枢。您需负责端到端的语音交互闭环。
+B. 高并发向量检索管道(RAG存储与索引)
+自研Rust向量检索服务,为Agent提供长期记忆与实时上下文检索能力。
+C. 多租户安全沙箱编排(环境隔离与生命周期管理)  (与平台核心模式最直接相关的方向)
+平台的核心抽象是“环境”——即每个用户或团队拥有完全隔离的独立运行空间。您负责构建这套环境编排系统。
+D. Agent工具编排与可观测性(Tool Calling & Tracing)
+Agent的确定性取决于工具调用的准确性,而Agent的可调试性取决于全链路追踪。您负责这两个命脉。",,"[{""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Tool Calling""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Rust"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Rust""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/85bb3b1d6f3756630nJ-2tW1E1VU.html,2026-09-02,2026-09-02,none,human_reviewed
+全栈 Agent 工程开发实习生,知启无垠教育科技,北京,中国,海淀区,4350,5438,CNY,agent_dev,"项目介绍
+我们正在开发一套面向真实教学场景的智能教学平台,目前已经完成产品的初步底座和核心技术框架,接下来将进入持续的功能上新、体验优化、自动化测试和快速迭代阶段。你会直接参与真实产品研发,工作内容覆盖教师建课、课程编辑、学生学习、测验作业、学习进度、AI 教学能力等模块,并参与从需求理解、代码实现、联调测试到上线迭代的完整过程。
+
+岗位职责
+你将根据能力参与以下工作:
+使用 Codex、Claude Code、Cursor 等 AI Coding Agent 完成代码阅读、需求分析、功能开发、问题定位和代码优化;
+基于现有 React + TypeScript 前端及后端项目持续开发新功能;
+完成页面、接口、数据模型之间的联调以及 Bug 修复;
+使用 Git、Worktree 等方式进行分支管理和并行开发;
+使用 Playwright 等工具进行自动化测试和端到端验证;
+根据真实用户反馈持续优化产品交互和功能细节;
+参与 AI Agent、LLM 服务及工具调用能力开发;
+参与 Agent 工作流、上下文管理、模型接入等 AI 应用能力建设。
+
+我们希望你
+熟练使用 Codex、Claude Code、Cursor 等 AI Coding Agent;
+计算机、软件工程、人工智能或相关专业学历;
+有一定 Web 开发基础,能够独立阅读、理解并修改真实项目代码;
+了解 Git 基本操作,能够使用分支完成日常开发;
+能够独立阅读技术文档、搜索资料并排查常见开发问题;
+对代码可维护性、异常处理和基本工程规范有一定认识;
+对 AI 如何改变教学、学习和教师工作方式有自己的兴趣和思考;
+
+工作方式
+希望每周能够稳定投入 4–5 天
+项目已有较完整的产品和代码底座,以功能上新、测试和持续迭代为主
+研发任务会拆分为较清晰的小功能、Bug 或测试任务
+会提供必要的 AI Token、模型调用、开发环境和测试资源
+能力优秀者可以逐步独立负责完整功能模块",,"[{""raw_name"": ""TypeScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""自动化测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""自动化测试""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Git""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/1fbeacd12a8636e10nJy2966E1VR.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent开发工程师,某大型知名互联网上市公司,北京,中国,,30000,60000,CNY,agent_dev,"岗位描述
+我们正在寻我对A技术充满热情的你,共同探索电商领威的技术创新,结合自研的海宝研发领威人模型打造具备”领威架构”级别的A研发系统,助力海宝平台代码研发效率,睢动A喊能研发场景,
+塑造电商技术的未来。如果你希望在电商生态中挖掘AI在研发效率革命中的无限可能,这里是你的梦想舞台!
+加入我们,你将:
+赋能研发团队,创新开发德式:构建A1P0were的系统架构,打造从需求理解、任务规划、方案设计、代码生成、测试到部著的智能化技术链路,为开发团队赋能,呼低开发成本,缩短交付用期成为技术创新的驱动者:深入研究和实现多领域AI Agent技术,包括但不限于需求分析智能体、代码生成智能体、代码调试辅助工具和自动化性能优化等,为电高研发带来颠疆性的效率提升,·定义未来研发智能体体系:探索AI技术在企业级研发场景中的全面应用,构建体系化、模块化的解决方案,为公司整个生态构建基础性技术基建。
+岗位要求
+1.专业背景:计算机、人工智能、软件工程等相关专业硕土及以上学历,3年以上经验;学握PythonJava/C++等编程语言开发,具备扎实的算法与数据结构基础;
+2.Agent相关经验:具各Agent系统开发经验,掌握LangChai/Lamialndex/AuoGer等框架及实现原理,能够设计高可用、高扩展性的人模型/Agent工程架构:掌源0penAP.RPC、MC等议实
+现方案;掌握Prompt工程、RAG、Tool Caling、Context Engineering等AI应用关键技术;
+3.分项:了解机器学习、深度学习的常见算法等知识,有Tan5ome等模型实战经验优先,有数居工程、模型微调后训练、模型评测经验的同学优先;有良好的工程架构能力,具各代码生成、自
+动化工具开发相关项目经验者优先;
+4.综合素质:具备出色的问题拆解和解决能力,强自驱力与团队协作精神,对用AI解决复杂研发问题充满热情。",,"[{""raw_name"": ""Context Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Context Engineering""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""深度学习""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""系统架构""}, {""raw_name"": ""C++"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/600d3760f3305a7a0nF539q_EVdT.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent全栈实习-交易广告,字节跳动,北京,中国,海淀区,4350,5438,CNY,agent_dev,"职位描述:
+日常实习:面向全体在校生,为符合岗位要求的同学提供为期3个月及以上的项目实践机会。
+团队介绍:中国交易与广告,负责抖音电商、生活服务、广告营销等营收业务的研发。用技术带来美好生活,让用户发现更多优价好物,为用户提供更丰富独特的生活体验;连接海量用户与商家,促进交易达成,让生态里全流程体验更流畅,助力营收业务长效增长。
+加入团队,你将投身流量与增长主战场,挑战复杂业务场景技术难题;直面真实商家和用户,用技术解决看得见的问题,在实战中快速成长,书写属于你的价值故事!
+
+1、依托各类AI Coding工具,独立完成广告业务相关项目的前后端全栈开发、功能迭代与接口联调,负责前/后端技术选型和开发工作,参与方案设计,保障业务需求高质量落地;
+2、主导或参与前后端基础设施建设,包括组件库沉淀、工程化工具链优化、CI/CD流程改进,提升团队研发效率;
+3、与产品、算法等团队紧密协作,推动跨团队技术方案对齐,保障项目按时交付;
+4、关注前端前沿技术发展,推动新技术在业务中的落地实践,持续优化用户体验和页面性能;
+5、参与Agent在广告业务场景中的落地探索(如Agent产品交互开发、工作流编排等),跟进前沿Agent开源方案,沉淀可复用的调度模板与工程最佳实践,善于利用AI Coding工具提升个人及团队开发效率,具备工程提效意识。
+
+职位要求:
+1、本科及以上学历在读,计算机、人工智能、软件工程等相关专业;
+2、掌握Python/Go/Java/JavaScript任意2门开发语言,熟悉Node.js/Go,具备前后端一体化开发能力;
+3、理解LLM基础原理,熟悉AI Agent核心模块(Prompt、记忆机制、工具调用、RAG、多智能体),能区分不同层级模型的业务适用场景;
+4、熟练掌握主流AI编码工具(TRAE、Claude Code、Codex等),能够利用AI完成需求拆解、代码编写、复杂逻辑重构、Bug定位修复、单测编写、代码评审,具备AI协同研发思维;
+5、熟悉Git基础操作,具备良好的沟通能力与团队合作精神;对技术保持好奇心,善于独立思考并反思总结;
+6、有相关岗位实习及项目开发经历优先。
+
+加分项
+1、有AI辅助前后端全栈开发、Agent项目部署与二次开发实战经验;
+2、实操过Agent任务拆分、多智能体并行调度、模型自动择优等核心功能;
+3、熟悉MCP协议、LLM工具调用、AI自动化工作流搭建;
+4、有对话应用、智能编排、知识库平台等相关项目开发经验。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Node.js"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Node.js""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MCP""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Git""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/ed91c31d0422cbd80nJz2Nq7ElBX.html,2026-09-02,2026-09-02,none,human_reviewed
+Al Agent 全栈工程师(新),网易杭州,北京,中国,海淀区,20000,30000,CNY,agent_dev,"網易NETEASE
+Al Agent 全栈工程师(新)
+**
+有道事业群
+技术/北京市/0-3年/学历不限/全职
+岗位描述
+
+1.负责有道广告现有产品的业务迭代,包括但不
+限于运营系统、竞价系统等产品
+2.负责有道广告相关AI产品涉及的Agent开发、模型集成等工作
+3.利用AI技术挖掘广告相关业务的新产品,深度探索AI业务提效方式
+4.持续跟进AI领域的最新技术趋势,结合AI能力与业务需求,提出并落地创新性的业务机会
+
+岗位要求
+
+1.本科及以上计算机相关专业毕业
+2.熟悉一门前端或后端编程语言,在研发工作中深度使用Al Agent编码
+3.责任心强,积极主动,良好的产品意识
+4.有良好的沟通,团队协作能力
+5.有计算广告经验者加分",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/e2d3a039a2bfc4d40nN729m1EldU.html,2026-09-02,2026-09-02,none,human_reviewed
+Agent全栈开发实习生 - 数据平台(上、杭),字节跳动,上海,中国,杨浦区,10875,11962,CNY,agent_dev,"职位描述
+团队介绍:数据平台是字节跳动数据中台部门,为公司多业务线(包括抖音、电商、直播和生活服务等)提供一站式大数据解决方案,涵盖数据的生产、清洗、传输、建模、分析等全流程链路,提供数据开发、实验评估、画像标签、增强分析等多元场景解决能力。同时,数据平台部门也致力于把字节跳动积累沉淀的数据中台解决方案做商业化输出,让更多行业能够应用我们的产品能力构建自己的数据中台。在火山引擎上,我们提供了营销增长套件,数据中台等相关产品解决方案,为泛互联网、金融、汽车、新零售等行业提供了行业解决方案。
+
+日常实习:面向全体在校生,为符合岗位要求的同学提供为期3个月及以上的项目实践机会。
+
+1、参与数据平台前端产品与Agent应用的全栈研发,覆盖Web前端、Node/BFF、服务端接口与Agent Skill,完成分配的模块开发与代码提交;
+2、参与Agent能力及相关服务的建设,涉及Prompt Engineering、Workflow、Multi-Agent、Tool Calling等技术方向,承担其中可独立完成的子任务;
+3、结合数据分析、数据可视化等业务场景,参与Agent解决方案的原型验证与功能落地;
+4、协助进行日常需求开发、Bug修复与代码优化,配合团队完成迭代节奏;
+5、关注大模型与Agent领域的前沿进展,参与内部技术分享与小范围技术预研。
+职位要求
+1、本科及以上学历在读,计算机、软件工程等相关专业优先;
+2、能保证每周到岗4天、连续实习3个月(可长期实习者优先);
+3、具备Web前端基础,熟悉HTML、CSS、JavaScript/TypeScript与HTTP协议,了解浏览器渲染与常见性能问题的基本概念;
+4、熟悉常用数据结构与设计模式,掌握Python、Java、Go、Node.js中至少一种服务端语言,能够在指导下完成从前端到接口的小型闭环开发;
+5、学习能力强,喜欢钻研,主动性好,具备良好的团队合作精神和沟通能力,能够按时保质完成导师安排的任务。
+
+加分项
+1、有大模型与Agent相关的动手经验,如基于大模型API、Agent框架、Prompt/评测等课程项目、开源项目或个人实践;
+2、有数据可视化相关项目实践经验。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Tool Calling""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Multi-Agent""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Node.js"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Node.js""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""网络协议"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""HTTP协议""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/736c9244b144c7bb0nJ52d2_GFBQ.html,2026-09-02,2026-09-02,none,human_reviewed
+agent 全栈工程师,小红书,上海,中国,黄浦区,3262,6525,CNY,agent_dev,"岗位职责:  
+1. 负责 agent 系统的全栈开发与架构设计  
+2. 参与核心功能模块的迭代与性能优化  
+3. 协同算法与产品团队推动智能服务落地  
+
+任职要求:  
+1. 熟练掌握主流前后端技术栈,具备独立开发能力  
+2. 有较强的系统设计和问题解决能力  
+3. 对人工智能应用场景有热情,具备良好的协作意识",,"[{""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b34603f60c7e54430ndy09q7FlFZ.html,2026-09-02,2026-09-02,none,human_reviewed
+科研Agent全栈开发实习生,深势科技,上海,中国,徐汇区,6525,8700,CNY,agent_dev,"提供实习留用机会~
+职位描述
+1.参与科研智能平台SciMaster核心模块开发,聚焦Agent工程化落地,协助完成智能体集成层、任务调度模块的编码实现与迭代优化。
+2.协助构建可扩展的科研工作流体系,参与实验流程管理、计算任务调度、多智能体协同编排及状态维护等功能的开发调试。
+3.配合团队完成大语言模型Agent框的集成工作,适配科研场景的应用需求。
+4.基于React等框架开发交互界面,实现基础页面与功能,协助专业数据可视化模块调试。
+5.协助后端服务开发,参与接口实现、测试与优化;执行工程化规范并编写基础文档。
+
+职位要求
+1.上海线下工作,保证每周投入工作5天以上。
+2.代码开发能力强,学习能力强、能快速跟进技术迭代,具备良好的沟通协作意识和问题排查能力。
+3.本科及以上学历,2026年及以后毕业的在校学生,计算机相关专业或生物、物理、化学等STEM领域学生若具备同等计算机能力者。
+4.熟练掌握Python/Go/Node.js中至少一门后端语言及其生态框架(如FastAP,Gin,Express),具备良好的编程基础和数据结构知识;熟悉React/Vue等至少一种主流前端框架及相关技术栈优先。
+5.了解智能体(Agent)基本原理,有LangChain/Google ADK等Agent框架使用或学习经历,或参与过RAG、多智能体相关项目者优先。
+6.熟悉APl设计逻辑与常用数据库(如MySQL、MongoDB)使用,接触过消息队列、缓存技术者优先;有微服务、CI/CD相关知识储备更佳。
+
+加分项
+1.对材料、物理、化学、生物等科研领域有基本认知,或接触过科研工作流相关产品者。
+2.了解AI工程化相关技术,如模型服务化、检索增强(RAG)、LLM编排等,参与过AI平台、智能体系统、科研相关软件或自动化工具的开发项目更佳。
+3.在GitHub、HuggingFace等技术社区有代码贡献,或有编程竞赛获奖经历。
+4.对AIforScience领域有浓厚兴趣,愿意主动探索科研与工程的交叉应用。",,"[{""raw_name"": ""Hugging Face"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""HuggingFace""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Node.js"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Node.js""}, {""raw_name"": ""MongoDB"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MongoDB""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""微服务"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""微服务""}, {""raw_name"": ""Vue"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Vue""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""js""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/8e3e3c64245c34110nV_3tS6GFBV.html,2026-09-02,2026-09-02,none,human_reviewed
+字节跳动全栈 Agent 工程师 实习/27校招,北京字节跳动,上海,中国,徐汇区,6525,10875,CNY,agent_dev,"地点:上海;
+岗位:全栈 Agent 工程师(偏前端、偏后端均可)
+业务:抖音生活服务业务,服务抖音生活服务万亿GMV市场,业务发展快速,机会和挑战多多。
+在这里你会有这些挑战和成就:
+* 学习和设计服务百万商家的商品管理动线平台和工具
+* 参与大部门级别的搭建方案的设计,并通过先进研发模式和AI探索搭建平台的未来
+* 学习和使用各种字节系大模型工具,在业务流程和研发流程中使用大模型来极致提效
+
+欢迎成为ByteDancer一起学习、一起舞!",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/8ded7691f612277e0nF_3ty7FlNZ.html,2026-09-02,2026-09-02,none,human_reviewed
+全栈研发实习生(AI Agent) (MJ002530),星环,上海,中国,徐汇区,6090,6960,CNY,agent_dev,"岗位职责
+参与核心产品的前后端设计、开发和持续迭代;
+负责 AI Agent、大模型应用及自动化工作流的研发;
+完成模型接入、Prompt、工具调用、RAG、上下文管理等能力建设;
+参与系统性能优化、线上问题排查及工程质量建设;
+关注大模型技术发展,推动新技术在实际业务中落地。
+岗位要求
+计算机、软件工程、人工智能等相关专业,本科及以上学历;
+计算机基础扎实,熟悉数据结构、算法、网络及数据库;
+熟练掌握至少一门后端语言,如 Java、Go、Python或Node.js;
+熟悉 React、Vue、TypeScript 等前端技术,具备完整的全栈开发能力;
+熟悉 MySQL、PostgreSQL、Redis 等数据库或中间件;
+理解大语言模型及 AI Agent,具备 Prompt、工具调用、RAG 等实践经验;
+能够熟练运用 Codex、Claude Code 等 AI 编程工具提升研发效率;
+学习能力强,有责任心和自驱力,能够主动分析并解决问题。
+加分项
+有完整的全栈、AI Agent或大模型应用项目;
+有可展示的代码、产品或技术成果;
+熟悉 Linux、Git、Docker及基本部署流程;
+有从0到1独立完成项目的经历。",,"[{""raw_name"": ""TypeScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""PostgreSQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PostgreSQL""}, {""raw_name"": ""Node.js"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Node.js""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Docker"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Docker""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""React""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Linux"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Linux""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Git""}, {""raw_name"": ""Vue"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Vue""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""js""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/ccc6c99dc17c180c0nJ539i5FFdY.html,2026-09-02,2026-09-02,none,human_reviewed
+agent全栈研发(前端偏全栈 实习or校招),字节跳动,深圳,中国,南山区,7830,10875,CNY,agent_dev,"日常实习:面向全体在校生,为符合岗位要求的同学提供为期3个月及以上的项目实践机会。
+深圳、北京、广州
+团队介绍:剪映研发团队,主要支持剪映、Capcut、醒图、Hypic、即梦、Dreamina、小云雀、Pippit等多款国内外产品的研发工作,业务覆盖多元化影像创作场景,并孵化了多款AIGC明星产品,相关产品多次登顶国内外App Store 免费应用榜第一,并继续保持高速增长。加入我们,一起打造全球最受用户欢迎的影像创作和GenAI产品。
+
+1、负责即梦AI相关创新方向工具产品能力及用户产品能力建设;
+2、探索基于图片、视频生成的新的创作场景与AIGC/大模型的结合点,实现创新功能;
+3、参与AI创新产品的远期规划、需求分析和技术方案制定;
+4、与算法、音视频等团队紧密配合,完成相关原子能力建设,保障高质量迭代。
+
+【职位要求】
+1、本科及以上学历在读,计算机、软件工程等相关专业优先;
+2、每周可出勤4天,可连续实习4个月;
+3、具备过硬的编码能力,熟练掌握HTML、CSS、JavaScript、Node.js等前端技术,深入了解JavaScript语言,使用过React或Vue.js等主流开发框架;
+4、有音视频相关开发经验、性能优化经验、服务端程序开发经验、App/小程序开发经验优先;
+5、有自己的技术产品、开源作品或活跃的开源社区贡献者优先;
+6、有较强的学习意愿,有LLM、视觉生成、音视频等技术经验的加分。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""Node.js"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Node.js""}, {""raw_name"": ""Vue"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Vue.js""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""React"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""React""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/270885406c85398c0nN639--FFBW.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent 全栈开发工程师,宜飞科技,深圳,中国,宝安区,10000,15000,CNY,agent_dev,"【我们是谁】
+我们是一家正在快速成长的AI跨境电商公司。在这里,我们希望借助AI,重新塑造跨境电商公司的各种能力。我们认为,AI并不是所谓的取代人,而是AI和人的能力需要有机的结合。对于AI的使用,不盲从,我们愿意花时间探索,形成自己的理解,走出一条独特的有价值的路线!
+
+【岗位职责】
+- 构建AI Agent平台,负责前后端、客户端与大模型融合的架构设计与编码实现
+- 结合跨境电商业务特点,面向未来,进行整体AI架构设计。满足未来跨境电商具体业务流(选品/产品开发/运营/供应链等)落地与快速迭代的需求。
+- 分析拆解当下业务工作流,借助AI实现数字化,模块化,Agent化
+- 探索人与AI协作模式,面向提效,把人和AI有机结合到一起,不是简单的01博弈
+
+【我们需要怎样的你】
+- 全栈工程底座: 具备扎实的计算机基础(算法、数据结构、网络及数据库),熟练掌握至少一种主流开发语言(如 Python/Java/Go/TypeScript 等)
+- AI 原生思维与 Harness 工程能力: 对大模型有深度使用经验,理解 Prompt Engineering 边界与常用 Agent 设计模式,对 Harness、环境感知、Agent 评测/对齐等相关工程化落地有浓厚兴趣或实际开发经历
+- 极致的技术热情与自主性: 对跨境电商/AI Agent 赛道有强烈的信念,具备极强的快速学习能力与自驱力,习惯在没有标准答案的前沿探索中寻找优雅的工程解法
+- 极度务实:客观认识自己,具备平常心,脚踏实地
+- 喜欢思考:遇到问题能够独立思考,喜欢梳理核心和本质,并在日常流程中思考如何优化方法,提升效率
+
+【我们的目标】
+利用AI重新架构跨境电商业物流,找到客户,需求,运营,供应链的Deepseek时刻---
+1.围绕用户画像,目标就是不断获取丰富,并跌代用户画像。找到一套在各个品类准确获取用户画像的方法
+2.以数据驱动的方式,测品,运营,生产,交付,并持续迭代
+3.极致优化测品的效率与速度,尽非常大的努力降低新品开发沉没成本,彻底贯彻MVP思想
+4.最极致,最高效,最简单的运营方法,一套方法能够适用各个品类各个平台,2种运营思路(POP/托管)
+5.公司依靠人才密度,而不是走流程,尽量不用流程去管理
+6.使用AI并形成能满足上述方向的架构,模块以及流程,找到真正有价值的使用方式。我们不光是要做自动化,更重要的是做架构。符合客户需求以及自己运营逻辑的AI架构。
+
+【我们的文化】
+Always Day One
+- 一直抱着学习的心态。
+- 一直客观的看待当下自己。
+- 一直相信明天会更好。
+- 一直脚踏实地,不急功近利,延迟满足。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/d94630221600e99d0nF-2968E1VU.html,2026-09-02,2026-09-02,none,human_reviewed
+Agent Harness 开发实习生,深圳田和智能科技,深圳,中国,宝安区,4350,8700,CNY,agent_dev,"Agent Harness 开发实习生招募中 !
+简历里告诉我们:你做过最有意思的 Agent 项目,以及踩过最深的坑。
+
+【你将做什么 】
+开发 Agent Harness:工具调用链路(定义、执行、结果回传),以及跨模型(DeepSeek、GLM、Claude 等)tool calling 兼容层;
+构建 Agent 评测体系:轨迹釆集、评测集设计、LLM-as-judge、bad case 归因与自动化回归;
+参与 Agent 运行时建设:执行环境与沙箱、上下文管理、任务编排与调度,以及与平台能力(RAG、微调、推理服务)的集成;
+
+【我们期望你具备 】
+CS 相关专业在读(本科/硕士),扎实的 Python(含 async)能力),大三 / 研二,能保证 6 个月实习期优先;
+理解 LLM API:messages、tool use、streaming;
+动手搭过至少一个 Agent,能讲清 prompt → tool call → observation 循环
+有评测意识:知道怎么设计 eval 集、定义成功指标,能从轨迹和日志定位问题。
+
+【加分项 】
+用过 Agent 框架(LangGraph、Claude Agent SDK 等)或 MCP;
+用过评测工具(Langfuse、Braintrust、OpenAI Evals 等)或自建过 eval pipeline;
+熟悉 K8s / Docker、向量数据库或 RAG 系统;
+
+平台产品网址:
+Teamily AI:https://teamily.ai
+全球领先的人机智能社交平台
+
+TensorOpera AI:https://tensoropera.ai
+AI 基础设施与智能体平台
+
+田和智能科技
+TensorOpera AI China R&D Partner",,"[{""raw_name"": ""Harness Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Agent Harness""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""tool calling""}, {""raw_name"": ""LangGraph"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Docker"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Docker""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""评测体系""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""Kubernetes"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""K8s""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/fbdff06375d29e120nN63dq_E1NU.html,2026-09-02,2026-09-02,none,human_reviewed
+全栈工程师(AI Agent 方向),进门,深圳,中国,南山区,15000,30000,CNY,agent_dev,"岗位职责:
+  1. 负责面向金融买方/卖方/上市公司的 toB 系统的全栈开发,主导 AI Agent 能力在金融业务场景中的落地。
+  2. 独立完成从业务需求分析、系统设计、前后端开发、自动化自测到联调上线的全流程闭环交付;将 Agent 的规划、记忆、工具使用等能力深度内嵌到金融业务系统中。
+  3. 参与 AI 业务系统的架构设计与技术选型(如 多 Agent 编排、上下文工程、Prompt/工作流管理、Agent 评测与可观测性),持续优化系统的严谨性、可维护性与高可用,确保 Agent 在复杂金融环境下输出可靠、结果可追溯。
+  4. 与产品经理、市场、运营团队紧密协作,快速理解买方/卖方/上市公司的复杂业务逻辑,将业务痛点转化为可由 Agent 高效执行的技术方案。
+
+  任职要求:
+  1. 精通 Java/Python/Go 之一及前端工程化(React/Vue/小程序),具备全栈开发与端到端独立交付能力,对新技术有敏感度。
+  2. 熟悉主流大模型及 Agent 开发生态,有构建 Agent应用或 AI 业务系统的实际落地经验。
+  3. 熟练并深度使用 AI Coding 工具完成全流程工作,包括但不限于设计、规划、生成、验证、排查等,积极持续通过 AI 优化研发流程。
+  4. 具备极强的产品与业务意识,能深入金融一线挖掘痛点,理解 Agent 能力边界并设计合理的人机协作方案。
+  5. 有良好的职业习惯,在代码质量、系统合规与数据隐私安全方面具备高标准要求。",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""React"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Context Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文工程""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": ""精通"", ""evidence_text"": ""Java""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""Vue"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Vue""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/205bc499841f94d10nFy2dW0EltW.html,2026-09-02,2026-09-02,none,human_reviewed
+AI Agent应用开发,华为,杭州,中国,滨江区,8700,9788,CNY,agent_dev,"【职责描述】 
+1、从智能化组件向UI智能框架演进,研究智能理解、智能操作和智能生成等关键技术,支撑未来终端沉浸式交互新体验
+2、通过Web AI打造可对标原生的浏览体验
+3、构建极致流畅的游戏加速引擎,将传统图像处理算法与深度学习算法结合互补,助力鸿蒙操作系统高帧稳定、 冷静畅快、持久畅玩的游戏体验
+【岗位要求】
+ 1、计算机科学、软件工程、人工智能、计算机工程、机器学习、数据工程等相关专业,具备扎实的计算机系统基础。
+2、具备较强的代码编写和算法实现能力,熟悉模型架构、数据工程、操作系统、并行软件开发。
+3、具备较强的学习能力、自驱意识、团队意识和责任意识,能够积极参与团队协作,快速适应技术迭代。
+4、有相关实习经验或高水平竞赛(如 ACM、ICPC 等)获奖经验者优先;在领域顶级会议(如 NeurIPS、ICML、AAAI、VLDB 等)发表论文者更佳",,"[{""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习算法""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/69959027fd6b7b650nd539S6F1NV.html,2026-09-02,2026-09-02,none,human_reviewed
+AI大模型应用开发工程师,深圳某大型计算机软件公司,杭州,中国,,15000,30000,CNY,ai_application_dev,"岗位职责
+基于大语言模型API或开源模型,开发面向业务的智能对话、知识检索(RAG)及文档处理等应用功能;
+
+设计并优化Prompt策略,提升模型输出质量;
+
+参与模型推理服务的封装、部署与性能测试;
+
+协同产品及后端团队,完成AI功能与业务系统的集成联调。
+
+任职要求
+本科及以上学历,计算机、软件工程、电子信息等相关专业,接受优秀2026届应届毕业生;
+
+熟悉Python开发,掌握至少一种Web框架(如Flask、FastAPI);
+
+了解HTTP协议、RESTful接口设计及数据库基础操作;
+
+对大语言模型应用(如ChatGPT、通义千问等)有使用或调用经验;
+
+逻辑清晰,具备良好的问题定位和文档撰写能力。
+
+优先条件
+接触过LangChain、LlamaIndex等应用开发框架;
+
+了解向量数据库(如Milvus、Pinecone)或检索增强生成(RAG)流程;
+
+有Linux环境下的部署调试经验。",,"[{""raw_name"": ""LlamaIndex"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LlamaIndex""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""FastAPI"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""FastAPI""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Milvus"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Milvus""}, {""raw_name"": ""网络协议"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""HTTP协议""}, {""raw_name"": ""Linux"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""Flask"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Flask""}, {""raw_name"": ""性能测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""性能测试""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/511ea937afc33ac30nJ73tq8GFBR.html,2026-09-02,2026-09-02,none,human_reviewed
+AI应用开发实习生-财经业务,北京字节跳动,杭州,中国,余杭区,8700,10875,CNY,ai_application_dev,"日常实习:面向全体在校生,为符合岗位要求的同学提供为期3个月及以上的项目实践机会。
+团队介绍:财经业务依托抖音集团的流量优势和领先的基础技术能力,通过“抖音支付”“抖音月付”“放心借”以及退货运费险等产品,为广大个人用户、企业和机构提供支付、消费金融和保险经纪等金融科技服务。
+
+1、参与设计、开发和演进基于AI的金融业务架构方案;
+2、参与财经金融业务相关Agent应用设计和实现,确保运行稳定性、高效;
+3、根据应用场景的需求,优化并提升Agent效果,包括Prompt、RAG等优化工作;
+4、持续追踪AI Agent领域的最新技术趋势和研究成果,将前沿技术整合进我们的产品中。
+职位要求
+1、本科及以上学历在读,计算机、人工智能、自动化、数学相关专业优先;
+2、精通Go、Python、C++等一种或多种编程语言,具备扎实的编程技能和算法设计能力;
+3、有AI应用相关开发经验,了解LLM架构,熟悉PE工程、AI Agent、LangChain、RAG、Memory等优先;
+4、创新意识强,乐于探索新的AI技术与应用场景,主动关注AI领域最新动态,具备较强的学习能力、主观能动性及跨团队协作意识。",,"[{""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""业务架构""}, {""raw_name"": ""C++"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b717200bcee46a4e0nF53Nm1EFNX.html,2026-09-02,2026-09-02,none,human_reviewed
+AI工程师(剧本智能体生成/AIGC应用开发),边锋,杭州,中国,拱墅区,10000,15000,CNY,ai_application_dev,"1、有智能体搭建经历,可批量产出爆款剧本,懂AI剧本的逻辑。
+2、基于大模型API,搭建剧本智能体工作流,实现角色人设稳定、剧情连贯等。
+3、对接业务需求,把剧本、故事设定转化为可执行的剧本智能体方案。",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/44c6744e80b53e2a0nN739--FFNX.html,2026-09-02,2026-09-02,none,human_reviewed
+AI 应用开发,美国道富,杭州,中国,滨江区,30000,50000,CNY,ai_application_dev,"Agent开发,要求英语能作为工作语言
+Who we are looking for
+We are seeking a skilled Gen AI Developer with deep hands-on engineering expertise and proven leadership experience building production-grade AI systems. The ideal candidate combines strong software engineering fundamentals with modern AI/ML capabilities (specifically LLM-based applications), and can drive teams to deliver reliable, secure, and scalable AI products that create measurable business impact.
+In this role, you will own the end-to-end design and delivery of AI solutions—from problem framing and model selection to deployment, monitoring, and continuous improvement. You will lead & work with engineering teams on architecture and implementation choices, establish best practices for MLOps and AI governance, and ensure solutions meet performance, reliability, privacy, and compliance requirements while aligning with business strategy.
+What you will be responsible for
+·         Lead end-to-end development of AI features and services (LLM, NLP, CV, predictive ML) from prototyping to production, aligned to clear product outcomes and KPIs.
+·         Review and govern AI solution designs to ensure correctness, robustness, security, and responsible-AI compliance (bias, toxicity, hallucination risk, data leakage).
+·         Partner with product and engineering teams to translate business problems into AI solution approaches (build vs buy, model choice, data needs, evaluation strategy) and executable delivery plans.
+·         Lead and scale high-performing AI engineering teams delivering multiple initiatives in parallel (AI-enabled applications, internal platforms, and developer tooling).
+·         Identify AI-specific risks (data quality, drift, adversarial use, hallucinations, latency/cost) and implement mitigation strategies throughout the delivery lifecycle.
+·         Promote automation and engineering excellence (CI/CD for ML, automated evaluation, red-teaming, monitoring/alerting, and cost/performance optimization) to improve quality and velocity.
+·       Collaborate closely with product, data, security, legal/compliance, and global engineering teams to align on AI use cases, constraints, and delivery expectations.
+·       Coordinate architecture and delivery plans across multiple parallel AI initiatives (e.g., GenAI assistants, search/RAG, personalization, fraud/risk models, automation).
+·       Work with platform teams to ensure reusable AI components and consistent patterns (prompt orchestration, retrieval, model gateways, feature management, observability) across the portfolio.
+·       Act as a trusted technical advisor on AI strategy, platform choices, vendor/partner decisions, and responsible AI governance.
+·       Explore, evaluate, and introduce AI technologies where they add clear business value (models, frameworks, orchestration tools, data platforms), balancing performance, cost, and risk.
+·       Continuously improve AI development lifecycle practices (data/versioning, evaluation, deployment, monitoring, incident response) and governance models.
+·       Mentor AI engineers and applied scientists, strengthening engineering rigor, model quality, and responsible-AI maturity.
+What we value
+·       Strong sense of ownership and accountability for AI outcomes, production reliability, and responsible-AI risk management.
+·       Ability to think strategically about AI adoption while remaining hands-on when needed (design reviews, critical debugging, and technical decision making).
+·       Pragmatic problem-solving skills with a focus on shipping AI capabilities safely, iterating quickly with evidence, and delivering business value.
+·       A collaborative mindset and the ability to influence across product, engineering, data, and risk/compliance stakeholders without relying on formal authority.
+Education & Preferred Qualifications
+·         Bachelor’s degree or above in Computer Science, Machine Learning, Data Science, or a related field (or equivalent practical experience).
+·         8+ years of experience in software engineering, including significant leadership experience delivering AI/ML systems in production at scale.
+·         Strong software engineering fundamentals (distributed systems, APIs, data structures) and proficiency with modern AI development stacks (Python plus one of Java/Go/C++), including strong code quality practices.
+·         Proven experience building and operating AI/ML workloads on public cloud platforms (AWS/Azure/GCP), including scalable model training and low-latency inference deployment.
+·         Solid experience with data platforms and pipelines (e.g., Databricks, Snowflake, Spark) and familiarity with vector search / embeddings for retrieval-based AI solutions.
+·         Deep understanding of modern engineering practices and MLOps (CI/CD, testing, experiment tracking, model/version management, monitoring, incident management).
+·         Experience working in global or distributed teams across different regions and time zones.
+·         Strong communication skills in English and Chinese, including the ability to present complex AI topics and decisions to senior stakeholders.
+·         Demonstrated experience with Responsible AI practices and governance (privacy, security, bias/fairness, content safety, auditability, and regulatory compliance).
+·         Hands-on experience with LLM/GenAI application development (prompting, RAG, Agents, tool/function calling), model evaluation, and production observability.",,"[{""raw_name"": ""分布式系统"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""distributed systems""}, {""raw_name"": ""Function Calling"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""function calling""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Machine Learning""}, {""raw_name"": ""Embedding"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""embeddings""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""prompting""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Scala"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""scala""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""Spark"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Spark""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b2038a69bdad258d0ndz3d69FltV.html,2026-09-02,2026-09-02,none,human_reviewed
+(广州/杭州)AI应用开发实习生 (MJ000661),要务科技,杭州,中国,余杭区,3480,5655,CNY,ai_application_dev,"岗位职责:
+1.参与公司核心业务系统的开发与持续优化,逐步构建高性能、可扩展、高质量的后端/全栈服务能力;
+熟练运用传统编程技能,结合AI Coding工具(Cursor、Claude、Windsurf等)进行代码生成、调试、重构、测试和文档编写,大幅提升开发效率与代码质量;
+2.与产品、设计、业务等跨团队紧密协作,推动项目从需求分析到部署上线的完整交付流程;
+3.持续关注系统稳定性、性能、安全性及用户体验,基于数据与反馈驱动迭代改进;
+4.主动跟踪AI Coding工具及工程最佳实践的最新动态,将其有效融入传统软件研发流程中,贡献技术优化建议。
+
+
+任职要求:
+1.全日制本科及以上学历(2027届应届毕业生),计算机或相关专业优先;
+2.应届毕业生或0-1年软件开发经验,具备扎实的传统编程基础和工程实践潜力;
+3.具备全栈开发意愿,不再区分前后端、测试等角色,有意愿独立承担从需求理解、前后端开发、测试验证到部署上线的完整研发流程,快速成长为高质量产品交付者;
+4.对新技术充满热情,学习能力强,愿意主动掌握AI Coding工具以辅助传统开发工作;
+5.熟练使用AI Coding工具(如Cursor、Claude、Windsurf等),能够利用AI进行代码生成、调试、重构、测试和文档编写,提升开发效率和代码质量;
+6.熟悉至少一种主流开发语言(Java、Python、Go等)及相关技术栈,具备良好的工程素养、代码规范意识和持续学习意愿。",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/31ced8a4163786350nJ909y7F1tX.html,2026-09-02,2026-09-02,none,human_reviewed
+AI应用开发,艾思克瑞,广州,中国,黄埔区,4350,8700,CNY,ai_application_dev,"岗位职责:
+1.熟练掌握Python、JS、Golang任意一门语言;
+2.熟练掌握LangChain、CrewAI等Agents编排框架;
+3.理解掌握Agents的观测、度量、分析技巧;
+4.熟练的Prompts提示词工程能力熟练理解Transformer下的各类模型能力和Benchmark指标;
+5.优秀的代码掌控能力,具备软件工程和强动手能力。
+任职要求:
+1.本科及以上学历;
+2.能独立完备的对新技术调研和预演;
+3.拥抱AI能够快速掌握新技术和新工具;
+4.善于发现问题并且解决问题。",,"[{""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Go"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Golang""}, {""raw_name"": ""CrewAI"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CrewAI""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""提示词工程""}, {""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""JS""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/a450926696eda0800nJ92Nm6GFBQ.html,2026-09-02,2026-09-02,none,human_reviewed
+AI 全栈开发工程师,广州市星旷技术,广州,中国,番禺区,3262,4350,CNY,llm_fullstack,"该职位致力于探索 AI 在软件工程与量化研究双重领域中的深度应用。我们正在寻找不被传统技术栈束缚、能熟练驾驭 AI 的“意图驱动型”开发者。你将利用最前沿的 AI 辅助编程技术,负责从投研基础设施到智能化业务逻辑的全栈开发,通过 AI 技术实现量化业务的效能飞跃与智能化升级。
+核心能力要求:
+AI 赋能编程 (AI-Assisted Development / Vibe Coding):
+熟练使用 Cursor, Gemini,Claude code,Copilot 等 AI 编程工具进行全语言开发(Python为主),不纠结底层语法,能够通过高质量的 Prompt 将业务需求快速转化为稳定代码。
+认同并实践Vibe Coding 模式,追求极致的交付速度与开发效能,拥有“一人顶一个团队”的产出意识。
+AI 应用与智能体构建 (AI & Agent Engineering):
+LLM 集成与调优: 熟练调用主流模型(GPT, Claude, DeepSeek 等)API,并能针对量化场景进行提示词优化或微调。
+智能体系统 (Agents): 具备设计与实现 Multi-Agent 自动化工作流的能力,能将 AI 转化为实际的生产力工具。
+
+业务职责(量化场景):
+量化投研 AI 化: 探索大模型在量化交易全流程中的应用,设计并搭建基于智能体的自动化工作流,辅助处理海量金融数据与策略开发。
+金融 RAG 系统: 负责搭建和优化公司级知识库与检索增强生成(RAG)系统,提升私有投研数据与大模型交互的准确性。
+投研效率工具箱: 利用 AI 编程技术,为投研团队快速封装高性能的辅助工具、API 或可视化界面,降低策略开发门槛。
+前沿技术落地: 持续追踪 AI 领域的最新进展,并快速在量化金融场景下进行原型验证与落地。
+
+任职要求:
+AI 原生思维: 极度热爱 AI 技术,必须有使用 AI 独立完成并发布过实际编程项目(不限领域)的经历。 简历中请体现你如何利用 AI 改变工作流。
+技术功底: 熟练掌握 Python,具备良好的工程习惯。了解主流 Agent 框架(如 LangChain, CrewAI, Autogen 等)的设计思想。
+专业背景: 计算机、人工智能、软件工程或数学/金融工程相关专业本科及以上学历。
+软实力: 具备极强的自驱力,对“AI + 金融”的交叉领域有强烈的好奇心,能快速适应技术迭代。
+
+加分项:
+在 GitHub 上有深度参与的 AI 相关开源项目或个人独立作品。
+对 AI 辅助设计、辅助测试或全流程智能化开发有深入实践。
+有量化投资、金融数据处理或金融模型相关背景经验。
+
+岗位收益:
+1 直接参与核心项目平台开发,使用最新沿的AI技术
+2 优秀同学可直接转正,并且有机会成为创业合伙人",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Multi-Agent""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""AutoGen"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Autogen""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Copilot""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""CrewAI"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CrewAI""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/a9400e5b3b7f35480nZz0tq5GVdU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI 应用开发工程师(租赁赛道),雕马快租,广州,中国,黄埔区,18000,25000,CNY,ai_application_dev,"早九晚六,单双休,法定全休,介意勿投!
+只考虑线下面试!!!
+【岗位职责】
+1. AI 应用深度开发
+场景转化: 负责将大模型(如 DeepSeek、通义千问、Qwen 等)接入业务流程,开发身份证明自动识别、合同智能解析、意图提取等实用工具 。
+架构搭建: 基于 LangChain 或 MCP 协议,搭建标准化 RAG(检索增强生成)应用,实现基于内部业务文档的智能问答与决策支持 。
+2. 系统集成与逻辑闭环
+微创植入: 将 AI 功能封装为稳定后端 API,对接公司现有的 Java 业务系统(Spring Cloud 生态),在不破坏旧系统稳定性的前提下实现功能升级 。
+确定性兜底: 设计“规则+模型”的双保险机制。在 AI 侧逻辑执行后,必须通过业务逻辑校验(如库存、风控规则),严防模型幻觉导致的业务风险。
+3. 业务协同与快速迭代
+痛点转化: 与运营、风控、财务等部门沟通,理解运营、风控、派单等环节的实际痛点,将业务反馈转化为技术改进方案 。
+资产管理: 维护公司 AI 能力清单与 Prompt 库,构建标准化、可追溯的 AI 知识体系 。
+
+【任职要求】
+学历与背景: 统招本科及以上学历,计算机、人工智能等相关专业优先 。
+核心经验: 具备扎实的系统开发功底(Java/Python),有实际的 AI 应用开发经验(如智能助手、RAG、Agent 编排等)。
+技术视野: 熟悉主流大模型原理及使用场景,玩转 Prompt 工程,能理解工程技术约束与模型边界 。
+素质模型: 具备极强的主人翁意识,能将复杂的业务算法拆解为可迭代的 Sprint (冲刺)任务,具备 AIGC 开发模式下的“一人抗全栈”交付能力 。
+
+【素质指标】
+结果导向: 能够根据项目压力(如核心模块上线、业务大促)进行必要的加班排期,确保交付目标达成。
+边界突破: 主动打破前后端与算法的界限,快速将原型图转化为可运行的功能点。",,"[{""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/2e09a7037f1193e20nZ82Nu1F1VU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI应用开发实习生,青绿人工智能,广州,中国,黄埔区,3915,4350,CNY,ai_application_dev,"岗位职责
+1. 参与企业内部系统的需求梳理、功能设计、开发测试与迭代优化;
+2. 使用AI工具辅助完成基础模块开发、接口联调、数据处理、问题排查及技术文档整理;
+3. 使用 AI 开发工具辅助需求分析、代码编写、测试调试和开发文档编制;
+4. 配合项目团队推进开发任务,保障阶段性工作按计划完成;
+5. 持续学习 AI 技术及开发工具,探索其在企业数字化场景中的应用。
+
+任职要求
+1. 本科及以上学历,计算机、软件工程、信息管理、人工智能及相关专业优先;
+2. 具备基础的软件开发思维和逻辑分析能力,对企业信息化及系统开发有兴趣;
+3. 熟悉并愿意深入研究 AI 开发工具,能够应用于开发、测试、调试及文档整理,有AI应用实践经验优先考虑;
+4. 熟练使用至少一种编程语言、数据库或常见开发工具,有课程项目或个人项目经历者优先;
+5. 具备较强的学习能力、问题拆解能力和执行能力,能够快速理解业务需求并推动任务落地;
+6. 具备主动探索意识、责任心和良好的团队协作能力。",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b1a5c591a99029fd0nJ639q4FFdX.html,2026-09-02,2026-09-02,none,human_reviewed
+AI应用开发专员,广州声粤文化有限公司,广州,中国,番禺区,6000,10000,CNY,ai_application_dev,"1.负责Codex/Claude模型的深度应用与场景落地,提升技术实现效率
+2.结合公司业务需求进行自动化工作流设计
+3.探索AI在实际项目中的创新应用模式并推动实施
+任职要求:
+1、熟悉主流大模型API接口
+2、有实际使用Codex或Claude完成项目任务的经
+验
+3、具备较强的逻辑思维与问题拆解能力,能独立开展AI应用实验",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/1ab9879946e272ab0nF92ty1FldW.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法,华为技术有限公司,杭州,中国,滨江区,25000,50000,CNY,agent_dev,"2012实验室
+【职位名称】 AI模型工程师
+【关于我们】  我们是一支专注于智能音频与前沿交互技术的团队,我们致力于打破人机交互的边界,聚焦音频交互大模型、音频理解/合成、全双工连续对话以及超大规模音频数据生态的建设,让机器不仅能听、能说,更能深度理解与实时共鸣。
+【岗位职责】
+1. 智能音频:负责语音大模型、音频大模型、多模态语音大模型、全双工语音交互、端到端语音交互、语音识别、音频理解、语音合成、歌声合成、可控音频合成、语音唤醒、说话人识别、语音智能体等音频关键技术方向的开发与交付,以及在手机、座舱、手表、PC、耳机等1+8产品语音助手场景的落地,保障语音助手的极致稳定体验。
+2. 数据管道与生态建设:深度参与超大规模音频数据集的构建,结合数据agent能力,设计高效的模型反哺数据流程,利用大模型能力实现软标签生成、音频数据清洗、质量自动化分级(QA Tiering)、精细化元数据管理(Metadata)方案,构建工业级的音频数据处理pipeline。
+如您具备对以上方向的兴趣与意愿,或具备相关经历,音频技术、计算机科学与技术、软件工程、人工智能、控制科学与工程、数据科学与大数据技术、自动化等相关专业。",,"[{""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""软件测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""QA""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/8e4e0f84d85f1c520nN73tm0EltU.html,2026-09-02,2026-09-02,none,human_reviewed
+AIGC 大模型算法实习生,字节跳动,杭州,中国,余杭区,9788,10875,CNY,ai_application_dev,"日常实习:面向全体在校生,为符合岗位要求的同学提供为期3个月及以上的项目实践机会。
+团队介绍:字节跳动国际商业化创意与品牌广告团队致力于通过创意内容(如创意解决方案平台、内容套装及ACA创意工具)与AI技术的结合,为品牌提供从认知到种草转化为购买的全链路营销解决方案。无论是广告投放还是自然流量,我们都能通过智能ROI优化和GMV增长技术,最大化品牌的营销效果。 
+我们将创意、社区与商业无缝融合,AI技术贯穿始终,帮助品牌高效触达目标用户,实现可持续增长。我们的使命是激发创意,驱动增长。我们愿景是打造以创意为核心、AI驱动的增长引擎,让每一次内容探索都能带来可衡量的商业价值。
+
+职位描述:
+1. 参与 AIGC 视频脚本生成模型的后训练与效果优化,包括 SFT、RL、OPD 等算法的研究和实践;
+2. 参与强化学习(RL)、奖励模型(Reward Model)相关实验,协助完成方案设计、训练调优与结果分析;
+3. 面向广告创意生成场景,持续优化模型在创意性、内容质量和指令遵循等方面的表现;
+4. 参与训练数据构造、实验分析及模型效果评估,推动优化方案落地。
+
+职位要求:
+1. 国内外重点高校在读,硕士学历及以上;
+2. 具备大语言模型、强化学习或后训练相关项目或研究经验;
+3. 熟悉 Python,并至少熟悉一种主流深度学习框架;
+4. 对 AIGC、广告创意生成和大模型技术有热情,具备良好的学习、分析及协作能力;
+5. 每周可到岗 4–5 天,连续实习至少 3 个月,能够实习半年及以上者优先;
+6. 2028 届毕业生优先。",,"[{""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""深度学习""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/25845d5dc68ebff60nJ_3ty6ElpV.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法,阿里巴巴集团,杭州,中国,,40000,70000,CNY,agent_dev,"聚焦核心业务场景,利用Agent等前沿技术推动AI落地。你将参与从需求洞察到系统构建的全流程,通过研发智能应用与工具,提升业务效率与效果,实现技术驱动业务增长的完整闭环,推动智能规模化演进,实现技术价值转化。
+
+具体职责包括以下相关方向的一项或多项:
+1.需求理解与归因:
+● 深入业务场景,利用数据挖掘与特征分析完成现象归因;精准识别高价值问题,将模糊的业务痛点转化为明确的 AI 解决目标。
+2.架构设计:
+● 面向具体业务需求,设计 AI 原生系统架构;参与 Agent 系统核心模块的规划,包括记忆管理、推理策略与工具编排,兼顾架构的灵活性、可扩展性与工程可落地性。
+3.知识与环境构建:
+● 搭建AI与现有业务系统的交互环境,涵盖 API 接入、RAG 知识库构建、记忆方案设计;持续优化召回质量与上下文注入策略,为模型提供准确、及时的执行环境与知识支撑。
+4.核心能力实现:
+● 负责Agent关键模块的工程落地,实现意图识别、任务拆解与反思纠错闭环;封装标准化SDK/API服务,构建Agent观测体系,实现全链路追踪与多维归因分析。
+5.系统迭代与演进:
+● 建立搭建自动化评测与回测机制,通过调优与Case分析不断收敛效果与性能提升的最优路径;沉淀方法论与可复用组件,推动 AI 能力从单点验证走向规模化落地。
+6.性能优化:
+● 优化高并发场景下的系统性能,通过异步处理与降级策略保障稳定性,通过低侵入性观测手段保障系统的长期稳定运行。
+
+
+
+职位要求
+1.基础条件
+● 计算机、软件工程、人工智能等相关专业优先。
+
+2.专业能力
+● AI编程工具重度玩家:Cursor、Claude code等AI编程工具重度或顶级玩家,具备极强的Prompt编写与调优能力,有过完整的项目级开发经验,理解如何让AI写出生产级代码。
+● 大模型能力理解与掌握:理解主流LLM的能力与局限,能够清晰拆解任务并通过LLM或确定性逻辑兜底实现;熟悉主流大模型的应用范式(Context Engineering、Prompt Engineering、Agent、工具/函数调用等等)及主流Agent框架(如LangChain等),具备大模型幻觉、Prompt注入等风险的工程化应对思路。
+● 扎实的代码和工程能力:具备扎实的计算机基础知识,深入理解数据结构、算法、网络和操作系统等相关知识,能至少在一种主流编程语言(如 Java / Python / JS 等)上有深度的实践经验,掌握常见工程实践并具备优秀的Coding 能力,能够根据场景灵活选型并快速上手。
+
+3.能力特质
+● 学习能力: 具备快速啃透前沿论文(Paper)的能力,并能将理论知识转化为工程代码。
+● 开放性与动手能力: 拒绝纸上谈兵,有自己独立完成的小项目(开源项目或个人 Demo),展现极客精神。
+● 好奇心与想象力: 面对未知事物有独特的想法,具备敏锐的问题定义能力和坚韧的解决问题能力。
+● 审美追求: 技术亦有审美,鼓励你提出能提出打动人心、简洁优雅的好想法。
+● 高能动性: 具备强烈的自驱力,能够主动探索边界,而不是等待被分配任务。
+
+加分项
+● 有AI应用或Agent实际落地经验:包括不限于RAG系统、多智能体编排、结合MCP、Skill等的Agent项目,有可展示的项目/实习成果者优先。
+● 开源贡献或技术影响力:在Github上有高质量AI项目、技术博客或社区影响力。
+● 对AI Infra有基本理解:了解vLLM、Ollama等推理框架原理,理解延迟优化、KV cache优化、流式输出等工程全局视角。
+● 在 CV(计算机视觉)或 NLP(自然语言处理)方向有扎实的理论基础,有实际业务场景模型训练(SFT、RL)等经验的优先。
+
+
+
+注意:只招校招!!!",,"[{""raw_name"": ""Context Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Context Engineering""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Cursor""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Github""}, {""raw_name"": ""NLP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""自然语言处理""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""vLLM""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""函数调用""}, {""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""系统架构""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JS""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/7d963ed6dc0621fe0nJ_2dm0FVFW.html,2026-09-02,2026-09-02,none,human_reviewed
+ai大模型算法,深圳某大型计算机软件公司,杭州,中国,,15000,30000,CNY,agent_dev,"负责通用千亿 / 万亿参数语言大模型完整链路研发,包括预训练、持续训练、SFT 指令微调、RLHF/DPO 人类对齐、MoE 混合专家模型优化。
+搭建高质量大模型数据流水线:海量语料采集、清洗、去重、去毒、数据分布对齐、合成数据生成、数据集评测体系建设。
+深耕长上下文、检索增强 RAG、工具调用 Agent、多轮对话、思维链等前沿算法,落地盘古大模型通用能力。
+基于昇腾 NPU 做分布式训练优化,适配 Megatron-LM、DeepSpeed、MindSpore 并行框架,解决大模型显存、通信、收敛速度瓶颈。
+跟踪顶会(NeurIPS/ICML/ICLR/ACL)前沿技术,输出技术专利、论文,参与开源社区共建,推动模型在政企、云服务业务落地。
+任职要求
+计算机、人工智能、应用数学、统计学、NLP 相关专业,扎实深度学习、概率论、线性代数、优化理论功底。
+精通 Transformer 底层原理,完整参与过百亿 / 千亿 LLM 预训练、微调项目,熟悉 LLaMA、GLM、GPT 系列、盘古大模型架构。
+熟练 Python,掌握 PyTorch/MindSpore,懂分布式并行(TP/PP/DP/EP)训练机制;懂 C++ 者优先。
+熟悉 RLHF、奖励模型、DPO、LoRA、QLoRA、量化蒸馏等微调对齐方案;有 RAG、Agent 开发经验加分。
+加分项:顶会论文、Kaggle/AI 竞赛金奖、开源大模型贡献、昇腾算力适配经验、多模态大模型落地经验。",,"[{""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LoRA""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""评测体系""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""长上下文""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/0d7853c633b57af203R53NW1GFRX.html,2026-09-02,2026-09-02,none,human_reviewed
+"大模型算法研究员(方向不限,算力自由!)",某中型通用人工智能(AGI)研发公司,杭州,中国,,100000,200000,CNY,other,"我们正在为一家重新定义大模型“性价比”边界、让硅谷巨头不得不连夜开会应对的客户,寻找刚走出校园却已有屠龙之志的顶尖新人。他们相信:天才不需要被“培养”,只需要被“松绑”。杭州团队是你最好的起点——你将直接参与他们下一代核心模型的关键模块研发。
+
+选择你最热血的技术使命
+以下方向均是该客户当前最活跃的研发管线,你将在mentor的帮助下深度参与其中一个:
+
+MoE与高效训练:钻研混合专家模型的负载均衡、专家专业化、动态路由。你将亲手训练千亿参数以上规模的模型,并在多个benchmark上检验你的设计是否真正带来了智能密度的提升。
+
+长上下文与记忆机制:基于他们自研的MLA架构,探索如何让模型真正拥有“过目不忘”的能力。百万token仅是起点,你想挑战千万token甚至更长的序列建模吗?这里的算力会让你“为所欲为”。
+
+慢思考与推理强化:参与他们当前最令全球震动的方向——通过RL训练让模型学会犯错后反思、逐步验算、搜索回溯。你的代码可能直接贡献于模型在IMO数学题或IOI编程题上的下一次惊艳表现。
+
+为什么第一份工作就应该选这里
+
+你的算力,比多数教授都多:入职第一天,你就能调度数百甚至上千张顶级GPU来验证你毕业论文里那些“因为没资源所以没做的消融实验”。这里没有“新人先打杂”的潜规则,只有“想法有价值就立刻干”的传统。
+
+薪酬设计对新人极度友好:针对顶尖校招生的定制化薪酬包,包含高额基础薪资、签字费、以及实打实的早期期权。我们不画饼,让你毕业即拥有选择的底气。
+
+导师即战友,成长无上限:带你的人可能就是该客户某篇技术报告的共同作者,或是某个万星开源项目的核心维护者。他们会跟你一起debug到深夜,也会在你提出好想法时立刻拉群组织大规模实验。你的成长曲线,将以周为单位陡峭上升。
+
+我们寻找这样的你
+在NeurIPS/ICML/ICLR/CVPR/EMNLP等顶会有论文,或在NOI/ICPC/Kaggle等竞赛中有顶尖名次,或维护过有影响力的开源项目。最重要的是,你对做出“全世界都会用的模型”这件事,有无法抑制的渴望。",,"[{""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""长上下文""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/1cc1a77079e48eb60nJ73dm0ElpT.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法,小红书,北京,中国,朝阳区,8700,17400,CNY,ai_application_dev,"岗位职责:  
+1. 参与 VLM 相关算法的研发和落地,重点包括内容多模态理解、用户兴趣建模、生成式建模等任务;  
+2. 参与 AI Agent 系统设计与训练,涵盖 ReAct / Tool Use / Multi-Agent 架构设计 / Agent OPD / RL,应用于 rednote 治理、内容理解等核心业务场景。  
+
+任职要求:  
+1. 计算机、人工智能、机器学习、自然语言处理或相关专业在读,本科及以上学历;  
+2. 对大模型技术有深入理解,熟悉 Pre-train、SFT、RLHF 等训练范式,能快速将前沿 LLM/VLM 技术落地到实际业务问题;  
+3. 有较强的研究能力,在 CVPR/ICCV/NeurIPS/ICLR/ACL/EMNLP/KDD 等顶会发表过推荐或内容理解相关论文者优先。  
+
+工作地点:北京市",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Multi-Agent""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""自然语言处理""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""ReAct""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""ReAct""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/c884db37ff4695570nN629u5E1pV.html,2026-09-02,2026-09-02,none,human_reviewed
+算法实习生·多模态感知大模型,小马智行,北京,中国,大兴区,7612,8700,CNY,other,"Job Description
+1. 负责基于 Camera、LiDAR 及多模态融合的感知算法开发与优化,工作方向包括但不限于动态目标检测与追踪、3D occ、在线地图感知等。
+2. 负责研发面向高精度静态环境感知的端到端深度学习模型,重点覆盖交通信号灯(红绿灯)、交通标识、车道线、路缘、静态障碍物等关键元素的检测与识别。
+3. 设计端到端模型架构(如BEV感知、Transformer-based模型),实现从原始数据到结构化静态场景输出的高效映射
+4. 负责算法在自动驾驶实际产品中的落地和优化提升,解决实际问题。
+Requirements
+1. 计算机或相关专业本科以上学历;
+2. 熟练掌握深度学习及计算机视觉相关的基本算法;
+3. 熟悉基于CNN的图像检测、跟踪、识别等算法流程;
+4. 优秀的编程能力,熟悉C/C++或Python;
+5. 有较强的独立解决问题能力,学习能力及沟通能力;
+若能满足如下条件的其中一个,会适当加分:
+1. 有较强的研究能力优先,如发表过第一作者CCF A类会议或期刊等论文;
+2. 熟悉某种深度学习框架,如Pytorch等,对深度学习有深入的了解;
+3. 熟悉并行计算或cuda编程,或图像处理方面经验的优先;
+4. 在自动驾驶行业有实习经验;
+5. 能实习6个月及以上。",,"[{""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Pytorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""C++""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/72aea750e1c8e4880nJ_2Nu-F1VT.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态大模型应用算法实习生,百度,北京,中国,,6525,8700,CNY,ai_application_dev,"工作职责
+- 负责落地多模态大模型在多模态理解场景中的应用,负责多模态理解与审核场景端到端效果优化与提升;
+- 重点研究文本、图像相关的多模态大模型相关的技术,包括但不限于数据建设、指令微调、模型优化、模型蒸馏等。提升数据构建合成、模型推理等能力;
+- 构建大小模型融合的多模态推理系统,提升模型在理解与审核场景中的效果;
+- 持续探索跟进学术与业界前沿进展,探索包括但不限于多模态CoT、多模态RAG、强化学习微调等能力并落地。
+任职资格
+- 本科及以上学历,计算机、模式识别、人工智能、软件工程相关专业优先
+- 在以下任一方向具有深入研究经验:LLM as a judge、multi agent、图像理解、跨模态对齐与检索等
+- 具有多模态大模型相关项目经验,有复杂agent系统、内容审核、多模AI搜索相关产品落地经验者优先
+- 有良好的问题分析能力、自我自驱意识、沟通协作能力,能够承受一定的工作压力
+- 28年以后毕业,至少实习3个月",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""multi agent""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/1d2c8878de0516760nJ_39-5EFpR.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态大模型算法实习生-北京,荔枝集团,北京,中国,朝阳区,6525,7612,CNY,other,"职位描述:
+1、探索语音、视觉与多模态大模型深度融合的新架构与新方法,跟踪并应用的业界最新研究成果;
+2、参与高效微调SFT、对齐RLHF等环节,优化模型在语音识别、图文理解、内容生成等任务上的性能。
+
+职位要求:
+1、本科以上学历,计算机、人工智能、电子工程、数学或相关专业;
+2、熟练使用PyTorch,能够独立完成模型搭建、后训练和调试;
+3、深入理解Transformer架构及其在语音,CV和NLP领域的经典应用如Whisper,ViT, LLaMA等,熟悉多模态任务的基础理论和算法;
+4、熟悉大模型的训练、微调(Fine-tuning, SFT)、强化学习(RLHF)等后训练(Post-Training)流程。了解模型轻量化技术,如量化、剪枝、蒸馏等。
+5、对ASR/VIT/Flow Matching等语音/图像/视频生成技术有项目经验是加分项;
+6、该岗位有转正机会,可长期实习的27届在校生优先考虑。",,"[{""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Fine-tuning""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/f241c455e4e836750nd82tq1GVRZ.html,2026-09-02,2026-09-02,none,human_reviewed
+Python AI应用(Agent/Rag),北京某大型计算机软件公司,上海,中国,,24000,35000,CNY,ai_application_dev,"福利待遇:
+12天年假,6天带薪病假,少加班,每周1天再家办公,节假日双节礼, 6险1金
+
+职责: 
+AI(RAG Agent)智能问答应用系统项目的Python后端开发
+为人工智能相关项目设计、架构、原型、实现、部署和维护功能。 
+在大型数据集上进行实验,以评估人工智能技术的可行性、结果和性能。 
+在关注性能和可靠性的同时,做出合理的工程决策并改进软件开发实践。 
+跟上新技术的发展。 
+与关键利益相关者或跨国开发运维团队沟通。 
+ 
+任职要求: 
+1. 5年以上Python开发经验; 
+2. 熟悉Restful API,Mysql数据库,HTTP; 
+3. 熟悉Flask, Django, FastAPI (熟悉其中一种或多种) 
+4. 熟悉Nginx, Gunicorn, Redis, Linux; 
+5. 熟悉常用数据结构,设计模式,良好编码风格; 
+6. 有CI/CD, DevOps 相关知识,了解AWS, Azure 等公有云技术 ; 
+7. 熟悉Message Queue(RabbitMQ, Kafka, etc).
+8. 熟悉AI设计模式,了解RAG Agent技术",,"[{""raw_name"": ""RabbitMQ"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RabbitMQ""}, {""raw_name"": ""FastAPI"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""FastAPI""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Django"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Django""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Mysql""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""Flask"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Flask""}, {""raw_name"": ""Nginx"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Nginx""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""Kafka"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Kafka""}, {""raw_name"": ""网络协议"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""HTTP""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/0827ce775ceae4340nF_2dS_EFRW.html,2026-09-02,2026-09-02,none,human_reviewed
+AI开发工程师(RAG Agent 大模型应用),上海维可托,上海,中国,静安区,20000,25000,CNY,ai_application_dev,"工作职责
+负责基于公司AI平台(智能体、RAG、工作流引擎等)进行AI应用的设计与开发,将业务需求转化为可落地的技术方案并实现交付。要求具备扎实的开发能力,同时能理解业务场景、与业务方高效协作。
+核心职责
+1、基于AI平台进行应用开发,包括Agent开发、RAG管线搭建、工作流编排与接口集成;
+2、编写后端服务代码,完成数据处理、模型调用、API封装等开发工作;
+3、与业务方对接需求,理解业务痛点,将需求拆解为可实现的技术方案;
+4、参与AI平台核心模块的功能迭代与性能优化;
+5、编写技术文档,输出最佳实践,支撑团队知识沉淀与复用;
+6、跟踪AI领域新技术,评估并引入适合业务场景的工具与框架。
+
+任职资格
+必备条件
+1、3~5年软件开发经验,熟练掌握Python;
+2、具备后端开发能力,熟悉RESTful API设计、数据库操作、消息队列等常用技术栈;
+3、了解大模型应用开发范式,包括Prompt Engineering、RAG、Function Calling、Agent编排等;
+4、有实际的AI应用开发或集成经验(如对接LLM API、搭建RAG管线、开发Agent等);
+5、能独立与业务方沟通,理解需求并转化为技术方案;
+6、良好的代码规范意识,具备工程化思维。
+加分项
+1、有AI Agent平台开发或深度使用经验(Dify / Coze / LangChain等);
+2、熟悉向量数据库(Milvus / Weaviate / Qdrant等)及Embedding技术;
+3、有LLMOps相关经验,了解模型评估、Prompt管理、应用监控等;
+4、有ToB业务背景,理解企业级应用的需求分析与交付流程;
+5、参与过低代码平台或流程自动化系统的开发;
+6、具有业务企划能力或者经验。
+
+岗位亮点
+AI平台实际业务落地,不是写Demo,场景丰富且有真实用户反馈;
+技术深度+业务广度兼具,前沿技术栈驱动成长;
+从0到1参与AI平台建设,技术影响力大。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Function Calling""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Embedding"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Embedding""}, {""raw_name"": ""LLM 应用开发"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Milvus"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Milvus""}, {""raw_name"": ""Qdrant"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Qdrant""}, {""raw_name"": ""Dify"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Dify""}, {""raw_name"": ""Coze"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Coze""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/7e954d4e9a3844070nJy29q9GFFR.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型算法工程师(CV/NLP/Agent/RAG),上海从鲸信息技术,上海,中国,长宁区,40000,70000,CNY,agent_dev,"初阶和高阶岗位均有需求。
+更多业务信息,更多职位HC,欢迎进一步沟通,会快速回复您消息哈~
+
+方向1 大模型应用算法工程师
+职位描述:
+1)负责核心电商搜索、推荐、商业化场景大模型AIGC算法的开发与优化,支持业务场景(如AI交互式对话搜索,智能导购,图文创意生成、数字人等)高效落地;
+
+2)负责大模型Agent、RAG系统全流程研发工作,包括样本标注,数据处理,模型训练(PreTrain、SFT、RL等),Prompt Engineer,WorkFlow设计与开发,评价指标设计;
+
+3)负责Diffusion、Flux等算法在电商图像、视频生成领域的算法优化,追踪前沿技术,持续提升大模型内容生成的质量,赋能业务创新。
+
+任职要求:
+1)熟悉GPT、QWen、QWen-VL、InternVL、GLM等大模型的原理、预训练、SFT、RL训练方法,掌握PyTorch、TensorFlow框架,有相关AIGC项目实践经验;
+
+2)熟悉Diffusion Model、Flux、GAN、VAE等图像视频生成算法原理,有相关项目实践经验;
+
+3)熟悉Agent WorkFlow设计,了解Agent开源框架(如LangChain、LlamaIndex、AutoChain)使用方法,有一定的大模型训练加速平台(如DeepSpeed、Megatron-LM、Ray)使用经验;
+
+4)对大模型应用开发,效果迭代优化方向有热情,有较好的团队合作能力,能够与工程、产品团队紧密合作,高效推进项目进展。
+
+方向2大模型算法工程师
+岗位职责 :
+
+1、负责大模型设计和开发工作,包括模型设计、prompt优化、预训练、模型加速、数据集建设等;
+
+2、结合业务需求,实现电商平台业务场景的智能化、自动化升级。
+
+任职要求 :
+
+1、计算机、数据科学、数学或相关专业硕士以上学历;
+
+2、具备良好的编程能力,熟悉至少一种深度学习工具框架(PyTorch、TensorFlow等);
+
+3、扎实的机器学习理论基础,对自然语言处理(NLP)或计算机视觉(CV)等基础技术有深入了解;
+
+4、和大模型相关经验优先。
+
+方向3大模型算法工程师-电商治理
+职位描述:
+
+1. 优化大模型底座能力和商品语义理解能力,提升大模型在图文视频的分类、检索、检测、OCR等任务上的准确性;
+
+2. 优化大模型Agent的规划、推理能力,提升智能化运营效率;
+
+3. 参与多模态大模型的预训练、后训练、模型蒸馏等工作;
+
+4. 深入结合业务,发现业务痛点,基于大模型设计解决方案,开发并落地;
+
+5. 持续学习跟进大模型研究进展,将最新技术应用到实际业务中。
+
+任职要求	:
+
+1. 有扎实的深度学习基础,熟悉pytorch、tensorflow等基础框架;
+
+2. 熟练掌握NLP或计算机视觉领域的基础理论与方法,至少在某个领域有深入研究或实践;
+
+3. 有大模型研究、训练和微调经验优先,有商品治理业务经验优先;
+
+4. 逻辑清晰,有激情,责任心强,团队合作、沟通能力佳。",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""LlamaIndex"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LlamaIndex""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""LLM 应用开发"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""自然语言处理""}, {""raw_name"": ""推理优化"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""模型加速""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""深度学习""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/2568f0804dd4839803150ty7EVpX.html,2026-09-02,2026-09-02,none,human_reviewed
+AI全栈开发工程师(RAG/Agent 智能体方向),某小型会展服务公司,上海,中国,,22000,30000,CNY,agent_dev,"岗位职责:
+1. 接手 CEO 提出的原型与需求,独立完成调试、修补、测试,让功能真正上线并交付使用(React / NestJS / 微信小程序 / SQL,可大量使用 AI Coding 工具)
+2. 负责 AI 应用与智能体的工程实现:RAG知识库、Prompt 调优、多轮对话状态、工具调用与工作流编排、模型选型与成本优化
+3. 建立 AI 功能的质量保障:评测集、回归测试、bad case 归因与闭环,把「感觉不对」变成「指标可查」
+
+4. 为内部同事开展 AI 工具培训,编写操作手册与 SOP,推动 AI 在全员日常工作中真正用起来
+5. 沉淀技术文档与交接材料(AIEMS 后续将移交公司小程序开发负责人统一推进)
+6. 对接外部技术供应商与开发资源,跟进需求、测试与项目进度
+
+
+任职要求:
+7. 本科及以上,2 年以上前端 / 全栈开发经验,能独立读懂并修改现有代码库
+8. 重度使用 AI Coding 工具(Cursor / Claude Code / Codex 等),有用 AI 从 0 到 1 交付完整项目的真实经历
+9. 至少 1 个自己主导、已上线、有真实用户的 AI 应用或自动化系统(投递请附作品链接)
+10. 熟悉主流大模型 API 调用与 RAG 基本原理,做过知识库 / 智能问答 / 智能体类应用
+11. 能在需求不完整的条件下自己拆解任务、验证假设、推进落地,不等 PRD
+12. 沟通清晰,能向非技术同事讲明白 AI 工具怎么用,愿意带教与分享",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""软件测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""回归测试""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/9496dedb14e96a4e0nN72d21ElNS.html,2026-09-02,2026-09-02,none,human_reviewed
+AI数据清洗实习生(RAG知识库方向),新阳创业,北京,中国,朝阳区,3262,4350,CNY,other,"岗位职责
+1. 数据清洗与结构化:对科研仪器设备的技术参数、产品手册、说明书等文档进行清洗,包括去重、格式统一、字段拆分、数值标准化等;
+2. RAG数据标注:按照RAG知识库的规范,对清洗后的数据进行分块(chunking)、元数据标注、语义标签打标,确保检索质量;
+3. 参数提取与校验:从非结构化文本中提取设备参数(数值、单位、范围、条件等),校验数据准确性和一致性;
+4.知识库质量维护:协助构建数据质量检查规则,定期抽检知识库内容质量,反馈问题并优化清洗流程;
+5. 文档整理:整理数据清洗规范、标注指南等内部文档,形成可复用的SOP;
+
+任职要求:
+1. 在读本科及以上学历,计算机、软件工程、信息管理、图书情报、生物医学工程等相关专业优先;
+2. 对 RAG(检索增强生成) 有基本理解,了解向量数据库、Embedding、文本分块等核心概念,有实际项目或课程实践经验优先
+3. 数据处理能力:熟练使用 Excel/表格工具进行数据清洗;会 Python(pandas、正则表达式)优先;
+4. 细心耐心:能沉下心做精细化的数据清洗和校验工作,对数据质量有执念
+5. 学习能力强:能快速理解科研仪器领域的专业术语和参数含义(有生物医学、仪器仪表背景加分)
+6. 沟通能力好:能主动反馈问题、提出优化建议,和技术团队高效协作",,"[{""raw_name"": ""Embedding"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Embedding""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/b577f65c6147e6a20nJ429m7E1BU.html,2026-09-02,2026-09-02,none,human_reviewed
+AI全栈开发(RAG方向),北京利荣兴商通科技,北京,中国,朝阳区,25000,35000,CNY,llm_fullstack,"岗位职责
+1.全栈架构:端到端负责 AI Agent 应用的前后端设计、开发与迭代,保障系统高可用与可扩展性。
+2.核心引擎:深度打磨 Agent Harness 工程、Function Call / MCP /skill 等核心能力,突破智能体决策上限。
+3.前沿预研:持续追踪大模型技术演进,完成技术验证并沉淀为团队基础设施,驱动产品创新。
+4.业务赋能:与产品、业务专家紧密协作,将模糊的业务场景转化为优雅落地的工程方案。
+5.技术布道:指导团队成员,参与技术分享与沉淀,全面提升团队的 AI 工程化水位。
+
+任职要求
+1.全栈底座:3 年以上研发经验,精通  Node.js / TypeScript 生态,熟练驾驭 Redis、MySQL、MQ 等后端技术栈,具备优秀的架构设计审美。
+2.前端灵活:团队目前主要使用React/Nextjs,要求能灵活切换并独立把控高质量的全栈链路联调与交付。
+3.AI 实战:具备 Agent 框架开发经验,深刻理解 LLM API 调用、RAG(检索增强生成)架构以及上下文优化策略。
+4.AI Native 思维:极度拥抱 AI 技术,能够在日常开发中熟练运用 Cursor 等 AI 编程助手成倍提升研发效能。
+5.综合素质:统招本科及以上学历,计算机相关专业;具备极强的 Ownership、自驱力与团队合作精神。",,"[{""raw_name"": ""Harness Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Agent Harness""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Node.js"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Node.js""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Cursor""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Redis""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""js""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/1777e7b4930b76e20nJ93dm-F1JR.html,2026-09-02,2026-09-02,none,human_reviewed
+"AI rag(量化大厂,北上深都看)",某中型基金公司,北京,中国,,50000,80000,CNY,ai_application_dev,"岗位职责:
+负责AI应用知识库的内容处理和检索架构设计与开发,参与向量库的研发和维护,以及相应检索评估体系的建设;
+
+任职要求:
+本科及以上学历,计算机、电子、自动化等专业;
+有AI搜索经验,熟悉召回、排序等算法。
+熟悉 Faiss 开源项目,了解 HNSW、IVF、DiskANN 等算法的优化方法;
+有丰富的RAG优化的经验,熟悉相关前沿论文;
+熟悉常见 Embedding 模型,对前沿技术充满好奇心,能够独立推动前沿技术的探索和落地。
+
+加分项:
+扎实的深度学习算法基础,精通常见的深度学习和机器学习算法,并具备算法创新研究能力;
+在国际顶会或期刊发表相关论文(包括但不限于NIPS, ICML, CVPR, COLT)者;
+了解 Agent 相关技术,对AI应用感兴趣。",,"[{""raw_name"": ""Embedding"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Embedding""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""机器学习算法""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""深度学习算法""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/bb02191dad38ed980nF539y4F1BQ.html,2026-09-02,2026-09-02,none,human_reviewed
+音频多模态推理工程师-Seed大模型人才校招,字节跳动,北京,中国,海淀区,80000,100000,CNY,other,"职位描述
+1、负责音视频多模态场景大模型推理的性能优化,负责开发和优化多模态场景的推理系统,保证离在线推理性能达到业界领先水平;
+2、与算法同学深度合作,进行算法和训推系统的联合深度优化,支撑部门前沿技术探索以及落地;
+3、负责机器学习系统前瞻技术的调研和引入,持续加强提升部门关键技术竞争力,包括高性能,推理框架和模型压缩等方向。
+
+职位要求
+1、2027届获得本科及以上学历,人工智能、计算机、自动化、数学相关专业优先;
+2、熟练使用GPT、Claude、Gemini,Codex等vibe coding来提效工作,尤其是能够提高优化上限的经验者优先;
+3、精通高性能计算优化技术,深入理解计算机体系结构,熟悉CUDA生态,有CUDA/NCCL/Cutlass开发经验者优先;
+4、在VLLM,SGLANG等推理框架有深入优化经验,达成业界sota性能的经验者优先,尤其是多模态推理方面有相关经验者优先;
+5、在模型压缩的量化,投机采样,test-time scaling,蒸馏等方面有前瞻技术认知有相关探索产出或者扎实落地的相关经验者优先。
+
+Seed 大模型人才校招,是字节跳动 Seed 面向高校人才推出的招聘项目。我们始终相信,真正重要的技术进步来自对高难度问题的持续挑战。面对 AI 时代的巨大机遇,Seed 团队并不止步于模型迭代,而是选择进入技术深水区,推进下一代 AI 范式突破,不断探索智能的边界与上限。
+
+团队介绍:字节跳动 Seed 团队成立于 2023 年,致力于寻找通用智能的新方法,追求智能上限,为科技和社会发展作出贡献。
+Seed 团队在 AI 领域拥有长期愿景与决心,团队研究方向涵盖 MLLM、GenMedia、AI for Science、机器人等,在中国、新加坡、美国等地设有实验室和岗位。目前,团队已推出业界领先的通用大模型以及前沿的多模态能力,支持豆包、即梦、TRAE 等超过 50 个应用场景,并通过火山引擎开放给企业客户。第三方数据显示,豆包 App 用户量在中国市场排名第一,豆包大模型日均 Token 调用量行业领先。",,"[{""raw_name"": ""vLLM"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""VLLM""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/410d06aa5c200a430nN72NS4EldS.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型推理网关实习生,联创世界,北京,中国,朝阳区,3915,4785,CNY,other,"大模型推理网关技术支持实习生
+
+岗位职责
+客户技术问题响应
+1、在技术支持群里面,解答用户在使用大模型 API过程中的基础问题(如各种模型工具的配置)。
+2、指导用户完成不同大模型(OpenAI、Claude、Gemini、文心、通义、智谱、DeepSeek等)的API接入适配,包括Key申请、代理地址配置、请求格式转换等。
+提供调用示例与排错建议。
+3、问题上报与跟进 将用户反馈的疑似BUG或上游模型问题整理成结构化报告,提交给核心开发或运营团队。跟进已修复问题的验证和用户回访。
+4、定期整理高频问题与解决方案,更新FAQ、文档或视频教程,降低重复咨询量。
+5、协助定时检测各模型接口的可用性、响应时间、错误率,发现异常及时预警。
+任职要求
+1、熟悉HTTP协议、RESTful API调用方式,能熟练使用curl、Postman等工具进行接口测试。
+2、了解至少一种主流大模型的API规范(如OpenAI API格式、Claude Messages API、国内模型的兼容格式)。
+3、够解析常见的API错误码并给出用户可行的解决步骤。
+4、耐心、条理清晰,能用通俗语言向非技术用户解释技术问题。
+
+加分项
+有API中转站、代理网关、模型聚合平台,AI编程IDE的使用或维护经验。
+熟悉Cursor、Claude Code、OpenAI Codex等AI编程 IDE工具。
+熟悉Python/JavaScript/Shell脚本,能写简单的小工具进行自动化测试。
+了解网络代理、负载均衡、API Gateway基本概念。
+有技术社区(GitHub、V2EX、知乎)活跃记录或写过模型调用类教程。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""接口测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Postman""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""AI Coding"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Cursor""}, {""raw_name"": ""网络协议"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""HTTP协议""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""Shell 脚本"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Shell""}, {""raw_name"": ""自动化测试"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""自动化测试""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/47f418f73835a8bc0nB82d6_FVFR.html,2026-09-02,2026-09-02,none,human_reviewed
+【北斗】大模型算法-RL/推理/RAG/多模态,美团,北京,中国,朝阳区,50000,80000,CNY,other,"研究方向一:垂域LLM研究与构建​
+
+1.基座模型架构设计与优化:参与大语言模型基座架构的设计,研究前沿技术,如稀疏激活、混合精度训练等,同时优化模型的训练和推理流程。​
+
+2.技术创新与突破:参与前沿技术研究,如多任务学习、跨模态理解等,推动模型在复杂任务上的性能提升;探索Transformer替代架构,突破现有模型scaling law限制;同时挑战学术benchmark,为模型的性能树立新的行业标杆。​
+
+3.强化学习算法研究:参与大语言模型后训练阶段的强化学习算法研究,包括基于AI和环境反馈的强化学习(RLXF)算法。同时探索奖励模型与反馈机制,研究可泛化的细粒度过程监督和奖励建模,探索基于细粒度反馈的强化学习算法。​
+
+4.垂域模型定制化构建:领域认知智能突破,探索小样本场景自演进架构设计、可信推理机制构建等方向,同时建立面向AGI的模型评价体系新范式。​
+
+5.跨部门协作与落地:与公司数据科学家、算法工程师、产品团队紧密合作,将研究成果快速转化为实际应用,推动大语言模型在更多场景的落地。​​
+
+研究方向二:垂域MLLM研究与构建​
+
+​1.研究多模态表征与大语言模型融合的前沿技术,设计和实现创新算法,研究异质数据的统一编解码模型,适配多种模态下的特征统一,实现高效微调与优化。​
+
+2.探索强化学习(RL)在多模态大模型中的应用,包括强化学习增强的多模态生成、跨模态对齐、偏好建模及自适应优化,提升多模态理解与推理能力。
+
+​3.持续追踪多模态与强化学习结合的研究进展,优化现有多模态系统架构,提升性能、效率与可扩展性,推动多模态强化学习在智能体交互、决策推理等任务中的应用。
+
+​4.构建技术评估体系,通过多场景验证推动多模态理解、生成及强化学习优化策略的落地应用,提升多模态大模型的泛化能力和实际应用价值。​​
+
+研究方向三:基于角色扮演的虚拟数字助理
+
+​​1. 角色扮演技术(Role-Playing):通过模型优化、Agent构建,在人设、拟人性、情感等取得显著提升。
+
+​2. 记忆管理与增强(Memory):通过模型长上下文,记忆抽取与管理,提升系统的记忆能力。
+
+​3. 个性化技术:通过用户行为数据挖掘与建模,结合多轮对话上下文理解,分析用户情感状态,提升模型的个性化回复能力。
+
+​4. 基于Agent的数字助理:通过Agent构建和基于RL的优化,实现数字助理的能力复刻和增强
+
+任职要求
+
+1.优秀的探索与创新能力,在ACL/EMNLP/NAACL/NeurIPS/ICML/ICLR等顶级会议上发表论文者优先;
+
+2.扎实的算法功底,在ACM/ICPC、NOI/IOI、Top Coder、Kaggle等比赛获奖者优先;
+
+3.有较强的自驱力和良好的动手实践能力,对新事物有强烈的好奇心。
+
+岗位亮点:
+
+1.核心的业务场景:围绕百万骑手工作场景,充足的数据和计算资源,勇担社会责任,秉承“让骑手工作得更好”使命,让每位骑手享受科技红利。
+
+2.全方位技术挑战:服务于百万骑手的复杂场景,对AIGC技术纵深提出深刻要求,从知识注入到垂域模型训练,从多模态到Agent智能体,均是我们要攀登的高峰。
+
+3.健全的培养体系:全方位Mentor机制,保障技术能力与业务能力全面提升,深度参与行业课题的探索与攻坚。
+
+4.扎实的团队实力:发表多篇顶会论文、“技术突破”获奖团队、多项高校合作课题,团队氛围简单纯粹,丰富的内外部交流机会。",,"[{""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""长上下文""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""系统架构""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/f2f792cd3064f3bb0nB609-0GFBU.html,2026-09-02,2026-09-02,none,human_reviewed
+大模型研究和工程实习生-MiMo,小米,北京,中国,海淀区,6525,10875,CNY,other,"职位描述
+1.创新模型结构设计:
+  - 参与大型语言模型核心架构设计与优化
+  - 探索Transformer及其变种的改进方案
+2. 原生多模态探索:
+  - 研发原生多模态架构,实现文本、图像、音频等模态信息的深度融合
+  - 研究多模态对齐技术,实现不同模态的语义一致性
+3. 模型推理能力提升:
+  - 借助强化学习+CoT,提升大语言模型推理能力
+  - 自研强化学习算法,搭建强化学习训练框架,设计奖励函数、构建环境、优化模型提升性能
+4. 大模型训练推理Infra
+  - 开发和优化大规模分布式训练推理系统
+  - 优化大模型训练的内存使用和通信效率
+5. 科学评测体系构建:
+  - 构建科学严谨的算法评测方法,系统评估模型的性能
+  - 探索模型能力的潜在机制,推动模型优化和创新
+职位要求
+职位要求
+1. 学术能力:
+  - 精通深度学习、强化学习(RL)、自然语言处理(NLP)等领域,具备创新研究能力
+  - 在相关领域的国际顶会或期刊发表高质量论文(如 NeurIPS、ICML、CVPR、ICLR、ACL 等)
+  - 在领域内知名比赛(NOI、IOI、IPhO、ACM、Kaggle 等)中取得优异成绩者优先
+2. 编程能力:
+  - 熟练掌握 Python、C++ 或其他编程语言,具备扎实的数据结构与算法基础
+  - 熟悉主流深度学习框架(如 PyTorch、TensorFlow),能够高效实现复杂模型
+职位要求
+1. 学术能力:
+  - 精通深度学习、强化学习(RL)、自然语言处理(NLP)等领域,具备创新研究能力
+  - 在相关领域的国际顶会或期刊发表高质量论文(如 NeurIPS、ICML、CVPR、ICLR、ACL 等)
+  - 在领域内知名比赛(NOI、IOI、IPhO、ACM、Kaggle 等)中取得优异成绩者优先
+2. 编程能力:
+  - 熟练掌握 Python、C++ 或其他编程语言,具备扎实的数据结构与算法基础
+  - 熟悉主流深度学习框架(如 PyTorch、TensorFlow),能够高效实现复杂模型
+
+加分项
+- 熟悉大型模型训练技术,包括预训练、SFT(监督微调)、RLHF&O1(基于人类反馈的强化学习)。
+- 在多模态建模(如图像-文本、语音-文本对齐)领域有相关研究经验。
+- 有分布式系统和并行计算经验,熟悉CUDA编程或GPU优化技术",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""自然语言处理""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""评测体系""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""深度学习""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""C++"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/95e9d3ba2191c5390nN709y-ElBW.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态大模型算法研究员(VLA/VLM/视觉),某中型人工智能公司,上海,中国,,70000,100000,CNY,other,"核心职责:
+- 设计通用VLA模型架构(多模态融合、Action Expert、轨迹合成)
+- 有独立的research 能力,需要有很强的研究视野和水准,能带来新的认知
+目标人选画像:
+- 计算机/机器人学相关专业,硕士5年/博士3年以上经验
+- 偏计算机视觉,VLM背景会优于纯LLM或NLP
+- 技术栈:
+  - 有LLM/VLM/VLA训练经验(Qwen2VL,OpenVLA、π0、RDT-1B)
+  - 掌握扩散模型/流匹配(Diffusion/Flow Matching)用于动作生成
+  - 强化学习(RL)实战经验(SAC、PPO、DPO)
+- 加分项:有真机部署经验(机械臂、人形机器人),发表过ICRA/IROS/CoRL/NeurIPS论文",,"[{""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/823dd5ff1c109ea30nF909y6GVFS.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态大模型数据实习生,上海阶跃星辰智能科技,上海,中国,徐汇区,10875,21750,CNY,other,"岗位职责:
+1. 预训练数据处理:
+- 收集、整理和清洗用于预训练的多模态数据,包括文本、图像等。
+- 对数据进行预处理,去噪、归一化表达等,以确保数据质量。
+- 对数据进行抽样检查和质量评估,及时发现和纠正数据问题。
+2. 预训练数据合成:
+- 探索适合多模态图文理解大模型预训练的数据合成手段,包括但不限于几何,3D,计数领域
+- 设计实验验证合成数据的有用性,并依此迭代优化数据合成pipeline
+
+职位要求:
+1. 教育背景: 本科或研究生在读,计算机/人工智能相关专业优先
+2. 技术能力: 熟悉Python编程语言,了解文本/图像数据处理和分析的基本方法和工具。
+3. 多模态理解: 对多模态数据(文本、图像)有基本的理解。有大模型知识/经验者优先
+4. 学习能力: 具备快速学习和适应新知识、新技能的能力。
+5. 团队合作: 良好的沟通能力和团队合作精神,能够与团队成员密切合作。",,"[{""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/9097600872f491380nJ90tW5E1dT.html,2026-09-02,2026-09-02,none,human_reviewed
+(多模态)翻译技术负责人,某知名互联网上市公司,上海,中国,,80000,110000,CNY,other,"1、负责或者主导过翻译模型项目
+2、并且至少有超过一个模态的翻译场景经验
+(不要纯文字翻译,语音翻译或者视频翻译都可以)",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/3b86334494f427f20nFy2dy1E1dX.html,2026-09-02,2026-09-02,none,human_reviewed
+多模态算法研究(实习)-校招 秋招 面议!,无垠跃迁,北京,中国,海淀区,8700,17400,CNY,other,"职位:【实习]多模态算法研究
+(校招、秋招也有)
+
+[待遇-福利]
+早10/11点-晚7/8点,双休,午休,下午茶,零食+休息区+节假日福利。
+自研大模型,算力丰富,支持同学论文,以业务落地为导向。
+入职即配万元电脑+干元座椅。设有年终奖,全额社保12公积金。
+应届生,公司能协助申请1000-1500元/月房补。
+
+若在我司实习且想留在公司继续工作,毕业表现正常(不要三天打网两天晒鱼的,不犯重大错误,正常工作就行,不会压榨人),毕业公司给到转正机会,换市场价,双方商定重新定薪,童叟无欺!!!
+
+岗位描述:
+1.参与模型的多阶段训练优化,研究内容包括前沿多模态大模型训练算法,模型架构设计,数据参数配比等。
+2.负责垂类应用的数据收集处理,包括图文和视频等数据。
+3.开发前沿应用能力,包括prompt设计,记忆机制,function call等功能。
+4.模型开源的仓库建设与建设。
+
+
+任职要求:
+1.有扎实的NLP理论知识基础,熟悉Transformer,CLIP等主流模型原理。
+2.优秀的代码能力,熟练掌握Python以及pytorch,熟悉多模态大模型的训练推理pipeline。
+3.有过多模态大模型的训练调优经验。
+4.有过大规模大模型训练经验的优先。
+5.有过多模态大模型应用开发经验的优先。
+
+我们提供:
+1.与顶尖研究员一起突破技术边界的研发学习机会。
+2.产品实战环境:从技术到产品落地的全流程参与,直接参与产品的核心技术迭代。
+3.充足的算力支持充分的探索实验。",,"[{""raw_name"": ""LLM 应用开发"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""pytorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""架构设计""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/5e49bb8a0e5d6ebb0nJ82du6E1pX.html,2026-09-02,2026-09-02,none,human_reviewed
+【27校招】多模态大模型算法工程师 - 搜索,字节跳动,北京,中国,海淀区,30000,50000,CNY,ai_application_dev,"团队介绍:字节跳动搜索团队主要负责抖音、今日头条、红果短剧、番茄小说、AI搜索等产品以及电商、生活服务等业务的搜索算法创新和架构研发工作。
+我们使用前沿的机器学习/大模型技术进行端到端建模并不断创新突破,同时专注于分布式系统、机器学习系统的构建和性能优化,从内存、Disk等优化到索引压缩、召回、排序等算法的探索,致力于支撑字节跳动持续多元化的产品创新和高速的业务增长、基于大模型革新和重塑下一代搜索技术体系,充分给同学们提供成长自我的机会。
+主要工作方向包括:
+1、探索前沿的NLP技术:全面基于LLM的Query分析、相关性、个性化预估、满意度评估、生成式检索等,全链路应用LLM/VLM,每个细节都充满挑战;
+2、跨模态匹配技术:进行多模态预训练,在超大规模的多模态表征、匹配、生成等多个技术方向上持续突破,打造世界领先的多模态搜索系统;
+3、大规模流式机器学习技术:应用大规模机器学习,解决搜索中的推荐问题,让搜索更加个性化更加懂你;
+4、千亿级数据规模的架构:从大规模离线计算,分布式系统的性能、调度优化,到构建高可用、高吞吐和低延迟的在线服务的方方面面都有深入研究和创新;
+5、推荐技术:基于超大规模机器学习、因果推断、大模型推理等技术手段,构建业界领先的搜索推荐系统,对搜索推荐技术进行探索和创新;
+6、AI搜索技术:基于大模型(LLM/VLM)探索多轮、交互式等大模型原生的搜索产品体验。
+
+1. 负责业务基模的预训练体系建设,覆盖 Pretrain 与 Midtrain 全流程,围绕多模态模型训练,开展模型架构优化、训练目标设计、世界知识体系构建与注入、训练策略优化、千卡训练效率提升等探索,持续提升模型在视频与图文场景下的世界知识能力、多实体与细粒度识别能力,以及通用感知与理解能力。
+2. 负责业务基模的后训练体系建设,围绕 SFT 、 RL 、 OPD 等方向开展方法探索与落地,建设包含指令数据、偏好数据及业务推理数据在内的后训练数据体系,持续提升模型在业务场景下的指令跟随能力、通用推理能力与抗幻觉能力,实现模型效果与业务目标的持续对齐。
+3. 负责基模训练全阶段的数据与评估体系建设,覆盖预训练数据、后训练数据的数据清洗、标注、配比、合成与迭代,搭建全面的评估体系与质量监控机制,建立基模评估体系与业务表现之间的桥梁,提升离线评估对线上效果的预测能力。
+4. 跟踪基础模型领域最新技术进展,探索模型架构、训练范式、数据构建、知识强化和模型对齐等方向的前沿方法,并推动其在业务基模中的落地应用。
+职位要求
+1、2027届获得本科及以上学历,计算机、电子、数学等相关专业优先;
+2、在搜索广告推荐、NLP、多模态、AIGC、机器学习等一个或多个领域有较深入的研究者;
+3、具有出色的分析、解决问题的能力,能深入解决大模型训练、应用存在的问题,有自主探索解决方案的能力者;
+4、具有良好的沟通协作能力,工作积极主动,能够与团队融洽合作,一起探索新技术,推进技术进步。
+
+加分项:
+1、具有优秀的基础算法、扎实的机器学习基础,熟悉NLP、搜索、广告计算、RL、ML、AIGC、等领域的技术,在CVPR、ECCV、ICCV、NeurIPS、ICLR、SIGGRAPH或SIGGRAPH Asia等顶级会议/期刊上发表论文者优先;
+2、具有优秀的代码能力,熟练掌握C/C++或Python编程语言,ACM/ICPC、NOI/IOl、Top Coder、Kaggle等比赛获奖者优先;
+3、在LLM、多模态、大模型、基础模型、世界模型、RL领域,主导过大影响力项目者优先。",,"[{""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""分布式系统"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""C++""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/40de0b636bc620190nJy2tS6FFpV.html,2026-09-02,2026-09-02,none,human_reviewed
+具身智能模型算法(多模态、VLA或RL均可),嘭咔智能,北京,中国,海淀区,6525,6742,CNY,other,"【公司介绍】
+我们是聚焦下一代通用陪伴机器人研发的初创团队,汇聚了清北等顶级高校以及头部互联网和硬件大厂的顶尖人才,已获星连资本、云晖资本和卓源亚洲等头部机构/产业资本数千万元融资,团队高度扁平、背景复合,文化纯粹专注、追求极致、开放交流、AI Native。
+我们认为当前市场上的陪伴类产品本质上仍是功能堆叠的玩具,而交互、记忆、陪伴和情感等诸多单一关键词都不足以概括我们,我们真正关心的是如何在真实世界中拟合“生命”这套复杂混沌系统的形状,目标是创造真正有生命感、具备高自由度和泛化性的智能伙伴。
+
+【岗位职责】
+1. 负责具身智能感知-决策-执行全链路相关模型和算法的研发、训练、微调、评测和产品落地。
+2. 结合机器人场景,探索多模态理解、世界模型、VLA或强化学习等技术,提升机器人的感知、交互和自主决策能力。
+3. 负责相关数据构建、实验分析和算法迭代,解决模型效果、稳定性、响应速度及部署成本等问题。
+
+【任职要求】
+1. 实习岗,至少实习6个月,每周5天,300元/天。
+2. 在多模态感知(视觉、听觉和触觉等)、VLA或强化学习等至少一个方向具备扎实基础和实践经验。
+3. 重度使用Codex、Claude Code或Cursor等AI Coding工具,对AI工具有深入研究。
+4. 有激情和热情,除了日常工作和项目外,有过用十亿级甚至百亿级Token创造有意思的产品的经历。
+5. 加分项:有创业经历或创业意向",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/5fcd473d9e05b4020nJz3dm8F1pW.html,2026-09-02,2026-09-02,none,human_reviewed
+AI后端开发工程师(Golang+AI),米连集团,北京,中国,朝阳区,20000,40000,CNY,ai_application_dev,"岗位职责
+1、大模型工程侧后端研发,负责对话系统、记忆系统、RAG等模块的工程侧实现;
+2、构建高效的混合检索系统,结合语义搜索和关键词搜索实现最佳检索效果;
+3、负责大模型推理侧API接口设计与开发,确保系统稳定性、低延时和可扩展性
+职位要求
+任职要求
+1、计算机科学或相关专业学士及以上学位,3年以上 Golang开发经验;
+2、有1年以上AI后端工作经验,熟悉主流 AI Agent 框架和设计思路,能够快速构建 AI 应用;
+3、熟悉FunctionCall等Tools调用、openai对话接口规范、Prompt 优化等 LLM 模型调用链路;
+4、精通 FastAPI等Python/Go Web框架和微服务框架,有后端高并发系统设计和开发经验;",,"[{""raw_name"": ""Go"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Golang开发""}, {""raw_name"": ""FastAPI"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""FastAPI""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""微服务"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微服务""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/92f9d0783dcfacd90nB90929F1BS.html,2026-09-02,2026-09-02,none,human_reviewed
+全栈开发(golang/AI交付),某人工智能公司,北京,中国,,25000,50000,CNY,llm_fullstack,"岗位定位:
+我们寻找一位专注于AI项目一线交付的软件研发工程师。您将作为关键技术人员,频繁前往客户现场,独立或牵头完成AI应用系统(尤其涉及大模型与智能体应用)的部署、集成、定制开发和运维支持。本岗位高度重视研发能力和客户现场解决问题的能力。如果您技术扎实,对AI技术充满热情,享受在客户现场将技术转化为价值,并具备强烈的责任心与独立工作能力,我们诚挚邀请您的加入。
+岗位职责:
+独立项目交付:能够独立或作为技术主力,负责AI项目在客户现场的交付全流程,包括环境部署、系统集成、接口联调、定制化功能开发和上线支持。
+客户需求对接:在客户现场直接与客户沟通,精准理解业务需求,并将其转化为可行的技术实施方案,管理客户的技术预期。
+全栈开发:根据项目需要,承担后端服务开发或前端界面开发工作,确保系统功能完整、稳定运行。
+AI功能集成与实现:基于公司AI平台和能力,在客户现场进行二次开发、配置和调试,核心涉及大模型(LLM)能力集成、智能体(Agent)工作流的实现与优化。
+问题排查与解决:具备快速定位和解决现场各类技术问题的能力,保障项目顺利交付。
+岗位要求:
+必备条件:
+能够接受高频次、中长期的出差安排。 
+计算机相关专业本科及以上学历,1-3年及以上后端或前端开发经验。
+对AI大模型(LLM)技术有基本了解,对RAG、Function Calling等AI应用模式有概念性认知。
+技术能力(满足一侧即可,了解另一侧为佳):
+后端方向(主攻):
+熟练掌握 Java/Python/Go 中至少一门语言及主流框架(如Spring Boot, Django, Gin等)。
+熟悉数据库、API开发,具备良好的系统模块设计能力。
+对前端技术(Vue/React)有基本了解,能进行简单的界面修改或与前端协作。
+前端方向(主攻):
+熟练掌握 HTML5、CSS3、JavaScript(ES6+) 及 Vue.js/React 框架。
+熟悉前端工程化,具备良好的用户界面开发能力。
+对后端技术(如API、数据库)有基本了解,能独立与后端服务联调。
+优先考虑(重大加分项):
+有智能体(Agent) 应用或工作流引擎相关的实际开发或集成经验。
+具备“小全栈”能力,可同时完成后端业务逻辑和前端界面开发。
+有企业级软件项目现场交付、私有化部署或技术支持经验。
+综合素质:
+出色的客户沟通能力:能够清晰地与客户进行技术沟通,具备良好的服务意识。
+强大的独立解决问题能力:在资源有限或高压环境下,能主动寻找方案,快速解决现场技术难题。
+项目主导意识:具备强烈的责任心和工作驱动力,能主动推动项目进展,对交付结果负责。
+快速学习与适应性:能快速学习新技术和业务知识,适应不同客户环境的需求变化。
+团队协作精神:虽需独立工作,但能通过远程方式与总部团队紧密协作,高效同步信息。",,"[{""raw_name"": ""Function Calling"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Function Calling""}, {""raw_name"": ""Spring Boot"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Django"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Django""}, {""raw_name"": ""Vue"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Vue.js""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Java""}, {""raw_name"": ""前端开发"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""前端开发""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/31735a222b2b4d110nB-0tu8ElFV.html,2026-09-02,2026-09-02,none,human_reviewed
+NLP算法工程师-27秋招,作业帮,北京,中国,,,,,ai_application_dev,"岗位职责:1.利用大模型及相关技术在人工重高服务场景中提升人工效率,实现部分自动化替代,构建智能化服务体系;2.深度参与LLM应用场景的研究与探索,负责模型训练、SFT、DPO、RAG等具体任务;3.跟踪和调研前沿技术,推动新技术在业务中的落地和应用,提升整体AI化能力。岗位要求:1.硕士及以上学历,计算机、人工智能相关专业优先;2.精通 Python/C++/Shell 等常用编程语言,对数据结构和算法设计有深入理解;3.熟悉 NLP 领域的深度学习与机器学习模型,具备相关背景或项目经验者优先;4.对 LLM 和 Transformer 等原理有深刻理解,有 SFT 和 DPO 实践经验者优先;5.熟练掌握 PyTorch 或 TensorFlow 等主流深度学习框架之一;6.具备出色的问题拆解和案例分析能力,能够为需求和目标制定合理的解决方案和排期。",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""Shell 脚本"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Shell""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SFT""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/d37885d25d9765840nJ-3di_EFpX.html,2026-09-02,2026-09-02,none,human_reviewed
+ai算法专家(语音/CV多模态/NLP大模型),深圳某大型智能硬件/消费电子上市公司,北京,中国,,80000,110000,CNY,other,"ai算法专家(语音/NLP大模型,无行业要求)
+工作地点:北京/深圳(可选)
+年薪:200W内可聊(具体根据人选情况而定)
+招聘3人:语音方向1人(专家1人,工程师同步招聘)、CV方向一人、NLP方向一人
+年龄:87后可聊(对年龄比较友好),统招一本及以上学历。
+
+语音方向(同步看专家级别以及工程师级别)
+岗位职责:
+重点看有3A/声纹经验的人选+专家招聘1人/工程师级别若干
+1. 负责语音识别系统研发与优化,提升识别准确率、响应速度及多场景适应能力;
+2. 持续跟进语音识别前沿技术(如端到端模型、自监督学习、个性化适配等),并推动在产品中的落地应用
+3. 参与构建和维护语音数据标注体系,进行数据清洗、训练、评估全流程管理;
+任职资格:
+1. 6年以上语音识别相关领域工作经验 ,有ASR系统实际落地经验,熟悉主流语音识别框架(如Kaldi、DeepSpeech、Wav2Vec2、Whisper等);
+2. 熟悉语音信号处理技术,包括但不限于语音增强、噪声抑制、回声消除、VAD等;
+3. 精通Python/C++中至少一种语言,具备良好的算法实现能力;熟悉深度学习框架(如PyTorch/TensorFlow),有端到端语音识别模型开发经验者优先;
+4. 对语音识别在嵌入式/低资源设备上的部署有一定了解,有模型压缩、量化、推理优化经验者优先;
+5.  具备良好的沟通能力和团队合作精神,能够承担一定的工作压力;
+
+NLP大模型方向:
+岗位职责
+1. 负责AI助手相关大模型的研发与优化,包括但不限于文本问答、意图理解、对话生成等;
+2. 负责大规模语言模型的训练、微调、压缩及部署,提升模型效果与推理效率;
+3. 构建高质量训练数据,持续优化模型性能与用户体验;
+招聘要求:
+1. 6年以上NLP相关经验,有大模型(如LLaMA、Qwen, ChatGLM等)实战经验;
+2. 熟悉主流深度学习框架(如PyTorch、TensorFlow),具备良好的工程实现能力;
+3. 熟悉文本生成、对话系统、信息抽取、语义匹配等技术;有AI助手、智能客服、问答系统等项目经验者优先;
+4. 具备模型蒸馏、量化、加速(如LoRA、Prompt Tuning)等优先。",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LoRA""}, {""raw_name"": ""推理优化"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""推理优化""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""深度学习""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/135c2e707c7e28630nJ_3d21FltZ.html,2026-09-02,2026-09-02,none,human_reviewed
+NLP算法实习生(互联网企业征信业务),多乐游戏,北京,中国,海淀区,21532,21750,CNY,agent_dev,"主要职责:
+1.智能文本挖掘与风险识别(NLP/大模型/AI Agent 应用)
+利用NLP/大模型/AI Agent,结合提示工程(Prompt Engineering)与检索增强生成(RAG),构建裁判文书、招标公告的自动化信息抽取流水线,实现实体识别(企业、人员、金额、时间等)、关系抽取(担保、诉讼、关联交易等)以及风险条款智能比对。
+设计AI Agent工作流(如多 Agent 协作、任务分解与工具调用),实现复杂文档的自动摘要、关键风险点定位及合规性检查,形成可解释的风险分析报告。
+封装大模型推理服务,通过缓存、并发、模型量化等手段优化响应速度,支持实时查询与批量处理。
+2.企业关联图谱构建与风险传导分析
+利用图数据库(Neo4j)与GraphX(Spark图计算),整合招投标、司法、工商等多源数据,构建""企业-人-项目""多层关联网络。
+开发担保圈识别、一致行动人挖掘及最终受益人穿透算法,识别隐性关联与风险传导路径,支撑反欺诈与合规审查。
+3.综合价值与风险评分模型
+迭代优化企业科创能力评分(基于专利、招投标质量等)、司法涉诉风险评分(基于案件类型、金额、频率等)。
+融合招投标履约表现(中标率、合同执行情况)与司法历史,构建多维综合信用评分卡模型,输出可解释的企业信用评级。
+任职要求:
+1、985/211院校,计算机、数学、统计学、人工智能等相关专业硕士及以上学历, NLP相关专业。
+2、精通Python及常用数据分析库(Pandas、NumPy),熟练使用SQL进行复杂数据查询与分析。
+3、扎实的机器学习基础,熟悉NLP、数据挖掘,大规模数据处理全流程。4、具备良好的业务理解与技术落地能力,能够将业务需求转化为高效的技术方案。
+优先考虑(加分项):
+1、NLP/大模型应用经验:较深的NLP能力;有实际使用RAG、提示工程、Agent 编排进行文档自动化处理的落地项目;有处理法律文书、招投标文本信息抽取经验者优先。
+2、图计算经验:熟悉Neo4j/Cypher、GraphX 或 NetworkX,有构建企业知识图谱或关系挖掘(如股权穿透)落地经验优先。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Neo4j"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Neo4j""}, {""raw_name"": ""Spark"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Spark""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""SQL""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/18a0c91a999240600nJ93tq_FVdR.html,2026-09-02,2026-09-02,none,human_reviewed
+NLP自然语言处理实习生-抖音(27届),字节跳动,北京,中国,海淀区,8700,9788,CNY,ai_application_dev,"团队介绍:Data-抖音团队,负责抖音APP的推荐算法、内容算法、对话算法及大数据工作,对接各场景业务(短视频,直播,图文,电商,社交,生态,投稿,消息,同城,生活服务,音乐,评论,内容理解&安全、智能对话等)。我们的工作涉及大规模推荐算法的优化、复杂约束的优化问题的解决、内容理解、LLM应用以及新业务方向探索、CV/NLP等多个学术领域的算法改进工作、对多种场景的推荐架构的设计和实现和对产品数据的复杂深入的分析工作。在这里,你可以深入钻研机器学习算法的改进和优化,探索工业界最领先的推荐系统架构和推荐大模型算法、可以通过使用最新的大模型等技术支持抖音的数字人、智能客服、AI工具等创新探索;可以通过对产品的深度理解和思考,将算法应用到业务中去;也可以通过对产品和内容生态的深度分析,影响产品未来的发展方向。
+
+1、负责抖音内容理解、内容安全、内容生态、对话Bot等场景的NLP应用算法落地;
+2、NLP相关新技术的跟进和研究,探索大模型等技术的潜在发展方向和应用;
+3、结合算法模型的业务流程建设和代码框架研发工作。
+职位要求
+1、2027届本科及以上学历在读,计算机、软件工程等相关专业优先;
+2、熟悉常用的NLP、机器学习相关技术;对文本分类、实体识别、语言模型、意图识别等常用技术,并有相关实践经验;熟悉大语言模型相关技术,有LLM相关开发和应用落地经验者优先;
+3、有较扎实的代码编程能力,熟练掌握C/C++/Python;
+4、熟悉PyTorch等开源深度学习框架;
+5、有高水平论文者、相关实习经验者优先,包括但不限于ACL、EMNLP、NIPS、AAAI等;
+6、每周可实习4天以上,实习时间3个月以上。",,"[{""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""机器学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""机器学习算法""}, {""raw_name"": ""深度学习"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""深度学习""}, {""raw_name"": ""系统架构"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""系统架构""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""C++""}, {""raw_name"": ""NLP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""NLP""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/8a90113a8b7a1c93031y3d29FFVQ.html,2026-09-02,2026-09-02,none,human_reviewed
+AI提示词工程师(AIGC图片 / Agent 方向),赶海信息科技,上海,中国,徐汇区,12000,24000,CNY,ai_application_dev,"岗位职责
+  1. 负责公司 AI 创作平台的 Prompt 设计与优化,覆盖通用生图、专业生图、电商图、营销图、图片改图等场景。
+  2. 根据业务目标设计稳定的提示词模板,包括用户意图理解、图片要求提炼、风格控制、构图描述、商品信息保留和输出格式约束。
+  3. 参与 Agent 节点 Prompt 编写与维护,提升任务路由、需求解析、创意方案、图片生成、结果审核等节点的稳定性。
+  4. 建立 Prompt 测试用例和效果评估标准,对模型输出进行对比、归因、记录和迭代。
+  5. 与产品、设计、算法、后端协作,将用户口语化需求转化为模型可执行的结构化指令。
+  6. 持续优化 AIGC 图片效果,包括商品主体一致性、文字准确性、风格统一性、画面质感、营销表达和平台适配。
+  7. 跟踪主流大模型和生图模型能力变化,沉淀可复用的 Prompt 规范、案例库和避坑经验。
+    
+任职要求
+  1. 2年以上 AI 应用、AIGC、内容产品、广告创意、电商设计、视觉设计或相关经验。
+  2. 熟悉主流大模型或生图工具,如 ChatGPT、Claude、Midjourney、Stable Diffusion、即梦、可灵、通义万相等。
+  3. 具备较强的文字表达和结构化能力,能把模糊需求拆成清晰、可执行、可测试的提示词。
+  4. 对图片质量有判断力,能从构图、光影、主体、风格、文字、商业表达等角度分析生成结果。
+  5. 能耐心做 A/B 测试、案例记录、失败归因和版本迭代,而不是只凭感觉调 Prompt。
+  6. 对 AI 产品有兴趣,愿意理解 Agent 流程、节点任务、结构化输出和产品交互。
+  7. 沟通清楚,能和开发、设计、产品一起推进效果优化。
+    
+加分项
+  1. 有电商图、营销图、广告创意、商品图、详情图、社媒素材相关经验。
+  2. 有设计背景,熟悉 Photoshop、Figma、Canva、Stable Diffusion 工作流等工具。
+  3. 有 Prompt 评测集、知识库、模型效果对比、AI 工作流配置经验。",,"[{""raw_name"": ""软件测试"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""测试用例""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/1aa2df952b3739750nBz2t6-FFJV.html,2026-09-02,2026-09-02,none,human_reviewed
+AI智能体开发,云智创心,杭州,中国,钱塘区,13920,17400,CNY,agent_dev,"工作周期:长期兼职
+每周工期:3-4天
+工作时间:不限
+工作时段:不限
+结算方式:周结
+招聘截止时间:2026-12-31
+短视频内容创作相关的智能体开发和优化。涉及电商、本地生活、企业营销、短剧等应用场景。
+交换微信后,可以主动加我,boss账号不是每天在线",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/21b5933db6b8d85e0nJ60tW0GFFR.html,2026-09-02,2026-09-02,none,human_reviewed
+智能体开发,荏苒科技,杭州,中国,余杭区,7000,12000,CNY,agent_dev,"您好,我们是一个年轻有朝气的初创公司。目前正在扩招,此岗位为急招岗位,需要有相关经验的应聘者快速入职。
+需要在杭州的应聘者!!!急急急,外地的友友们优秀者也可联系
+公司员工基本为95后,管理制度扁平化。
+
+每年根据绩效情况有调薪机会,年终奖,下午茶、团建、体检,福利满满。
+
+公司双休制度,上班时间早9:30-晚6:30,上下弹性半小时,加班有调休,实习期两个月0.8薪,入职正常缴纳五险一金,薪酬结构为基本薪资+绩效薪资。
+一、岗位职责
+1、负责AI项目智能体开发、调试和部署等工作;
+2、熟练使用AI工具搭建自动化工作流与内容生产线,形成可复用的标准化流,提升团队产出效率。
+二、任职要求
+1、熟悉AI Agent基本原理,熟悉ReAct等基础范式,了解Function Calling、RAG等常用能力;
+2、了解 MCP、A2A 协议,熟悉 LangChain/LangGraph 等智能体框架,具备 Agent 编排与工具调用开
+发经验;
+3、熟悉主流大模型应用:GPT、通义千问、文心一言、DeepSeek等API对接与Prompt优化;
+4、能熟练使用Claude Code、Codex等AI编程工具完成高质量创作。
+三、加分项:
+1、有多智能体(Multi-Agent)系统开发经验,最好有设计多Agent协同完成复杂动漫制作流程的经验;
+2、了解AI动漫创作痛点者优先;
+3、了解机器学习、深度学习基础。",,"[{""raw_name"": ""Function Calling"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Function Calling""}, {""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Multi-Agent""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""LangChain""}, {""raw_name"": ""LangGraph"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""ReAct""}, {""raw_name"": ""React"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""ReAct""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI编程""}, {""raw_name"": ""机器学习"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""机器学习""}, {""raw_name"": ""深度学习"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""深度学习""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""MCP""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/52611dacfb785d9f0nJ53dm7F1FS.html,2026-09-02,2026-09-02,none,human_reviewed
+智能体开发工程师,杭州镒智科技有限公司,杭州,中国,西湖区,6000,7000,CNY,agent_dev,"岗位职责:  
+1. 负责智能体、小程序系统的设计与开发,实现智能化、小程序功能模块  
+2. 参与智能算法的优化与迭代,提升系统整体性能  
+
+任职要求:  
+1. 善于沟通、按时完成上级交给的工作  
+2. 拥有良好的团队合作精神,能迅速融入团队  
+3. 具备良好的学习能力,能够不断改进工作方法
+4.能独立开发智能体、小程序等。
+岗位福利:薪资根据技术和单值的百分比定
+任职要求:
+1.能独立开发和按时间及要求完成任务,
+2.促进老板签单
+3.具有FDE岗位经验",,[],public_job_page,boss_zhipin,https://www.zhipin.com/job_detail/9c98eb41b063dc0e0nJy3tq4FlBV.html,2026-09-02,2026-09-02,none,human_reviewed

@@ -8,9 +8,9 @@ from skillgap.ingest.normalize import detect_language
 MIN_LEN, MAX_LEN = 50, 20000
 
 _JOB_SIGNAL = ["工程师", "开发", "研发", "技术", "算法", "实习", "经理", "架构师",
-               "专员", "分析师", "scientist", "engineer", "developer", "manager",
-               "ai", "人工智能", "大模型", "llm", "agent", "智能体", "rag",
-               "后端", "前端", "全栈", "软件", "数据"]
+               "专员", "分析师", "评测", "scientist", "engineer", "developer",
+               "manager", "ai", "人工智能", "大模型", "llm", "agent", "智能体",
+               "rag", "后端", "前端", "全栈", "软件", "数据"]
 
 _SPAM_MARKERS = ["刷单", "兼职日结", "点击链接", "稳赚", "日入", "带赚", "零门槛高薪"]
 
