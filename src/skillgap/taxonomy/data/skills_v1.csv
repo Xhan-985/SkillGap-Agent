@@ -71,3 +71,10 @@ Coze,engineering,-,low,-,扣子,coze,字节 Bot 开发平台
 Embedding,retrieval,-,mid,-,向量化|向量表示,embedding|embeddings,文本向量化
 多智能体协作,agent_framework,-,mid,-,多Agent协作|多智能体,multi-agent|multi agent|multi-agent system,多 Agent 系统协作
 推理优化,serving,-,high,-,推理加速|模型加速,inference optimization|inference acceleration,推理性能优化
+机器学习,serving,-,mid,-,机器学习算法|ML算法,machine learning|ml,经典与统计机器学习
+深度学习,serving,-,high,-,神经网络|深度学习算法,deep learning,神经网络与深度学习
+NLP,serving,-,mid,-,自然语言处理,nlp|natural language processing,自然语言处理
+软件测试,engineering,-,low,-,测试理论|测试流程|测试方法|测试计划|测试用例|功能测试|回归测试,software testing|qa,软件测试方法与流程
+自动化测试,engineering,-,mid,-,UI自动化|自动化测试框架,automation testing|selenium|appium|pytest|testng|cypress,自动化测试框架与脚本
+接口测试,engineering,-,low,-,API测试,api testing|postman,接口测试方法
+性能测试,engineering,-,mid,-,压力测试|负载测试|压测,performance testing|jmeter|loadrunner|locust,性能与负载测试
