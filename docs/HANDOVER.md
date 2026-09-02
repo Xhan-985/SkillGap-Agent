@@ -126,17 +126,17 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 
 ## 8. 数据库现状（2026-09-02）
 
-- **50 条岗位**（批次 1，全部 `public_job_page` / market=china；2 条 example.com 测试遗留已删除）
-- 类别分布：agent_dev 20 / ai_application_dev 16 / llm_fullstack 10 / ai_platform 4
-- **408 行 job_skill**（manual 标注），无未解析候选
+- **100 条岗位**（批次 1：50 条 company_career_page；批次 2：50 条 = 手动 23 + boss_zhipin 27，均已导入）
+- 批次 2 类别分布：agent_dev 20 / ai_application_dev 14 / llm_fullstack 7 / other 5 / dify_dev 2 / python_ai_dev 2；技能标注 387 条；时薪/日薪按 174h / 21.75 天折算月薪入库
+- **782 行 job_skill**，无未解析候选；quality-report missing_field_rate=0.0
 - 批次 1 抽样核对（21 条）已完成：修复"从 0 到 1"薪资误判 bug（job 53/72/99，commit 30a7370），其余字段与原文一致；抽查底账 `data/verify_batch1_sample20.csv`
-- 词表 v1.8：85 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering）；来源注册表 5 条（adzuna / company_career_page / user_contribution / community_csv / demo_dataset）
+- 词表 v1.8：85 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering）；来源注册表 6 条（adzuna / company_career_page / boss_zhipin / user_contribution / community_csv / demo_dataset）
 - E1 标注集：20 条种子（`data/eval/e1_seed_v1.json`）
-- **market_snapshot：snapshot#1**（2026-09-02，N=50，medium，s11-v1；top：Python 0.76 / Java 0.58 / RAG 0.54；与 MARKET_RESEARCH §2.1 交叉对照 tau=0.1538——首跑记录 `docs/plans/phase4_first_run_results.md`）
+- **market_snapshot：snapshot#2**（2026-09-02，N=100，medium，s11-v1；top：Python 0.76 / RAG 0.50 / Prompt Engineering 0.43 / Java 0.42 / AI Coding 0.32；来源构成 company_career_page 73% + boss_zhipin 27%）
 
 ## 9. 遗留任务（按优先级）
 
-1. **继续收集批次 2-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表→`snapshot-create` 更新快照）
+1. **继续收集批次 3-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表→`snapshot-create` 更新快照；N≥200 时 confidence 升 high）
 2. ~~配置 LLM_API_KEY 跑 E1 真实基线~~ ✅ 已完成（2026-09-02，deepseek-chat，eval_run#2：**F1=0.914 / P=0.9659 / R=0.8673 / evidence_rate=1.0 / importance_accuracy=0.8706，verdict=PASS**，远超 0.75 warn 线；eval_run 历史含 #1 block——key 粘贴重复导致的 401 诚实留档。后续：标注集 v2 扩至 50-100 条后重跑回归）
 3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-02，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
 4. **标注集 v1 → v2**：从首批真实 JD 扩展至 50-100 条（不静默改 v1）
