@@ -21,6 +21,15 @@ DATA_SOURCES = [
         terms_checked_at=date(2026, 8, 31),
     ),
     dict(
+        source_type="public_job_page", source_name="boss_zhipin",
+        trust_tier="tier_b",
+        license_or_usage_note=(
+            "BOSS直聘公开职位页摘录（记录 source_url）；仅本项目内部统计用途，"
+            "不分发原文；低频采集"),
+        attribution_html=None, covers_market="china",
+        terms_checked_at=date(2026, 9, 2),
+    ),
+    dict(
         source_type="user_submitted", source_name="user_contribution",
         trust_tier="tier_b",
         license_or_usage_note=(
