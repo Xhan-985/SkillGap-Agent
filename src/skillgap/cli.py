@@ -2,7 +2,8 @@
 
 命令清单：
   db-upgrade / seed / import / ingest-adzuna / contribute /
-  delete-contribution / quarantine-list / raw-cleanup / quality-report / stats
+  delete-contribution / quarantine-list / raw-cleanup / quality-report
+  stats（支持切片）/ snapshot-create / skill-evidence / market-crosscheck（Phase 4）
   jd-analyze / eval-e1 / backfill-extraction（Phase 3，需 LLM_API_KEY）
 """
 from __future__ import annotations
@@ -29,11 +30,14 @@ from skillgap.ingest.contribute import (
     ConsentRequired, QuarantinedContribution, contribute_jd, delete_contribution,
 )
 from skillgap.ingest.importer import parse_file
+from skillgap.ingest.normalize import JOB_CATEGORIES
 from skillgap.ingest.pipeline import run_batch
 from skillgap.llm.gateway import LLMGateway
 from skillgap.llm.provider import LLMError, OpenAICompatibleProvider
 from skillgap.quality_metrics import quality_report
-from skillgap.stats import skill_frequency
+from skillgap.stats import (
+    create_snapshot, crosscheck_baseline, skill_evidence, skill_frequency,
+)
 from skillgap.taxonomy.seed import seed_all
 
 
@@ -67,8 +71,35 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("quality-report", help="E5 数据质量报告（JSON）")
 
-    p_st = sub.add_parser("stats", help="频率统计空跑（S11 口径）")
+    def _add_slice_flags(p):
+        p.add_argument("--category", choices=sorted(JOB_CATEGORIES))
+        p.add_argument("--city")
+        p.add_argument("--salary-min", type=int)
+        p.add_argument("--salary-max", type=int)
+        p.add_argument("--window-start", help="ISO 日期 YYYY-MM-DD")
+        p.add_argument("--window-end", help="ISO 日期 YYYY-MM-DD")
+
+    p_st = sub.add_parser("stats", help="频率统计（S11 口径，支持切片）")
     p_st.add_argument("--market", choices=["china", "global"], default="china")
+    p_st.add_argument("--min-sample", type=int, default=30)
+    _add_slice_flags(p_st)
+
+    p_snap = sub.add_parser("snapshot-create",
+                            help="生成市场统计快照（N<30 拒绝写表）")
+    p_snap.add_argument("--market", choices=["china", "global"], default="china")
+    p_snap.add_argument("--min-sample", type=int, default=30)
+    _add_slice_flags(p_snap)
+
+    p_ev2 = sub.add_parser("skill-evidence", help="技能 → 支撑 JD 溯源底账")
+    p_ev2.add_argument("--skill", required=True, help="词表 canonical_name")
+    p_ev2.add_argument("--market", choices=["china", "global"], default="china")
+    _add_slice_flags(p_ev2)
+
+    p_cc = sub.add_parser("market-crosscheck",
+                          help="与 MARKET_RESEARCH §2.1 方向一致性对照")
+    p_cc.add_argument("--market", choices=["china", "global"], default="china")
+    p_cc.add_argument("--min-sample", type=int, default=30)
+    _add_slice_flags(p_cc)
 
     p_jd = sub.add_parser("jd-analyze",
                           help="粘贴 JD → 结构化分析（M1，不落库）")
@@ -119,6 +150,24 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
     conn = db.connect(db_url)
 
     try:
+        def _slice_kwargs(args):
+            kw = {}
+            if getattr(args, "category", None):
+                kw["category"] = args.category
+            if getattr(args, "city", None):
+                kw["city"] = args.city
+            if getattr(args, "salary_min", None) is not None:
+                kw["salary_min"] = args.salary_min
+            if getattr(args, "salary_max", None) is not None:
+                kw["salary_max"] = args.salary_max
+            if getattr(args, "window_start", None):
+                kw["window_start"] = args.window_start
+            if getattr(args, "window_end", None):
+                kw["window_end"] = args.window_end
+            if getattr(args, "min_sample", None):
+                kw["min_sample"] = args.min_sample
+            return kw
+
         if args.command == "db-upgrade":
             _print(db.upgrade(conn))
         elif args.command == "seed":
@@ -174,7 +223,15 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
         elif args.command == "quality-report":
             _print(quality_report(conn))
         elif args.command == "stats":
-            _print(skill_frequency(conn, args.market))
+            _print(skill_frequency(conn, args.market, **_slice_kwargs(args)))
+        elif args.command == "snapshot-create":
+            _print(create_snapshot(conn, args.market, **_slice_kwargs(args)))
+        elif args.command == "skill-evidence":
+            _print(skill_evidence(conn, args.market, args.skill,
+                                  **_slice_kwargs(args)))
+        elif args.command == "market-crosscheck":
+            _print(crosscheck_baseline(conn, args.market,
+                                       **_slice_kwargs(args)))
         elif args.command == "jd-analyze":
             extractor = _make_extractor(conn)   # key 检查先于文件读取
             if extractor is None:

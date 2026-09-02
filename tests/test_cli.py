@@ -14,10 +14,11 @@ def test_parser_subcommands():
     for cmd in ["db-upgrade", "seed", "ingest-adzuna", "import", "contribute",
                 "delete-contribution", "quality-report", "stats",
                 "quarantine-list", "raw-cleanup",
-                "jd-analyze", "eval-e1", "backfill-extraction"]:
+                "jd-analyze", "eval-e1", "backfill-extraction",
+                "snapshot-create", "skill-evidence", "market-crosscheck"]:
         ns = parser.parse_args([cmd] if cmd not in (
             "ingest-adzuna", "import", "contribute", "delete-contribution",
-            "stats", "jd-analyze") else [cmd] + (
+            "stats", "jd-analyze", "skill-evidence") else [cmd] + (
             ["--country", "gb", "--query", "LLM"] if cmd == "ingest-adzuna"
             else ["--file", "x.csv"] if cmd == "import"
             else ["--title", "t", "--file", "j.txt", "--consent"]
@@ -25,6 +26,8 @@ def test_parser_subcommands():
             else ["--code", "AB12-CD34"] if cmd == "delete-contribution"
             else ["--market", "china"]
             if cmd == "stats"
+            else ["--skill", "RAG"]
+            if cmd == "skill-evidence"
             else ["--file", "j.txt", "--title", "t"]))
         assert ns.command == cmd
 
@@ -109,3 +112,47 @@ def test_contribute_without_consent_returns_clean_error(clean_db, tmp_path,
     with clean_db.cursor() as cur:
         cur.execute("SELECT count(*) AS c FROM job")
         assert cur.fetchone()["c"] == 0   # 未入库
+
+
+# ---------- Phase 4：stats 切片 + snapshot-create / skill-evidence / market-crosscheck ----------
+
+
+def test_stats_slice_flags(clean_db, capsys):
+    from tests.test_stats import _jobs
+    _jobs(clean_db, 35, city="北京", job_category="agent_dev")
+    rc = main(["stats", "--market", "china", "--category", "agent_dev",
+               "--city", "北京", "--min-sample", "5"], db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["filters"]["category"] == "agent_dev"
+    assert out["filters"]["city"] == "北京"
+    assert out["sample_size"] == 35
+
+
+def test_snapshot_create_command(clean_db, capsys):
+    from tests.test_stats import _jobs
+    _jobs(clean_db, 35)
+    rc = main(["snapshot-create", "--market", "china"], db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["status"] == "ok" and "snapshot#" in out["evidence_ref"]
+
+
+def test_skill_evidence_command(clean_db, capsys):
+    from tests.test_stats import _jobs
+    _jobs(clean_db, 35)
+    rc = main(["skill-evidence", "--market", "china", "--skill", "RAG"],
+              db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["skill_id"] == "RAG"
+    assert out["jd_count"] == 35
+
+
+def test_market_crosscheck_command(clean_db, capsys):
+    from tests.test_stats import _jobs
+    _jobs(clean_db, 35)
+    rc = main(["market-crosscheck", "--market", "china"], db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["status"] == "ok" and "tau" in out
