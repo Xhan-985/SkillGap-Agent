@@ -14,7 +14,7 @@
 Phase 0  市场与竞品研究          ✅ 完成（10 份研究文档）
 Phase 1  需求冻结 + 架构设计      ✅ 完成（ADR-001~010，16 端点契约）
 Phase 2  数据模型 + 管道 + 数据集 ✅ 代码完成；数据收集进行中（批次 1/4-5 已入库）
-Phase 3  JD Analyzer + LLM 抽取  ✅ 代码完成；真实基线跑分待 API key
+Phase 3  JD Analyzer + LLM 抽取  ✅ 完成（E1 基线 2026-09-02：F1=0.914 PASS，eval_run#2）
 Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#1 已产出，tau=0.1538）
 Phase 5-11                       ⬜ 未开始（下一步 Phase 5 Candidate Profile）
 ```
@@ -137,7 +137,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 ## 9. 遗留任务（按优先级）
 
 1. **继续收集批次 2-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表→`snapshot-create` 更新快照）
-2. **配置 LLM_API_KEY 跑 E1 真实基线**（Phase 3 验收项：F1 ≥0.75 warn 线起步；<0.75 按 EVALUATION_PLAN §7 分诊迭代 Prompt，不放宽阈值）
+2. ~~配置 LLM_API_KEY 跑 E1 真实基线~~ ✅ 已完成（2026-09-02，deepseek-chat，eval_run#2：**F1=0.914 / P=0.9659 / R=0.8673 / evidence_rate=1.0 / importance_accuracy=0.8706，verdict=PASS**，远超 0.75 warn 线；eval_run 历史含 #1 block——key 粘贴重复导致的 401 诚实留档。后续：标注集 v2 扩至 50-100 条后重跑回归）
 3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-02，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
 4. **标注集 v1 → v2**：从首批真实 JD 扩展至 50-100 条（不静默改 v1）
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
