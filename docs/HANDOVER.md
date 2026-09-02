@@ -130,7 +130,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 - 类别分布：agent_dev 20 / ai_application_dev 16 / llm_fullstack 10 / ai_platform 4
 - **408 行 job_skill**（manual 标注），无未解析候选
 - 批次 1 抽样核对（21 条）已完成：修复"从 0 到 1"薪资误判 bug（job 53/72/99，commit 30a7370），其余字段与原文一致；抽查底账 `data/verify_batch1_sample20.csv`
-- 词表 v1.7：83 技能（2026-09-02 增补算法/测试类 7 项 + 系统架构 + 前端 3 项）；来源注册表 5 条（adzuna / company_career_page / user_contribution / community_csv / demo_dataset）
+- 词表 v1.8：85 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering）；来源注册表 5 条（adzuna / company_career_page / user_contribution / community_csv / demo_dataset）
 - E1 标注集：20 条种子（`data/eval/e1_seed_v1.json`）
 - **market_snapshot：snapshot#1**（2026-09-02，N=50，medium，s11-v1；top：Python 0.76 / Java 0.58 / RAG 0.54；与 MARKET_RESEARCH §2.1 交叉对照 tau=0.1538——首跑记录 `docs/plans/phase4_first_run_results.md`）
 

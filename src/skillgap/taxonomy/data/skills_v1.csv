@@ -82,3 +82,5 @@ NLP,serving,-,mid,-,自然语言处理,nlp|natural language processing,自然语
 前端开发,engineering,-,mid,-,Web前端开发|前端工程师|H5开发,frontend|front-end|front end,Web 前端开发
 Vue,language,-,low,-,Vue框架|Vue.js,vue|vue.js|vuejs,渐进式前端框架
 React,language,-,mid,-,React框架|React.js,react|react.js|reactjs,前端 UI 库
+Context Engineering,engineering,-,mid,-,上下文工程,context engineering,LLM 上下文设计与组装工程
+Harness Engineering,agent_framework,-,mid,-,Agent Harness|Harness工程,agent harness|harness engineering,Agent 执行脚手架与工具回路工程
