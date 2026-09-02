@@ -79,3 +79,6 @@ NLP,serving,-,mid,-,自然语言处理,nlp|natural language processing,自然语
 接口测试,engineering,-,low,-,API测试,api testing|postman,接口测试方法
 性能测试,engineering,-,mid,-,压力测试|负载测试|压测,performance testing|jmeter|loadrunner|locust,性能与负载测试
 系统架构,engineering,-,high,-,架构设计|系统架构能力|业务架构|技术架构|解决方案架构,system architecture|solution architecture,系统架构设计能力
+前端开发,engineering,-,mid,-,Web前端开发|前端工程师|H5开发,frontend|front-end|front end,Web 前端开发
+Vue,language,-,low,-,Vue框架|Vue.js,vue|vue.js|vuejs,渐进式前端框架
+React,language,-,mid,-,React框架|React.js,react|react.js|reactjs,前端 UI 库
