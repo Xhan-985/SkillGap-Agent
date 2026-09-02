@@ -1,10 +1,15 @@
+from datetime import datetime
+
 from skillgap.ingest.pipeline import run_batch
 from skillgap.stats import STATS_FILTER, skill_frequency
 from tests.test_pipeline import _rec as make_rec
 
 
 def _jobs(clean_db, n, consent="none", source="demo_dataset",
-          source_type="dataset_builtin", tag="j"):
+          source_type="dataset_builtin", tag="j", city=None, salary=None,
+          job_category=None, collected_at=None):
+    """salary=(min, max) 元组；job_category 直填枚举；collected_at 为 datetime。"""
+    from datetime import datetime as _dt
     recs = []
     for i in range(n):
         r = make_rec()
@@ -13,6 +18,14 @@ def _jobs(clean_db, n, consent="none", source="demo_dataset",
         r.source.consent_status = consent
         r.title = f"AI 应用开发工程师 {tag}{i}"
         r.raw_text = f"编号{tag}{i}。" + r.raw_text  # 保证 hash 唯一
+        if city:
+            r.city = city
+        if salary:
+            r.salary_min, r.salary_max = salary
+        if job_category:
+            r.job_category = job_category
+        if collected_at:
+            r.source.collected_at = collected_at
         recs.append(r)
     run_batch(clean_db, recs)
 
@@ -75,3 +88,58 @@ def test_market_separation(clean_db):
     assert out["sample_size"] == 1        # 只含 Adzuna 1 条，不含中国 5 条
     zh = skill_frequency(clean_db, "china")
     assert zh["sample_size"] == 5         # 零混淆（验收红线）
+
+
+def test_slice_by_category(clean_db):
+    _jobs(clean_db, 35)                                            # ai_application_dev
+    _jobs(clean_db, 5, job_category="agent_dev", tag="a")
+    sliced = skill_frequency(clean_db, "china", category="agent_dev")
+    assert sliced["status"] == "insufficient_sample"
+    assert sliced["sample_size"] == 5
+    assert skill_frequency(clean_db, "china")["sample_size"] == 40
+
+
+def test_slice_by_city_substring_match(clean_db):
+    # city 字段存在"北京，上海"多城格式 → 子串匹配（口径见表）
+    _jobs(clean_db, 35, city="北京，上海")
+    _jobs(clean_db, 5, city="杭州", tag="h")
+    out = skill_frequency(clean_db, "china", city="上海")
+    assert out["sample_size"] == 35
+
+
+def test_slice_by_salary_band_overlap(clean_db):
+    _jobs(clean_db, 35, salary=(15000, 25000))
+    _jobs(clean_db, 5, salary=(30000, 50000), tag="hi")
+    _jobs(clean_db, 10, tag="ns")                                 # 无薪资
+    # 带宽 [35000, 40000]：15-25K 不重叠；30-50K 重叠；无薪资排除
+    out = skill_frequency(clean_db, "china", salary_min=35000, salary_max=40000)
+    assert out["status"] == "insufficient_sample"
+    assert out["sample_size"] == 5
+
+
+def test_slice_by_window(clean_db):
+    _jobs(clean_db, 35, collected_at=datetime(2026, 8, 1))
+    _jobs(clean_db, 10, collected_at=datetime(2026, 9, 1), tag="w2")
+    out = skill_frequency(clean_db, "china",
+                          window_start="2026-09-01", window_end="2026-09-30")
+    assert out["sample_size"] == 10
+
+
+def test_min_sample_override(clean_db):
+    _jobs(clean_db, 10)
+    out = skill_frequency(clean_db, "china", min_sample=5)
+    assert out["status"] == "ok" and out["confidence"] == "low"
+
+
+def test_filters_echoed_in_result(clean_db):
+    _jobs(clean_db, 35, city="北京", job_category="agent_dev")
+    out = skill_frequency(clean_db, "china", category="agent_dev", city="北京")
+    assert out["filters"] == {"category": "agent_dev", "city": "北京"}
+
+
+def test_stats_module_zero_llm_dependency():
+    """三层分离红线：统计模块零 LLM 依赖（ROADMAP Phase 4 自检项）。"""
+    from pathlib import Path
+    src = Path("src/skillgap/stats.py").read_text(encoding="utf-8")
+    assert "skillgap.llm" not in src
+    assert "skillgap.extract" not in src
