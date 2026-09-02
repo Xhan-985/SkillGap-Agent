@@ -120,11 +120,12 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 
 **收集来源纪律**（ADR-002 / DATA_GOVERNANCE）：不爬虫（ADR-001），公司页面人工摘录必须带 source_url；每批导入后跑 `quality-report` 核对。
 
-## 8. 数据库现状（2026-09-01）
+## 8. 数据库现状（2026-09-02）
 
-- **52 条岗位**（批次 1 的 50 条 + 2 条测试遗留），全部 `public_job_page` / market=china
-- 类别分布：agent_dev 20 / ai_application_dev 17 / llm_fullstack 10 / ai_platform 5
-- **413 行 job_skill**（manual 标注），无未解析候选
+- **50 条岗位**（批次 1，全部 `public_job_page` / market=china；2 条 example.com 测试遗留已删除）
+- 类别分布：agent_dev 20 / ai_application_dev 16 / llm_fullstack 10 / ai_platform 4
+- **408 行 job_skill**（manual 标注），无未解析候选
+- 批次 1 抽样核对（21 条）已完成：修复"从 0 到 1"薪资误判 bug（job 53/72/99，commit 30a7370），其余字段与原文一致；抽查底账 `data/verify_batch1_sample20.csv`
 - 词表 v1.4：47 技能；来源注册表 5 条（adzuna / company_career_page / user_contribution / community_csv / demo_dataset）
 - E1 标注集：20 条种子（`data/eval/e1_seed_v1.json`）
 
@@ -132,7 +133,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 
 1. **继续收集批次 2-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表）
 2. **配置 LLM_API_KEY 跑 E1 真实基线**（Phase 3 验收项：F1 ≥0.75 warn 线起步；<0.75 按 EVALUATION_PLAN §7 分诊迭代 Prompt，不放宽阈值）
-3. **抽样 20 条人工核对字段**（Phase 2 验收遗留）
+3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-02，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
 4. **标注集 v1 → v2**：从首批真实 JD 扩展至 50-100 条（不静默改 v1）
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证）
 6. **进入 Phase 4**：频率统计 SQL + market_snapshot + 样本量守门 + 溯源端点（规格见 ROADMAP Phase 4 与 docs/API.md）
