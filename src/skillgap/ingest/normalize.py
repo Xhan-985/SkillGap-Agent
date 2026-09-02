@@ -62,6 +62,10 @@ def parse_salary_range(text: str) -> tuple[int | None, int | None]:
             return int(lo), int(hi)
         # 无单位：小数值按 K；大数值须有薪资上下文（排除日期等数字区间）
         if lo < 200 and hi < 200:
+            # "从 0 到 1 的项目实践"类描述不采信：下限为 0 或区间前接"从"
+            prev = text[max(0, m.start() - 2):m.start()].strip()
+            if lo == 0 or prev.endswith("从"):
+                continue
             return int(lo * 1000), int(hi * 1000)
         ctx = text[max(0, m.start() - 8):m.end() + 8]
         if _SALARY_CTX_RE.search(ctx):

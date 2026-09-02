@@ -53,6 +53,16 @@ def test_parse_salary_range_rejects_date():
     assert parse_salary_range("编号 20000-35000 仅供参考") == (None, None)
 
 
+def test_parse_salary_range_rejects_zero_to_one_phrase():
+    # "从 0 到 1"式项目描述不得误判为薪资（真实案例：批次 1 抽查发现
+    # job 53/72/99 的薪资 0-1000 均来自此短语）
+    assert parse_salary_range("有完整应用开发或从 0 到 1 的项目实践") == (None, None)
+    assert parse_salary_range("有从 0 到 1 完成项目并持续迭代的经历") == (None, None)
+    assert parse_salary_range("了解并参与 AI Agent 从0到1的过程") == (None, None)
+    # 正向对照：无单位小数值区间仍按 K 采信
+    assert parse_salary_range("综合薪资 12 - 25") == (12000, 25000)
+
+
 def test_classify_job_category():
     assert classify_job_category("AI 应用开发工程师") == "ai_application_dev"
     assert classify_job_category("Agent 算法工程师") == "agent_dev"
