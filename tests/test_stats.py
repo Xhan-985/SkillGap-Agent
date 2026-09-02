@@ -143,3 +143,46 @@ def test_stats_module_zero_llm_dependency():
     src = Path("src/skillgap/stats.py").read_text(encoding="utf-8")
     assert "skillgap.llm" not in src
     assert "skillgap.extract" not in src
+
+
+from skillgap.stats import METHOD_VERSION, create_snapshot
+
+
+def test_create_snapshot_persists_with_method_version(clean_db):
+    _jobs(clean_db, 35)
+    out = create_snapshot(clean_db, "china")
+    assert out["status"] == "ok"
+    sid = out["snapshot_id"]
+    assert out["evidence_ref"] == f"snapshot#{sid}"
+    with clean_db.cursor() as cur:
+        cur.execute(
+            """SELECT scope, sample_size, skill_frequency, source_distribution,
+                      confidence, method_version
+               FROM market_snapshot WHERE id = %s""", (sid,))
+        row = cur.fetchone()
+    assert row["scope"] == {"market": "china"}
+    assert row["sample_size"] == 35 and row["confidence"] == "low"
+    assert row["method_version"] == METHOD_VERSION
+    assert row["skill_frequency"][0]["canonical_name"] in ("Python", "RAG")
+
+
+def test_create_snapshot_insufficient_writes_no_row(clean_db):
+    _jobs(clean_db, 5)
+    out = create_snapshot(clean_db, "china")
+    assert out["status"] == "insufficient_sample"
+    assert out["sample_size"] == 5
+    with clean_db.cursor() as cur:
+        cur.execute("SELECT count(*) AS c FROM market_snapshot")
+        assert cur.fetchone()["c"] == 0          # S11：N<30 不生成 snapshot
+
+
+def test_create_snapshot_scope_records_slices(clean_db):
+    _jobs(clean_db, 35, city="北京", job_category="agent_dev")
+    out = create_snapshot(clean_db, "china", category="agent_dev", city="北京")
+    with clean_db.cursor() as cur:
+        cur.execute("SELECT scope FROM market_snapshot WHERE id = %s",
+                    (out["snapshot_id"],))
+        scope = cur.fetchone()["scope"]
+    assert scope["market"] == "china"
+    assert scope["job_category"] == "agent_dev"
+    assert scope["city"] == "北京"

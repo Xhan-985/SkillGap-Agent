@@ -123,3 +123,42 @@ def skill_frequency(conn: psycopg.Connection, market: str, *, category=None,
         "skills": skills, "source_distribution": source_distribution,
         "stats_filter": STATS_FILTER, "method_version": METHOD_VERSION,
     }
+
+
+def create_snapshot(conn: psycopg.Connection, market: str, **slices) -> dict:
+    """生成并持久化 market_snapshot（DATA_MODEL §2.10）。
+
+    N < min_sample → 不写表（S11 失败处理：不生成 snapshot，返回样本不足）。
+    快照 append-only：每次生成为新行，历史可追溯（computed_at 区分）。
+    """
+    result = skill_frequency(conn, market, **slices)
+    if result["status"] != "ok":
+        return {"market": market, "status": "insufficient_sample",
+                "sample_size": result["sample_size"]}
+
+    scope: dict[str, Any] = {"market": market}
+    if slices.get("category"):
+        scope["job_category"] = slices["category"]
+    if slices.get("city"):
+        scope["city"] = slices["city"]
+    if slices.get("salary_min") is not None or slices.get("salary_max") is not None:
+        scope["salary_band"] = [slices.get("salary_min"),
+                                slices.get("salary_max")]
+    if slices.get("window_start") and slices.get("window_end"):
+        scope["window"] = [slices["window_start"], slices["window_end"]]
+
+    import json
+    with conn.cursor() as cur:
+        cur.execute(
+            """INSERT INTO market_snapshot
+               (scope, sample_size, skill_frequency, source_distribution,
+                confidence, data_window_start, data_window_end, method_version)
+               VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING id""",
+            (json.dumps(scope, ensure_ascii=False), result["sample_size"],
+             json.dumps(result["skills"], ensure_ascii=False),
+             json.dumps(result["source_distribution"], ensure_ascii=False),
+             result["confidence"], result["window"]["start"],
+             result["window"]["end"], METHOD_VERSION))
+        sid = cur.fetchone()["id"]
+    conn.commit()
+    return {**result, "snapshot_id": sid, "evidence_ref": f"snapshot#{sid}"}
