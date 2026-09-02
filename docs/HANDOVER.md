@@ -1,6 +1,6 @@
 # SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-01 ｜ 代码状态：49 commits（master，仅本地）｜ 测试：177 passed
+> 更新：2026-09-02 ｜ 代码状态：56 commits（master，仅本地）｜ 测试：200 passed
 
 ## 1. 项目一句话
 
@@ -15,11 +15,11 @@ Phase 0  市场与竞品研究          ✅ 完成（10 份研究文档）
 Phase 1  需求冻结 + 架构设计      ✅ 完成（ADR-001~010，16 端点契约）
 Phase 2  数据模型 + 管道 + 数据集 ✅ 代码完成；数据收集进行中（批次 1/4-5 已入库）
 Phase 3  JD Analyzer + LLM 抽取  ✅ 代码完成；真实基线跑分待 API key
-Phase 4  Market Intelligence     ⬜ 下一步
-Phase 5-11                       ⬜ 未开始
+Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#1 已产出，tau=0.1538）
+Phase 5-11                       ⬜ 未开始（下一步 Phase 5 Candidate Profile）
 ```
 
-阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md`（六维自检 + 验收核验表）。
+阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md`（六维自检 + 验收核验表）。
 
 ## 3. 技术栈与架构
 
@@ -77,7 +77,8 @@ src/skillgap/
   llm/                #   provider.py（httpx 重试）/ gateway.py（DB 缓存）
   eval/               #   e1.py（P/R/F1 + 阈值 + eval_run 历史）/ seed.py
   taxonomy/           #   词表 v1.4（47 技能 + alias）+ skill_relations
-  stats.py            #   S11 频率统计（样本量守门 N<30 不出数）
+  stats.py            #   Phase 4 市场统计：切片频率/快照/溯源/交叉对照（零 LLM，守卫测试锁定）
+                      #   口径文档 docs/STATS_METHOD.md；method_version=s11-v1
   quality_metrics.py  #   E5 数据质量报告
 migrations/           # 001 init / 002 batch error_count / 003 llm_cache+eval_run
 docs/                 # 全部设计文档 + adr/（10 份 ADR）+ plans/
@@ -96,7 +97,10 @@ tests/                # 24 个测试文件，conftest 起真实 PG 测试库
 | `import --file data/batch_1.csv` | 批次 CSV 导入入库（批次报告 + ingest_batch 历史） |
 | `ingest-adzuna` | 海外拉取（默认 gb，配额守卫 250 req/day） |
 | `contribute` / `delete-contribution` | 匿名贡献通道（opt-in + PII + deletion_code） |
-| `stats --market china` | 频率统计空跑（S11 口径） |
+| `stats --market china [--category --city --salary-min/max --window-start/end --min-sample]` | 频率统计（S11 口径，支持 4 维切片） |
+| `snapshot-create --market china` | 生成市场统计快照（append-only，N<30 拒写；已产出 snapshot#1） |
+| `skill-evidence --skill RAG --market china` | 技能 → 支撑 JD 溯源底账（含 evidence_text 回原文） |
+| `market-crosscheck --market china` | 与 MARKET_RESEARCH §2.1 方向一致性对照（tau + 逐技能 diff） |
 | `quality-report` | E5 数据质量 JSON 报告 |
 | `jd-analyze --file jd.txt --title t` | 粘贴 JD → 结构化分析（M1，不落库，需 key） |
 | `eval-e1` | E1 抽取评测跑分（需 key） |
@@ -128,15 +132,16 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 - 批次 1 抽样核对（21 条）已完成：修复"从 0 到 1"薪资误判 bug（job 53/72/99，commit 30a7370），其余字段与原文一致；抽查底账 `data/verify_batch1_sample20.csv`
 - 词表 v1.4：47 技能；来源注册表 5 条（adzuna / company_career_page / user_contribution / community_csv / demo_dataset）
 - E1 标注集：20 条种子（`data/eval/e1_seed_v1.json`）
+- **market_snapshot：snapshot#1**（2026-09-02，N=50，medium，s11-v1；top：Python 0.76 / Java 0.58 / RAG 0.54；与 MARKET_RESEARCH §2.1 交叉对照 tau=0.1538——首跑记录 `docs/plans/phase4_first_run_results.md`）
 
 ## 9. 遗留任务（按优先级）
 
-1. **继续收集批次 2-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表）
+1. **继续收集批次 2-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表→`snapshot-create` 更新快照）
 2. **配置 LLM_API_KEY 跑 E1 真实基线**（Phase 3 验收项：F1 ≥0.75 warn 线起步；<0.75 按 EVALUATION_PLAN §7 分诊迭代 Prompt，不放宽阈值）
 3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-02，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
 4. **标注集 v1 → v2**：从首批真实 JD 扩展至 50-100 条（不静默改 v1）
-5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证）
-6. **进入 Phase 4**：频率统计 SQL + market_snapshot + 样本量守门 + 溯源端点（规格见 ROADMAP Phase 4 与 docs/API.md）
+5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
+6. ~~进入 Phase 4~~ ✅ 已完成（2026-09-02，PHASE_4_REVIEW.md；下一步 Phase 5 Candidate Profile——先写 docs/plans/ 计划）
 
 ## 10. 已知问题与坑
 

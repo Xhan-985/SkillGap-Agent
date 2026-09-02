@@ -11,8 +11,8 @@
 Phase 0  市场与竞品研究          【已完成 ✅】
 Phase 1  需求冻结 + Architecture 【已完成 ✅（本次）】
 Phase 2  数据模型落地 + 数据管道 + Demo Dataset
-Phase 3  JD Analyzer + Skill Extraction
-Phase 4  Market Intelligence
+Phase 3  JD Analyzer + Skill Extraction 【已完成 ✅（代码；真实基线待 API key）】
+Phase 4  Market Intelligence 【已完成 ✅（2026-09-02，见文末 Review 记录）】
 Phase 5  Candidate Profile
 Phase 6  Skill Gap
 Phase 7  Job Matching
@@ -261,4 +261,18 @@ LLM 仅两处受控节点：S8 技能抽取（Schema 校验 + 失败明示）、
 - **Data**：每条抽取技能带原文可定位证据；词表外进候选表不静默；缓存键含模型与 prompt 上下文防串味。
 - **Evaluation**：E1 口径与阈值冻结（f1+recall 双闸、证据可溯率一票 block）；eval_run 回归历史；失败样本计漏不中断。
 - **Resume**："LLM Gateway 防腐层（缓存+重试）+ 证据可溯校验的 Structured Output 抽取 + 20 条人工标注集与冻结阈值的回归评测器。"
+
+---
+
+## Phase 4 自我 Review 记录（2026-09-02）
+
+详见根目录 PHASE_4_REVIEW.md（六维全文 + 验收核验表 + 首跑真实数字）。
+
+- **状态**：PASS——200 项测试全绿，零新迁移/零新依赖，ROADMAP Phase 4 验收项全部达成。
+- **Product**：M8 服务层闭环——切片统计（岗位类/城市/薪资段/时间窗）+ 快照（append-only，method_version=s11-v1）+ 溯源底账 + 交叉对照；CLI 4 命令。
+- **Engineering**：零新表（market_snapshot 为 001 已建）；核心 3 函数 + 1 纯函数复用冻结 STATS_FILTER；口径决策（city 子串/薪资区间重叠）全部文档化并测试锁定。
+- **AI**：零 LLM，守卫测试锁定 stats.py 无 llm/extract 引用（CI 静态检查先行落地）。
+- **Data**：首份真实快照 snapshot#1（N=50，medium，top：Python 0.76/Java 0.58/RAG 0.54）；RAG 溯源 27 条 JD 逐条回原文；守门真实验证（agent_dev N=20 拒绝出数）。
+- **Evaluation**：tau=0.1538 如实报告与 §2.1 仅弱一致（LangChain -0.64 / Java +0.43 差异逐条入报告）；同版本重跑零漂移（纯 SQL + 确定性函数）。
+- **Resume**："所有频率数字都是 SQL 算的、每个百分比能点开看支撑 JD 列表、样本不足时系统宁可不出数——三层分离 + 数据诚实设计。"
 
