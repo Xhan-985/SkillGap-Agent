@@ -66,6 +66,9 @@ def backfill_pending(conn: psycopg.Connection, extractor,
                      limit: int = 100) -> int:
     """回填 extraction_status=pending 的 job（Phase 2 移交项）。
 
+    同时覆盖 active 且零技能标注的 job（词表零命中兜底——LLM 层
+    负责词表外表述，如"熟悉一门前端或后端语言"式泛化要求）。
+
     失败明示：单条 ExtractionFailed 跳过保持 pending（汇总数差值即失败数），
     不静默；词表外技能进 new_skill_candidate（周级裁决）。
     """
@@ -73,6 +76,8 @@ def backfill_pending(conn: psycopg.Connection, extractor,
         cur.execute(
             """SELECT id, raw_text FROM job
                WHERE parsed_metadata->>'extraction_status' = 'pending'
+                  OR (status = 'active' AND NOT EXISTS
+                      (SELECT 1 FROM job_skill js WHERE js.job_id = job.id))
                ORDER BY id LIMIT %s""", (limit,))
         rows = cur.fetchall()
     amap = alias_map_from_db(conn)
