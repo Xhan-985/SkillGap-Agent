@@ -10,6 +10,5 @@ build/
 .boss-data/
 .boss/
 scripts/
-# 提示词文件仅本地保留，不进远程仓库（用户要求）
-src/skillgap/extract/prompt.py
+# 提示词测试文件仅本地保留（prompt.py 本体已恢复跟踪）
 tests/test_prompt.py
