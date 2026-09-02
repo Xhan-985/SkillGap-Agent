@@ -1,6 +1,6 @@
 ﻿# SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-02 ｜ 代码状态：56 commits（master，仅本地）｜ 测试：200 passed
+> 更新：2026-09-02 ｜ 代码状态：73 commits（master，已同步 GitHub）｜ 测试：202 passed
 
 ## 1. 项目一句话
 
@@ -13,9 +13,9 @@
 ```
 Phase 0  市场与竞品研究          ✅ 完成（10 份研究文档）
 Phase 1  需求冻结 + 架构设计      ✅ 完成（ADR-001~010，16 端点契约）
-Phase 2  数据模型 + 管道 + 数据集 ✅ 代码完成；数据收集进行中（批次 1/4-5 已入库）
+Phase 2  数据模型 + 管道 + 数据集 ✅ 代码完成；数据收集 N=201（high，批次 1-3 已入库）
 Phase 3  JD Analyzer + LLM 抽取  ✅ 完成（E1 基线 2026-09-02：F1=0.914 PASS，eval_run#2）
-Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#1 已产出，tau=0.1538）
+Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#4 N=201 high，tau=0.1538）
 Phase 5-11                       ⬜ 未开始（下一步 Phase 5 Candidate Profile）
 ```
 
@@ -28,7 +28,7 @@ Phase 5-11                       ⬜ 未开始（下一步 Phase 5 Candidate Pro
 | 语言 | Python 3.12+（项目 `.venv`） | 入口 `skillgap` CLI（pyproject scripts） |
 | 数据库 | PostgreSQL 16 + pgvector（Docker） | `pgvector/pgvector:pg16`；pgvector 索引 Phase 8 才建（ADR-004） |
 | LLM | DeepSeek（deepseek-chat） | OpenAI-compatible 直连 httpx，**不用 openai SDK**（用户决策 Q4） |
-| 测试 | pytest（需真实 PostgreSQL 跑 `skillgap_test` 库） | 177 项，全部本地可跑 |
+| 测试 | pytest（需真实 PostgreSQL 跑 `skillgap_test` 库） | 202 项，全部本地可跑 |
 
 **三层分离纪律（全局红线）**：LLM 只做抽取和解释，统计/评分/ROI 数值全部 SQL 与纯函数计算；评测指标 LLM 不参与。CI 计划静态检查守门。
 
@@ -70,13 +70,13 @@ src/skillgap/
     pii.py quality.py #   PII 规则库 / 质检 quarantine
     adzuna.py contribute.py  # 海外拉取 / 匿名贡献通道
     extract.py        #   手工标注通道 + alias 归一化
-  extract/            # Phase 3 LLM 抽取
-    prompt.py         #   PROMPT_VERSION=v1（变更须跑 eval-e1 回归）
+  extract/             # Phase 3 LLM 抽取
+    prompt.py         #   PROMPT_VERSION=v2（变更须跑 eval-e1 回归）
     llm_extractor.py  #   Structured Output + 证据定位校验 + 对话式重试
-    analyzer.py       #   analyze_jd()：确定性字段 + LLM 抽取
+    analyzer.py       #   analyze_jd()：确定性字段 + LLM 抽取；backfill 兜底零词表标注
   llm/                #   provider.py（httpx 重试）/ gateway.py（DB 缓存）
-  eval/               #   e1.py（P/R/F1 + 阈值 + eval_run 历史）/ seed.py
-  taxonomy/           #   词表 v1.4（47 技能 + alias）+ skill_relations
+  eval/               #   e1.py（P/R/F1 + 阈值 + eval_run 历史）/ seed.py（v1+v2 双版本）
+  taxonomy/           #   词表 v1.9（87 技能 + alias）+ skill_relations
   stats.py            #   Phase 4 市场统计：切片频率/快照/溯源/交叉对照（零 LLM，守卫测试锁定）
                       #   口径文档 docs/STATS_METHOD.md；method_version=s11-v1
   quality_metrics.py  #   E5 数据质量报告
@@ -98,18 +98,18 @@ tests/                # 24 个测试文件，conftest 起真实 PG 测试库
 | `ingest-adzuna` | 海外拉取（默认 gb，配额守卫 250 req/day） |
 | `contribute` / `delete-contribution` | 匿名贡献通道（opt-in + PII + deletion_code） |
 | `stats --market china [--category --city --salary-min/max --window-start/end --min-sample]` | 频率统计（S11 口径，支持 4 维切片） |
-| `snapshot-create --market china` | 生成市场统计快照（append-only，N<30 拒写；已产出 snapshot#1） |
+| `snapshot-create --market china` | 生成市场统计快照（append-only，N<30 拒写；已产出 snapshot#4） |
 | `skill-evidence --skill RAG --market china` | 技能 → 支撑 JD 溯源底账（含 evidence_text 回原文） |
 | `market-crosscheck --market china` | 与 MARKET_RESEARCH §2.1 方向一致性对照（tau + 逐技能 diff） |
 | `quality-report` | E5 数据质量 JSON 报告 |
 | `jd-analyze --file jd.txt --title t` | 粘贴 JD → 结构化分析（M1，不落库，需 key） |
 | `eval-e1` | E1 抽取评测跑分（需 key） |
-| `backfill-extraction` | 回填 pending 抽取（需 key） |
+| `backfill-extraction` | 回填 pending / 零词表标注抽取（需 key） |
 | `quarantine-list` / `raw-cleanup` | 隔离队列 / 7 天 raw 清理 |
 
-## 7. 当前核心工作流：人工 JD 收集（Phase 2 遗留）
+## 7. 当前核心工作流：JD 收集（Phase 2 遗留）
 
-目标：中国市场 **200-300 条**，分 4-5 批，每批 50 条后校准词表。**批次 1 已完成**（50 条已导入）。
+目标：中国市场 **200-300 条**，分批推进，每批导入后校准词表。**批次 1-3 已完成（N=201，confidence=high）**——收集目标已达成，后续按需小幅补充（词表扩容后可采新方向验证）。
 
 日常操作（绝对路径锁定版，任意目录可跑）：
 
@@ -122,21 +122,21 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 
 收集器自动完成：标题/公司/城市抽取、薪资识别（防日期误判）、岗位类别归类（自由文本自动回退枚举）、must_have/nice_to_have 自动建议（"加分项"/"了解"→nice_to_have，"至少一门/或"→nice_to_have）、技能建议（词表 alias 扫描）、PII 脱敏、CSV 中文表头 + 自动转义（Excel 兼容 BOM）。
 
-**收集来源纪律**（ADR-002 / DATA_GOVERNANCE）：不爬虫（ADR-001），公司页面人工摘录必须带 source_url；每批导入后跑 `quality-report` 核对。
+**收集来源纪律**（ADR-002 / DATA_GOVERNANCE）：公司页面人工摘录必须带 source_url；每批导入后跑 `quality-report` 核对。
 
 ## 8. 数据库现状（2026-09-02）
 
-- **100 条岗位**（批次 1：50 条 company_career_page；批次 2：50 条 = 手动 23 + boss_zhipin 27，均已导入）
-- 批次 2 类别分布：agent_dev 20 / ai_application_dev 14 / llm_fullstack 7 / other 5 / dify_dev 2 / python_ai_dev 2；技能标注 387 条；时薪/日薪按 174h / 21.75 天折算月薪入库
-- **782 行 job_skill**，无未解析候选；quality-report missing_field_rate=0.0
+- **201 条 active 岗位**（批次 1：50 条 company_career_page；批次 2：50 条 = 手动 23 + boss_zhipin 27；批次 3：101 条 boss_zhipin——主流方向补采：Agent 全栈/AI 应用开发/大模型算法/RAG/推理优化/多模态/NLP/Golang AI，覆盖北上深杭广蓉宁汉长 9 城）
+- 批次 3 数据清洗：删除 7 条非技术岗混入（城市合伙人/设计/运营/销售/内容生产岗）；质检词表补"评测"信号（救回模型评测岗误杀）；时薪/日薪按 174h / 21.75 天折算月薪入库
+- **1505 行 job_skill**；11 条零词表标注已由 LLM backfill 兜底；quality-report missing_field_rate=0.0
 - 批次 1 抽样核对（21 条）已完成：修复"从 0 到 1"薪资误判 bug（job 53/72/99，commit 30a7370），其余字段与原文一致；抽查底账 `data/verify_batch1_sample20.csv`
 - 词表 v1.9：87 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering；**候选裁决**：新增 Agent 开发/小程序 2 技能 + AI Coding(claude code/codex/claude)、LLM 应用开发(大模型API)、前端开发(前端) 别名扩充，11 accepted / 25 rejected，队列清零）；来源注册表 6 条（adzuna / company_career_page / boss_zhipin / user_contribution / community_csv / demo_dataset）
 - E1 标注集：v1（20 条合成变体，冻结）+ **v2（53 条真实 JD**：28 条人工确认行直取库内标注 + 25 条平台采集行逐条复核重标——修正规则误标：react 模式≠前端 React、GitHub Copilot≠Git、任一/均可≠must、补 Claude Code→AI Coding；`data/eval/e1_seed_v2.json`）
-- **market_snapshot：snapshot#2**（2026-09-02，N=100，medium，s11-v1；top：Python 0.76 / RAG 0.50 / Prompt Engineering 0.43 / Java 0.42 / AI Coding 0.32；来源构成 company_career_page 73% + boss_zhipin 27%）
+- **market_snapshot：snapshot#4**（2026-09-02，N=201，**high**，s11-v1；top：Python 0.66 / RAG 0.45 / Prompt Engineering 0.40 / Java 0.36 / AI Coding 0.27；来源构成 boss_zhipin 64% + company_career_page 36%；快照历史 #1 N=50 → #2 N=100 → #3 N=193 → #4 N=201）
 
 ## 9. 遗留任务（按优先级）
 
-1. **继续收集批次 3-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表→`snapshot-create` 更新快照；N≥200 时 confidence 升 high）
+1. ~~继续收集批次 3~~ ✅ 已完成（2026-09-02，批次 3 共 101 条入库，N=201 达 high；含 E1 v2 基线首跑：F1=0.8669 / P=0.9433 / R=0.802 / **evidence_rate=1.0** / importance_accuracy=0.6804，verdict=warn——prompt v2 跨行证据修复完全验证，recall 与 importance 为后续迭代方向）
 2. ~~配置 LLM_API_KEY 跑 E1 真实基线~~ ✅ 已完成（2026-09-02，deepseek-chat，eval_run#2：**F1=0.914 / P=0.9659 / R=0.8673 / evidence_rate=1.0 / importance_accuracy=0.8706，verdict=PASS**，远超 0.75 warn 线；eval_run 历史含 #1 block——key 粘贴重复导致的 401 诚实留档）
 3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-01，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
 4. ~~标注集 v1 → v2~~ ✅ 已完成（2026-09-02，53 条真实 JD。**评测闭环捕获并修复真实 prompt 缺陷**：v2 数据集暴露 v1 prompt 在项目符排版 JD 上产生跨行证据 → prompt v2 增补"证据不得跨越列表符号/换行"。当前基线（eval_run#4/#5，prompt v2）：v2 数据集 warn（F1=0.8669 / R=0.802 / evidence=1.0，真实 JD 难于合成）；v1 数据集 pass（F1=0.9043）无回归。recall 0.802 距 0.85 pass 线的差距主要是 must/nice 边界与"任一"型列举的标注粒度分歧——后续 prompt 迭代方向，禁止为跑分过拟合评测集）
@@ -155,7 +155,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 
 ## 11. 纪律约束（必须遵守）
 
-1. **Git：仅本地提交，禁止 push 远程**（历史决议：远程 phase3 tag 已删、远程 master 已删）。当前本地 master 领先 origin/main 26+ commits，属预期状态。
+1. **Git：master 与 phase 标签推送 GitHub**（2026-09-02 起解除"仅本地"约束；`tests/test_prompt.py` 保持仅本地不跟踪）。注意 docs 中不得记录数据采集工具的逆向相关细节。
 2. 范围变更先改 `MVP.md`/ADR 再动代码；新增依赖先补 ADR。
 3. 禁止跳过测试进入下一阶段；禁止一次生成多阶段代码（Plan → Implement → Test → Review 节奏）。
 4. Prompt 任何变更必须跑 `eval-e1` 回归（F1 历史可比）。
@@ -174,7 +174,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 | `docs/API.md` | 16 端点契约（§2.1 jd-analyze 结构） |
 | `docs/EVALUATION_PLAN.md` | E1-E5 指标与阈值（§7 失败分诊） |
 | `docs/adr/ADR-001~010` | 全部架构决策（Context/Options/Decision） |
-| `PHASE_1/2/3_REVIEW.md` | 各阶段验收与六维自检 |
-| `docs/plans/` | Phase 2/3 实施计划（Phase 4 计划待写） |
+| `PHASE_1~4_REVIEW.md` | 各阶段验收与六维自检 |
+| `docs/plans/` | Phase 2/3/4 实施计划（下一步：Phase 5 Candidate Profile 计划待写） |
 
 个人学习文档（面试题库/知识缺口/学习路线/简历映射）：根目录 `docs/INTERVIEW_QUESTION_BANK.md`、`KNOWLEDGE_GAPS.md`、`LEARNING_ROADMAP.md`、`PROJECT_LEARNING_GUIDE.md`、`PROJECT_TECH_MAP.md`、`RESUME_TECH_MAPPING.md`（均为未跟踪文件，未入库）。
