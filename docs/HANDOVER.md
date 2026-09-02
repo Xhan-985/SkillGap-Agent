@@ -131,15 +131,15 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 - **782 行 job_skill**，无未解析候选；quality-report missing_field_rate=0.0
 - 批次 1 抽样核对（21 条）已完成：修复"从 0 到 1"薪资误判 bug（job 53/72/99，commit 30a7370），其余字段与原文一致；抽查底账 `data/verify_batch1_sample20.csv`
 - 词表 v1.8：85 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering）；来源注册表 6 条（adzuna / company_career_page / boss_zhipin / user_contribution / community_csv / demo_dataset）
-- E1 标注集：20 条种子（`data/eval/e1_seed_v1.json`）
+- E1 标注集：v1（20 条合成变体，冻结）+ **v2（53 条真实 JD**：28 条人工确认行直取库内标注 + 25 条平台采集行逐条复核重标——修正规则误标：react 模式≠前端 React、GitHub Copilot≠Git、任一/均可≠must、补 Claude Code→AI Coding；`data/eval/e1_seed_v2.json`）
 - **market_snapshot：snapshot#2**（2026-09-02，N=100，medium，s11-v1；top：Python 0.76 / RAG 0.50 / Prompt Engineering 0.43 / Java 0.42 / AI Coding 0.32；来源构成 company_career_page 73% + boss_zhipin 27%）
 
 ## 9. 遗留任务（按优先级）
 
 1. **继续收集批次 3-4**（每批 50 条，采集→导入→`quality-report` 核对→校准词表→`snapshot-create` 更新快照；N≥200 时 confidence 升 high）
-2. ~~配置 LLM_API_KEY 跑 E1 真实基线~~ ✅ 已完成（2026-09-02，deepseek-chat，eval_run#2：**F1=0.914 / P=0.9659 / R=0.8673 / evidence_rate=1.0 / importance_accuracy=0.8706，verdict=PASS**，远超 0.75 warn 线；eval_run 历史含 #1 block——key 粘贴重复导致的 401 诚实留档。后续：标注集 v2 扩至 50-100 条后重跑回归）
-3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-02，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
-4. **标注集 v1 → v2**：从首批真实 JD 扩展至 50-100 条（不静默改 v1）
+2. ~~配置 LLM_API_KEY 跑 E1 真实基线~~ ✅ 已完成（2026-09-02，deepseek-chat，eval_run#2：**F1=0.914 / P=0.9659 / R=0.8673 / evidence_rate=1.0 / importance_accuracy=0.8706，verdict=PASS**，远超 0.75 warn 线；eval_run 历史含 #1 block——key 粘贴重复导致的 401 诚实留档）
+3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-01，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
+4. ~~标注集 v1 → v2~~ ✅ 已完成（2026-09-02，53 条真实 JD。**评测闭环捕获并修复真实 prompt 缺陷**：v2 数据集暴露 v1 prompt 在项目符排版 JD 上产生跨行证据 → prompt v2 增补"证据不得跨越列表符号/换行"。当前基线（eval_run#4/#5，prompt v2）：v2 数据集 warn（F1=0.8669 / R=0.802 / evidence=1.0，真实 JD 难于合成）；v1 数据集 pass（F1=0.9043）无回归。recall 0.802 距 0.85 pass 线的差距主要是 must/nice 边界与"任一"型列举的标注粒度分歧——后续 prompt 迭代方向，禁止为跑分过拟合评测集）
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
 6. ~~进入 Phase 4~~ ✅ 已完成（2026-09-02，PHASE_4_REVIEW.md；下一步 Phase 5 Candidate Profile——先写 docs/plans/ 计划）
 
