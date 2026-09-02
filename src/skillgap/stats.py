@@ -194,3 +194,80 @@ def skill_evidence(conn: psycopg.Connection, market: str, canonical_name: str,
             (skill_id, market, *params))
         refs = [dict(r) for r in cur.fetchall()]
     return {"skill_id": canonical_name, "jd_count": len(refs), "jd_refs": refs}
+
+
+# MARKET_RESEARCH.md §2.1 参考表（23 JD 小样本，[5] 来源）。
+# 用途限定：方向一致性对照（假设检验），不作为真值——本模块的使命就是
+# 用自建数据集把这张表变成可复现、可追溯的数据。
+REFERENCE: dict[str, float] = {
+    "Python": 1.00, "LLM 应用经验": 0.70, "LangChain": 0.80, "RAG": 0.60,
+    "Prompt Engineering": 0.45, "向量数据库": 0.40, "Dify": 0.35,
+    "微调/LoRA": 0.35, "LangGraph": 0.25, "FastAPI": 0.20, "AutoGen": 0.15,
+    "Java": 0.15, "MCP": 0.10, "多模态理解": 0.10,
+}
+
+# 参考名 → 词表 canonical_name（taxonomy v1.4 已核对全部存在）。
+# 向量数据库无单一对应技能 → 取 Milvus/Chroma/Qdrant 频率最大值。
+REFERENCE_TO_CANONICAL: dict[str, list[str]] = {
+    "Python": ["Python"], "LLM 应用经验": ["LLM 应用开发"],
+    "LangChain": ["LangChain"], "RAG": ["RAG"],
+    "Prompt Engineering": ["Prompt Engineering"],
+    "向量数据库": ["Milvus", "Chroma", "Qdrant"],
+    "Dify": ["Dify"], "微调/LoRA": ["SFT/LoRA"], "LangGraph": ["LangGraph"],
+    "FastAPI": ["FastAPI"], "AutoGen": ["AutoGen"], "Java": ["Java"],
+    "MCP": ["MCP"], "多模态理解": ["多模态"],
+}
+
+
+def kendall_tau(pairs: list[tuple[float, float]]) -> float:
+    """Kendall tau-a（并列对不计入分子，分母为全部对数）。纯函数，零 LLM。"""
+    n = len(pairs)
+    if n < 2:
+        return 0.0
+    concordant = discordant = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            dx = pairs[i][0] - pairs[j][0]
+            dy = pairs[i][1] - pairs[j][1]
+            if dx * dy > 0:
+                concordant += 1
+            elif dx * dy < 0:
+                discordant += 1
+    denom = n * (n - 1) / 2
+    return round((concordant - discordant) / denom, 4)
+
+
+def crosscheck_baseline(conn: psycopg.Connection, market: str,
+                        **slices) -> dict:
+    """自有数据集频率 vs MARKET_RESEARCH §2.1 参考表的方向一致性报告。
+
+    ROADMAP Phase 4 验收项：方向一致性检查，差异写入报告（逐技能 diff）。
+    """
+    freq = skill_frequency(conn, market, **slices)
+    if freq["status"] != "ok":
+        return {"market": market, "status": "insufficient_sample",
+                "sample_size": freq["sample_size"]}
+    ours = {s["canonical_name"]: s["frequency"] for s in freq["skills"]}
+
+    rows, pairs = [], []
+    for ref_name, ref_freq in REFERENCE.items():
+        canon = REFERENCE_TO_CANONICAL.get(ref_name, [])
+        if not canon:
+            rows.append({"reference_skill": ref_name, "status": "unmapped"})
+            continue
+        our_freq = max(ours.get(c, 0.0) for c in canon)
+        rows.append({
+            "reference_skill": ref_name, "canonical": canon,
+            "reference_frequency": ref_freq, "our_frequency": our_freq,
+            "diff": round(our_freq - ref_freq, 4),
+        })
+        pairs.append((ref_freq, our_freq))
+    return {
+        "market": market, "status": "ok",
+        "sample_size": freq["sample_size"],
+        "method": "kendall_tau_a", "tau": kendall_tau(pairs),
+        "reference_source": "MARKET_RESEARCH.md §2.1（23 JD 小样本，非官方）",
+        "note": "方向对照仅用于假设检验，不作为真值；差异逐条见 comparison",
+        "comparison": rows,
+        "method_version": METHOD_VERSION,
+    }

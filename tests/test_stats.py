@@ -214,3 +214,51 @@ def test_skill_evidence_respects_slices_and_filter(clean_db):
     out = skill_evidence(clean_db, "china", "RAG", city="杭州")
     assert out["jd_count"] == 5
     assert all("杭州" in (r["title"] or "") or True for r in out["jd_refs"])
+
+
+from skillgap.stats import (REFERENCE, REFERENCE_TO_CANONICAL,
+                            crosscheck_baseline, kendall_tau)
+
+
+def test_kendall_tau_pure_function():
+    assert kendall_tau([(1, 1), (2, 2), (3, 3)]) == 1.0      # 完全同序
+    assert kendall_tau([(1, 3), (2, 2), (3, 1)]) == -1.0     # 完全逆序
+    assert kendall_tau([(1, 1), (1, 2)]) == 0.0              # 并列对不计入分子
+    assert kendall_tau([(1, 1)]) == 0.0                      # n<2 无定义 → 0
+
+
+def test_reference_table_covers_marketing_research_2_1():
+    # §2.1 全部 14 个技能条目都在参考表中（防漏抄）
+    assert len(REFERENCE) == 14
+    assert set(REFERENCE) == set(REFERENCE_TO_CANONICAL)
+
+
+def test_reference_mapping_targets_in_taxonomy(clean_db):
+    # 映射目标必须是词表 canonical_name（taxonomy v1.4 已核对：
+    # LLM 应用开发/LangChain/LangGraph/AutoGen/Prompt Engineering/MCP/Dify/
+    # FastAPI/Milvus/Chroma/Qdrant/SFT/LoRA/多模态/Python/Java/RAG 均在）
+    with clean_db.cursor() as cur:
+        cur.execute("SELECT canonical_name FROM skill")
+        names = {r["canonical_name"] for r in cur.fetchall()}
+    for ref_name, canon in REFERENCE_TO_CANONICAL.items():
+        missing = [c for c in canon if c not in names]
+        assert not missing, f"{ref_name} 映射不在词表: {missing}"
+
+
+def test_crosscheck_report_shape_and_tau(clean_db):
+    _jobs(clean_db, 35)     # RAG/Python 全量命中 → our_frequency = 1.0
+    out = crosscheck_baseline(clean_db, "china")
+    assert out["status"] == "ok"
+    assert -1.0 <= out["tau"] <= 1.0
+    assert out["method"] == "kendall_tau_a"
+    assert "MARKET_RESEARCH.md" in out["reference_source"]
+    row = next(r for r in out["comparison"] if r["reference_skill"] == "Python")
+    assert row["our_frequency"] == 1.0
+    assert row["reference_frequency"] == 1.00
+    assert "diff" in row
+
+
+def test_crosscheck_insufficient_sample(clean_db):
+    _jobs(clean_db, 5)
+    out = crosscheck_baseline(clean_db, "china")
+    assert out["status"] == "insufficient_sample"
