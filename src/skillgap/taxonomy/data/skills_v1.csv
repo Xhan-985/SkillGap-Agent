@@ -10,7 +10,7 @@ C#,language,-,mid,-,C#语言,c#|c sharp,C# 编程语言
 PHP,language,-,mid,-,PHP开发,php,PHP 编程语言
 Kotlin,language,-,mid,-,Kotlin开发,kotlin,Kotlin 编程语言
 Scala,language,-,high,-,Scala语言,scala,Scala 编程语言
-LLM 应用开发,engineering,-,mid,-,大模型应用开发|LLM应用开发,llm application|llm app,LLM 应用开发总体能力
+LLM 应用开发,engineering,-,mid,-,大模型应用开发|LLM应用开发|大模型API,llm application|llm app,LLM 应用开发总体能力
 LangChain,agent_framework,-,mid,-,兰链,langchain|lang chain,LLM 应用编排框架
 LangGraph,agent_framework,LangChain,mid,-,-,langgraph|lang graph,图结构 Agent 编排
 AutoGen,agent_framework,-,mid,-,-,autogen,多 Agent 对话框架
@@ -37,7 +37,7 @@ Evaluation（LLM 评测）,engineering,-,mid,-,LLM评测|大模型评测|评测�
 Function Calling,agent_framework,-,low,-,函数调用|工具调用,function calling|tool calling,函数调用能力
 ReAct,agent_framework,-,low,-,ReAct模式,react,推理+行动范式
 上下文管理,retrieval,-,mid,-,长上下文|context管理,context management|long context,上下文窗口管理
-AI Coding,engineering,-,low,-,AI编程|AI辅助编程,ai coding|cursor|copilot,AI 辅助编程
+AI Coding,engineering,-,low,-,AI编程|AI辅助编程,ai coding|cursor|copilot|claude code|codex|claude,AI 辅助编程
 Linux,engineering,-,mid,-,Linux系统|Linux操作,linux,Linux 操作系统与 Shell 环境
 SQL,data,-,low,-,SQL查询|SQL语言,sql,结构化查询语言
 网络协议,engineering,-,mid,-,TCP/IP|HTTP协议|网络编程,tcp/ip|tcpip|http|network protocol,网络与协议基础
@@ -79,8 +79,10 @@ NLP,serving,-,mid,-,自然语言处理,nlp|natural language processing,自然语
 接口测试,engineering,-,low,-,API测试,api testing|postman,接口测试方法
 性能测试,engineering,-,mid,-,压力测试|负载测试|压测,performance testing|jmeter|loadrunner|locust,性能与负载测试
 系统架构,engineering,-,high,-,架构设计|系统架构能力|业务架构|技术架构|解决方案架构,system architecture|solution architecture,系统架构设计能力
-前端开发,engineering,-,mid,-,Web前端开发|前端工程师|H5开发,frontend|front-end|front end,Web 前端开发
+前端开发,engineering,-,mid,-,Web前端开发|前端工程师|H5开发|前端,frontend|front-end|front end,Web 前端开发
 Vue,language,-,low,-,Vue框架|Vue.js,vue|vue.js|vuejs,渐进式前端框架
 React,language,-,mid,-,React框架|React.js,react|react.js|reactjs,前端 UI 库
 Context Engineering,engineering,-,mid,-,上下文工程,context engineering,LLM 上下文设计与组装工程
 Harness Engineering,agent_framework,-,mid,-,Agent Harness|Harness工程,agent harness|harness engineering,Agent 执行脚手架与工具回路工程
+Agent 开发,agent_framework,-,mid,-,智能体开发|智能体搭建|智能体优化|Agent应用开发,agent development|agent dev|agent engineering|ai agent,Agent 应用与智能体开发能力
+小程序,engineering,-,low,-,微信小程序|小程序开发,mini program|miniapp|weapp,微信小程序开发

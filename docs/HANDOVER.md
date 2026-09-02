@@ -130,7 +130,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 - 批次 2 类别分布：agent_dev 20 / ai_application_dev 14 / llm_fullstack 7 / other 5 / dify_dev 2 / python_ai_dev 2；技能标注 387 条；时薪/日薪按 174h / 21.75 天折算月薪入库
 - **782 行 job_skill**，无未解析候选；quality-report missing_field_rate=0.0
 - 批次 1 抽样核对（21 条）已完成：修复"从 0 到 1"薪资误判 bug（job 53/72/99，commit 30a7370），其余字段与原文一致；抽查底账 `data/verify_batch1_sample20.csv`
-- 词表 v1.8：85 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering）；来源注册表 6 条（adzuna / company_career_page / boss_zhipin / user_contribution / community_csv / demo_dataset）
+- 词表 v1.9：87 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering；**候选裁决**：新增 Agent 开发/小程序 2 技能 + AI Coding(claude code/codex/claude)、LLM 应用开发(大模型API)、前端开发(前端) 别名扩充，11 accepted / 25 rejected，队列清零）；来源注册表 6 条（adzuna / company_career_page / boss_zhipin / user_contribution / community_csv / demo_dataset）
 - E1 标注集：v1（20 条合成变体，冻结）+ **v2（53 条真实 JD**：28 条人工确认行直取库内标注 + 25 条平台采集行逐条复核重标——修正规则误标：react 模式≠前端 React、GitHub Copilot≠Git、任一/均可≠must、补 Claude Code→AI Coding；`data/eval/e1_seed_v2.json`）
 - **market_snapshot：snapshot#2**（2026-09-02，N=100，medium，s11-v1；top：Python 0.76 / RAG 0.50 / Prompt Engineering 0.43 / Java 0.42 / AI Coding 0.32；来源构成 company_career_page 73% + boss_zhipin 27%）
 
