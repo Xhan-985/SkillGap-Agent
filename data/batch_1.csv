@@ -1,0 +1,1385 @@
+﻿岗位名称,公司,城市,国家,区域,最低薪资,最高薪资,薪资货币,岗位类别,JD全文,软性要求,技能标注,来源类型,来源名称,来源链接,采集日期,提交时间,同意状态,数据质量
+Agent开发工程师（2027届秋招）（MJ036607）,携程集团,上海,中国,上海,,,,Agent,"Agent开发工程师（2027届秋招）（MJ036607）
+
+上海应届校招生人工智能与商业智能2026-08-25
+
+职位描述
+
+招聘对象：本、硕、博。
+
+毕业时间：2026 年 9 月至 2027 年 8 月期间毕业（中国大陆以毕业证为准，非中国大陆地区以教育部学位认证为准）且最高学历毕业后无全职工作经验的学生。
+
+
+
+你将会负责：
+
+1. 参与Agent应用工程开发，完成AI产品的上线;
+
+2. 参与Agent基础开发框架的建设，确保系统的稳定性和扩展性;
+
+3. 参与Agent记忆系统的设计和实现，保证Agent上下文的一致性;
+
+4. 参与Agent评测、观测等能力建设，完善Agent开发生态;
+
+5. 参与Agent注册、管理、发现能力的架构设计和系统开发，实现Agent的灵活部署和高效管理。
+
+
+
+我们期望你：
+
+1. 本科及以上学历，计算机等相关专业；
+
+2. 拥有扎实的编程能力，熟悉Python、Java等至少一门编程语言;
+
+3. 熟悉LangChain、LlamaIndex、CrewAI等至少一种Agent开发框架;
+
+4. 积极使用并探索Cursor、Claude等 AI编程工具辅助开发，善于利用 AI 提升学习和工作效率;
+
+5. 具备良好的沟通表达能力与逻辑思维能力，能够清晰准确地传达工作思路与问题，有效协调项目推进过程中的各项工作；
+
+6. 具备团队合作精神，能够快速适应团队工作氛围，积极配合团队完成各项任务。
+
+
+
+加分项：
+
+1. 有独立完成AI产品原型到上线的实践经验;
+
+2. 具备一定的前后端开发经验，具备系统性的思考视角。
+
+
+
+你将收获：
+
+1. 了解以及参与AI Agent从0到1的过程;
+
+2. 深度参与AI基础设施建设以及AI应用工程研发，系统性提升AI工程能力，提升核心竞争力。",,"[{""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""CrewAI"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CrewAI""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Cursor""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}]",public_job_page,company_career_page,https://careers.ctrip.com/#/campus/job-detail/MJ036607?sourceTag=508457f3,2026-08-31,,none,human_reviewed
+软件开发（AI方向）,奔图科技,广东省珠海市,中国,,,,,LLM全栈,"软件开发（AI方向）/职能中心（2027届）(J16074)
+校园招聘
+全职
+广东省·珠海市
+2026-08-25 发布
+工作职责
+1.负责企业级AI Agent应用的设计与开发，完成任务规划、工作流编排、记忆管理、工具调用、多Agent协同及人工确认等核心能力建设；
+2.负责企业知识库及RAG能力建设，包括文档解析、数据清洗、知识切分、向量检索与持续优化；
+3.负责Tool、Skill、MCP等AI工具链开发，通过API对接HR、OA等业务系统，推动Agent从信息问答向业务执行和任务闭环延伸；
+4.负责AI平台相关功能开发，包括Agent管理、工作流配置、知识库管理、模型接入、权限控制、日志监控及运行管理等；
+5.深入业务场景开展需求分析和方案设计，完成编码开发、接口联调、测试验证、部署上线及问题处理，保障项目按计划交付；
+6.持续跟踪大模型及Agent领域技术发展，开展技术预研、模型评测和方案验证，沉淀可复用的技术组件、开发规范及最佳实践。
+任职资格
+1.本科及以上学历，计算机、软件工程、人工智能等相关专业，英语四级及以上，有实习、毕业设计、竞赛或开源项目经验者优先；
+2.具备扎实的计算机基础，熟练掌握Python、Java中至少一门开发语言，熟悉常用开发框架，具备数据库设计、接口开发、代码调试及问题排查能力；
+3.掌握数据结构、算法、操作系统、计算机网络、数据库及软件工程等基础知识，具备规范化的软件设计与开发意识；
+4.了解大语言模型、Agent、RAG、Embedding、向量数据库等相关技术；
+5.具备完整的软件项目实践经历，能够独立完成需求理解、技术设计、功能开发、测试验证和技术文档编写；
+6.具备较强的学习能力、逻辑分析能力、问题解决能力和团队协作意识，能够适应AI技术快速迭代，并对工作成果和项目交付负责。",,"[{""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Milvus"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""向量数据库""}, {""raw_name"": ""Chroma"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""向量数据库""}, {""raw_name"": ""Qdrant"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""向量数据库""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MCP""}]",public_job_page,company_career_page,https://ninestar.zhiye.com/campus/detail?jobAdId=56b05783-cc1c-4f5d-a164-e4f459abb5f5,2026-08-31,,none,human_reviewed
+AI全栈开发工程师,快手,北京,中国,,,,,AI全栈,"AI全栈开发工程师
+急招
+
+全职
+工程类 - 服务端
+北京、杭州
+2026-08-31
+职位描述
+1、借助AI编程工具，打破前端、后端、客户端的传统分工边界，端到端参与产品功能的开发与迭代——覆盖数据层、服务端到Web与移动端各层，在真实项目中全面打磨技术栈；
+2、深度使用AI编程工具，大幅提升开发效率，把精力从重复编码转向架构设计与业务价值实现，快速验证想法、推动功能高效迭代与落地；
+3、面向真实业务场景解决问题：提升核心业务指标、改进系统性能、保障线上稳定性，产出直接运行于生产环境、服务真实用户；
+4、在编码、重构、Bug排查等高频环节中持续把AI工具用作常规起点，拥有""先复核、再采用""的习惯。
+任职要求
+1、计算机科学、软件工程、人工智能等相关专业优先；
+2、熟悉至少一门编程语言（如Java/Go/Python/Kotlin/Swift/TypeScript等），具备扎实编程基础，了解常见数据结构与算法，能独立完成代码编写与调试；
+3、习惯将AI编程工具作为日常编码的默认起点，用于代码生成、重构、Bug排查等高频场景；能对AI产出做基础复核（能跑通、能发现明显错误），并愿意持续提升对代码质量与工作流的判断力；
+4、在后端、Web前端、安卓客户端、iOS客户端任一「端」具备基础、有相关开发实践，并愿意借助AI工具拓展到其他端。
+
+加分项
+1、有AI相关项目、开源贡献或互联网公司实习经历；
+2、具备跨学科思维，能将AI/工程能力与其他领域知识结合，产出创新应用。",,"[{""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI编程""}]",public_job_page,company_career_page,https://campus.kuaishou.cn/recruit/campus/e/#/campus/job-info/13185,2026-09-01,,none,human_reviewed
+27届秋招-自动驾驶-AI Agent工程师,滴滴,北京,中国,,,,,AI Agent,"27届秋招-自动驾驶-AI Agent工程师
+分享
+全职|工程-后端类|自动驾驶|北京市
+发布于 2026-08-13
+申请职位
+职位描述
+岗位职责：
+我们正在寻找一位对自动驾驶技术与云原生架构充满热情的后端工程师。如果你渴望参与构建下一代自动驾驶研发工具链，推动AI Agent在仿真与可视化平台中的落地，并与顶尖团队共同探索自动驾驶的未来基础设施，那么这里正是你发挥才华的舞台。
+
+1、构建和迭代自动驾驶研发工具链的核心服务，为算法、仿真、数据等团队提供高效、稳定、可扩展的基础设施支持；
+2、深入参与云原生技术栈在自动驾驶系统中的落地，推动系统向容器化、服务化、自动化方向演进；
+3、探索AI Agent在工具链与仿真系统中的创新应用，提升研发流程的自动化与智能化水平。
+
+任职要求：
+1、2027届毕业生，本科及以上学历，计算机或相关专业优先，具备扎实的编程与系统设计基础；
+2、熟练掌握至少一门后端开发语言（Go/Python/C++等），具备良好的数据结构和算法能力；
+3、深入理解Linux系统、网络协议（TCP/IP/HTTP）及高性能服务开发；
+4、熟悉常见数据库（SQL/NoSQL）的使用与优化，具备阅读和借鉴优秀开源项目的能力；
+5、具备强烈的自驱力、学习能力和技术热情，能主动推动项目进展与系统优化；
+6、良好的团队沟通与协作意识，能与跨职能团队高效配合。",,"[{""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Linux系统""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""网络协议"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""TCP/IP""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""SQL""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Docker"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""容器化""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/didiglobal/96064?sourceToken=888e40714f4c681a93aa90f794f392cb#/job/63fe8fea-8acb-4516-89ed-512430d9ccdb,2026-09-01,,none,human_reviewed
+AI平台开发工程师-训推平台,小米,武汉,中国,,,,,AI平台,"AI平台开发工程师-训推平台
+武汉校招正式软件研发类2027届校园招聘计划
+职位描述
+1、参与AI平台K8S训练和推理组件的架构设计、产品开发；
+2、参与AI模型大规模分布式训练和推理架构和可观测性设计和开发；
+3、参与大语言模型预训练和后训练，分布式推理技术调研和测试。
+职位要求
+1、计算机相关专业本科及以上学历在读，具备扎实的计算机理论基础；
+2、熟悉Python/C++/Golang等其中一种编程语言，有熟练的Shell脚本编写技能；
+3、有强烈的上进心，自我驱动，学习适应能力强，乐观自信，能挑战自我不断追求卓越；
+4、有强烈的责任心和团队精神，善于沟通和合作；
+5、熟悉Kubernetes和容器相关技术，并了解其功能特性；熟悉常用的深度学习和推理框架如pytorch, ray, vllm, sglang等优先",,"[{""raw_name"": ""Kubernetes"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Kubernetes""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""pytorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Golang""}, {""raw_name"": ""Shell 脚本"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Shell""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""vllm""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}]",public_job_page,company_career_page,https://xiaomi.jobs.f.mioffice.cn/campus/position/7680394017603356978/detail?spread=J7NS6YR,2026-09-01,,none,human_reviewed
+【校招】AI算法工程师,乐元素,暂无,中国,,,,,AI算法,"【校招】AI算法工程师
+分享
+全职
+发布于 2026-08-19
+申请职位
+职位描述
+工作职责：
+
+负责游戏研发场景下多模态内容（涵盖动画、3D模型、2D图像等）生成算法的落地与深度应用。探索并实现AIGC技术，将其转化为提升游戏生产力及玩家交互体验的实际解决方案；
+
+针对多模态内容的生成需求，主导构建数据集、数据预处理流水线及算法配套工具。负责搭建从模型训练、逻辑评估到工程化部署的标准化工作流程；
+
+研究多模态感知、角色动画生成、3D网格重建/处理、贴图生成等技术，针对项目特有的艺术风格和性能需求，进行算法定制与推理优化，确保生成内容符合生产标准；
+
+与美术、程序团队紧密协作，深度介入游戏制作全生命周期。识别并解决生产管线中的痛点问题，通过AI手段消除技术瓶颈，提升各职能团队的开发效率；
+
+持续跟踪领域前沿技术；
+
+岗位要求：
+
+计算机、人工智能、数学或统计等相关专业，具备扎实的算法理论与数学功底；
+
+精通PyTorch/TensorFlow，深度理解主流生成式模型（动画/3D/2D）原理，熟练掌握模型训练、微调及推理优化；
+
+熟悉角色动画生成、3D网格处理或游戏美术建模者优先；
+
+有AI+游戏研发提效的相关经验者优先；",,"[{""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": ""精通"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""推理优化"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""推理优化""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/leyuansu/166186?locale=zh-CN#/job/99f69044-58e0-456a-bde3-31ef9d18baf3,2026-09-01,,none,human_reviewed
+平台研发-后端开发工程师（AI 应用方向）全职,米哈游,上海,中国,,,,,AI应用,"平台研发-后端开发工程师（AI 应用方向）全职
+上海
+程序&技术类
+2027届（2026.9-2027.8之间毕业）
+工作职责
+1.面向用户增长业务，深度参与业务讨论，探索 AI 技术在各场景的落地机会，构建提升业务效率和效果的 AI 能力；
+2.挖掘游戏玩家核心需求，与产品、运营团队协作，打造面向玩家的 AI 创新体验产品；
+3.负责 Agent 应用的性能与稳定性优化，确保系统在高并发场景下的可靠运行；
+4.设计并实现易用高效的 Agent 开发周边工具套件，提升研发效率，降低 Agent 技术的使用门槛，保障交付质量。
+任职要求
+1.计算机或相关专业本科及以上学历；
+2.热爱计算机科学和互联网技术，至少熟练掌握一门后端编程语言，包括但不限于：C、C++、Go、Python、Java 等；
+3.深度使用 AI 编程工具（如 Claude Code、Codex、Cursor、OpenCode 等），能够高效利用 AI 辅助开发；
+4.具备扎实的后端工程能力，熟悉常用数据库设计与优化（MySQL/Redis 等），了解分布式系统基本原理，有服务接口设计与高可用实践经验；
+5.具备较强的问题拆解、快速学习和实验迭代能力，能够在不确定的需求和技术环境中持续推进方案落地；
+6.具备良好的跨团队协作能力，能够理解产品、业务等非工程角色的需求，并推动技术实现；
+7.对大语言模型、Agent 技术的基本原理、应用方式和能力边界有一定理解。
+加分项
+1.有 LLM、Agent、RAG、工具调用、多智能体等相关项目经验；
+2.有高并发C端项目后端工程项目经验；
+3.有研发提效工具、代码生成、自动化测试或 AI 工具链相关经验；
+4.有借助 AI 能力独立完成全栈项目并落地上线的经验。",,"[{""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Cursor""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,company_career_page,https://jobs.mihoyo.com/?channelToken=xz2037b7d4-68d44f5a8ebc-0edf28e17574#/campus/position/9250,2026-09-01,,none,human_reviewed
+AI全栈开发工程师,联想,北京,中国,,,,,AI全栈开发,"AI全栈开发工程师
+
+应届生招聘AI开发类所属部门：China Geo北京,天津,成都
+岗位职责
+1.参与AI应用核心功能的需求分析、方案设计与开发实施，覆盖客户端、服务端、Web前端及端侧应用等多个技术方向，在项目实践中持续提升全栈开发能力。
+2.借助AI Coding等智能开发工具参与软件研发全流程工作，包括需求理解、方案设计、编码实现、测试优化及版本迭代，不断提升工程实践能力和交付效率。
+3.深度参与产品需求讨论与功能设计，与产品、设计、测试等跨职能团队紧密协作，共同推动产品高质量落地。
+4.参与AI Agent、智能体应用等创新技术场景的研究与实践，推动AI技术在实际业务中的应用与创新。
+5.探索AI时代的软件开发新模式，参与AI研发工作流建设与优化，持续提升研发效率和工程质量。
+
+任职要求
+1.毕业时间为2026年9月至2027年8月的海内外应届毕业生，计算机科学、软件工程、人工智能、电子信息等相关专业优先。
+2.具备扎实的计算机基础知识，熟悉计算机网络、数据结构与算法等核心内容，至少熟练掌握一门编程语言（如Java、Python、Go、C++等），具备良好的编码规范与代码设计能力。
+3.对AI技术及相关产品具有浓厚兴趣，认可AI驱动的软件研发方式，并能够主动利用AI工具提升学习与开发效率。
+4.具备以下至少一个方向的开发基础：
+• Web开发（如HTML、CSS、JavaScript、TypeScript、Vue、React等）;
+• 服务端开发（如Java、Python、Go等）;
+• 客户端或端侧开发（如Android、C/C++、C#等）。
+5.具备良好的学习能力，能够快速掌握新技术，并愿意借助AI工具持续拓展跨技术栈开发能力。
+6.具备较强的责任心、沟通协调能力和团队合作意识，能够主动理解业务需求，并与不同角色高效协同推进项目落地。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""C#"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""C#""}]",public_job_page,company_career_page,https://talent.lenovo.com.cn/position/detail?id=2403,2026-09-01,,none,human_reviewed
+AI Agent开发工程师,联想,北京,中国,,,,,agent_dev,"AI Agent开发工程师
+
+应届生招聘AI开发类所属部门：China Geo北京
+岗位职责
+1.参与AI Agent核心能力建设，包括任务规划、工具调用、记忆管理、多Agent协同等关键能力的设计与开发，参与Agent Runtime、上下文管理、任务调度及工作流编排等核心模块建设，在实际项目中持续提升工程开发能力。
+2.参与大模型与Agent系统的工程化开发与优化，实现模型调用、流式交互、工作流编排、结构化输出、异步任务处理等核心能力，推动Agent系统基础能力持续演进。
+3.参与Agent工具生态与Skill体系建设，推动Agent与搜索、知识库、业务系统及外部服务的连接与协同，不断提升智能体解决复杂任务的能力。
+4.与产品、算法、架构等团队紧密合作，将AI Agent相关需求转化为稳定、高质量、可维护的工程方案，持续优化系统性能、可靠性和可扩展性。
+5.持续关注大模型、AI Agent及相关技术领域的发展趋势，探索新框架、新协议及新工程范式在实际业务场景中的创新应用。
+
+任职要求
+1.毕业时间为2026年9月至2027年8月的海内外应届毕业生，计算机科学、软件工程、人工智能、自动化、数学等相关专业优先。
+2.熟悉Python、Java、Go等至少一门编程语言，具备良好的编程能力、工程实践意识及代码质量意识。
+3.掌握数据结构与算法、计算机网络、操作系统、数据库等计算机基础知识，具备扎实的软件开发基础。
+4.对AI Agent和大模型技术具有浓厚兴趣，愿意主动学习和探索AI原生应用开发，并持续关注相关技术发展与行业趋势。
+5.具备良好的学习能力、问题分析与解决能力，以及团队协作和沟通能力，能够主动定位并解决实际开发过程中的问题。
+6.了解AI Agent系统的基本架构与核心能力，对任务规划、工具调用、上下文管理、记忆机制等方向具有一定理解。
+7.具备AI Agent、RAG、多Agent协作等相关项目实践经验，或了解LangChain、LangGraph、AutoGen等Agent开发框架;具有开源项目、技术博客、科研成果等相关经历者优先。
+
+工作地点",,"[{""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""LangChain""}, {""raw_name"": ""LangGraph"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多Agent协作""}, {""raw_name"": ""AutoGen"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AutoGen""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,company_career_page,https://talent.lenovo.com.cn/position/detail?id=2404,2026-09-01,,none,human_reviewed
+软件开发工程师（AI应用全栈开发向）(J45591),海信集团,青岛,中国,,,,,AI全栈,"软件开发工程师（AI应用全栈开发向）(J45591)
+校园招聘
+山东省·青岛市
+软件算法类
+显示事业部
+2026-08-31 发布
+工作职责
+1.负责 AI 应用的前后端开发与集成，实现大模型 API 调用、Prompt 工程、智能体工作流等功能；
+2.参与多智能体协同系统的开发与优化；
+3.前端：使用 React/Vue 等现代框架，实现流畅的用户交互界面；
+4.后端：使用 Node.js/Python/Go 等框架，构建高可用 API 服务；
+5.数据库：负责关系型数据库和向量数据库的设计与优化；
+6.主动关注 AI 领域新技术，评估并引入适合项目的工具与框架；
+7.参与技术分享，编写单元测试和集成测试，确保代码质量。
+任职资格
+1. 硕士及以上学历，计算机、软件等相关专业；
+2.技术要求：
+（1）熟练掌握 JavaScript/TypeScript，深入理解异步编程；
+（2）熟练掌握至少一种主流前端框架：React、Vue；
+（3）熟悉前端工程化：Webpack、Vite、Rollup 等构建工具；
+（4）了解前端性能优化方法；
+3.具备良好的英文文档阅读能力、沟通能力和团队协作精神。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Node.js"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Node.js""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://jobs.hisense.com/Campus/jobs?activityGuid=5a5aed1e-a4f1-465d-b574-d55ac19474b8&ActivityJumpPage=PortalPage,2026-09-01,,none,human_reviewed
+AI软件开发(J45407),纳真科技公司,青岛,中国,,,,,AI软件,"AI软件开发(J45407)
+校园招聘
+山东省·青岛市
+软件算法类
+纳真科技公司
+2026-08-22 发布
+工作职责
+1. 需求分析与方案设计
+深入对接业务部门及产品团队，梳理复杂的报表逻辑与数据指标体系；
+负责数据应用场景的技术方案设计与评审，确保方案的可行性、扩展性与高性能。
+2. 数据仓库与ETL开发
+负责业务系统数据入湖/入仓工作，主导数据的抽取、清洗、转换（ETL）及加载流程；
+设计并优化数据调度任务，监控数据产出链路，保障数据的时效性、准确性与一致性。
+3. 报表平台开发与交付
+基于飞书、信数、Mendix等低代码/BI平台，完成复杂报表的后端数据处理逻辑及前端可视化样式开发；
+快速响应业务变化，迭代优化现有报表功能，提升用户体验。
+4. 自研平台全栈开发
+参与公司内部数据自研平台的前后端功能开发，包括数据服务接口构建及交互界面实现；
+负责核心代码编写、单元测试及技术文档沉淀。
+5. 系统运维与性能调优
+负责数据任务及应用的日常运维，排查生产环境问题；
+持续进行SQL查询优化、代码重构及系统性能调优，提升系统整体运行效率。
+任职资格
+1. 学历与经验
+统招本科及以上学历，计算机相关专业优先；
+3年及以上 Java开发或数据开发相关工作经验，有完整的项目落地经验。
+2. 后端核心技术
+熟悉 Java/JavaScript 基础，具备良好的编程习惯（命名规范、注释清晰、代码复用率高）。
+3. 数据库与大数据组件
+熟悉 MySQL 或 Oracle 关系型数据库，具备优秀的 SQL编写与调优能力（执行计划分析、索引优化）。
+4. 前端与低代码能力
+熟悉 Vue.js 或 React 前端框架，具备独立开发前端页面的能力者优先；
+加分项：有飞书多维表格/仪表盘、信数、Mendix、永洪BI等低代码或BI平台开发经验者优先。
+5. 综合素质
+沟通协作：具备优秀的沟通能力，能主动挖掘需求痛点，对业务逻辑提出建设性技术方案；
+运维意识：具备一定的Linux运维基础，熟悉常用命令，有自动化部署或容器化（Docker/K8s）经验者更佳；
+问题解决：对数据敏感，具备较强的问题定位与解决能力，能在高压下保障数据产出稳定。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""JavaScript""}, {""raw_name"": ""Docker"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Docker""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Linux"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL查询""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Kubernetes"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""K8s""}]",public_job_page,company_career_page,https://jobs.hisense.com/Campus/jobs?activityGuid=5a5aed1e-a4f1-465d-b574-d55ac19474b8&ActivityJumpPage=PortalPage,2026-09-01,,none,human_reviewed
+AI应用开发工程师(J10355),恒生电子,杭州,中国,,,,,AI应用,"AI应用开发工程师(J10355)
+校园招聘
+全职
+浙江省·杭州市
+2026-07-22 发布
+工作职责
+1.	负责AI应用的探索与验证，聚焦内部研发提效场景落地，推进相关提效工具的研发与迭代。
+2.	使用Python完成大模型调用、数据处理及接口封装，支撑AI应用探索与提效工具功能实现，兼顾开发效率与功能稳定性。
+3.	参与大模型能力在内部提效场景的工程化落地，协助完成模型部署、优化及技术文档编写，保障提效方案落地见效。
+任职资格
+1.	本科及以上学历，计算机、软件工程、人工智能等相关专业。同步开放博士与博后招聘；
+2.	熟练掌握Python或Java任一语言，有大模型工具开发、AI应用落地经验（如RAG系统、智能助手）者优先。
+3.	具备扎实的数据结构、算法、计算机网络、操作系统基础。
+4.	熟悉Linux环境、Git版本控制，掌握SQL基本操作。
+5.	了解Python（Flask/FastAPI）或Java（SpringBoot）后端框架者优先。
+6.	掌握大模型核心相关概念（如模型选型、上下文理解、token机制等）。
+7.	熟悉大模型基本原理，具备主流LLM API（通义千问、文心一言等）调用与调试经验。
+8.	了解Prompt工程技巧、RAG检索增强生成核心流程，能落地基础优化方案。
+9.	有Hugging Face、LangChain等大模型开发工具使用经验，了解PyTorch/TensorFlow基础者优先。",,"[{""raw_name"": ""Hugging Face"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Hugging Face""}, {""raw_name"": ""Spring Boot"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""SpringBoot""}, {""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""FastAPI"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""FastAPI""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Linux""}, {""raw_name"": ""Flask"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Flask""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""版本控制""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://campus.hundsun.com/campus/detail?jobAdId=2dd3bd66-bed9-43ba-9318-e3226102066d&activityGuid=907ed77e-3712-4502-992d-5e080307dd40,2026-09-01,,none,human_reviewed
+AI应用开发工程师-campus-2027,经纬恒润,北京,中国,,,,,AI应用,"AI应用开发工程师-campus-2027
+分享
+内推分享
+全职|研发技术|协同研发平台事业部|四川·成都市 北京市 天津市
+发布于 2026-08-20
+申请职位
+职位描述
+岗位职责：
+
+1、参与公司现有AI测试产品（面向汽车嵌入式软件）的功能开发与迭代维护，包括但不限于测试用例生成、缺陷检测、自动化测试脚本优化等模块。
+
+2、基于Python开发AI应用工具，结合大语言模型（如GPT、BERT等）或传统机器学习方法，提升测试效率与覆盖率。
+
+3、与测试工程师、产品经理协作，理解汽车嵌入式软件测试场景（如CAN/LIN总线、AUTOSAR、ADAS等），将业务需求转化为技术实现。4、参与代码审查、技术文档编写及单元测试，保证代码质量和可维护性。5、跟踪AI在软件测试领域的前沿技术（如LLM微调、RAG、Agent等），探索其在现有产品中的落地可能性。
+
+
+
+任职资格：
+
+1、2026届本科及以上学历，计算机、软件工程、人工智能、自动化、车辆工程等相关专业。
+
+2、熟悉Python编程，了解至少一种深度学习框架（如PyTorch、TensorFlow）
+
+3、了解大语言模型（LLM）的基本原理，有使用OpenAI API、Hugging Face或LangChain等工具进行简单开发的经验。
+
+4、对软件测试流程或嵌入式系统有基本了解（如通过课程项目、竞赛或实习经历）。
+
+5、具备良好的逻辑思维、学习能力与团队协作精神。Flow基础者优先。",,"[{""raw_name"": ""Hugging Face"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Hugging Face""}, {""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/jingweihengrun/168294#/job/0a93a69e-c19a-44bd-a9ac-97dcb2e5f6da,2026-09-01,,none,human_reviewed
+AI应用开发工程师,正浩创新,深圳,中国,,12000,17000,CNY,ai_application_dev,"AI应用开发工程师
+12-17K * 12薪
+信息技术岗  深圳  本科
+收起
+岗位职责
+1、学习并掌握大型语言模型（LLM）、智能代理（Agent）及检索增强生成技术（RAG）等前沿 AI 技术，持续跟进大模型领域最新行业动态；
+2、参与Agent开发实践，熟练使用Python 编程语言及 Workflow 平台，完成基础 Agent 功能实现与 RAG 技术应用；
+3、学习 Prompt Engineering（提示工程）实操方法，结合业务场景优化提示词设计，提升模型生成效果；
+4、协助将 AI 应用与公司现有业务系统集成（如通过 HTTP 接口数据对接），参与智能问数等项目迭代优化；
+5、积极参与团队技术讨论，为 AI 项目的创新方向与解决方案贡献思路，快速积累工程实践经验。
+岗位要求
+1、2027届获得本科及以上学历，数学、计算机科学、软件工程等相关专业；
+2、对人工智能、机器学习及新兴技术有浓厚兴趣，熟悉 Python 基础语法；
+3、具备良好的逻辑思维与问题解决能力，能快速学习新技术；
+4、具有团队合作精神与沟通能力，积极主动参与项目协作；
+5、有 AI 工具（如 LangChain、ChatGPT API）使用经验或 AI 相关竞赛 / 课程实践经历者优先。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""检索增强生成""}, {""raw_name"": ""网络协议"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""HTTP""}]",public_job_page,company_career_page,https://www.nowcoder.com/jobs/company-project?projectId=2689&deliverSource=4&activityId=176&activitySuffix=2027YKJzc&pageSource=5009&channel=qzsy,2026-09-01,,none,human_reviewed
+AI应用工程师,星网锐捷,福州,中国,,,,,ai_application_dev,"AI应用工程师
+校园招聘
+全职
+福建省·福州市
+2026-08-28 发布
+工作职责
+1、参与产品需求评审，理解业务场景，输出清晰的技术方案与接口设计文档
+2、与产品、前端团队协作，合理拆解任务，制定可落地的开发计划；识别潜在技术风险，提前评估并给出解决思路
+3、负责后端业务逻辑开发，包括 API 设计、数据库建模及服务端性能调优
+4、善用 AI 编程工具（如 OpenCode 、Cursor、GitHub Copilot、 Claude 等）提升开发效率与代码质量，主动进行代码审查与重构，保持模块结构清晰、可维护性强，参与 CI/CD 流程建设，推动工程化规范落地
+5、及时响应线上问题，快速定位 Bug 根因并给出修复方案，与客户支持团队协作，将用户反馈转化为可执行的技术改进项，沉淀常见问题处理经验，形成标准 SOP，减少重复性工作。
+任职资格
+1、2027届本科及以上学历，计算机、软件相关专业
+2、熟练使用JAVA语言，掌握Spring、SpringBoot等常用后端框架，熟悉MySQL等数据库的使用与优化
+3、对AI有浓厚兴趣，愿意主动探索AI工具在开发中的应用，能够使用AI工具提升工作效率
+4、对WEB前端有一定了解，熟悉HTML、CSS、JavaScript基础，能够配合前端完成联调工作
+5、具备良好的问题排查能力、沟通协作能力，工作积极主动，有责任心，能承受一定的工作压力，乐于接受新业务、新技术挑战",,"[{""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SpringBoot""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Copilot""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""JAVA语言""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}]",public_job_page,company_career_page,https://starnet.zhiye.com/campus/jobs,2026-09-01,,none,human_reviewed
+AI算法工程师,星网锐捷,福州,中国,,,,,AI算法,"AI算法工程师
+校园招聘
+全职
+福建省·福州市
+2026-08-28 发布
+工作职责
+1、参与人工智能相关算法的研发、优化及工程化落地
+2、参与机器学习、深度学习模型的训练、评估、部署及性能优化
+3、根据业务需求参与算法方案验证、效果分析及模型迭代优化
+4、参与算法模型在实际产品或设备中的集成、适配及问题分析
+5、参与数据处理、模型评测、Bad Case 分析及算法效果优化
+6、跟踪人工智能领域的新技术、新模型和新方法，并结合实际业务进行学习、验证和应用
+7、与算法、软件、产品及测试等团队协作，推动相关功能和项目落地
+任职资格
+1、计算机、人工智能、电子信息、自动化、通信、数学等相关专业，硕士研究生及以上学历
+2、具备良好的 Python 编程能力，并具有一定的 C/C++ 编程基础
+3、熟悉 PyTorch 等至少一种主流深度学习框架，理解模型训练、评估、推理及基本优化方法
+4、熟悉 Linux 开发环境，具备一定的代码调试、数据分析和问题定位能力
+5、具备人工智能相关项目、科研、实习或竞赛经历，方向不限于计算机视觉、语音算法、自然语言处理、大模型应用等
+6、具备较好的机器学习、深度学习基础，能够完成算法实验、模型训练和结果分析
+7、具备良好的逻辑思维、学习能力和动手能力，对算法工程化及 AI 产品落地有较强兴趣
+立即投递
+收藏
+压力，乐于接受新业务、新技术挑战",,"[{""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Linux""}, {""raw_name"": ""C++"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""C++""}]",public_job_page,company_career_page,https://starnet.zhiye.com/campus/jobs,2026-09-01,,none,human_reviewed
+AI开发岗,吉利,杭州,中国,,,,,AI开发,"AI开发岗
+分享
+吉利汽车集团|浙江·杭州市|IT/互联网类
+申请职位
+职位描述
+职位描述：
+
+1、负责营销服业务场景AI算法研发与落地应用，聚焦智能客服、智能营销工具、智能销售助手、业务智能分析等核心产品模块的AI功能开发与迭代；
+
+2、承担大模型落地全流程工作，涵盖模型训练、微调所需的数据清洗、处理、标注、评测分析，持续优化数据集质量，保障大模型训练效果与落地稳定性；
+
+3、迭代优化大模型Fine-tuning微调策略，针对营销、客服、销售等具体业务场景，专项提升大模型场景适配度、输出准确率与实用性，解决场景落地痛点问题；
+
+4、负责LLM大模型、多模态大模型应用中台及核心技术模块的搭建、开发与优化，构建可复用的大模型应用能力，支撑业务快速迭代；
+
+5、持续调研跟进大模型前沿技术，探索大模型、多模态技术在营销服领域的新兴应用场景，落地技术demo与创新方案，赋能业务智能化升级；
+
+6、联动产品、后端、测试团队完成AI功能对接、联调、上线及日常运维，持续优化业务产品智能化体验，保障线上功能稳定运行。
+
+
+
+任职资格：
+
+1、2027届应届本科及以上学历，计算机、统计学、运筹学、工业工程、管理科学与工程、信息技术、人工智能、大数据等相关专业优先；
+
+2、具备扎实的数据结构、基础算法、深度学习、NLP基础理论知识，熟悉主流AI算法开发环境，具备基础算法研发思维；
+
+3、对营销服AI智能化研发有浓厚兴趣，学习能力强，主动关注大模型前沿技术与行业应用场景；
+
+4、工作认真细致、责任心强，具备优秀的逻辑分析、问题拆解与解决能力，可适配多任务工作场景，抗压性良好，具备良好团队协作能力；
+
+5、 熟练掌握Python编程语言，精通Pandas、Numpy等数据处理库，熟练使用PyTorch深度学习框架，具备独立算法开发、模型调试的基础能力；
+
+6、熟练运用SQL进行复杂数据查询、清洗、统计与处理，能够高效支撑模型训练、数据评测、业务数据分析等工作；
+
+7、了解NLP自然语言处理、深度学习基础算法原理，熟悉大模型微调、数据评测、模型优化等相关流程与技术；
+
+8、了解LLM、多模态大模型应用开发，有RAG、模型微调、业务AI落地相关项目或实践经验者优先；
+
+9、掌握Git、Linux基础操作，具备基础的工程化落地能力，能够独立完成简单AI模块的开发与迭代。",,"[{""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Fine-tuning""}, {""raw_name"": ""LLM 应用开发"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""SQL""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Git""}]",public_job_page,company_career_page,https://campus.geely.com/campus-recruitment/geely/78436/#/job/08e53dbb-2d71-44ee-bd68-895e8be81e65,2026-09-01,,none,human_reviewed
+AI/Robox产品岗,吉利,暂无,中国,,,,,AI产品,"AI&RoboX产品岗
+分享
+曹操出行|中国|IT/互联网类
+申请职位
+职位描述
+职位描述：
+
+1、需求管理与业务分析，围绕公司 AI 能力、RoboOS 平台及智能座舱业务场景，参与用户需求、业务需求、客户需求的调研、收集与分析，协助识别高价值场景，并对需求进行拆解、优先级评估和版本规划支持；
+
+2、AI 产品与场景设计，参与企业AI Agent、智能座舱、人机交互、语音助手、车载智能服务等方向的产品设计工作，梳理业务流程、用户路径和功能逻辑，输出产品需求文档、原型图、流程图等产品交付物；
+
+3、RoboOS 平台能力建设，协助推进 RoboOS 相关平台能力、工具链、应用生态及智能化能力的产品化落地，参与平台功能定义、使用场景设计、开发协同和体验优化，推动底层技术能力转化为可感知、可复用的产品能力；
+
+4、跨团队协同与产品交付，与算法、研发、测试、设计、运营、项目及业务团队紧密协作，推动需求评审、方案确认、开发跟进、测试验收和上线交付，保障产品方案按计划落地；
+
+5、数据分析与产品迭代，关注产品使用数据、用户反馈、体验问题及业务指标，参与分析 AI 功能效果、座舱交互体验和平台能力使用情况，持续推动产品优化和版本迭代；
+
+6、行业与竞品研究，持续关注 AI、大模型、智能座舱、智能汽车、机器人操作系统及出行科技领域的发展趋势，参与竞品分析、用户洞察和创新场景探索，为产品规划提供输入。
+
+
+
+任职资格：
+
+1、大学本科及以上学历，计算机、软件工程、人工智能、自动化、车辆工程、工业设计、交互设计、心理学、信息管理等相关专业优先；
+
+2、熟悉并热爱 AI、智能汽车、智能座舱或出行科技行业，对大模型、语音交互、多模态交互、智能助手、机器人操作系统等方向有兴趣，有相关课程项目、科研项目、竞赛经历或实习经历优先;
+
+3、具备良好的产品思维和用户洞察能力，能够从用户体验、业务价值和技术可行性等角度理解问题，具备一定的需求分析、流程梳理和逻辑表达能力;
+
+4、具备较强的学习能力、沟通协作能力和责任心，能够在跨职能团队中主动推进问题解决，适应快速变化的业务节奏;
+
+5、注重细节，有同理心，思维活跃，逻辑清晰，具备较好的结构化思考能力、抗压能力和判断能力;
+
+6、具备良好的产品表达能力，能够使用原型、流程图、文档工具完成需求梳理和方案说明；对 AI Coding 工具保持关注，熟练使用 Trae、Cursor、CodeX、Claude Code 等工具者优先;
+
+7、有学生组织、社团项目、创新创业项目、产品运营实习、互联网产品实习、车企/智能硬件/AI 产品相关实习经历者优先。",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}]",public_job_page,company_career_page,https://campus.geely.com/campus-recruitment/geely/78436/#/job/2c2bd7bd-a502-4c9b-b001-e917191cc11c,2026-09-01,,none,human_reviewed
+2027届秋招-Java开发工程师,波克,上海,中国,,,,,AI java开发,"2027届秋招-Java开发工程师
+上海正式研发
+职位描述
+你将参与游戏后端系统的设计与研发，支撑游戏业务稳定迭代。
+1. 参与游戏业务与系统方案设计，负责后端核心业务逻辑实现，保障服务稳定可靠；
+2. 参与服务端架构、存储方案的讨论与落地，关注系统性能、并发能力；
+3. 使用各类 AI 辅助研发工具，能够甄别校验 AI 输出，完成二次迭代落地；
+4. 和策划、测试、客户端同学协同，共同推进产品落地，应对业务带来的各类技术挑战。
+职位要求
+我们希望你：
+1. 2027 届毕业生，本科及以上学历，计算机、软件工程等相关专业优先；
+2. 熟悉Java语言，熟悉Spring、Mybatis 等主流框架，了解 MySQL、Redis、消息队列等中间件；
+3. 具备良好的问题分析解决能力，重视代码规范，拥有良好编码习惯；
+4. 对数据敏感，熟悉基础算法与数据结构，追求高质量的工程实现；
+5. 主动拥抱AI变革，有AIGC、AI Agent工具开发等相关AI应用经验者优先；
+6. 热爱游戏，具备良好沟通协作意识，对游戏开发充满热情。",,"[{""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Java语言""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Redis""}]",public_job_page,company_career_page,https://boke.jobs.feishu.cn/581609/position/7673832049572497705/detail?share_token=MzsxNzg2OTQ4ODE5NjI0Ozc1Mzg3MzQxMjgwNzkyMjcxNTU7MDsxLzI,2026-09-01,,none,human_reviewed
+2027校招-AI Infra工程师,它石智航,上海,中国,,,,,AI Infra,"2027校招-AI Infra工程师
+上海正式
+职位描述
+【职位定位】
+1. 该岗位着重于建设企业级 Agent 平台，服务于机器人数据生产、模型训练、任务编排、评测分析和研发提效等业务场景。
+2. 你将参与 Agent 核心能力、执行框架、工具系统、上下文管理、自动化工作流和评测体系的研发，推动大模型能力在复杂业务流程中的稳定落地。
+
+【职位描述】
+1. 参与公司级 Agent 平台核心模块研发，包括会话管理、上下文管理、任务状态管理、记忆机制、权限控制和异常恢复等能力。
+2. 参与 Agent 执行框架与工具体系建设，支持任务规划、工具调用、插件扩展、技能编排及多步骤任务执行。
+3. 面向机器人数据构建、模型训练、评测分析和任务调度等场景，设计并实现可执行的 Agent 工作流。
+4. 参与 Agent 评测与可观测体系建设，对任务完成率、工具调用准确率、响应质量、稳定性和运行成本进行分析与优化。
+5. 参与技术方案设计、代码开发、自动化测试和问题排查，持续提升平台的可维护性、扩展性和交付质量。
+职位要求
+1. 2027届应届毕业生，计算机、人工智能、软件工程、数学、自动化等相关专业，本科及以上学历。
+2. 具备扎实的编程基础，熟悉至少一门主流编程语言，能够独立完成模块开发、调试和问题定位。
+3. 了解大模型应用开发，对提示词设计、结构化输出、工具调用、多轮对话等基本机制有一定理解。
+4. 了解 Agent 的基本组成和运行方式，对任务规划、上下文管理、记忆机制、工具系统等概念有基础认知。
+5. 掌握数据结构、操作系统、计算机网络、数据库等基础知识，具备良好的工程实践意识。
+具备较强的问题拆解、学习和沟通能力，能够快速理解复杂业务并推动方案落地。
+6. 加分项：有完整的 Agent、大模型应用或复杂软件系统项目经验；有知识检索、文档理解、长期记忆、上下文优化等相关实践经验；了解前后端开发、数据库、任务调度、日志监控等基础工程能力；有数据平台、模型训练平台、MLOps、自动化测试或智能体评测相关项目经历；有开源项目、科研项目、技术竞赛或高质量个人项目经验。",,"[{""raw_name"": ""LLM 应用开发"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""评测体系""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""提示词""}]",public_job_page,company_career_page,https://tarsrobot.jobs.feishu.cn/021343/position/7668214572231117106/detail,2026-09-01,,none,human_reviewed
+AI应用工程师 应届生,华为,北京,中国,,,,,AI应用,"AI应用工程师 应届生
+研发类
+深圳/上海/北京/南京/杭州/西安/东莞/成都/武汉/苏州/长沙/济南
+更新于2026-08-17
+岗位意向
+本岗位有多个领域，请你选择一个具体的方向。
+AI技术应用
+岗位职责
+1、参与实际产品的AI大模型与AI算法在各类业务场景中的应用开发、集成与迭代优化；
+2、参与AI大模型与AI算法应用相关的需求分析、模型微调、RAG检索 ，提升模型在各类场景下的应用效果；
+3、参与产品、数据、业务等团队协作，建立AI大模型与AI应用相关的数据分析、效果评估、问题定位与持续优化，提升用户体验和业务价值。
+岗位要求
+1、人工智能、计算机、软件工程、电子信息、自动化等相关专业；
+2、熟悉主流大模型应用开发框架，掌握大模型原理（如Transformer架构、微调技术、向量数据库等）或AI算法原理（如神经网络、强化学习、树模型、知识图谱等）；或有大模型（如GPT、DeepSeek、Qwen系列等）应用或神经网络（CNN、RNN、GNN等）开发经验，熟悉NLP/知识图谱/智能问答/对话系统/文生图/文生视频等领域；
+3、具备扎实的编程能力，熟练掌握 Python、C++、Java 等至少一种编程语言。
+工作地点
+上海/武汉/深圳/北京/杭州/西安/南京/成都/东莞/苏州/长沙/济南",,"[{""raw_name"": ""LLM 应用开发"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,company_career_page,https://career.huawei.com/cn/campus-recruitment-job-list,2026-09-01,,none,human_reviewed
+AI全栈工程师（数据方向）-网易有道,网易有道,北京,中国,,,,,AI全栈,"AI全栈工程师（数据方向）-网易有道
+热招
+网易互联网2027届校园招聘
+|
+北京
+|
+技术
+|
+2026-08-27
+岗位描述
+1、数据建设与治理：负责海外营销系统所需的高质量多模态数据采集、清洗、过滤、标注与自动化流水线（Pipeline）建设；
+2、AI与数据链路融合：设计并实现结构化与非结构化数据的解析、存储与检索架构，构建面向业务的大数据与AI智能体（Agent）工作流；
+3、模型应用与优化：参与数据类模型的选型、评估、微调及落地部署，利用AI技术提升数据分析与业务智能化水平；
+4、系统研发与维护：负责AI数据系统及相关后端服务的架构设计、高并发接口开发与云原生环境下的性能调优。
+岗位要求
+1、教育背景：计算机、软件工程、数据科学、人工智能等相关专业，本科及以上学历。
+2、编程能力：精通 Python&JAVA 编程语言，具备扎实的算法与数据结构基础，熟悉常用开发框架。
+3、AI/大模型经验：熟悉主流大模型、LangChain、RAG、Agent 架构或向量数据库（如 Milvus, ES 等）的应用与落地。
+4、数据技能：熟练掌握 SQL 及主流大数据处理工具（如 Spark, Flink, Hive 等），有大规模数据清洗与处理经验优先。
+工作地点
+北京",,"[{""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""LangChain""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""Milvus"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Milvus""}, {""raw_name"": ""Spark"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Spark""}, {""raw_name"": ""Flink"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Flink""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""JAVA""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""SQL""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,company_career_page,https://campus.163.com/app/job/position?id=103,2026-09-01,,none,human_reviewed
+AI Agent 应用开发工程师-网易有道,网易有道,北京,中国,,,,,AI Agent,"AI Agent 应用开发工程师-网易有道
+热招
+网易互联网2027届校园招聘
+|
+北京
+|
+技术
+|
+2026-08-27
+岗位描述
+我们不要求你已经是成熟的 Agent 开发者。希望你在 Web、iOS、Android、Windows/macOS 等至少一种端侧开发方向具备技术长板，并愿意在入职后逐步向 Agent 应用与全栈方向发展。
+岗位职责
+1、负责 Agent 产品的大前端交互与应用开发，参与产品从方案设计到开发上线的完整流程。
+2、在团队支持下学习并应用任务编排、工具调用、RAG/知识库等 Agent 技术，推动现有业务场景 Agent 化，并持续优化产品效果与体验。
+岗位要求
+1、本科及以上学历，计算机、软件工程等相关专业优先。
+2、编程和软件工程基础扎实，至少熟悉一门主流语言，如 Java、Python、JavaScript/TypeScript、Swift、Kotlin 等。
+3、熟悉 Web、iOS、Android、Windows/macOS 中至少一种技术栈及其运行原理，有完整应用开发或从 0 到 1 的项目实践。
+4、对 LLM 和 Agent 产品开发有兴趣，了解 Prompt、RAG、Tool/Function Calling 等基本概念。
+5、具有好奇心、自驱力，以及良好的学习、沟通和问题解决能力。
+我们更看重你在某一端的技术长板、学习能力和工程潜力，不要求同时掌握所有端，也不要求已有完整的 Agent 项目经验。
+加分项
+有 Agent、RAG、MCP/Skill、跨端或全栈项目，以及相关实习、开源或技术分享经历者优先。
+工作地点
+北京",,"[{""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Function Calling""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Kotlin"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Kotlin""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://campus.163.com/app/job/position?id=103,2026-09-01,,none,human_reviewed
+AI infra工程师（C++）-网易有道,网易有道,北京,中国,,,,,AI infra,"AI infra工程师（C++）-网易有道
+热招
+网易互联网2027届校园招聘
+|
+杭州、北京
+|
+技术
+|
+2026-08-27
+岗位描述
+1、结合HPC和AI前沿技术，设计和优化大模型训练和推理框架，负责模型优化、算子优化、图优化、分布式优化等，提升计算效率；
+2、负责云侧或端侧大模型和小模型推理服务开发、性能优化、上线等工作。
+岗位要求
+1、本科及以上学历，计算机及相关专业优先；
+2、精通C/C++、python编程，熟悉常用数据结构；
+3、了解transformer的结构，了解模型训练、微调和推理的过程和原理；
+4、熟练使用AI Coding工具辅助开发，并能验证生成代码的正确性、性能和安全性；
+5、热爱技术，可以快速学习新技术，快速掌握HPC和AI前沿技术；
+6、有以下一项或多项技术能力者优先：
+（1）有GPU、NPU、ARM、或其他AI芯片等平台上AI落地实践经验；
+（2）熟悉并行计算和分布式计算技术，有 MPI、OpenMP、CUDA 等编程经验，或有PTX、汇编优化方法；
+（3）熟悉模型训练框架如Deepspeed、Megatron，pytorch等；
+（4）熟悉TensorRT-LLM、vLLM、sglang等任一推理框架，有实际操作经验；
+（5）熟悉多层次的软件优化经验，如模型剪枝/量化/压缩、分布式优化（PD分离）、存储优化、kv-cache优化、动态Batching、IO优化、算子/指令集优化等。
+工作地点
+杭州、北京",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""AI Coding""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""pytorch""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""python""}, {""raw_name"": ""vLLM"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}, {""raw_name"": ""C++"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""微调""}]",public_job_page,company_career_page,https://campus.163.com/app/detail/index?id=4857&projectId=103,2026-09-01,,none,human_reviewed
+Agent开发工程师,海艺互娱,成都,中国,,12000,25000,CNY,Agent应用开发,"Agent开发工程师
+分享
+12 - 25 K/月|全职|研发算法类|研发|四川·成都市
+发布于 2026-08-28
+申请职位
+职位描述
+岗位职责：
+
+1、参与 AI Agent 核心能力建设，包括 Prompt 工程、Agent 开发、Harness 框架以及 Skill 技能模块开发；
+
+2、参与产品开发与系统优化，支持任务自动化、上下文管理及智能分析能力建设；
+
+3、学习并实践 Agent 系统性能优化，在多任务处理、高并发场景下积累工程实践经验；
+
+4、跟踪大模型应用与 Agent 技术发展趋势，参与技术调研、方案评估及工程落地。
+
+
+
+任职要求：
+
+1、熟悉至少一种高级编程语言（Golang / Java / Python等），具备扎实的编程基础和基本的数据结构、算法能力；
+
+2、计算机或相关专业背景，具备良好的计算机基础知识；
+
+3、熟悉关系型数据库及 SQL 开发，具备数据处理和分析能力；
+
+4、具备良好的问题分析和沟通能力，能够主动发现问题并提出解决方案；
+
+5、对大模型应用、Agent 系统、Prompt 工程及 AI 工程化方向有浓厚兴趣，具备较强的学习能力和探索精神。
+
+
+
+加分项：
+
+1、有大模型应用开发、Prompt 编写或效果调优经验者优先；
+
+2、有 Agent 系统或相关开源项目实践经验者优先，如 ClaudeCode、DeepAgent、OpenClaw、LangGraph等；
+
+3、熟悉 Skill 技能模块设计、加载机制或上下文管理相关实践者优先。",,"[{""raw_name"": ""LangGraph"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""LLM 应用开发"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Golang""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/haiyi/150699?locale=zh-CN#/job/bd74bc54-455f-4356-927f-d006315c8f37,2026-09-01,,none,human_reviewed
+AI java,慧策（掌上先机）,北京,中国,,,,,AI java,"【岗位职责】
+1.负责供应链场景下搜推系统的工程实现，参与核心模块的设计、编码与测试，保障系统高可用、高并发与可扩展性。
+2.支撑算法团队的工程化需求，负责算法模型的线上部署、推理服务开发与性能优化，确保模型服务低延迟、高吞吐。
+3.设计并优化高并发数据结构，支撑海量业务数据下复杂索引结构的低延迟查询，提升搜推系统的响应速度。
+4.与算法、产品、测试团队紧密协作，保障搜索、推荐、AI 采购等相关功能按时高质量交付。
+5.跟踪 Java 技术栈与供应链智能化领域的发展趋势，参与内部技术分享与架构演进，推动系统性能与稳定性持续优化。
+任职资格
+1. 学历背景
+本科及以上学历，计算机相关专业，应届毕业生或在校生均可投递。
+2. 技术能力
+（1）熟练掌握 Java 编程语言，扎实掌握面向对象编程、集合框架、异常处理等核心基础知识。
+（2）理解常用数据结构与算法，并能将其应用于实际业务开发场景。
+（3）熟悉 Spring Boot、MyBatis 等主流 Java 开发框架，有实际项目使用经验者优先。
+3. 个人素质
+（1）积极主动，责任心强，具备良好的团队合作精神和跨部门沟通能力。
+（2）能够在项目压力下保持高效工作状态，对技术和供应链智能化业务有持续学习热情。
+4. 加分项
+（1）有搜索推荐算法经验、 AI 工程项目经验者优先，熟悉向量数据库者优先。",,"[{""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}]",public_job_page,company_career_page,https://huicecom.zhiye.com/campus/jobs,2026-09-01,,none,human_reviewed
+Python研发工程师-北京,博斯软件,北京,中国,,,,,AI Python,"Python研发工程师-北京
+分享
+AI研发中心（人工智能研究院）
+发布于 2026-08-26
+申请职位
+职位描述
+投递提示：此岗位为Python后端研发，专注于智能体平台的服务架构、调度编排与性能优化，非算法类岗位。请确认您的技术兴趣与经验主要在后端工程方向后再行投递，感谢关注！
+
+
+
+我们在做什么
+
+我们正在打造下一代企业级AI智能体平台。在这里，你将面对的不只是高并发的后端系统，更有AI Agent调度、知识库引擎、模型网关等极具挑战的核心场景。我们的业务不仅覆盖""小龙虾""、""爱马仕""等个人智能体助手，更延伸至面向多用户的企业级智能体平台。如果你对""让AI在企业级场景真正落地干活""这件事充满热情，这里就是你的舞台。
+
+
+
+岗位职责
+
+1. 负责公司AI智能体平台、知识库、模型网关等AI核心研发平台后端的设计与开发，并协助智能体的调度编排、上下文管理等工作，构建高可用、高性能的分布式服务，支撑智能体业务的高速增长。
+
+2. 深度参与接口设计、数据存储方案及服务治理，确保系统在微服务架构下的稳定性、可扩展性与安全性。
+
+3. 与前端、算法团队紧密配合，高效完成联调测试，推动复杂技术问题的闭环解决，并输出清晰、规范的技术文档。
+
+4. 参与技术方案评审与代码走查，践行DevOps理念，从代码到部署全链路提升系统性能与研发效率。
+
+5. 保持对AI工程化、云原生等前沿技术的敏锐度，结合业务场景落地创新方案，持续提升团队整体技术竞争力。
+
+
+
+任职资格
+
+1. 本科及以上学历，计算机、软件工程等相关专业优先。
+
+2. 深入理解Python核心机制，熟悉多线程、异步IO（asyncio）、装饰器、上下文管理器等特性；熟悉FastAPI、Django或Flask等主流Web框架者优先。
+
+3. 熟悉至少一种Python ORM框架（如SQLAlchemy、Django ORM），具备数据库设计与查询优化能力。
+
+4. 熟悉MySQL或PostgreSQL，深入理解数据库索引原理及事务隔离级别；熟悉Redis等NoSQL缓存技术。
+
+5. 了解分布式系统常见挑战及解决方案；熟悉消息队列（如RocketMQ、Kafka）的基本使用场景；熟悉Nacos、Sentinel等服务治理组件者优先。
+
+6. 有AI编程助手（如Cursor、ClaudeCode）深度使用经验者优先；了解主流开源智能体框架，或有大模型API调用经验者优先。
+
+7. 具备出色的快速学习能力，能够快速掌握Java、Go等其他语言技术栈。",,"[{""raw_name"": ""PostgreSQL"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""PostgreSQL""}, {""raw_name"": ""FastAPI"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""FastAPI""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Cursor""}, {""raw_name"": ""Django"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Django""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Redis""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Flask"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Flask""}, {""raw_name"": ""微服务"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微服务架构""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Kafka"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Kafka""}, {""raw_name"": ""Java"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Go"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/bosssoft/68370#/job/b4244ec9-f571-4cae-9460-6b6bd48b96ab,2026-09-01,,none,human_reviewed
+AI全栈工程师 - 飞书项目,字节跳动,"杭州,北京",中国,,,,,AI全栈,"AI全栈工程师 - 飞书项目
+杭州、北京
+正式
+研发 - 后端
+2027届校园招聘
+职位 ID：A32532
+职位描述
+团队介绍：飞书项目是专为复杂业务场景打造的专业项目管理平台，通过可视化AI 工作流引擎，帮助企业规范协作流程、提升执行效率。目前，飞书项目已服务多家先进企业，覆盖软件研发、硬件开发、企业经营管理等复杂协同场景，领跑研发项目管理数字化工具赛道。
+
+1、参与飞书项目核心模块的前后端全链路研发，端到端负责功能设计、开发、测试与上线；
+2、不断探索各种新技术，参与系统架构演进、性能与稳定性优化，保障平台在大规模企业客户下的高可用；
+3、以AI为默认工作方式，深度实践AI Coding，持续沉淀团队研发提效方法与工具。
+职位要求
+1、2027届获得本科及以上学历，计算机、软件工程等相关专业优先；
+2、数据结构、算法、操作系统、网络、数据库基础扎实，熟练掌握至少一门主流编程语言（Go/TypeScript/Java/Python等），代码逻辑清晰、结构良好；
+3、熟悉React/Vue等主流前端框架，掌握至少一种常用Web框架，熟悉MySQL/Redis等常用存储；
+4、至少熟练使用一种AI编码工具Cursor/Claude Code/Copilot/TRAE/Codex等；了解大模型、Agent、RAG、MCP、CLI、Prompt、Harness等核心概念并有自己的理解；能识别AI输出的正确性、风险与边界，并设计验证机制；
+5、具备良好的逻辑思考与问题拆解能力，好奇心与学习动手能力强，主动自驱，面对复杂问题具备攻坚钻研的毅力和解决能力，沟通协作顺畅。
+
+加分项：
+1）独立AI相关作品项目经验；
+2）优秀的开源贡献或个人项目；
+3）ACM/NOI/CTF等竞赛获奖；
+4）有To B/SaaS类产品实习或复杂业务开发经历。",,"[{""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""MySQL"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Redis""}, {""raw_name"": ""ReAct"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://jobs.bytedance.com/campus/position/7668271920346286341/detail,2026-09-01,,none,human_reviewed
+资深Agent研发工程师,月之暗面,北京，上海,中国,,,,,Agent研发,"急
+资深Agent研发工程师
+分享
+全职|技术类|北京市
+发布于 2026-08-10
+申请职位
+职位描述
+如果你想做的不是一次性 demo，而是真正被大规模用户持续使用、能够沉淀为核心产品能力的 AI Agent 系统——这个岗位是你的。你将参与 Kimi 最核心的 Agent 方向研发，围绕 Agent 内核、任务执行、工具生态与工程基础设施，打造一体化的产品体系。你的代码不仅支撑真实业务场景，也会成为智能产品持续演进的重要基础。
+
+你将亲手打造：
+
+设计与开发 Agent 相关主线产品的关键特性，包括内核框架、业务逻辑、效果调优；
+建设稳定可靠的 Agent 工程基座，让复杂任务的执行过程可控、可查、可复现；
+关注业务数据与指标，围绕模型效果与用户体验做持续打磨；
+与模型、工具生态、前端、产品等团队协作，把优秀实践沉淀为可复用的框架能力；
+引入 AI 改善研发工作流和工程质量，建设先进的 CI/CD 和 DevOps 工具。
+我们希望你：
+
+具备优秀的 AI Agent 产品与技术认知，深入理解 Agent 的产品形态、核心能力与落地路径，关注模型效果、任务执行、工具调用与用户体验；
+熟悉 Agent 主流技术栈（如 Skills、MCP、Sandbox 等），有真实 Agent 系统的开发经验；
+具备扎实的后端工程与基础设施认知：精通 Go，熟悉微服务、RESTful API、gRPC、OpenTelemetry 等主流后端技术栈，具备复杂后端系统设计能力；
+理解 PostgreSQL、MySQL、Redis、Elasticsearch、S3、HBase 等存储组件的使用场景与核心原理；
+熟悉 Linux、Docker、Kubernetes、CI/CD、DevOps 等工程基础设施；
+具备出色的技术抽象与工程创新能力，强自驱、好奇心强，善于使用 AI 工具提升研发效率，能够完成从产品原型到工程落地的闭环。
+工作地点：北京/上海",,"[{""raw_name"": ""Elasticsearch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Elasticsearch""}, {""raw_name"": ""Kubernetes"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Kubernetes""}, {""raw_name"": ""PostgreSQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PostgreSQL""}, {""raw_name"": ""Docker"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Docker""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Linux""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""gRPC"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""gRPC""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""微服务"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""微服务""}, {""raw_name"": ""Go"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Go""}]",public_job_page,company_career_page,https://app.mokahr.com/apply/moonshot/148506#/job/5c611c15-1359-4e25-8748-111ff25c8e88,2026-09-01,,none,human_reviewed
+测试开发工程师-Agent开发方向,鹰角网络,上海,中国,,,,,Agent开发,"测试开发工程师-Agent开发方向
+分享
+全职|上海市|程序技术类
+申请职位
+职位描述
+岗位职责：
+
+1.负责 SDLC 测试领域 AI Agent 体系建设，重点覆盖需求评审、用例评审、测试数据生成及自动化测试等核心场景，驱动测试全流程智能化提效；
+
+2.参与测试 Agent 能力开发与工具链对接，打通需求、代码、接口、缺陷等研发测试数据，支撑测试分析、结果校验与流程闭环；
+
+3.跟进 AI 工程化相关技术，沉淀可复用的测试 Agent 方案、工具能力和知识资产。
+
+
+
+任职要求：
+
+1.本科及以上学历，计算机、软件工程、人工智能等相关专业优先；
+
+2.具备扎实的计算机基础，理解数据结构、算法、网络协议、数据库及常用设计模式；
+
+3.至少熟练掌握一门主流编程语言（如 C++ / Go / Java / Python 等），编码功底扎实；
+
+4.熟悉 Spring Boot、Django、FastAPI 等常见后端技术栈，有服务端系统设计或工具开发经验者优先；
+
+5.了解 AI Agent、RAG、Prompt Engineering、LangChain / LangGraph 等技术，有落地经验者优先；
+
+6.了解 SDLC、质量保障、自动化测试、可观测性体系者优先；
+
+7.积极主动、责任心强，具备良好的沟通协作、学习能力及工程落地意识",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""LangChain"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""LangGraph"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""FastAPI"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""FastAPI""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Django"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Django""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""网络协议"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""网络协议""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/hypergryph/26326?recommendCode=DSHEzpf4#/job/f10f4237-9230-4377-be31-cddd1b404be6,2026-09-01,,none,human_reviewed
+Agent工程师-系统交付,极智嘉,苏州,中国,,,,,Agent工程,"急
+Agent工程师-系统交付
+分享
+软件工程类|江苏·苏州市|全职
+申请职位
+职位描述
+Responsibilities：- 基于公司WES/IPS核心产品开展项目需求落地与全流程交付工作，依托PUI机制完成项目需求梳理、固化与落地推进，保障需求落地合规、高效。- 聚焦仓储物流业务场景，负责前端客户需求的调研收集、拆解梳理，结合业务现状制定可落地的技术实施方案，并全程跟进方案落地与落地验证工作。- 依托AI原生研发模式开展需求落地工作，借助AI工具高效完成PRD、TDD、功能规格说明书（Function Spec）等文档撰写，常态化参与代码评审（Code Review）及AI自动化单元测试工作，提升交付标准化与质量。- 负责项目上线后的常态化运维支撑工作，承接后续迭代需求对接、落地跟进，持续复盘交付流程，迭代优化交付方式，稳步提升项目整体交付效率与稳定性。- 及时响应并处理项目线上Bug，项目实施过程中的系统相关的问题跟进，提供技术与业务支撑，闭环解决各类交付卡点问题。- 协同项目团队开展业务蓝图（Blueprint）调研、分析与梳理工作，梳理业务架构与项目整体实施规划，为项目整体落地提供支撑。Base Skills：- 本科及以上学历，计算机科学、软件工程、信息技术等计算机相关专业，具备扎实的专业理论功底。- 具备良好的代码编写能力，熟练掌握 Java、Python 至少一门编程语言；理解并发编程、JVM 核心运行机制，熟悉 Spring Boot 框架及 MySQL 数据库，了解 Redis、消息队列等中间件的核心特性与业务适用场景。- 具备扎实的计算机基础知识，熟练掌握数据结构与算法、操作系统、计算机网络、数据库原理等核心专业知识，具备完备的技术知识体系。- 具备一定的 AI Native  技术基础认知，了解机器学习基础概念、大模型运行原理及能力边界；熟悉 Transformer、提示词工程、RAG、智能Agent 等主流AI技术，并具备相关实践尝试与独立思考能力。- 具备优秀的逻辑拆解与结构化思维，可将复杂业务需求、AI 落地需求拆解为可落地的技术方案与细分执行场景；沟通表达清晰、工作主动积极，乐于拥抱 AI 原生新型研发模式，适配数字化交付工作。",,"[{""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Spring Boot""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""提示词工程""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Redis""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Java""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}]",public_job_page,company_career_page,https://app.mokahr.com/campus_apply/geekplus/168533#/job/2822c143-cd79-4594-a8f3-ef037b6eb652,2026-09-01,,none,human_reviewed
+AI全栈工程师,腾讯,暂无,中国,,,,,AI全栈,"岗位描述
+1、负责产品业务系统的全栈开发，涵盖前端交互、后端服务、数据存储等，参与需求分析、架构设计、开发交付与迭代优化；
+2、构建基于大模型的全链路应用系统，包括AI能力接入、Agent架构设计、RAG系统搭建、业务知识库建设等，实现端到端的AI应用落地；
+3、跟踪AI与全栈技术的前沿发展，关注行业前沿动态，并结合业务场景进行落地实践。
+
+岗位要求
+1、熟练掌握主流前后端技术栈，具备扎实的计算机基础知识和全栈工程能力，能够完成需求分析、方案设计、开发交付及迭代优化的完整流程；
+2、熟练使用 AI 编程工具，能通过 AI 完成业务开发与应用搭建；
+3、了解大模型基本原理与推理部署方式，熟悉RAG技术、Agent原理（包括 Tool Use、Planning、Memory 等），有相关实践经验；
+4、 具备系统设计能力，了解分布式系统、微服务架构、消息队列、缓存等后端核心技术；
+5、 对 AI 前沿技术有浓厚兴趣，愿意主动探索AI在业务场景的创新应用；
+6、具备良好的沟通协作与问题解决能力，有较强的责任心，能高效配合团队完成项目交付。
+
+加分项或注意事项
+1、有全栈项目经验（如独立开发过 Web 应用 / SaaS 产品 / AI 应用平台等）；
+2、具备模型算法调优经验、个人项目、开源项目或成熟业务系统开发经验者优先；
+3、有RAG、主流Agent框架（如LangGraph / AutoGen 等）使用经验；
+4、有复杂Agent构建经验，能够系统性评估质量、持续改进效果、优化应用性能/成本；
+5、参与过开源项目或有技术博客、技术作品；
+6、在技术竞赛、开源社区中有突出表现。",,"[{""raw_name"": ""LangGraph"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""AutoGen"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""AutoGen""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""RAG技术""}, {""raw_name"": ""微服务"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""微服务架构""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""分布式系统""}]",public_job_page,company_career_page,https://join.qq.com/post_detail.html?postid=1282707398326592512,2026-09-01,,none,human_reviewed
+Agent开发工程师,腾讯,暂无,中国,,,,,Agent开发,"岗位描述
+1、负责智能Agent系统的架构设计与开发，包括多Agent协作框架、任务规划与调度、工具调用与执行引擎等核心模块建设；
+2、设计并实现Agent的记忆系统、推理链路和决策机制，提升Agent在复杂业务场景下的自主性与可靠性；
+3、搭建Agent应用的评测与质量保障体系，建立系统性的效果评估、持续优化与性能、成本管控机制；
+4、跟踪Agent技术前沿发展，结合业务需求进行技术预研与落地实践。
+
+岗位要求
+1、熟练掌握至少一门主流编程语言（Python/TypeScript/Go 等），具备扎实的数据结构与算法基础，代码质量意识强；
+2、深入理解Agent原理与架构，包括 Planning、Memory、Tool Use、Reflection等核心机制；
+3、 熟悉主流Agent开发框架（如 LangGraph、AutoGen、CrewAI、MetaGPT 等），有实际搭建经验；
+4、了解大模型基本原理，熟悉Prompt Engineering技巧，能设计高质量的系统提示词与工具描述；
+5、对AI Agent技术有强烈兴趣，关注行业动态，具备独立调研与技术选型能力；
+6、 具备良好的系统思维和问题解决能力，能在复杂场景中设计可靠的Agent方案。
+
+加分项或注意事项
+1、有Agent系统构建经验（如自主任务执行、多 Agent 协作、复杂工作流编排等）；
+2、有Agent评测与质量体系建设经验，能系统性评估Agent效果并持续改进；
+3、 有RAG系统搭建经验，了解向量检索、知识图谱等知识增强技术；
+4、 参与过相关开源项目或有技术博客、Agent应用作品展示。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""LangGraph"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多Agent协作""}, {""raw_name"": ""AutoGen"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AutoGen""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""CrewAI"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CrewAI""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,company_career_page,https://join.qq.com/post_detail.html?postid=1282707395466077184,2026-09-01,,none,human_reviewed
+AI Agent 应用研发工程师(J14187),科大讯飞,合肥,中国,,,,,AI agent应用研发,"AI Agent 应用研发工程师(J14187)
+校园招聘
+安徽省·合肥市
+AI研发类
+2026-08-26 发布
+工作职责
+1. 打造面向真实用户的 AI Agent
+参与讯飞星火及各讯飞产品中的 Agent 设计与研发，围绕办公、学习、内容创作、信息管理和跨语言沟通等场景，完成需求分析、技术验证、工程实现和产品迭代。
+你可能参与会议助理、个人知识助理、文档 Agent、求职 Agent、翻译 Agent 或智能硬件 Agent 等方向。
+2. 建设 Agent 核心能力
+参与以下一个或多个方向：
+• 目标理解、任务规划与执行；
+• Context Engineering 与长短期记忆；
+• Tool Calling、MCP 与 Skills 接入；
+• RAG、个人知识库与多模态检索；
+• 工作流编排与多 Agent 协作；
+• 结果校验、失败恢复与个性化能力。
+你需要判断哪些环节适合使用大模型，哪些环节更适合使用确定性程序、搜索、规则或人工确认。
+3. 让 Agent 稳定、可信地工作
+建设 Agent 的评测、Tracing 和可观测体系，围绕任务完成率、结果准确性、工具调用成功率、响应延迟、模型成本和用户体验持续迭代。
+你将参与解决幻觉、死循环、执行失败和成本失控等问题，让 Agent 从“能够演示”走向“稳定可用”。
+4. 探索端云协同与软硬一体化 Agent
+结合科大讯飞在智能语音、机器翻译、多模态交互和消费硬件领域的积累，探索：
+• 语音、文本、图片、文档及手写内容的多模态理解；
+• 录音、转写、理解、生成与执行的一体化链路；
+• App、云服务与智能硬件之间的协同；
+• 端侧模型与云端大模型的能力分配；
+• 弱网、离线、功耗、延迟及设备资源约束下的用户体验；
+• 个人数据的隐私保护、权限管理与安全执行。
+5. 用 AI 原生方式研发 AI 产品
+深度使用 AI 编程工具辅助需求分析、方案设计、代码开发、测试调试和知识沉淀。
+与产品、设计、算法、测试及硬件团队协作，把快速变化的模型能力转化为可靠、可维护的软件产品。
+任职资格
+1. 计算机、软件工程、人工智能及相关专业优先，专业背景不是绝对限制。
+2. 熟练使用 Python、Java、Go、C++、JavaScript/TypeScript 中至少一种语言，具备良好的计算机基础和软件工程能力。
+3. 真正动手完成过一个大模型应用、AI Agent、智能助手或自动化工具。个人项目、课程设计、比赛作品和实习项目均可。
+4. 理解大语言模型的基本能力与局限，了解 Prompt/Context Engineering、Tool Calling、RAG 和结构化输出等常见应用范式。
+5. 能够清楚说明一个项目解决了什么问题、为何这样设计、如何评测效果，以及经历过哪些失败和改进。
+6. 关注用户体验和工程质量，不仅关心模型能否回答，也关心结果是否可信、响应是否及时、用户是否愿意持续使用。
+7. 具备主动学习、问题拆解和协作能力，愿意在快速变化、没有标准答案的领域中持续实验并完成交付。
+我们不要求你掌握所有热门框架。相比记住框架 API，我们更看重你的工程基础、作品质量、思考深度和成长潜力。
+加分项
+如果你拥有以下任一经历，我们会很感兴趣：
+• 有可访问的 Agent Demo、GitHub 项目、技术博客或开源贡献；
+• 做过会议助手、个人知识库、语音助手、浏览器 Agent 或代码 Agent；
+• 使用过主流 Agent 框架，并能解释其适用场景和设计取舍；
+• 有 MCP、复杂工作流、多智能体或 Agent Eval 实践；
+• 有语音识别、机器翻译、OCR、文档解析或多模态应用经验；
+• 有移动端、Web、桌面端、后端服务或智能硬件开发经历；
+• 了解端侧推理、模型量化、性能优化、隐私保护或可信 AI；
+• 在竞赛、论文、开源社区或真实用户产品中取得过有说服力的成果。",,"[{""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Tool Calling""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Evaluation（LLM 评测）"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Eval""}, {""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://iflytek.zhiye.com/campus/jobs,2026-09-01,,none,human_reviewed
+Agent研发工程师,科大讯飞,合肥,中国,,,,,Agent研发,"我们相信：Model + Harness = Agent
+模型决定智能上限，Harness 决定模型能否稳定、可靠地完成真实任务。你将参与下一代 Agent 运行与编排基础设施的研发，包括任务循环、上下文与记忆、工具调用、评测、可观测性和安全控制，帮助模型从“会回答问题”进化为“能够完成复杂任务”。这不是一个只调用模型 API、编写 Prompt 或搭建简单 RAG 应用的岗位。你将有机会深入 Agent 的运行机制，参与解决规划执行、工具使用、上下文管理、错误恢复和结果验证等真实工程问题。如果你具备扎实的工程基础，对 Agent 有强烈兴趣，并通过项目展现了自己的学习能力和动手能力，我们非常欢迎你申请。
+1、参与 Agent Runtime / Harness 核心模块研发，包括 Agent Loop、任务规划与执行、工具调度、状态管理、流式输出、错误恢复以及任务暂停与恢复。
+2、参与上下文、记忆和工具扩展体系建设，探索上下文压缩、Token 预算、长期记忆、Skills、MCP、权限控制及沙箱执行。
+3、参与 Agent 评测与可观测性建设，通过任务成功率、工具调用正确率、执行轨迹、延迟和成本等指标，定位并改善 Agent 失败问题。
+4、与模型研发、训练、产品及工程团队协作，基于真实任务、运行轨迹和用户反馈，推动模型能力与 Harness 的共同优化。
+5、深度使用团队开发的 Agent 产品，持续跟进前沿技术和行业优秀产品，从开发者与用户的双重视角提出改进方案，并快速完成原型验证。
+任职资格
+1、具备扎实的计算机基础和软件工程能力，能够完成模块设计、编码、测试和问题排查。
+2、熟练掌握至少一种编程语言，如 Rust、Python、TypeScript、Go、Java 或 C++。
+3、有真实的工程项目经历，课程项目、竞赛项目、个人项目、科研项目或开源项目均可，并能够清楚说明设计思路、技术取舍和问题解决过程。
+4、对 LLM 和 Agent 有浓厚兴趣，了解 Agent Loop、Tool Use、Context、Memory、Planning 等基本概念，或具备快速学习相关技术的能力。
+5、使用过一种或多种 AI Coding 工具、代码类 Agent 或通用 Agent 产品，能够借助 AI 快速进入陌生技术栈，并通过测试、代码审查和运行验证保证交付质量。
+6、具备良好的沟通协作能力、技术好奇心和产品意识，愿意深入分析异常分支、失败场景和边界条件。
+此岗位为科大讯飞集团统一招聘岗位，人员通过简历筛选、初试、复试、终审等环节后录用。
+加分项
+1、开发或深度改造过 Agent、MCP Server、AI Coding 工具、Agent Framework 或多智能体系统。
+2、有上下文管理、记忆系统、工具调用、模型评测、数据构造或 KV Cache 相关实践。
+3、有异步任务、分布式系统、沙箱执行、权限控制、安全隔离或可观测性相关经验。
+4、有高质量个人项目、开源贡献、论文、竞赛成绩或其他能够体现技术能力的代表性成果。
+5、能够阅读英文技术资料，并参与开源社区讨论或与海外开发者交流。
+6、申请时欢迎提供以下内容任选一至两项即可，不要求全部具备：
+-开发或深度参与过的 Agent、MCP、开发者工具或开源项目。
+-一次真实的 Agent 失败分析，包括执行过程、根因判断、修复方案和验证结果。
+-一个借助 AI 在陌生技术栈中完成高质量交付的案例。
+-你对现有 Agent 产品在上下文管理、工具调用、多 Agent 协作或开发者体验方面的具体判断。",,"[{""raw_name"": ""TypeScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TypeScript""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Rust"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Rust""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://iflytek.zhiye.com/campus/jobs,2026-09-01,,none,human_reviewed
+校招-AI 全栈工程师（AI出海）,水滴,深圳,中国,,,,,AI全栈,"校招-AI 全栈工程师（AI出海）
+热招
+深圳正式互联网 / 电子 / 网游 - 研发
+职位描述
+岗位简介
+AI 正在改变世界，而我们正在寻找一起创造未来的人，我们的核心团队负责人，大多毕业于清北、哈佛等顶尖名校，也拥有谷歌、阿里等一线头部企业的工作背景，整体技术功底扎实、行业经验非常深厚，专业度和落地能力都很靠谱。
+
+在这里，你不会只是完成一个需求、开发一个功能，而是参与把一个 AI 想法变成真实产品，从发现用户需求，到设计技术方案，再到上线并持续优化，让 AI 真正服务业务、创造价值。
+
+岗位职责：
+1、参与 AI 产品从需求探索、方案设计、技术开发到上线迭代的完整流程，推动 AI 能力落地；
+2、探索大模型、Agent 等 AI 技术在真实业务场景中的应用，打造智能化产品和工具；
+3、结合用户反馈和业务数据，持续优化 AI 应用效果，提升产品体验和业务价值；
+4、主动发现问题、验证想法，将技术探索转化为实际成果。
+职位要求
+1、本科及以上学历，计算机、软件工程、人工智能等相关专业优先；
+2、热爱 AI 技术，持续关注大模型、AI 应用开发等方向，有较强探索能力；
+3、具备扎实的编程基础，有独立开发项目经验优先；
+4、有 AI 项目实践经验优先，包括但不限于 AI Agent、智能应用、自动化工具、RAG 应用等；
+5、具备主人翁意识，能够主动思考问题，并推动事情落地。
+加分项：
+1、有完整 AI 产品作品或开源项目；
+2、熟悉大模型应用开发流程，了解 Prompt、Agent、RAG 等技术；
+3、具备产品思维，能够从用户需求出发设计 AI 解决方案。
+你将获得：
+专属成长体系：一对一资深导师全程带教，针对性制定应届生成长计划；
+全链路实战经验：深度参与真实商业AI项目，覆盖设计、研发、落地、迭代全流程，告别单一重复性工作，积累核心项目履历；
+专属培训资源：享有校招新人专属培训体系，涵盖技术进阶、业务思维、职场能力等多维课程，全方位助力应届生快速成长；
+开放创新氛围：鼓励新人大胆创新、输出想法，重视每一位应届生的创意与尝试，为技术探索和项目实践提供充足资源支持。。",,"[{""raw_name"": ""LLM 应用开发"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://wdh.jobs.feishu.cn/345030/position/7675570357516765491/detail,2026-09-01,,none,human_reviewed
+AI agent技术开发岗,4399,广州,中国,,,,,AI agent,"[岗位描述]
+1. 参与公司内部 AI 中台建设，基于大语言模型和 Agent 技术，将 AI 能力接入审批、即时通讯、项目管理、数据查询、报表分析等内部系统，让 AI 真正融入员工日常工作，提升公司整体协作与业务效率；
+
+2. 参与 Agent 平台核心能力研发，包括任务规划、工具与 Skill 调用、上下文和记忆管理、工作流编排、人机确认、异常恢复、效果评测及运行监控等，与团队一起把“可以演示的 AI Demo”建设成稳定、可靠、可复用的企业级能力；
+
+3. 与产品、业务及各信息系统研发团队深入沟通，理解真实业务流程，将复杂需求拆解为 Agent 能够理解、执行和评测的任务，让研发成果接受多部门用户和真实业务场景的检验
+
+
+[岗位要求]
+1. 本科及以上学历，计算机、人工智能、软件工程、数学、统计等相关专业优先；
+
+2. 编程基础扎实，熟练使用 Python，掌握常用算法和数据结构，能够编写结构清晰、可测试、可维护的工程代码；
+
+3. 理解机器学习、深度学习和大语言模型基本原理，了解主流模型的能力边界、调用方式和应用场景；
+
+4. 了解 RAG、Embedding、向量检索、Rerank、引用溯源等基本流程；
+
+5. 理解 Agent 的基本工作机制，能够设计或实现包含任务规划、工具调用、状态与上下文管理、异常重试、降级处理和人工确认的多步骤工作流；
+
+6. 具备基本的 Agent 评测意识，了解如何构造测试用例或评测集，并从任务成功率、工具调用准确率、结果正确性与一致性、事实有据性、响应延迟、Token 成本及人工接管情况等维度分析效果；
+
+
+[工作地点]
+广州",,"[{""raw_name"": ""Embedding"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Embedding""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""RAG""}]",public_job_page,company_career_page,https://hr.4399om.com/campus/graduate/?jobType=campus_kaifalei&jobID=JO20260730001,2026-09-01,,none,human_reviewed
+Agent基础设施工程,蚂蚁集团,北京,中国,,,,,Agent基础设施,"Agent基础设施工程
+技术类
+分享
+基础信息
+招聘批次：蚂蚁集团2027届应届生招聘
+毕业起止时间要求：2026.11.01-2027.10.31
+面试地点：远程
+工作地点：北京、上海
+发布时间：2026.07.22
+职位描述
+负责构建支撑AI Agent全生命周期的核心基础设施，涵盖设计构建、训练优化、安全部署、高并发调度及服务化交付等，为Agent的规模化落地提供稳定、高效、安全的底层能力。
+具体职责包括以下相关方向的一项或多项：：
+Agent基础设施
+设计高并发、可扩展的Agent框架，覆盖沙箱执行、容器编排、任务调度及状态管理，支持训练优化与安全部署。
+安全与稳定性
+1.构建沙箱隔离与委托身份认证，确保API安全调用，并实现检查点恢复机制保障长任务可靠性。
+2.基于全链路的 AI Native 技术，参与平台工程核心模块的研发，重新定义容灾、演练、故障定位与稳定性保障，打造支撑海量请求的坚实底盘。
+平台服务能力：开发LLM上下文预计算、知识检索等优化能力，封装SDK/API（如向量检索、观测体系）提升推理效率。
+AI能力产品化
+模块化输出开发套件（如CLI/SKLLS），降低Agent构建与调优门槛，支持算法迭代优化。
+技术前瞻与落地
+跟踪Agent生态技术进展，推动新技术规模化应用，持续优化架构性能与易用性。
+目标：通过高效、安全、先进的基础设施，实现AI Agent从开发到生产的全流程支持，加速规模化落地。
+职位要求
+基础条件
+1.计算机、软件工程等相关专业优先；
+2.有平台工程、云原生、分布式系统或高影响项目经验者优先。
+专业能力
+1.扎实的软件工程能力，熟悉 Java、Go、Python 等至少一门语言，具备较强的平台设计与工程实现能力；
+2.熟悉分布式系统、服务化架构、平台化建设和工程体系，有较强抽象能力，能把复杂能力沉淀为稳定平台；
+3.熟悉容器、调度、CI/CD、权限控制、观测体系、资源管理等平台关键技术；
+4.理解 AI 研发基本流程，了解训练、评测、推理、部署等环节的工程需求；
+5.有云原生平台、资源调度平台、开发者平台或 AI 平台建设经验者优先；
+6.熟悉 Kubernetes、工作流编排、服务治理、任务调度等相关技术者优先。
+能力特质
+1.具备较强系统抽象与产品化意识，能够平衡灵活性、标准化与可维护性；
+2.重视开发者体验与工程效率，能从全流程视角推进平台演进；
+3.具备良好的跨团队沟通能力，能够协同基础设施、算法和业务团队推进。
+加分项
+对Agent Runtime/Agent Sandbox/Skill/MCP/Memory等Agent Infra相关方向的开源项目有参与的同学优先。",,"[{""raw_name"": ""Kubernetes"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Kubernetes""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""CI/CD""}, {""raw_name"": ""分布式系统"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""分布式系统""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Java""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Go""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""向量检索""}]",public_job_page,company_career_page,https://talent.antgroup.com/campus-position?positionId=260721010986440&tid=219fe01c17882429445978880e4fad,2026-09-01,,none,human_reviewed
+Agent研发工程师,蚂蚁集团,杭州,中国,,,,,Agent研发,"财保平台架构-Agent研发工程师（AI Coding/AI Testing方向）
+技术类
+分享
+基础信息
+招聘批次：日常实习
+毕业起止时间要求：2027.11.01-2028.10.31
+面试地点：远程
+工作地点：杭州
+发布时间：2026.08.21
+职位描述
+1. 基础要求：计算机、软件工程、人工智能等相关专业，掌握 Python、Java 等至少一种编程语言，具备基本编码能力；
+2. 具备AI编程工具使用经验：Claude Code、Cursor等AI编程工具深度使用经验，具备较强的Prompt编写与调优能力，理解如何让AI写出生产级代码；
+3. 掌握LLM Agent原理：理解主流LLM的能力与局限，能够清晰拆解任务并通过LLM或确定性逻辑兜底实现；熟悉主流大模型的应用范式（Context Engineering、Prompt Engineering、Agent、工具/函数调用等）及主流Agent框架，具备大模型幻觉、Prompt注入等风险的工程化应对思路；
+4. 具备知识工程开发经验：有一定的知识库系统开发经验，熟悉向量检索与混合排序方案，熟悉 Elasticsearch、向量数据库、LangChain 等框架。",,"[{""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt Engineering""}, {""raw_name"": ""Elasticsearch"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Elasticsearch""}, {""raw_name"": ""LangChain"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangChain""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""函数调用""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""向量检索""}]",public_job_page,company_career_page,https://talent.antgroup.com/campus-position?positionId=260820011582506&tid=219fe01c17882430282347337e4fad,2026-09-01,,none,human_reviewed
+AI全栈开发工程师（深圳）,大疆,深圳,中国,,,,,AI全栈,"AI全栈开发工程师（深圳）
+分享
+软件|广东·深圳市
+申请职位
+职位描述
+职位简介：
+
+我们致力于将AI技术与研发流程深度融合，“让AI赋能研发，让创造更纯粹”是我们的核心使命。
+
+在这里，你将让AI代码的能力贯穿产品研发与制造的全链路，驱动关键系统的智能进化；
+
+在这里，你将与AI技术专家、产品经理及业务方紧密协作，拉通从模型到应用的AI创新闭环；
+
+在这里，你将与前沿的团队共同构建下一代AI-Native工程体系，为研发效能的革命性提升贡献力量。
+
+
+
+工作职责：
+
+1. 围绕研发与制造领域的数字化与智能化转型，进行全栈式AI应用开发，深度参与关键IT系统的设计、开发、部署与持续优化；
+
+2. 负责前端、客户端、服务端等多领域业务开发工作，覆盖业务全链路，按业务需求统筹各端开发优先级，打破端侧壁垒，实现业务功能高效落地；沉淀AI编程最佳实践与工程方法论，提升团队通过AI高效交付可靠工程的整体能力。
+
+3. 立足全栈发展趋势，明确AI编码工程师核心定位，短期聚焦多端AI辅助开发，长期向全栈方向深耕，参与业务全流程开发，推动业务从需求到上线的闭环落地；
+
+4. 关注AI编码、全栈开发前沿技术与行业趋势，跟进业内最新工具与应用方案，结合业务场景提出创新思路，探索AI技术与全栈开发结合的最优路径，支撑业务长远发展；
+
+
+
+任职要求：
+
+1. 本科及以上学历，计算机相关专业；
+
+2. 具备扎实的计算机基础知识（数据结构、算法、计算机网络、操作系统等），了解前端（JS/TS/Vue/React等）、客户端（iOS/Android/鸿蒙任一）、服务端（Golang/Python/Java任一）任一领域的开发，有全栈开发经验者优先；
+
+3. 对AI技术有强烈兴趣和好奇心，了解并能初步应用大语言模型（LLM）；熟练使用Claude Code、Codex、Cursor等任一AI Coding工具，维护过Rules、MCP、Skills并了解底层机制与技术细节的同学优先；
+
+4. 认可AI Coder定位，明确自身长期全栈发展规划，具备较强的学习能力和适应能力，能快速上手新领域技术，适配业务驱动的开发模式；深度认同AI开发范式，坚信大语言模型会重塑软件开发，日常工作中能主动使用AI工具，真正用AI提升效率；
+
+5. 热爱学习，勇于接受挑战，具备快速学习、主动探索和解决问题的强烈自驱力。
+5. 热爱学习，勇于接受挑战，具备快速学习、主动探索和解决问题的强烈自驱力。",,"[{""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Golang""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""MCP""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""JS""}]",public_job_page,company_career_page,https://apply.careers.dji.com/campus-recruitment/dji/143359?locale=zh-CN#/job/868688c0-254c-4b00-8473-c774f9abf826,2026-09-01,,none,human_reviewed
+AI测试开发工程师（上海）,大疆,上海,中国,,,,,AI测试开发,"AI测试开发工程师（上海）
+分享
+测试及测试开发|上海市
+申请职位
+职位描述
+职位简介：
+
+质量是产品的核心竞争力之一，测试是产品质量的守门员。测试团队聚焦在质量管理、自动化和智能化测试等领域的体系建设和应用，致力于打造全面、高效和智能的产品质量保障体系。加入该团队，有机会深度参与贯穿“芯片-操作系统-算法-应用软件-云端软件-硬件-结构”全栈技术的测试业务挑战，获得快速成长。
+
+
+
+工作职责：
+
+1. 参与到自动化测试与智能化测试解决方案的研发中，为测试效能负责，包括但不限于：自动化用例开发，以及应用AI大模型技术开发智能测试方案（如：基于LLM的测试用例智能生成、缺陷智能分析与定位、测试数据智能构造、UI/接口智能化测试、测试报告智能生成等）；
+
+2. 参与到公司产品的研发全流程中，为产品的高质高效交付负责，包括但不限于：需求分析、测试方案设计、测试用例设计、测试执行和质量风险管控等关键环节；
+
+3. 参与到研发效能解决方案的研发中，为研发效能负责，包括但不限于：持续集成、持续发布、持续部署和效能度量等；
+
+4. 探索并实践AI技术在质量保障领域的创新应用，持续跟踪业界AI+测试前沿技术，为构建智能化产品质量保障体系提供技术支撑。
+
+
+
+任职要求：
+
+1. 本科及以上学历，软件工程、计算机科学、电子、通信、网络等相关专业；
+
+2. 熟悉Python/C/C++/Java/JavaScript/LabVIEW等编程语言中的一种或多种；
+
+3. 较好的系统软件开发和集成经验；
+
+4. 良好的学习能力及团队合作能力，责任心强，喜欢挑战，对技术有追求；
+
+5. 具备以下一种或多种技能、经验者优先：
+
+① 丰富的Linux应用程序开发经验，熟练运用Linux的同步互斥机制，或有Linux内核开发经验，如：Linux内核的移植和开发，Linux设备驱动程序的设计和开发，有良好的问题定位能力；
+
+② 参与过CI/CD、DevOps整体解决方案实现，有Iaas/Paas/Saas平台开发经验；
+
+③ 理解RTOS的运行机制，能够独立开发设计RTOS的应用；
+
+④ 理解硬件和ARMv7、ARMv8架构；
+
+⑤ 熟悉NI RT及FPGA开发；
+
+⑥ 熟悉操作系统、计算机组成原理；
+
+⑦ 熟练使用Flask/Django/Tornado/SpringBoot等一种或多种Web开发框架，熟悉MySQL、Mongodb等数据库及RabbitMQ/Kafka等消息列队组件，熟悉pytest、testNG框架；
+
+⑧ 熟悉Vue/Electron/React/Angular等前端框架的一种或多种；⑨ 参与过测试设计和测试执行工作，有测试岗位相关实习经验；
+
+6. 具有RoboMaster/ROBOCON等机器人赛事经验者优先。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""Spring Boot"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SpringBoot""}, {""raw_name"": ""RabbitMQ"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""RabbitMQ""}, {""raw_name"": ""MongoDB"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Mongodb""}, {""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Python""}, {""raw_name"": ""Django"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Django""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""ReAct"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""Flask"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Flask""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""Kafka"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Kafka""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}]",public_job_page,company_career_page,https://apply.careers.dji.com/campus-recruitment/dji/143359?locale=zh-CN#/job/366a8b20-f6a9-4c56-a2b6-020a2fcca50e,2026-09-01,,none,human_reviewed
+AI应用开发工程师【agent应用与平台方向】（27届有转正机会）,万兴科技,长沙,中国,,4500,8000,CNY,AI应用开发,"AI应用开发工程师【agent应用与平台方向】（27届有转正机会）
+4.5K-8K 元/月
+实习生招聘
+实习
+湖南省·长沙市
+2026-08-18 发布
+工作职责
+1、负责 AI Agent 前沿技术、产品形态与核心组件的调研，包括工具调用、任务规划、记忆管理、上下文管理、知识库、可观测性等方向；
+2、结合垂类业务场景，理解并拆解 Agent 应用需求，输出技术架构、系统方案与技术选型；
+3、负责 Agent 独立组件或功能模块的研发与交付，包括但不限于知识库架构、RAG 检索链路、上下文管理、工具调用、工作流编排、可观测与质量评估等；
+4、负责 Agent 功能上线后的用户反馈、回流 case 分析与效果评估，持续优化 Agent 的任务完成率、稳定性和用户体验；
+5、跟进 NLP、LLM、Agent、多轮对话等前沿技术，并推动其在实际业务中的落地。
+任职资格
+1、2027届硕士学历及以上，技术理解与眼界广阔，对前沿技术有很高的好奇心和自驱力；
+2、 熟练掌握AI开发工具进行功能开发与提效，能够在AI的辅助下，在没有直接经验的领域（如技术、框架等）进行有质量保证的代码输出；
+3、熟悉LLM、AIGC、Agent机制和技术原理，包括但不限于：LLM基本原理、DiT、SD、Agent Harness工程、Skills、Memory等；
+4、熟练掌握Agent开发框架Langraph、Google ADK等，并能够基于该框架开发Agent公共组件；
+5、精通Python，具备扎实的代码与系统设计能力；有实时视频/图像处理pipeline开发经验者优先；
+6、协作与影响：良好的沟通能力，能与产品、设计、后端紧密配合；乐于分享最佳实践，输出技术文档；
+7、业务理解与创新：对智能剪辑、AIGC创作有强烈兴趣，能快速理解创作者需求并转化为算法方案；具有将前沿论文落地到实际产品中的经验者加分。",,"[{""raw_name"": ""Python"", ""importance"": ""must_have"", ""intensity"": ""精通"", ""evidence_text"": ""Python""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}]",public_job_page,company_career_page,https://wondersharecampus.zhiye.com/intern/jobs,2026-09-01,,none,human_reviewed
+AI Agent工程师（游戏研发方向）,网易游戏,上海,中国,,,,,AI Agent,"岗位描述
+网易互娱持续在不同领域推出爆款游戏，已创造一系列旗舰IP与热门产品，如《梦幻西游》系列、《大话西游》系列、《阴阳师》《燕云十六声》《蛋仔派对》《第五人格》《荒野行动》《率土之滨》《世界之外》等，并将有更多品质新作即将呈现。
+​加入网易游戏互娱，你将直接参与国内TOP级游戏技术开发，在丰富的产品矩阵中获得深度实战历练；校招生的核心骨干定位，业务倾斜培养资源，多位核心岗位负责人均由校招生成长而来。​
+
+1.研究前沿AI Agent及AIGC技术，推动其在游戏研发管线中的落地应用，将技术转化为优化游戏生产效率和升级玩家体验的实际解决方案；
+2.设计与开发基于AI Agent的游戏研发工具链，覆盖代码生成与审查、自动化测试与优化、策划配置生成、程序脚本生成、美术资产生成与处理等核心制作环节，构建可复用、可迭代的AI驱动研发工作流；
+3.负责多模态内容生成的研发与应用工作，包括2D图像、视频、3D模型、动画等内容的生成、控制与优化；针对图像、视频、Mesh等多媒体数据，持续打磨生成质量与效率；
+4.搭建相关数据集、工具链及自动化工作流程，赋能美术、程序、策划等内部团队，协同重构工业化管线，建立AI驱动的敏捷研发新模式；
+5.与跨职能团队紧密合作，深入分析游戏研发中的实际痛点，设计并交付高效的技术解决方案，推动AI能力在真实项目中的规模化落地。
+岗位要求
+1.计算机科学、人工智能、数学、统计学或相关专业背景；
+2.熟悉大语言模型及AI Agent技术的原理、最新进展、能力边界和应用场景，包括但不限于RAG、Tool Use、Multi-Agent协作、Agentic Workflow等；或熟悉AIGC技术原理与最新进展，包括图像/视频/3D内容生成、多模态大模型、3D动作生成等方向；
+3.熟练掌握PyTorch/TensorFlow等深度学习框架，熟悉当前主流2D/3D/动画生成模型或LLM/Agent训练与推理框架，具备模型训练、微调与可控推理的实战能力；
+4.具备扎实的编程能力和良好的工程素养，能够借助AI编程工具提升开发效率，独立完成从数据处理到模型部署、或从原型开发到系统持续迭代的完整流程；
+5.了解游戏引擎和游戏开发流程，具备跨领域技术视野；了解3D重建、游戏美术建模、3D动画生成、动捕数据处理流程者优先；
+6.对AI与游戏结合的前沿探索有浓厚兴趣，愿意推动技术落地与创新发展。
+
+【加分项】
+1.在ICML、NeurIPS、AAAI、AAAI/SIGGRAPH等顶级会议或期刊上发表过相关论文；
+2.有游戏开发或运营相关经验，或有AI Agent工具链在实际产品中落地的项目经验；
+3.热爱游戏，对游戏行业有深入了解。
+工作地点
+杭州、上海、广州",,"[{""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Multi-Agent""}, {""raw_name"": ""TensorFlow"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""TensorFlow""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""PyTorch""}, {""raw_name"": ""多模态"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多模态大模型""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI编程""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SFT/LoRA"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微调""}]",public_job_page,company_career_page,https://campus.game.163.com/app/detail/index?id=4732&projectId=102,2026-09-01,,none,human_reviewed
+Agent开发实习生（AI 产品方向）,美团,成都,中国,,,,,AI产品方向,"Agent开发实习生（AI 产品方向）
+实习-日常实习
+更新时间：2026/09/01
+工作地点：成都市
+部门：核心本地商业-美团平台
+工作经验：不限
+分享
+
+部门介绍
+美团平台为用户的基础产品体验负责，还承担了美团的用户增长、市场和品牌营销以及多条业务线的产品设计职责，建立了融合文字、图片、视频和直播等不同形式的內容生态系统，同时整合地图服务部、客户服务和体验部、企业业务部、网约车业务部等部门，致力于用科技提升美团数亿消费者、近千万商家、骑手、司机和团长的服务体验。美团平台拥有高并发、多业务的复杂场景，为技术深度优化提供了最佳实践可能。这里有简单、讲逻辑、有爱的团队，更是一块理想的实战场地，舞台广阔，欢迎你来尽情施展。
+岗位职责
+1.参与 AI Agent 核心系统开发，包括 Prompt 工程、Chain、Harness 和技能模块（Skills）；
+2.实现中小型功能模块或系统优化，支持任务自动化和上下文管理；
+3.学习并实践系统性能调优，在多任务、高并发环境中积累工程经验；
+4.跟踪业界大模型应用与 Agent 技术动态，参与技术调研、方案评估与落地。
+岗位基本要求
+1.熟悉至少一种高级编程语言（Java / Python 等），具备基础算法和数据结构能力；
+2.计算机或相关专业背景，计算机基础扎实；
+3.熟悉关系型数据库及 SQL 开发；
+4.具备良好沟通能力，能够分析问题并提出解决方案；
+5.对大模型应用、Agent 系统、Prompt 工程及 AI 工程化有浓厚兴趣，乐于探索新技术。
+具备以下条件优先
+1.有大模型应用开发、Prompt 编写或调优经验者优先；
+2.有 Agentic 系统或相关开源项目经验（如 Claude Code、DeepAgent、OpenClaw、LangGraph等）者优先；
+3.熟悉技能模块加载及上下文管理经验者优先。
+岗位亮点
+1.学习前沿技术，接触大模型工程实战；
+2.实战机会丰富，可独立完成模块开发和优化任务；
+3.资深 AI 技术专家指导，加速技术与工程能力提升；
+4.快速成长，积累系统设计、工程化和高并发环境经验。",,"[{""raw_name"": ""LangGraph"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""LLM 应用开发"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""大模型应用开发""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""SQL"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""SQL""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://zhaopin.meituan.com/web/position/detail?jobUnionId=4306214875&highlightType=campus,2026-09-01,,none,human_reviewed
+Agent算法实习生,美团,北京,中国,,,,,Agent算法,"Agent算法实习生
+实习-日常实习
+更新时间：2026/09/01
+工作地点：北京市、上海市
+部门：核心本地商业-基础研发平台
+工作经验：不限
+分享
+
+部门介绍
+基础研发平台是美团的核心技术平台，立足于“零售+科技”的战略定位，通过打造人工智能、大数据、云计算、安全等核心技术能力，以及研发效能平台、企业应用平台等公共服务，为业务提供稳定安全、扩展易用、技术领先的平台技术和产品服务。
+在这里，我们会参与到最前沿的技术研发和探索；能够接触超规模集群、海量数据，挑战高复杂业务场景，有机会与业界一流的工程师一起并肩前行。
+在这里，我们有超强的技术氛围，持续向社区贡献业界实践，加速行业技术发展；我们有完善的互联网学习生态圈，重视底层逻辑和方法论，助力职业生涯的非线性成长。
+真诚地邀请你，和我们一起驱动技术发展，创造行业价值。
+岗位职责
+1. 后训练研究：深入参与模型对齐工作，重点研究多种后训练算法；探索结果奖励和过程奖励模型的构建，提升模型在复杂逻辑下的推理能力。
+2. Agentic RL优化：针对复杂业务场景，优化 Agent 的任务规划、反思与执行能力；提升模型在长链路任务中的稳定性和成功率。
+3. 前沿技术落地：跟踪业界前沿技术路线，负责相关算法的复现、调优及在业务场景中的工程化落地。
+岗位基本要求
+1. 扎实的算法基础，熟悉LLM、NLP相关算法和模型；具备业务场景高质量训练数据构建的实际经验者优先。
+2. 熟悉 Hugging Face Transformers、PyTorch 等主流深度学习框架；具备Agent研发的实际经验者优先。
+3. 有 LangGraph、Swarm 等Agent框架使用经验，熟悉 MCP 协议及工具生态。有多智能体协作或复杂规划任务研发经验。
+4. 在ACL、EMNLP、NAACL、SIGIR等自然语言处理会议或期刊中有论文发表者，或在 Kaggle 及大模型相关榜单中取得优异成绩者优先。
+5. 每周至少全职工作四天，保证实习至少4个月。实习须征得导师同意。
+岗位亮点
+1. 直接参与大模型最核心的 RL 对齐 与 Agentic Reasoning 研究。
+2. 资深算法专家一对一辅导，团队技术氛围浓厚。
+3. 提供充足的计算资源及高质量的真实业务反馈数据（Human Feedback）。
+4. 支持高水平论文合作发表及开源社区贡献。
+4. 支持高水平论文合作发表及开源社区贡献。
+4. 支持高水平论文合作发表及开源社区贡献。",,"[{""raw_name"": ""Hugging Face"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Hugging Face""}, {""raw_name"": ""LangGraph"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""LangGraph""}, {""raw_name"": ""PyTorch"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""多智能体协作"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""多智能体协作""}, {""raw_name"": ""MCP"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MCP""}]",public_job_page,company_career_page,https://zhaopin.meituan.com/web/position/detail?jobUnionId=4555593816&highlightType=campus,2026-09-01,,none,human_reviewed
+AI软件开发工程师,壁仞科技,上海,中国,,,,,AI软件开发,"AI软件开发工程师
+分享
+发布于 2026-08-14
+申请职位
+职位描述
+岗位职责
+
+1.	搭建智能交付流水线： 深度参与 Jenkins、GitLab CI 等 CI/CD 流水线的建设与优化。将静态检查、自动化测试、制品打包、发布验证标准化、自动化。
+
+2.	用代码定义效能： 使用 Python/Shell/Go/Node.js 等语言开发自动化工具与效能平台，连接代码、构建、部署等数据孤岛，实现研发过程的可观测、可分析、可追溯。
+
+3.	探索 AI for DevOps： 这是你的核心高光区！你将参与 AI Agent、大模型在研发场景的落地建设（如知识库、Skills/CLI、Trace评测），将其应用于 Issue 诊断、AI Coding、Code Review、根因定位等真实工程任务。
+
+4.	云原生与一线排障： 深入容器化与云原生交付实践（Dockerfile、K8s YAML、Pod排查）。面向研发团队提供一线支持，解决构建失败、依赖冲突等硬核问题，并沉淀为技术知识库。
+
+任职要求
+
+1.	背景门槛： 计算机、软件、AI、自动化、通信等相关专业。
+
+2.	工程基础： 扎实的计算机基础（网络、数据结构与算法）；熟练在 Linux 环境下开发、分析日志和排查问题；熟悉 Git 协作与 CI/CD 核心理念。
+
+3.	代码能力： 掌握 Python / Shell / Groovy / Go / C/C++ / Node.js 中至少一种，能独立编写脚本、工具或服务，具备良好规范。了解 SQL 及关系型数据库，懂 NoSQL 更佳。
+
+4.	AI 热情： 对 LLM、AI Agent、AI Coding 或开发者工具有强烈兴趣，愿意将模型能力与软件工程方法结合。
+
+5.	底层特质： 极强的自驱力与责任心。面对陌生问题能主动查阅资料、分析日志、完成验证；并且乐于将解决过程沉淀为文档，帮助团队减少重复挖坑。
+
+加分项（非硬性，拥有其一即极大概率脱颖而出）
+
+1.	流水平替： 实习或个人项目中完整搭建过 Jenkins / GitHub Actions / GitLab CI 流水线（覆盖测试到发布）。
+
+2.	云原生实操： 玩转 Docker / Kubernetes，能独立写 Dockerfile、排查 Pod 状态。
+
+3.	AI 极客： 有 AI Agent / LLM应用 / RAG开发经验，熟悉 Claude Code、Cursor 等前沿 AI Coding 工具。
+
+4.	效能/基建专精： 开发过自动化运维工具、效能平台、CLI 工具；或熟悉 Prometheus/Grafana、ELK 等可观测性组件；或涉猎过 PyTorch/CUDA/GPU 软件栈构建。
+
+5.	开源贡献者： 在 GitHub/Gitee 有公开项目、PR 贡献或持续的技术博客输出。
+
+你将获得
+
+1.	真实战非拧螺丝： 拒绝打杂，直接在真实研发环境中操盘 CI/CD、自动化运维与 AI Agent 的工程落地。
+
+2.	复合型技术跃迁： 在资深工程师 1v1 带教下，快速成长为兼具“软件工程 + DevOps + AI 应用”的稀缺型工程师。
+
+3.	算力与前沿触觉： 深度接触最新的 AI Coding 实践，站在大模型重塑软件工程周期的最前沿。",,"[{""raw_name"": ""Kubernetes"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Kubernetes""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Node.js"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Node.js""}, {""raw_name"": ""Jenkins"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Jenkins""}, {""raw_name"": ""PyTorch"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""PyTorch""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Docker"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Docker""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""Linux"", ""importance"": ""must_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Linux""}, {""raw_name"": ""Shell 脚本"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Shell""}, {""raw_name"": ""CI/CD"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""SQL"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""SQL""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}, {""raw_name"": ""JavaScript"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""js""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/biren/44727#/job/a86339e2-e452-45ba-9a5c-90e7eaf21718,2026-09-01,,none,human_reviewed
+27届正式批-AI应用工程师,韶音科技,深圳,中国,,,,,AI应用,"27届正式批-AI应用工程师
+分享
+线上面试、深圳|全职
+发布于 2026-08-18
+申请职位
+职位描述
+岗位定位
+
+面向耳机、手表、手环、戒指、眼镜等可穿戴设备，负责AI能力工程化落地，重点解决“模型可用、系统稳定、体验可交付”的工程问题，推动AI功能规模化上线。
+
+
+
+岗位职责
+
+1.参与可穿戴AI功能的端到端开发与集成，包括需求拆解、方案实现、联调测试、版本迭代；
+
+2.参与大模型应用链路建设与优化（Prompt、RAG、工具调用、服务编排），提升场景效果与响应稳定性；
+
+3.参与端侧模型部署与性能优化，支持模型转换、量化压缩、推理加速与资源调优（时延/内存/功耗）；
+
+4.参与AI Agent工程能力建设，落地任务规划、工具调用、多轮记忆等能力在设备场景中的应用；
+
+5.与产品、算法、系统、测试团队协同，完成数据分析、效果评估、问题定位与闭环优化；
+
+6.参与工程规范沉淀，包括评测基线、日志监控、异常回退、版本发布与稳定性保障机制；
+
+
+
+岗位要求
+
+1.本科及以上学历，计算机、人工智能、软件工程、电子信息、自动化等相关专业；
+
+2.具备扎实编程基础，熟练使用 Python/C++/Java 至少一门；
+
+3.了解机器学习与深度学习基础，理解 Transformer、注意力机制等核心概念；
+
+4.熟悉至少一种AI应用开发方式（如大模型API集成、RAG、Prompt工程、工作流编排）；
+
+5.对端侧AI工程有兴趣，了解 ONNX / TFLite / NCNN / MNN / ONNX Runtime 等任一框架者优先；
+
+6.具备基础工程调试能力，能独立定位常见问题（效果波动、接口超时、资源异常、稳定性问题）；
+
+7.学习能力强，沟通协作良好，能在跨团队协作中推进问题闭环与交付；
+
+
+
+加分项
+
+1.有端侧部署、移动端/嵌入式、IoT、可穿戴相关课程项目或实习经历；
+
+2.有模型轻量化经验（量化、裁剪、蒸馏）或推理性能优化实践；
+
+3.做过智能体/工具调用/多模态项目（语音、传感器、视觉任一方向）；
+
+4.有开源贡献、竞赛成绩或完整项目作品（GitHub/报告/演示）可展示；
+
+
+
+你将获得
+
+1.从模型应用到设备落地的完整工程实践机会；
+
+2.导师制培养与明确成长路径（AI应用工程、端侧AI工程、Agent工程）；
+
+3.深度参与可穿戴AI核心能力建设，直接影响真实用户体验。",,"[{""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Python""}, {""raw_name"": ""Git"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""推理优化"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""推理加速""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""多模态"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多模态""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://app.mokahr.com/campus-recruitment/aftershokzhr/36940#/job/5127f02c-9a38-44f3-b217-dd59b1846e71,2026-09-01,,none,human_reviewed
+AI软件开发工程师（AI Coding / Agentdirection）研发类,荣耀,深圳,中国,,,,,AI软件开发,"AI软件开发工程师（AI Coding / Agentdirection）研发类
+南京市、深圳市、西安市2026-08-18更新本科及以上
+立即投递
+
+收藏
+分享
+工作职责
+我们正在寻找对人工智能辅助开发（AI Coding）以及 AI Agent 应用研发充满热情的同学加入团队。
+你将有机会借助 AI 工具或参与 AI Agent 生产力工具研发，深入荣耀公司企业 IT 数字化业务（涵盖研发、生产制造、电商全流程）及荣耀云平台业务的软件研发工作。你编写的每一行代码、交付的每一个模块，都将服务于上亿全球用户，用软件与 AI 技术真正改变人类的生活。
+
+岗位职责（根据个人优势匹配以下领域）：
+1、运用 AI 编程工具与 Agent 提效，深度参与荣耀公司研发、制造、供应、销售等核心业务链条数字化系统的架构与代码研发;
+2、参与 AI Agent 生产力工具与智能应用的研发与落地，为荣耀全流程业务构建 AI 新质生产力;
+3、参与数字化企业 IT 系统的全生命周期开发，为荣耀公司客户、消费者、供应商及员工提供高效的数字化连接与协同能力；
+4、参与大规模云计算/大数据/AI 基础平台产品的研发工作，为荣耀云上业务提供高性能、高可靠的基础设施支撑；
+5、探索生成式 AI 在前沿业务场景中的落地，解决复杂工程难题，提升团队交付效率与产品核心竞争力；
+6、参与开源社区运作，与业界专家交流，共同构建智能化软件工程的技术影响力。
+任职要求
+1、计算机、软件工程、人工智能、通信等相关专业本科/硕士在读，对技术有热情；
+2、热爱编程，基础扎实，熟练掌握但不限于 Java/Python/C++/C/Go/JavaScript 等编程语言中的一种或数种，有良好的编程习惯;
+3、具备独立工作能力和解决问题的能力、善于沟通，乐于合作，热衷新技术，善于总结分享，喜欢动手实践；
+4、对数据结构、算法有一定了解。具备基本的数据结构与编程基础，能够完成常见功能开发；
+5、加分项（满足以下任意一项即可）
+（1）熟练使用主流AI Coding工具，了解Coding Agent工作机制与原理，有实际AI Coding项目与工程实践与可展示成果者优先;
+（2）熟悉主流AI应用与Agent开发框架，了解RAG、MCP、Skill、多智能体编排等系统设计，有实际AI应用项目实践与可展示成果者优先;
+（3）熟悉AI Infra基础知识，了解SGLang/vLLM等开源推理框架，理解KVCache与延迟优化，有相关项目实践者优先;
+（4） 有 IT 应用软件、互联网软件、iOS / 安卓等相关产品开发经验，不满足于课堂所学，在校期间积极参加校内外软件编程大赛或积极参与编程开源社区组织；
+（5） 熟悉 Java / C++ / C / Go / Python / JavaScript 相关的技术栈，如 Spring / Vue / React 等框架有相关使用经验。",,"[{""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""JavaScript""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""AI Coding""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""ReAct"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""React""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Java""}, {""raw_name"": ""vLLM"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""vLLM""}, {""raw_name"": ""多智能体协作"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""多智能体""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""RAG""}, {""raw_name"": ""MCP"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""MCP""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Go""}]",public_job_page,company_career_page,https://career.honor.com/SU60eea919bef57c1023f6fe78/pb/posDetail.html?postId=6a83c53e1ad6db7cf8056b66&postType=campus,2026-09-01,,none,human_reviewed
+】 AI应用开发工程师,三七互娱,广州,中国,,,,,AI应用,"【社会招聘】 AI应用开发工程师
+工作地点： 广州市
+招聘人数： 1 人
+职位描述：
+1. 负责AI商业化产品的后端研发工作，包括内容洞察平台、漫剧制作平台等核心业务系统的设计与开发；
+2. 对接算法团队，完成 AI 能力的工程化落地与产品功能集成，推动算法能力高效转化为用户价值；
+3. 参与平台核心架构的设计与演进，保障系统的高可用、高性能与稳定运行；
+4. 持续优化服务性能，参与线上问题排查与技术债务治理，提升整体工程质量。
+任职要求：
+基础能力
+1. 熟练掌握 Golang 或 Python（至少一门），具备扎实的数据结构与算法基础，3 年及以上服务端开发经验；
+2. 熟悉 MySQL、Redis、Kafka 等常用存储与消息中间件，具备独立设计数据模型与处理高并发场景的能力；
+3. 熟悉 Docker、Kubernetes 等容器化技术，有微服务开发或运维实践经验；
+4. 了解主流云原生中间件产品的使用，具备一定的服务治理与可观测性建设意识。
+
+特别期待
+1. 对 AI 工具保持热诚与好奇心 —— 能够主动探索并将 AI 工具融入日常开发流程，持续提升个人与团队的研发效率。
+
+加分项
+1. 有内容平台、创作工具或 AI 产品相关的业务经验；
+2. 参与过开源项目，或有个人技术产出；
+3. 具备良好的英文读写能力，能流畅阅读技术文档；
+4. 熟悉前端基础技术（如 Vue.js），具备全栈视角者优先。",,"[{""raw_name"": ""Kubernetes"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Kubernetes""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": ""熟练"", ""evidence_text"": ""Golang""}, {""raw_name"": ""Docker"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Docker""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Redis""}, {""raw_name"": ""Kafka"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Kafka""}, {""raw_name"": ""微服务"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""微服务""}, {""raw_name"": ""JavaScript"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""js""}]",public_job_page,company_career_page,https://zhaopin.37.com/index.php?m=Home&c=society&a=post_info&id=11863207,2026-09-01,,none,human_reviewed
+AI-Native 开发工程师（后端方向）【2027届】,哔哩哔哩,上海,中国,,,,,AI Native,"AI-Native 开发工程师（后端方向）【2027届】
+上海全职技术类2026-08-07 发布
+
+
+职位描述
+
+工作职责:
+1. 参与猫耳音频直播、虚拟开播、广播剧点播及互动玩法等业务的后端研发。
+2. 使用 AI 编程工具辅助需求分析、技术方案设计、代码实现、测试和问题排查。
+3. 参与业务接口、数据处理、任务系统、实时交互和后台服务的设计与开发。
+4. 参与 AI Workflow、Agent、RAG、知识库等应用的服务端能力建设。
+5. 参与模型调用、上下文管理、工具调用、流式输出及效果评估等相关功能开发。
+6. 与产品、前端、算法和测试同学协作，推动需求按计划上线并持续优化。
+7. 参与服务监控、性能优化和稳定性建设，保障系统安全可靠运行。
+工作要求:
+1. 2027届应届毕业生，计算机及相关专业本科及以上学历。
+2. 熟悉 Go、Java、Python、C++ 等至少一种编程语言，具备良好的编程基础。
+3. 了解计算机网络、操作系统、数据结构、数据库等基础知识。
+4. 熟悉 MySQL 等关系型数据库，了解 Redis、消息队列等常见中间件。
+5. 了解 HTTP、RESTful API、WebSocket、SSE 等常见服务端通信方式。
+6. 使用过 Cursor、Claude Code、GitHub Copilot 等 AI 编程工具，能够检查、调试和改进 AI 生成的代码。
+7. 对大模型调用、Prompt、Agent、RAG、工具调用或知识库等方向有基本了解。
+8. 具备良好的学习能力、逻辑思维和问题分析能力。
+9. 重视代码质量、数据安全和线上稳定性，具备良好的团队协作意识。
+加分项
+1. 有完整的后端项目、实习项目、开源项目或个人作品。
+2. 有高并发、实时通信、直播、音视频或内容平台相关项目经验。
+3. 有 AI 应用、Agent、RAG、知识库或 AI Workflow 相关项目实践。
+4. 熟悉 Docker、Linux、Git、CI/CD 等常用研发工具。
+5. 了解向量数据库、Embedding、检索召回、模型效果评估等相关技术。
+6. 具备一定的前端或数据开发能力，能够跨技术栈解决问题。
+7. 有从 0 到 1 完成项目并持续迭代的经历。
+
+网申须知",,"[{""raw_name"": ""Embedding"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Embedding""}, {""raw_name"": ""AI Coding"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Copilot""}, {""raw_name"": ""Python"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Python""}, {""raw_name"": ""Docker"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Docker""}, {""raw_name"": ""Git"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""GitHub""}, {""raw_name"": ""MySQL"", ""importance"": ""must_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""MySQL""}, {""raw_name"": ""Redis"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""Redis""}, {""raw_name"": ""上下文管理"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""上下文管理""}, {""raw_name"": ""Linux"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""Linux""}, {""raw_name"": ""CI/CD"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""CI/CD""}, {""raw_name"": ""Java"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Java""}, {""raw_name"": ""Function Calling"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""工具调用""}, {""raw_name"": ""网络协议"", ""importance"": ""nice_to_have"", ""intensity"": ""了解"", ""evidence_text"": ""HTTP""}, {""raw_name"": ""C++"", ""importance"": ""nice_to_have"", ""intensity"": null, ""evidence_text"": ""C++""}, {""raw_name"": ""RAG"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""RAG""}, {""raw_name"": ""Go"", ""importance"": ""nice_to_have"", ""intensity"": ""熟悉"", ""evidence_text"": ""Go""}, {""raw_name"": ""Prompt Engineering"", ""importance"": ""must_have"", ""intensity"": null, ""evidence_text"": ""Prompt""}]",public_job_page,company_career_page,https://jobs.bilibili.com/campus/positions/29727,2026-09-01,,none,human_reviewed
