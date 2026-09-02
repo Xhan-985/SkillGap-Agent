@@ -162,3 +162,35 @@ def create_snapshot(conn: psycopg.Connection, market: str, **slices) -> dict:
         sid = cur.fetchone()["id"]
     conn.commit()
     return {**result, "snapshot_id": sid, "evidence_ref": f"snapshot#{sid}"}
+
+
+def skill_evidence(conn: psycopg.Connection, market: str, canonical_name: str,
+                   **slices) -> dict:
+    """技能 → 支撑 JD 列表（API §2.12 溯源底账）。
+
+    同一 STATS_FILTER 口径（未授权贡献永不进底账）；底账不做样本量守门
+    （它不是统计，是逐条列表），但口径与统计完全一致。
+    """
+    with conn.cursor() as cur:
+        cur.execute("SELECT id FROM skill WHERE canonical_name = %s",
+                    (canonical_name,))
+        row = cur.fetchone()
+        if row is None:
+            return {"skill_id": canonical_name, "status": "unknown_skill",
+                    "jd_refs": []}
+        skill_id = row["id"]
+
+    parts, params = _slice_where(**slices)
+    where = f" AND {' AND '.join(parts)}" if parts else ""
+    with conn.cursor() as cur:
+        cur.execute(
+            f"""SELECT j.id AS job_id, j.title, j.source_type,
+                       js.evidence_text, j.source_url, j.collected_at
+                FROM job_skill js
+                JOIN job j ON j.id = js.job_id
+                WHERE js.skill_id = %s AND j.market = %s
+                  AND {STATS_FILTER}{where}
+                ORDER BY j.collected_at DESC, j.id""",
+            (skill_id, market, *params))
+        refs = [dict(r) for r in cur.fetchall()]
+    return {"skill_id": canonical_name, "jd_count": len(refs), "jd_refs": refs}

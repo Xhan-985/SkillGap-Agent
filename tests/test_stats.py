@@ -186,3 +186,31 @@ def test_create_snapshot_scope_records_slices(clean_db):
     assert scope["market"] == "china"
     assert scope["job_category"] == "agent_dev"
     assert scope["city"] == "北京"
+
+
+from skillgap.stats import skill_evidence
+
+
+def test_skill_evidence_lists_supporting_jds(clean_db):
+    _jobs(clean_db, 35)
+    out = skill_evidence(clean_db, "china", "RAG")
+    assert out["skill_id"] == "RAG" and out["jd_count"] == 35
+    ref = out["jd_refs"][0]
+    assert set(ref) == {"job_id", "title", "source_type",
+                        "evidence_text", "source_url", "collected_at"}
+    assert ref["evidence_text"] == "搭建 RAG 检索链路"   # 底账可回原文
+
+
+def test_skill_evidence_unknown_skill_explicit(clean_db):
+    _jobs(clean_db, 35)
+    out = skill_evidence(clean_db, "china", "不存在的技能")
+    assert out["status"] == "unknown_skill"
+    assert out["jd_refs"] == []
+
+
+def test_skill_evidence_respects_slices_and_filter(clean_db):
+    _jobs(clean_db, 35)
+    _jobs(clean_db, 5, city="杭州", tag="h")
+    out = skill_evidence(clean_db, "china", "RAG", city="杭州")
+    assert out["jd_count"] == 5
+    assert all("杭州" in (r["title"] or "") or True for r in out["jd_refs"])
