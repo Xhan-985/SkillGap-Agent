@@ -78,3 +78,4 @@ NLP,serving,-,mid,-,自然语言处理,nlp|natural language processing,自然语
 自动化测试,engineering,-,mid,-,UI自动化|自动化测试框架,automation testing|selenium|appium|pytest|testng|cypress,自动化测试框架与脚本
 接口测试,engineering,-,low,-,API测试,api testing|postman,接口测试方法
 性能测试,engineering,-,mid,-,压力测试|负载测试|压测,performance testing|jmeter|loadrunner|locust,性能与负载测试
+系统架构,engineering,-,high,-,架构设计|系统架构能力|业务架构|技术架构|解决方案架构,system architecture|solution architecture,系统架构设计能力
