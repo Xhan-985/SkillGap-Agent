@@ -7,6 +7,7 @@
   jd-analyze / eval-e1 / backfill-extraction（Phase 3，需 LLM_API_KEY）
   resume-analyze / profile-get / profile-add-skill / candidate-delete
     （Phase 5 Candidate Profile；resume-analyze 需 LLM_API_KEY）
+  gap-get（Phase 6 Skill Gap：--job-id 单岗 或 --category 类目聚合，零 LLM）
 """
 from __future__ import annotations
 
@@ -26,6 +27,7 @@ from skillgap.extract.llm_extractor import (
     ExtractionFailed, LLMSkillExtractor,
 )
 from skillgap.extract.prompt import PROMPT_VERSION
+from skillgap.gap.service import GapQueryError, JobNotFound, get_gaps
 from skillgap.ingest.adzuna import fetch_adzuna
 from skillgap.ingest.collector import drop_last, run_collect
 from skillgap.ingest.contribute import (
@@ -146,6 +148,18 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_cd = sub.add_parser("candidate-delete", help="级联删除画像（API §2.7）")
     p_cd.add_argument("--candidate-id", type=int, required=True)
+
+    p_gap = sub.add_parser("gap-get",
+                           help="岗位要求 vs 画像差距量化（API §2.9，零 LLM）")
+    p_gap.add_argument("--candidate-id", type=int, required=True)
+    p_gap.add_argument("--job-id", type=int, default=None,
+                       help="单岗模式：指定 job id")
+    p_gap.add_argument("--category", default=None,
+                       help="类目聚合模式（与 --job-id 二选一）")
+    p_gap.add_argument("--market", default="china",
+                       help="类目模式市场过滤（默认 china）")
+    p_gap.add_argument("--min-freq", type=float, default=0.20,
+                       help="类目模式入清单频率阈值（默认 0.20）")
 
     return p
 
@@ -333,6 +347,17 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             ok = delete_candidate(conn, args.candidate_id)
             print("204 deleted" if ok else "404 not_found")
             return 0 if ok else 1
+        elif args.command == "gap-get":
+            try:
+                _print(get_gaps(conn, args.candidate_id, job_id=args.job_id,
+                                category=args.category, market=args.market,
+                                min_freq=args.min_freq))
+            except (CandidateNotFound, JobNotFound) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+            except GapQueryError as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 2
         return 0
     finally:
         conn.close()

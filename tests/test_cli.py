@@ -17,12 +17,12 @@ def test_parser_subcommands():
                 "jd-analyze", "eval-e1", "backfill-extraction",
                 "snapshot-create", "skill-evidence", "market-crosscheck",
                 "resume-analyze", "profile-get", "profile-add-skill",
-                "candidate-delete"]:
+                "candidate-delete", "gap-get"]:
         ns = parser.parse_args([cmd] if cmd not in (
             "ingest-adzuna", "import", "contribute", "delete-contribution",
             "stats", "jd-analyze", "skill-evidence",
             "resume-analyze", "profile-get", "profile-add-skill",
-            "candidate-delete") else [cmd] + (
+            "candidate-delete", "gap-get") else [cmd] + (
             ["--country", "gb", "--query", "LLM"] if cmd == "ingest-adzuna"
             else ["--file", "x.csv"] if cmd == "import"
             else ["--title", "t", "--file", "j.txt", "--consent"]
@@ -227,3 +227,68 @@ def test_candidate_delete_command(clean_db, capsys):
     rc = main(["candidate-delete", "--candidate-id", str(cid)], db_url=TEST_URL)
     assert rc == 1
     assert "404" in capsys.readouterr().out
+
+
+# ---------- Phase 6：Skill Gap 命令 ----------
+
+def _mk_gap_fixture(clean_db, n_jobs=1):
+    """画像 B（RAG 0.3 / MCP 0.3）+ 1 条要求 Docker 熟练的岗位。"""
+    from tests.profile_fixtures import (
+        EXTRACTION_B, FakeResumeExtractor, RESUME_B,
+    )
+    from skillgap.profile.service import analyze_resume
+    from tests.test_schema import _insert_job, _job_kwargs, _source
+    cid = analyze_resume(clean_db, RESUME_B,
+                         FakeResumeExtractor(EXTRACTION_B))["candidate_id"]
+    sid = _source(clean_db)
+    jid = _insert_job(clean_db, **_job_kwargs(sid, content_hash="h-cli-gap"))
+    skill_id = clean_db.execute(
+        "SELECT id FROM skill WHERE canonical_name = 'Docker'"
+    ).fetchone()["id"]
+    clean_db.execute(
+        """INSERT INTO job_skill
+           (job_id, skill_id, importance, intensity, evidence_text,
+            extracted_by) VALUES (%s, %s, 'must_have', '熟练', '要求 Docker',
+            'manual')""", (jid, skill_id))
+    clean_db.commit()
+    return cid, jid
+
+
+def test_gap_get_job_mode_command(clean_db, capsys):
+    cid, jid = _mk_gap_fixture(clean_db)
+    rc = main(["gap-get", "--candidate-id", str(cid), "--job-id", str(jid)],
+              db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["mode"] == "job"
+    assert [g["skill_id"] for g in out["gaps"]] == ["Docker"]
+    assert out["gaps"][0]["gap"] == 4
+
+
+def test_gap_get_category_mode_command(clean_db, capsys):
+    """单岗类目：Docker freq 1.0 ≥ 0.2 入清单 → 画像 B 无 Docker → gap 4。"""
+    cid, _ = _mk_gap_fixture(clean_db)
+    rc = main(["gap-get", "--candidate-id", str(cid),
+               "--category", "ai_application_dev"], db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["mode"] == "category"
+    assert [g["skill_id"] for g in out["gaps"]] == ["Docker"]
+    assert out["gaps"][0]["gap"] == 4
+    assert out["gaps"][0]["demand"]["frequency"] == 1.0
+
+
+def test_gap_get_not_found_returns_1(clean_db, capsys):
+    cid, _ = _mk_gap_fixture(clean_db)
+    rc = main(["gap-get", "--candidate-id", str(cid), "--job-id", "999"],
+              db_url=TEST_URL)
+    assert rc == 1
+    assert "错误" in capsys.readouterr().err
+
+
+def test_gap_get_mutually_exclusive_returns_2(clean_db, capsys):
+    cid, jid = _mk_gap_fixture(clean_db)
+    rc = main(["gap-get", "--candidate-id", str(cid), "--job-id", str(jid),
+               "--category", "ai_application_dev"], db_url=TEST_URL)
+    assert rc == 2
+    assert "二选一" in capsys.readouterr().err
