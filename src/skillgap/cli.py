@@ -33,6 +33,9 @@ from skillgap.match.service import (
     CandidateNotFound as MatchCandidateNotFound,
     ExplanationInconsistency, JobNotFound as MatchJobNotFound, match_score,
 )
+from skillgap.recommend.service import (
+    CandidateNotFound as RecCandidateNotFound, RecommendError, recommend,
+)
 from skillgap.ingest.adzuna import fetch_adzuna
 from skillgap.ingest.collector import drop_last, run_collect
 from skillgap.ingest.contribute import (
@@ -178,6 +181,27 @@ def build_parser() -> argparse.ArgumentParser:
     p_ev2.add_argument("--dataset", default="data/eval/e2_seed_v1.json")
     p_ev2.add_argument("--seed-only", action="store_true",
                        help="仅入库标注集，不跑分")
+
+    p_rec = sub.add_parser("recommend",
+                           help="ROI 优先级建议（M9，零模型调用）")
+    p_rec.add_argument("--candidate-id", type=int, required=True)
+    p_rec.add_argument("--budget", type=int, default=14,
+                       choices=(7, 14, 30),
+                       help="学习预算天数（默认 14）")
+    p_rec.add_argument("--market", default="china")
+    p_rec.add_argument("--templates", default=None,
+                       help="项目模板库路径（默认 data/project_templates.json）")
+
+    p_agent = sub.add_parser("agent-plan",
+                             help="Career Planner Agent 个性化建议叙事"
+                                  "（LangGraph，需 LLM_API_KEY）")
+    p_agent.add_argument("--candidate-id", type=int, required=True)
+    p_agent.add_argument("--budget", type=int, default=14, choices=(7, 14, 30))
+    p_agent.add_argument("--market", default="china")
+
+    p_ev3 = sub.add_parser("eval-e3",
+                            help="E3 推荐评测跑分（需 LLM_API_KEY）")
+    p_ev3.add_argument("--seed-only", action="store_true")
 
     return p
 
@@ -404,6 +428,41 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
                 return 2
             try:
                 _print(run_e2(conn, extractor))
+            except (ValueError, ExtractionFailed, LLMError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "recommend":
+            try:
+                _print(recommend(conn, args.candidate_id,
+                                 time_budget_days=args.budget,
+                                 market=args.market,
+                                 templates_path=args.templates))
+            except RecCandidateNotFound as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+            except RecommendError as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "agent-plan":
+            extractor = _make_extractor(conn)
+            if extractor is None:
+                return 2
+            from skillgap.recommend.agent import run_planner
+            try:
+                _print(run_planner(conn, args.candidate_id,
+                                   time_budget_days=args.budget,
+                                   market=args.market,
+                                   gateway=extractor.gateway))
+            except (RecCandidateNotFound, RecommendError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "eval-e3":
+            extractor = _make_extractor(conn)
+            if extractor is None:
+                return 2
+            from skillgap.eval.e3 import run_e3
+            try:
+                _print(run_e3(conn, extractor.gateway))
             except (ValueError, ExtractionFailed, LLMError) as e:
                 print(f"错误：{e}", file=sys.stderr)
                 return 1

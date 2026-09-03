@@ -17,12 +17,14 @@ def test_parser_subcommands():
                 "jd-analyze", "eval-e1", "backfill-extraction",
                 "snapshot-create", "skill-evidence", "market-crosscheck",
                 "resume-analyze", "profile-get", "profile-add-skill",
-                "candidate-delete", "gap-get"]:
+                "candidate-delete", "gap-get", "recommend", "agent-plan",
+                "eval-e3"]:
         ns = parser.parse_args([cmd] if cmd not in (
             "ingest-adzuna", "import", "contribute", "delete-contribution",
             "stats", "jd-analyze", "skill-evidence",
             "resume-analyze", "profile-get", "profile-add-skill",
-            "candidate-delete", "gap-get") else [cmd] + (
+            "candidate-delete", "gap-get", "recommend", "agent-plan",
+            "eval-e3") else [cmd] + (
             ["--country", "gb", "--query", "LLM"] if cmd == "ingest-adzuna"
             else ["--file", "x.csv"] if cmd == "import"
             else ["--title", "t", "--file", "j.txt", "--consent"]
@@ -38,6 +40,12 @@ def test_parser_subcommands():
             if cmd == "resume-analyze"
             else ["--candidate-id", "1", "--skill", "RAG", "--level", "4"]
             if cmd == "profile-add-skill"
+            else ["--candidate-id", "1", "--budget", "14"]
+            if cmd == "recommend"
+            else ["--candidate-id", "1"]
+            if cmd == "agent-plan"
+            else []
+            if cmd == "eval-e3"
             else ["--candidate-id", "1"]))
         assert ns.command == cmd
 
@@ -292,3 +300,48 @@ def test_gap_get_mutually_exclusive_returns_2(clean_db, capsys):
                "--category", "ai_application_dev"], db_url=TEST_URL)
     assert rc == 2
     assert "二选一" in capsys.readouterr().err
+
+
+# ---------- Phase 8：recommend ----------
+
+def test_recommend_command(clean_db, capsys, tmp_path):
+    from tests.test_recommend_service_fixtures import (
+        seed_market, write_templates,
+    )
+    cid = seed_market(clean_db)
+    rc = main(["recommend", "--candidate-id", str(cid),
+               "--budget", "14",
+               "--templates", write_templates(tmp_path)],
+              db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["candidate_id"] == cid
+    assert out["formula_version"] == "roi-v1"
+    assert {"MCP", "Docker"} <= {x["skill"] for x in out["priority_items"]}
+    assert out["priority_items"][0]["rationale"]
+
+
+def test_recommend_not_found_returns_1(clean_db, capsys, tmp_path):
+    from tests.test_recommend_service_fixtures import write_templates
+    seed_url = write_templates(tmp_path)
+    rc = main(["recommend", "--candidate-id", "999",
+               "--templates", seed_url], db_url=TEST_URL)
+    assert rc == 1
+    assert "错误" in capsys.readouterr().err
+
+
+def test_recommend_insufficient_market_returns_1(clean_db, capsys,
+                                                  tmp_path):
+    """市场岗不足 30 → rc=1 + 错误信息（ADR-008 守门口径）。"""
+    from tests.profile_fixtures import (
+        EXTRACTION_B, FakeResumeExtractor, RESUME_B,
+    )
+    from skillgap.profile.service import analyze_resume
+    from tests.test_recommend_service_fixtures import write_templates
+
+    cid = analyze_resume(clean_db, RESUME_B,
+                         FakeResumeExtractor(EXTRACTION_B))["candidate_id"]
+    rc = main(["recommend", "--candidate-id", str(cid), "--market", "global",
+               "--templates", write_templates(tmp_path)], db_url=TEST_URL)
+    assert rc == 1
+    assert "INSUFFICIENT_MARKET_DATA" in capsys.readouterr().err
