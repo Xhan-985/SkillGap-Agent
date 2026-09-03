@@ -1,0 +1,41 @@
+{
+  "eval_type": "recommendation",
+  "dataset_version": "e3-v1",
+  "formula_version": "roi-v1",
+  "ran_at": "2026-09-04",
+  "market": "china (201 active jobs)",
+  "metrics": {
+    "ndcg@5": 0.6497,
+    "precision@5": 0.6,
+    "hit_rate@3": 1.0,
+    "coverage": 0.95,
+    "n_cases": 5
+  },
+  "per_case": [
+    {"case_id": "e3-001", "profile": "P1 强 RAG 弱工程", "ndcg@5": 0.5792},
+    {"case_id": "e3-002", "profile": "P2 全栈均衡", "ndcg@5": 0.8811},
+    {"case_id": "e3-003", "profile": "P3 新手缺 Agent", "ndcg@5": 0.4848},
+    {"case_id": "e3-004", "profile": "P4 Java 后端转 AI", "ndcg@5": 0.6841},
+    {"case_id": "e3-005", "profile": "P5 裸声明对抗型", "ndcg@5": 0.619}
+  ],
+  "verdict": "pass（nDCG@5 0.6497 ≥ 0.5 起步线；任务 6 验收达标）",
+  "analysis": {
+    "strengths": [
+      "hit_rate@3=1.0：五画像的必补技能全部进入系统 Top3",
+      "coverage=0.95：标注 ≥1 的技能仅 1 项未进优先级清单",
+      "P2 全栈均衡 nDCG 0.88：画像清晰时排序高度一致"
+    ],
+    "known_biases": [
+      "『Python 补到精通』系统性偏差：市场 must_have 最高档为精通（required=5），level 3 的画像一律产生 gap=2、gain≈1.31 全场最高——但标注者视为『已具备』（rel=0）。压低了 P1/P3/P5 三个画像的 nDCG（Python 均排系统第 1）",
+      "P3（新手）0.4848 最低：系统把 AI Coding/Function Calling（工程效率类，低成本低频）排在 RAG（核心入门技能，中成本）之前；新手画像下『先核心后效率』的标注观与 ROI 公式的成本项冲突",
+      "成本项副作用：mid 成本技能（RAG/Java）系统性排在 low 成本（AI Coding）之后——对转码/新手画像，方向性权重缺失"
+    ],
+    "v2_calibration_candidates": [
+      "required 取 must_have 最大值的规则对『精通』岗过敏感：可引入 market 分位数或频次×强度加权",
+      "type=genuine 的核心栈技能（RAG/Prompt Engineering）可试预算感知加权（新手预算内优先核心）",
+      "注：以上均为 v2 校准候选，留 DECISION_LOG 痕迹，不回改 e3-v1 标注（EVALUATION_PLAN §6：不静默修改已冻结版本）"
+    ]
+  },
+  "annotation_status": "claude 初标 + user 复核待（D8 双人标注）；同学抽标 ≥1 画像复核待",
+  "adversarial_note": "P5 裸声明画像 nDCG 0.619：conf 0.3 不影响 gap（纯星级差，DECISION_LOG D-2026-09-03-13），排序行为与其他画像一致——裸声明对抗用例未发现异常"
+}
