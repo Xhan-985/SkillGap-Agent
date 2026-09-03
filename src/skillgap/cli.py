@@ -19,6 +19,7 @@ from pathlib import Path
 from skillgap import db
 from skillgap.config import settings
 from skillgap.eval.e1 import run_e1
+from skillgap.eval.e2 import run_e2, seed_eval2
 from skillgap.eval.seed import seed_eval
 from skillgap.extract.analyzer import (
     JDValidationError, analyze_jd, backfill_pending,
@@ -28,6 +29,10 @@ from skillgap.extract.llm_extractor import (
 )
 from skillgap.extract.prompt import PROMPT_VERSION
 from skillgap.gap.service import GapQueryError, JobNotFound, get_gaps
+from skillgap.match.service import (
+    CandidateNotFound as MatchCandidateNotFound,
+    ExplanationInconsistency, JobNotFound as MatchJobNotFound, match_score,
+)
 from skillgap.ingest.adzuna import fetch_adzuna
 from skillgap.ingest.collector import drop_last, run_collect
 from skillgap.ingest.contribute import (
@@ -160,6 +165,19 @@ def build_parser() -> argparse.ArgumentParser:
                        help="类目模式市场过滤（默认 china）")
     p_gap.add_argument("--min-freq", type=float, default=0.20,
                        help="类目模式入清单频率阈值（默认 0.20）")
+
+    p_ms = sub.add_parser("match-score",
+                          help="(画像, 岗位) 可解释匹配（M6，零 LLM）")
+    p_ms.add_argument("--candidate-id", type=int, required=True)
+    p_ms.add_argument("--job-id", type=int, required=True)
+    p_ms.add_argument("--llm-explain", action="store_true",
+                      help="LLM 生成解读（数字仍程序比对；失败降级模板）")
+
+    p_ev2 = sub.add_parser("eval-e2",
+                           help="E2 匹配评测跑分（需 LLM_API_KEY 物化样本）")
+    p_ev2.add_argument("--dataset", default="data/eval/e2_seed_v1.json")
+    p_ev2.add_argument("--seed-only", action="store_true",
+                       help="仅入库标注集，不跑分")
 
     return p
 
@@ -358,6 +376,37 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             except GapQueryError as e:
                 print(f"错误：{e}", file=sys.stderr)
                 return 2
+        elif args.command == "match-score":
+            gateway = None
+            if args.llm_explain:
+                extractor = _make_extractor(conn)
+                if extractor is None:
+                    return 2
+                gateway = extractor.gateway
+            try:
+                _print(match_score(conn, args.candidate_id, args.job_id,
+                                   explain_llm=args.llm_explain,
+                                   gateway=gateway))
+            except (MatchCandidateNotFound, MatchJobNotFound) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+            except ExplanationInconsistency as e:
+                print(f"错误：LLM 解读数字不一致，已拦截：{e}",
+                      file=sys.stderr)
+                return 1
+        elif args.command == "eval-e2":
+            n = seed_eval2(conn, args.dataset)
+            if args.seed_only:
+                _print({"seeded": n})
+                return 0
+            extractor = _make_extractor(conn)
+            if extractor is None:
+                return 2
+            try:
+                _print(run_e2(conn, extractor))
+            except (ValueError, ExtractionFailed, LLMError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
         return 0
     finally:
         conn.close()
