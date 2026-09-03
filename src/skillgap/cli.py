@@ -5,6 +5,8 @@
   delete-contribution / quarantine-list / raw-cleanup / quality-report
   stats（支持切片）/ snapshot-create / skill-evidence / market-crosscheck（Phase 4）
   jd-analyze / eval-e1 / backfill-extraction（Phase 3，需 LLM_API_KEY）
+  resume-analyze / profile-get / profile-add-skill / candidate-delete
+    （Phase 5 Candidate Profile；resume-analyze 需 LLM_API_KEY）
 """
 from __future__ import annotations
 
@@ -34,6 +36,12 @@ from skillgap.ingest.normalize import JOB_CATEGORIES
 from skillgap.ingest.pipeline import run_batch
 from skillgap.llm.gateway import LLMGateway
 from skillgap.llm.provider import LLMError, OpenAICompatibleProvider
+from skillgap.profile.extractor import LLMResumeExtractor
+from skillgap.profile.prompt import RESUME_PROMPT_VERSION
+from skillgap.profile.service import (
+    CandidateNotFound, ManualSkillError, ResumeValidationError,
+    add_manual_skill, analyze_resume, delete_candidate, get_profile,
+)
 from skillgap.quality_metrics import quality_report
 from skillgap.stats import (
     create_snapshot, crosscheck_baseline, skill_evidence, skill_frequency,
@@ -120,6 +128,25 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("backfill-extraction",
                    help="回填 extraction_status=pending 的 job 抽取")
 
+    p_ra = sub.add_parser("resume-analyze", help="简历文本 → 证据化画像（M5，需 key）")
+    p_ra.add_argument("--file", required=True, help="简历纯文本文件")
+    p_ra.add_argument("--candidate-id", type=int, default=None,
+                      help="已有 candidate id（重分析=替换式，manual 行保留）")
+
+    p_pg = sub.add_parser("profile-get", help="画像查询（API §2.6）")
+    p_pg.add_argument("--candidate-id", type=int, required=True)
+
+    p_pa = sub.add_parser("profile-add-skill",
+                          help="手动勾选技能（manual 证据，confidence=1.0）")
+    p_pa.add_argument("--candidate-id", type=int, required=True)
+    p_pa.add_argument("--skill", required=True, help="词表内技能名")
+    p_pa.add_argument("--level", type=int, required=True,
+                      help="1-5 星（能力宣称强度）")
+    p_pa.add_argument("--evidence", default=None, help="证据说明（缺省=手动勾选）")
+
+    p_cd = sub.add_parser("candidate-delete", help="级联删除画像（API §2.7）")
+    p_cd.add_argument("--candidate-id", type=int, required=True)
+
     return p
 
 
@@ -135,6 +162,20 @@ def _make_extractor(conn):
         max_retries=settings.llm_max_retries)
     gateway = LLMGateway(conn, provider, PROMPT_VERSION)
     return LLMSkillExtractor(gateway)
+
+
+def _make_resume_extractor(conn):
+    """简历抽取器装配（prompt_version 独立——缓存表元数据可区分）。"""
+    if not settings.llm_api_key:
+        print("错误：未配置 LLM_API_KEY（.env 或环境变量），无法调用 LLM",
+              file=sys.stderr)
+        return None
+    provider = OpenAICompatibleProvider(
+        base_url=settings.llm_base_url, api_key=settings.llm_api_key,
+        model=settings.llm_model, timeout=settings.llm_timeout,
+        max_retries=settings.llm_max_retries)
+    gateway = LLMGateway(conn, provider, RESUME_PROMPT_VERSION)
+    return LLMResumeExtractor(gateway)
 
 
 def _print(obj) -> None:
@@ -261,6 +302,37 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             if extractor is None:
                 return 2
             _print({"backfilled": backfill_pending(conn, extractor)})
+        elif args.command == "resume-analyze":
+            extractor = _make_resume_extractor(conn)   # key 检查先于文件读取
+            if extractor is None:
+                return 2
+            resume_text = Path(args.file).read_text(encoding="utf-8")
+            try:
+                _print(analyze_resume(conn, resume_text,
+                                      extractor=extractor,
+                                      candidate_id=args.candidate_id))
+            except (ResumeValidationError, CandidateNotFound,
+                    ExtractionFailed, LLMError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "profile-get":
+            try:
+                _print(get_profile(conn, args.candidate_id))
+            except CandidateNotFound as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "profile-add-skill":
+            try:
+                _print(add_manual_skill(conn, args.candidate_id, args.skill,
+                                        args.level,
+                                        evidence_text=args.evidence))
+            except (CandidateNotFound, ManualSkillError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "candidate-delete":
+            ok = delete_candidate(conn, args.candidate_id)
+            print("204 deleted" if ok else "404 not_found")
+            return 0 if ok else 1
         return 0
     finally:
         conn.close()

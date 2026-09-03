@@ -1,6 +1,6 @@
 ﻿# SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-02 ｜ 代码状态：73 commits（master，已同步 GitHub）｜ 测试：202 passed
+> 更新：2026-09-03 ｜ 代码状态：75 commits（master，已同步 GitHub）｜ 测试：242 passed
 
 ## 1. 项目一句话
 
@@ -16,10 +16,11 @@ Phase 1  需求冻结 + 架构设计      ✅ 完成（ADR-001~010，16 端点�
 Phase 2  数据模型 + 管道 + 数据集 ✅ 代码完成；数据收集 N=201（high，批次 1-3 已入库）
 Phase 3  JD Analyzer + LLM 抽取  ✅ 完成（E1 基线 2026-09-02：F1=0.914 PASS，eval_run#2）
 Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#4 N=201 high，tau=0.1538）
-Phase 5-11                       ⬜ 未开始（下一步 Phase 5 Candidate Profile）
+Phase 5  Candidate Profile          ✅ 完成（2026-09-03；conf-v1 公式冻结，画像 A/B/C 固定）
+Phase 6-11                       ⬜ 未开始（下一步 Phase 6 Skill Gap）
 ```
 
-阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md`（六维自检 + 验收核验表）。
+阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md`（六维自检 + 验收核验表）。
 
 ## 3. 技术栈与架构
 
@@ -77,6 +78,12 @@ src/skillgap/
   llm/                #   provider.py（httpx 重试）/ gateway.py（DB 缓存）
   eval/               #   e1.py（P/R/F1 + 阈值 + eval_run 历史）/ seed.py（v1+v2 双版本）
   taxonomy/           #   词表 v1.9（87 技能 + alias）+ skill_relations
+  profile/            # Phase 5 Candidate Profile
+    confidence.py     #   纯函数 conf-v1（零 LLM 依赖，守卫测试锁定）
+    prompt.py         #   RESUME_PROMPT_VERSION=v1（证据分级 + level 程度词映射）
+    extractor.py      #   LLMResumeExtractor（复用 gateway + 证据定位校验）
+    service.py        #   analyze_resume/get_profile/add_manual_skill/delete_candidate
+                      #   权重规则表 docs/WEIGHT_RULES.md（公开）
   stats.py            #   Phase 4 市场统计：切片频率/快照/溯源/交叉对照（零 LLM，守卫测试锁定）
                       #   口径文档 docs/STATS_METHOD.md；method_version=s11-v1
   quality_metrics.py  #   E5 数据质量报告
@@ -105,6 +112,10 @@ tests/                # 24 个测试文件，conftest 起真实 PG 测试库
 | `jd-analyze --file jd.txt --title t` | 粘贴 JD → 结构化分析（M1，不落库，需 key） |
 | `eval-e1` | E1 抽取评测跑分（需 key） |
 | `backfill-extraction` | 回填 pending / 零词表标注抽取（需 key） |
+| `resume-analyze --file resume.txt [--candidate-id N]` | 简历纯文本 → 证据化画像（M5，需 key；重分析=替换式，manual 行保留） |
+| `profile-get --candidate-id N` | 画像查询（每技能证据链 + confidence） |
+| `profile-add-skill --candidate-id N --skill X --level 4 [--evidence "…"]` | 手动勾选技能（manual 证据，confidence=1.0，词表内） |
+| `candidate-delete --candidate-id N` | 级联删除画像（204/404） |
 | `quarantine-list` / `raw-cleanup` | 隔离队列 / 7 天 raw 清理 |
 
 ## 7. 当前核心工作流：JD 收集（Phase 2 遗留）
@@ -141,7 +152,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-01，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
 4. ~~标注集 v1 → v2~~ ✅ 已完成（2026-09-02，53 条真实 JD。**评测闭环捕获并修复真实 prompt 缺陷**：v2 数据集暴露 v1 prompt 在项目符排版 JD 上产生跨行证据 → prompt v2 增补"证据不得跨越列表符号/换行"。当前基线（eval_run#4/#5，prompt v2）：v2 数据集 warn（F1=0.8669 / R=0.802 / evidence=1.0，真实 JD 难于合成）；v1 数据集 pass（F1=0.9043）无回归。recall 0.802 距 0.85 pass 线的差距主要是 must/nice 边界与"任一"型列举的标注粒度分歧——后续 prompt 迭代方向，禁止为跑分过拟合评测集）
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
-6. ~~进入 Phase 4~~ ✅ 已完成（2026-09-02，PHASE_4_REVIEW.md；下一步 Phase 5 Candidate Profile——先写 docs/plans/ 计划）
+6. ~~进入 Phase 5~~ ✅ 已完成（2026-09-03，PHASE_5_REVIEW.md；conf-v1 公式 + 3 冻结画像 + CLI 4 命令，242 测试全绿。**已知限制**：LLM level 推断无评测集背书（E2 属 Phase 7），手动勾选兜底；简历输入为纯文本，PDF 后置。下一步 Phase 6 Skill Gap——先写 docs/plans/ 计划）
 
 ## 10. 已知问题与坑
 

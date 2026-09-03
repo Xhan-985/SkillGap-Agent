@@ -52,8 +52,11 @@ def resolve_skill_id(raw_name: str, alias_map: dict[str, int]) -> int | None:
     return alias_map.get(canonicalize_for_hash(raw_name))
 
 
-def record_candidates(conn, raw_names: list[str], job_id: int) -> int:
-    """S9：无法归一 → new_skill_candidate（不丢弃、不静默入表）。"""
+def record_candidates(conn, raw_names: list[str], job_id: int | None) -> int:
+    """S9：无法归一 → new_skill_candidate（不丢弃、不静默入表）。
+
+    job_id 为 None 表示非 JD 来源（Phase 5 简历抽取——first_seen_job_id 可空）。
+    """
     inserted = 0
     with conn.cursor() as cur:
         for name in raw_names:

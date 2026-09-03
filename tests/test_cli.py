@@ -15,10 +15,14 @@ def test_parser_subcommands():
                 "delete-contribution", "quality-report", "stats",
                 "quarantine-list", "raw-cleanup",
                 "jd-analyze", "eval-e1", "backfill-extraction",
-                "snapshot-create", "skill-evidence", "market-crosscheck"]:
+                "snapshot-create", "skill-evidence", "market-crosscheck",
+                "resume-analyze", "profile-get", "profile-add-skill",
+                "candidate-delete"]:
         ns = parser.parse_args([cmd] if cmd not in (
             "ingest-adzuna", "import", "contribute", "delete-contribution",
-            "stats", "jd-analyze", "skill-evidence") else [cmd] + (
+            "stats", "jd-analyze", "skill-evidence",
+            "resume-analyze", "profile-get", "profile-add-skill",
+            "candidate-delete") else [cmd] + (
             ["--country", "gb", "--query", "LLM"] if cmd == "ingest-adzuna"
             else ["--file", "x.csv"] if cmd == "import"
             else ["--title", "t", "--file", "j.txt", "--consent"]
@@ -28,7 +32,13 @@ def test_parser_subcommands():
             if cmd == "stats"
             else ["--skill", "RAG"]
             if cmd == "skill-evidence"
-            else ["--file", "j.txt", "--title", "t"]))
+            else ["--file", "j.txt", "--title", "t"]
+            if cmd == "jd-analyze"
+            else ["--file", "r.txt"]
+            if cmd == "resume-analyze"
+            else ["--candidate-id", "1", "--skill", "RAG", "--level", "4"]
+            if cmd == "profile-add-skill"
+            else ["--candidate-id", "1"]))
         assert ns.command == cmd
 
 
@@ -156,3 +166,64 @@ def test_market_crosscheck_command(clean_db, capsys):
     assert rc == 0
     out = json.loads(capsys.readouterr().out)
     assert out["status"] == "ok" and "tau" in out
+
+
+# ---------- Phase 5：Candidate Profile 命令 ----------
+
+def test_resume_analyze_without_key_exits_clean(clean_db, capsys, no_llm_key):
+    rc = main(["resume-analyze", "--file", "不存在的文件.txt"], db_url=TEST_URL)
+    assert rc == 2
+    assert "LLM_API_KEY" in capsys.readouterr().err
+
+
+def _make_candidate(clean_db):
+    from skillgap.profile.service import analyze_resume
+    from tests.profile_fixtures import (
+        EXTRACTION_A, FakeResumeExtractor, RESUME_A,
+    )
+    out = analyze_resume(clean_db, RESUME_A, FakeResumeExtractor(EXTRACTION_A))
+    return out["candidate_id"]
+
+
+def test_profile_get_command(clean_db, capsys):
+    cid = _make_candidate(clean_db)
+    rc = main(["profile-get", "--candidate-id", str(cid)], db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert {s["skill_id"] for s in out["skills"]} == {"RAG", "Python"}
+    assert out["soft_profile"]["experience_years"]["value"] == 2
+
+
+def test_profile_get_not_found_returns_1(clean_db, capsys):
+    rc = main(["profile-get", "--candidate-id", "42"], db_url=TEST_URL)
+    assert rc == 1
+    assert "错误" in capsys.readouterr().err
+
+
+def test_profile_add_skill_command(clean_db, capsys):
+    cid = _make_candidate(clean_db)
+    rc = main(["profile-add-skill", "--candidate-id", str(cid),
+               "--skill", "Docker", "--level", "3"], db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["skill_id"] == "Docker"
+    assert out["confidence"] == 1.0
+    assert out["source_type"] == "manual"
+
+
+def test_profile_add_skill_unknown_returns_1(clean_db, capsys):
+    cid = _make_candidate(clean_db)
+    rc = main(["profile-add-skill", "--candidate-id", str(cid),
+               "--skill", "量子编程", "--level", "3"], db_url=TEST_URL)
+    assert rc == 1
+    assert "词表" in capsys.readouterr().err
+
+
+def test_candidate_delete_command(clean_db, capsys):
+    cid = _make_candidate(clean_db)
+    rc = main(["candidate-delete", "--candidate-id", str(cid)], db_url=TEST_URL)
+    assert rc == 0
+    assert "204 deleted" in capsys.readouterr().out
+    rc = main(["candidate-delete", "--candidate-id", str(cid)], db_url=TEST_URL)
+    assert rc == 1
+    assert "404" in capsys.readouterr().out

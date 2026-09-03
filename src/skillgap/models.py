@@ -69,6 +69,42 @@ class JDExtraction(BaseModel):
     soft_requirements: list[SoftRequirement] = Field(default_factory=list)
 
 
+ResumeEvidenceTypeEnum = Literal["project_detail", "project_desc", "bare_claim"]
+
+
+class ResumeEvidence(BaseModel):
+    """简历技能证据（Phase 5）。manual 证据不经 LLM，仅手动勾选通道。"""
+    type: ResumeEvidenceTypeEnum
+    text: str
+
+
+class ResumeSkillAnnotation(BaseModel):
+    """简历技能项：level=能力宣称强度（LLM 推断/手动勾选），
+    confidence 由 profile.confidence 纯函数另行计算（二者正交，D3）。"""
+    raw_name: str
+    level: int = Field(ge=1, le=5)
+    evidences: list[ResumeEvidence] = Field(min_length=1)
+
+
+class ResumeSoftField(BaseModel):
+    value: int | str | list[str]
+    evidence_text: str
+
+
+class ResumeSoftProfile(BaseModel):
+    """Match 公式 experience_relevance 的用户侧输入（DATA_MODEL §2.7），
+    缺失字段置 null——公式按中性 0.5 处理（§4.3）。"""
+    experience_years: ResumeSoftField | None = None
+    education: ResumeSoftField | None = None
+    languages: ResumeSoftField | None = None
+
+
+class ResumeExtraction(BaseModel):
+    """简历 LLM 抽取输出契约（API §2.5）。证据可溯由 profile.extractor 校验。"""
+    skills: list[ResumeSkillAnnotation] = Field(default_factory=list)
+    soft_profile: ResumeSoftProfile = Field(default_factory=ResumeSoftProfile)
+
+
 class RowError(BaseModel):
     row: int
     stage: str

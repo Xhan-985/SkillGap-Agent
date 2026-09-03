@@ -86,9 +86,10 @@ Phase 11 Docker + CI + Documentation
 | 项 | 内容 |
 |---|---|
 | 目标 | 简历/手动输入 → 证据化画像 |
-| 产出 | 简历文本/PDF 解析输入；证据识别（project_detail/project_desc/bare_claim 分类）；confidence 纯函数 + 权重规则表（公开）；手动勾选技能（manual 证据） |
+| 产出 | 简历文本解析输入（纯文本粘贴，PDF 后置）；证据识别（project_detail/project_desc/bare_claim 分类）；confidence 纯函数 + 权重规则表（公开：docs/WEIGHT_RULES.md，conf-v1）；手动勾选技能（manual 证据） |
 | 验收 | 每技能输出证据片段 + confidence；权重公式单测全覆盖（含"熟悉 RAG"→低分边界用例）；3 个差异化画像测试用例固定 |
 | 自检重点 | AI：confidence 为规则计算非 LLM；Product：证据呈现是否可被"死亡追问"式检验 |
+| 完成状态 | ✅ 完成（2026-09-03，242 测试全绿；画像 A/B/C 冻结于 tests/profile_fixtures.py；LLM level 推断无评测集背书——诚实记入 PHASE_5_REVIEW 已知限制，手动勾选兜底）——详见根目录 PHASE_5_REVIEW.md |
 
 ## Phase 6：Skill Gap
 

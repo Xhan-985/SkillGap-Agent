@@ -98,7 +98,7 @@
 **Response 200**：`{ "candidate_id": "…", "skills": [ { "skill_id": "rag", "level": 4, "confidence": 0.91, "evidences": [ { "type": "project_detail", "text": "pgvector+Hybrid Search+RRF+Rerank", "weight": 1.0 } ], "evidence_ref": "resume#L8" } ], "soft_profile": { "experience_years": { "value": 2, "evidence_text": "两年后端开发经验…" }, "education": { "value": "本科·软件工程", "evidence_text": "…" }, "languages": null } }`
 **soft_profile 说明**：经验年限/学历/语言的证据化抽取（DATA_MODEL §2.7），作为 Match 公式 experience_relevance 的用户侧输入；无对应简历内容时字段为 null（公式按中性 0.5 处理，DATA_MODEL §4.3）。
 **Error**：`VALIDATION_ERROR`；`LLM_EXTRACTION_FAILED`（证据识别失败——**部分失败策略**：未识别技能不出现，不伪造低置信技能）。
-**说明**：简历原文仅本会话保留，不进任何市场数据。
+**说明**：简历原文仅本会话保留，不进任何市场数据。`evidence_ref` 为分析会话内的简历行号定位（`resume#L<n>`，尽力而为）——简历原文不落库，故 profile 查询（§2.6）返回的 evidence_ref 为 null；CLI `resume-analyze` 响应为契约超集（额外含 notices/extraction 元信息），FastAPI 层落地时按本契约裁剪。
 
 ### 2.6 GET /api/candidates/{id}/profile ／ 2.7 DELETE /api/candidates/{id}
 

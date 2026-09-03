@@ -55,7 +55,7 @@ SkillGap Agent
 1. 输入：文本粘贴（Should Have：PDF 上传）
 2. 画像页：
    - 技能卡列表：星级 + confidence 数值 + **证据链折叠区**（每条证据带类型标签与权重，如 "项目细节 ×1.0"）
-   - "声明 vs 证明"对照视觉：bare_claim 类证据用虚线边框警示样式（对应"了解 MCP → 0.45"）
+   - "声明 vs 证明"对照视觉：bare_claim 类证据用虚线边框警示样式（对应"了解 MCP → 0.3"，conf-v1 单条 bare_claim 权重——见 docs/WEIGHT_RULES.md）
    - confidence 计算规则说明入口（公式公开链接）
 3. 删除入口：清空画像（二次确认，说明级联删除范围）
 

@@ -71,6 +71,17 @@
 - **关联**：ADR-010
 - **影响**：Phase 2 启动——迁移以 .sql 文件为单一事实源，统计/约束/口径全部 SQL 可审计；后续 FastAPI 层同样走 psycopg + Pydantic
 
+## D-2026-09-03-11 ｜ confidence 公式冻结（conf-v1）
+
+- **决策**：`confidence = min(1.0, Σᵢ w₍ᵢ₎ × 0.5^(i-1))`（证据权重降序 + 次数衰减 γ=0.5）；权重 project_detail=1.0 / project_desc=0.6 / bare_claim=0.3 / manual=1.0，与 candidate_evidence.weight 的 DB CHECK 严格一致
+- **关联**：DATA_MODEL §2.7、docs/WEIGHT_RULES.md（公开交付物，含逐例演算）
+- **影响**：Phase 5 落地；level 与 confidence 正交（gap 用星级、match 用 conf_factor——H1 修复的口径延续）
+
+## D-2026-09-03-12 ｜ 简历重分析替换式 + manual 行保留
+
+- **决策**：同一 candidate 重新分析 → 删除其全部 source_type='resume_text' 技能行后插入新结果（简历=当前状态快照，陈旧证据不跨版本累积）；manual 行永不删除，与新简历冲突时跳过插入 + 显式 notice（manual_overridden）；add_manual_skill 整行替换已有行（用户显式意图最新）；手动勾选仅接受词表内技能（new_skill_candidate 保持 LLM 新词裁决通道纯净）
+- **影响**：Phase 5 服务层语义（D1/D5），测试锚定 test_profile_service.py
+
 ---
 
 ## 待议决策（进入 Phase 2 前）

@@ -17,7 +17,8 @@ class ExtractionFailed(RuntimeError):
     """抽取失败（Schema/证据校验，重试后）——明示，不降级。"""
 
 
-def _parse_content(raw: str) -> dict:
+def parse_json_content(raw: str) -> dict:
+    """LLM 输出解析：容忍 markdown 代码块包裹（JD/简历抽取共用）。"""
     text = raw.strip()
     if text.startswith("```"):
         text = text.strip("`").strip()
@@ -45,7 +46,7 @@ class LLMSkillExtractor:
             self.last_usage = {"total_tokens": resp.total_tokens,
                                "model": resp.model}
             try:
-                data = _parse_content(resp.content)
+                data = parse_json_content(resp.content)
                 result = JDExtraction.model_validate(data)
                 self._validate_evidence(jd_text, result)
                 return result
