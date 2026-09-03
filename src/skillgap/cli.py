@@ -222,6 +222,14 @@ def build_parser() -> argparse.ArgumentParser:
                       choices=["china", "global"])
     p_rs.add_argument("--top-k", type=int, default=5)
 
+    p_gate = sub.add_parser("eval-gate",
+                            help="系统级评测门禁：三评测器最新 eval_run "
+                                 "verdict 汇总（block → 退出码 1 阻断合并；"
+                                 "judge 分数永不进门禁）")
+    p_gate.add_argument("--run-id", type=int, default=None,
+                        help="时点门禁：各类型取 id ≤ N 的最新一条"
+                             "（回放历史用）")
+
     return p
 
 
@@ -525,6 +533,19 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             except (ValueError, EmbeddingError) as e:
                 print(f"错误：{e}", file=sys.stderr)
                 return 1
+        elif args.command == "eval-gate":
+            from skillgap.eval.gate import apply_gate, gate_exit_code, latest_runs
+            try:
+                runs = latest_runs(conn, run_id=args.run_id)
+            except ValueError as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 2
+            result = apply_gate(runs)
+            if result["missing"]:
+                print(f"提示：缺少评测基线 {result['missing']}"
+                      "（首次跑分前的正常态，不阻断）", file=sys.stderr)
+            _print(result)
+            return gate_exit_code(result)
         return 0
     finally:
         conn.close()

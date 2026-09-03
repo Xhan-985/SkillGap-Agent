@@ -18,7 +18,7 @@ def test_parser_subcommands():
                 "snapshot-create", "skill-evidence", "market-crosscheck",
                 "resume-analyze", "profile-get", "profile-add-skill",
                 "candidate-delete", "gap-get", "recommend", "agent-plan",
-                "eval-e3", "rag-index", "rag-search"]:
+                "eval-e3", "rag-index", "rag-search", "eval-gate"]:
         ns = parser.parse_args([cmd] if cmd not in (
             "ingest-adzuna", "import", "contribute", "delete-contribution",
             "stats", "jd-analyze", "skill-evidence",
@@ -59,6 +59,41 @@ def test_parser_judge_flag_and_rag_defaults():
     assert ns.top_k == 5 and ns.market is None
     ns = build_parser().parse_args(["rag-index"])
     assert ns.batch_size == 64
+
+
+def test_eval_gate_command_on_real_baseline(clean_db, capsys):
+    """真实场景锚定：E1 warn + E2/E3 pass（fixture 造同名数据即可）→
+    overall warn、退出码 0、judge 不进门禁。"""
+    import psycopg
+    with clean_db.cursor() as cur:
+        for et, v in [("skill_extraction", "warn"), ("matching", "pass"),
+                      ("recommendation", "pass")]:
+            cur.execute(
+                """INSERT INTO eval_run (eval_type, dataset_version,
+                   prompt_version, model, metrics, sample_size, verdict)
+                   VALUES (%s, 'v', 'p', 'm',
+                   '{"judge": {"mean": 1.0}}'::jsonb, 1, %s)""", (et, v))
+    clean_db.commit()
+    rc = main(["eval-gate"], db_url=TEST_URL)
+    assert rc == 0
+    out = capsys.readouterr()
+    assert '"overall": "warn"' in out.out
+
+
+def test_eval_gate_blocks_when_any_block(clean_db, capsys):
+    with clean_db.cursor() as cur:
+        for et, v in [("skill_extraction", "pass"), ("matching", "block")]:
+            cur.execute(
+                """INSERT INTO eval_run (eval_type, dataset_version,
+                   prompt_version, model, metrics, sample_size, verdict)
+                   VALUES (%s, 'v', 'p', 'm', '{}'::jsonb, 1, %s)""",
+                (et, v))
+    clean_db.commit()
+    rc = main(["eval-gate"], db_url=TEST_URL)
+    assert rc == 1                                    # 阻断合并
+    out = capsys.readouterr()
+    assert '"overall": "block"' in out.out
+    assert "缺少评测基线" in out.err                    # E3 缺失仅提示
 
 
 # ---------- Phase 3：LLM 命令（无 key 路径——不触发真实调用） ----------
