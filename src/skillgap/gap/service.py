@@ -45,14 +45,17 @@ def get_gaps(conn: psycopg.Connection, candidate_id: int, *,
 
     if job_id is not None:
         requirements = _requirements_for_job(conn, job_id)
-        meta: dict[str, Any] = {"mode": "job", "job_id": job_id}
+        frequency = _market_frequency(conn, market)
+        meta: dict[str, Any] = {"mode": "job", "job_id": job_id,
+                                "market": market}
     else:
-        requirements = _requirements_for_category(
+        requirements, frequency, n_cat = _requirements_for_category(
             conn, category, market, min_freq)
-        meta = {"mode": "category", "category": category, "market": market}
+        meta = {"mode": "category", "category": category, "market": market,
+                "category_sample_size": n_cat,
+                "snapshot": _latest_snapshot(conn, market)}
 
     candidate = _candidate_skills(conn, candidate_id)
-    frequency = _market_frequency(conn, market)
 
     gap_rows: list[dict] = []
     for r in requirements:
@@ -207,8 +210,72 @@ def _market_frequency(conn, market: str) -> dict[str, Any]:
     return freq
 
 
-# ---- 类目聚合（任务 3 实现） ----
+# ---- 类目聚合（D4：频次 ≥ min_freq 入清单；required 取 must_have 映射最大值） ----
 
 def _requirements_for_category(conn, category: str, market: str,
-                               min_freq: float) -> list[dict]:
-    raise NotImplementedError("类目聚合模式在任务 3 实现")
+                                min_freq: float
+                                ) -> tuple[list[dict], dict, int]:
+    """类目市场聚合要求 + 类目内频率（demand 口径）。
+
+    返回 (requirements, frequency, n)。required_level 映射复用 gapcalc
+    （单一事实来源）；无 must_have 行 → 2（nice 封顶档）。
+    """
+    with conn.cursor() as cur:
+        cur.execute(
+            f"""SELECT count(DISTINCT j.id) AS n FROM job j
+                WHERE j.market = %s AND j.job_category = %s
+                  AND {STATS_FILTER}""",
+            (market, category))
+        n = cur.fetchone()["n"]
+        rows: list[Any] = []
+        if n:
+            cur.execute(
+                f"""SELECT s.canonical_name AS name, js.importance,
+                           js.intensity, s.learning_cost AS cost
+                    FROM job_skill js
+                    JOIN skill s ON s.id = js.skill_id
+                    JOIN job j ON j.id = js.job_id
+                    WHERE j.market = %s AND j.job_category = %s
+                      AND {STATS_FILTER}""",
+                (market, category))
+            rows = cur.fetchall()
+
+    grouped: dict[str, dict] = {}
+    for r in rows:
+        g = grouped.setdefault(r["name"], {"count": 0, "must": [], "cost":
+                                           r["cost"]})
+        g["count"] += 1
+        if r["importance"] == "must_have":
+            g["must"].append(required_level("must_have", r["intensity"]))
+
+    requirements, frequency = [], {}
+    for name, g in grouped.items():
+        freq = round(g["count"] / n, 4)
+        frequency[name] = freq
+        if freq < min_freq:
+            continue
+        requirements.append({
+            "name": name,
+            "required": max(g["must"]) if g["must"] else 2,
+            "cost": g["cost"],
+        })
+    frequency["__n__"] = n
+    return requirements, frequency, n
+
+
+def _latest_snapshot(conn, market: str) -> dict | None:
+    """demand 溯源引用：该市场最新快照（无则 None）。"""
+    with conn.cursor() as cur:
+        cur.execute(
+            """SELECT id, sample_size, confidence, method_version,
+                      computed_at
+               FROM market_snapshot WHERE scope->>'market' = %s
+               ORDER BY id DESC LIMIT 1""",
+            (market,))
+        row = cur.fetchone()
+    if row is None:
+        return None
+    return {"id": row["id"], "sample_size": row["sample_size"],
+            "confidence": row["confidence"],
+            "method_version": row["method_version"],
+            "computed_at": str(row["computed_at"])}

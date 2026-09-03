@@ -182,3 +182,102 @@ def test_gaps_sorted_by_gap_desc(clean_db):
     assert [g["skill_id"] for g in out["gaps"]] == ["Git", "MySQL", "Docker"]
     gaps = [g["gap"] for g in out["gaps"]]
     assert gaps == sorted(gaps, reverse=True)
+
+
+# ---- 类目聚合模式（D4：频次 ≥ min_freq 入清单） ----
+
+def _mk_category_jobs(clean_db, n_jobs, category="ai_application_dev"):
+    """造 n 条同类目 job，返回 job id 列表（content_hash 唯一）。"""
+    sid = _source(clean_db)
+    ids = []
+    for i in range(n_jobs):
+        ids.append(_insert_job(clean_db, **_job_kwargs(
+            sid, content_hash=f"h-cat-{i}", job_category=category)))
+    return ids
+
+
+def test_category_mode_basic(clean_db):
+    """10 岗类目中 5 岗要求 Docker must 熟练 → freq 0.5 入清单；
+    画像 B 无 Docker → genuine gap=4；meta 含类目样本量与快照引用。"""
+    cid = _mk_candidate(clean_db, EXTRACTION_B, "简历 B" * 30)
+    jids = _mk_category_jobs(clean_db, 10)
+    for j in jids[:5]:
+        _req(clean_db, j, "Docker", "must_have", "熟练")
+    out = get_gaps(clean_db, cid, category="ai_application_dev")
+    assert out["mode"] == "category"
+    assert out["category_sample_size"] == 10
+    g = _by_skill(out["gaps"])["Docker"]
+    assert (g["required_level"], g["gap"], g["type"]) == (4, 4, "genuine")
+    assert g["demand"]["frequency"] == 0.5
+    assert g["demand"]["sample_size"] == 10
+
+
+def test_category_min_freq_excludes_rare_skills(clean_db):
+    """1/10 岗出现（freq 0.1 < 0.2）→ 不进要求清单，即使 must 精通。"""
+    cid = _mk_candidate(clean_db, EXTRACTION_B, "简历 B" * 30)
+    jids = _mk_category_jobs(clean_db, 10)
+    _req(clean_db, jids[0], "Git", "must_have", "精通")
+    out = get_gaps(clean_db, cid, category="ai_application_dev")
+    assert "Git" not in _by_skill(out["gaps"])
+    assert out["gaps"] == []
+
+
+def test_category_min_freq_param_override(clean_db):
+    """min_freq=0.6 → freq 0.5 的 Docker 也被排除。"""
+    cid = _mk_candidate(clean_db, EXTRACTION_B, "简历 B" * 30)
+    jids = _mk_category_jobs(clean_db, 10)
+    for j in jids[:5]:
+        _req(clean_db, j, "Docker", "must_have", "熟练")
+    out = get_gaps(clean_db, cid, category="ai_application_dev",
+                   min_freq=0.6)
+    assert out["gaps"] == []
+
+
+def test_category_required_takes_must_max(clean_db):
+    """Docker 出现于 5 岗（熟练 + 精通）→ required 取 must 映射最大值 5。"""
+    cid = _mk_candidate(clean_db, EXTRACTION_B, "简历 B" * 30)
+    jids = _mk_category_jobs(clean_db, 10)
+    for j in jids[:3]:
+        _req(clean_db, j, "Docker", "must_have", "熟练")
+    for j in jids[3:5]:
+        _req(clean_db, j, "Docker", "must_have", "精通")
+    out = get_gaps(clean_db, cid, category="ai_application_dev")
+    assert _by_skill(out["gaps"])["Docker"]["required_level"] == 5
+
+
+def test_category_no_must_rows_defaults_2(clean_db):
+    """技能仅以 nice_to_have 出现 → required=2（D1 缺省档）。"""
+    cid = _mk_candidate(clean_db, EXTRACTION_B, "简历 B" * 30)
+    jids = _mk_category_jobs(clean_db, 10)
+    for j in jids[:5]:
+        _req(clean_db, j, "Docker", "nice_to_have", "精通")
+    out = get_gaps(clean_db, cid, category="ai_application_dev")
+    assert _by_skill(out["gaps"])["Docker"]["required_level"] == 2
+
+
+def test_category_snapshot_ref_in_meta(clean_db):
+    """meta.snapshot 引用该市场最新快照（demand 溯源）。"""
+    cid = _mk_candidate(clean_db, EXTRACTION_B, "简历 B" * 30)
+    _mk_category_jobs(clean_db, 10)
+    with clean_db.cursor() as cur:
+        cur.execute(
+            """INSERT INTO market_snapshot
+               (scope, sample_size, skill_frequency, source_distribution,
+                confidence, method_version)
+               VALUES ('{"market": "china"}'::jsonb, 30, '{}'::jsonb,
+                       '[]'::jsonb, 'low', 's11-v1')
+               RETURNING id""")
+        snap_id = cur.fetchone()["id"]
+    clean_db.commit()
+    out = get_gaps(clean_db, cid, category="ai_application_dev")
+    assert out["snapshot"]["id"] == snap_id
+    assert out["snapshot"]["method_version"] == "s11-v1"
+
+
+def test_category_empty_returns_no_gaps(clean_db):
+    """无岗位类目 → 空清单 + sample_size=0（不崩、不臆造要求）。"""
+    cid = _mk_candidate(clean_db, EXTRACTION_B, "简历 B" * 30)
+    out = get_gaps(clean_db, cid, category="mcp_dev")
+    assert out["gaps"] == []
+    assert out["category_sample_size"] == 0
+    assert out["snapshot"] is None
