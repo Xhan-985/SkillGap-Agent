@@ -96,9 +96,10 @@ Phase 11 Docker + CI + Documentation
 | 项 | 内容 |
 |---|---|
 | 目标 | 岗位要求 vs 画像的差距量化 |
-| 产出 | Gap 计算（重要度星级 vs 能力星级，含 confidence 折减）；transferable/genuine 区分（借鉴 JobBot 设计）；最大缺口清单（带 ROI 排序接口，供 Phase 7/8 使用） |
+| 产出 | Gap 计算（重要度星级 vs 能力星级；confidence 不进 gap——H1 口径，conf_factor 属 Phase 7）；transferable/genuine 区分（借鉴 JobBot 设计）；最大缺口清单（带 ROI 排序原料 demand/cost，供 Phase 7/8 使用） |
 | 验收 | 单调用例：能力提升 → 缺口单调收窄；边界用例（完全无关岗位、完全达标岗位） |
 | 自检重点 | Engineering：Gap 计算为纯函数；Resume：此阶段形成"可解释 Gap 报告"能力 |
+| 完成状态 | ✅ 完成（2026-09-03，gap-v1：gapcalc 纯函数 + 服务层双模式 + CLI gap-get，零 LLM/零迁移；口径裁决与类目聚合规则见 DECISION_LOG D-2026-09-03-13）——详见根目录 PHASE_6_REVIEW.md |
 
 ## Phase 7：Job Matching
 

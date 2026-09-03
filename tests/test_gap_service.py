@@ -61,6 +61,7 @@ def test_gap_basic_single_job(clean_db):
     assert by["Python"]["type"] == "transferable"
     tr = {t["skill_id"]: t for t in out["transferable"]}
     assert tr["Python"]["via"] == "Python"       # 自身证据支撑
+    assert tr["Python"]["note"] == "自身已有证据但等级不足（需深化）"
 
 
 def test_java_evidence_makes_python_transferable(clean_db):

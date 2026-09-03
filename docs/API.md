@@ -123,9 +123,18 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 
 ### 2.9 GET /api/candidates/{id}/gaps（M7）
 
-**Query**：`?job_id=123`（或 `?category=ai_application_dev` 用市场聚合要求）
-**Response 200**：`{ "gaps": [ { "skill_id": "mcp", "required_level": 4, "actual_level": 1, "gap": 3, "type": "genuine", "demand": "见 market 端点" } ], "transferable": [ { "skill_id": "java", "note": "与 Python 工程能力部分可迁移" } ] }`
-**判定依据**：required/actual_level 与 gap 由 DATA_MODEL §4.2 映射与 §4.4 规则计算（程度词→等级；confidence 不进 gap）；transferable 依据 skill_relation(relation_type=transferable_to) + 关联技能证据（confidence ≥0.5）。
+**Query**：`?job_id=123`（单岗模式）；或 `?category=ai_application_dev&market=china&min_freq=0.20`（类目聚合模式；job_id 与 category 二选一）
+**Response 200**：
+```json
+{ "candidate_id": 1, "mode": "job|category", "job_id": 123,
+  "gaps": [ { "skill_id": "mcp", "required_level": 4, "actual_level": 1, "gap": 3,
+              "type": "genuine|transferable", "via": "java",
+              "demand": { "frequency": 0.27, "sample_size": 201 }, "cost": "low" } ],
+  "transferable": [ { "skill_id": "mcp", "via": "java", "note": "工程能力与基础编程范式可迁移" } ],
+  "gap_version": "gap-v1" }
+```
+**判定依据**：required/actual_level 与 gap 由 DATA_MODEL §4.2 映射与 §4.4 规则计算（程度词→等级；confidence 不进 gap——H1 口径）；transferable 依据 skill_relation(relation_type=transferable_to) + parent（一层）+ 自身证据（confidence ≥0.5），via 报证据技能、note 取 relation.note。排序：gap 降序、同 gap 按 frequency 降序；demand/cost 为 Phase 8 ROI 公式的原料（本端点不计算 potential_gain）。
+**类目聚合规则**（DECISION_LOG D-2026-09-03-13）：类目内出现频次 ≥ min_freq（默认 0.20）的技能进入要求清单；required_level = 该技能类目内 must_have 行映射最大值（无 must_have 行取 2）；响应含 category_sample_size 与该市场最新快照引用（demand 溯源）。
 
 ### 2.10 POST /api/recommendations（M9）
 

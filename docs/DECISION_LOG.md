@@ -82,8 +82,17 @@
 - **决策**：同一 candidate 重新分析 → 删除其全部 source_type='resume_text' 技能行后插入新结果（简历=当前状态快照，陈旧证据不跨版本累积）；manual 行永不删除，与新简历冲突时跳过插入 + 显式 notice（manual_overridden）；add_manual_skill 整行替换已有行（用户显式意图最新）；手动勾选仅接受词表内技能（new_skill_candidate 保持 LLM 新词裁决通道纯净）
 - **影响**：Phase 5 服务层语义（D1/D5），测试锚定 test_profile_service.py
 
+## D-2026-09-03-13 ｜ gap-v1 冻结：confidence 不进 gap + 类目聚合规则
+
+- **C1 口径裁决**：ROADMAP Phase 6 产出原文"含 confidence 折减"与 DATA_MODEL §4.4（H1 修复）"confidence 不直接进 gap"冲突——按 DATA_MODEL 裁决：**gap = 纯星级差** `clamp(required−actual, ≥0)`；conf_factor 属 Phase 7 match 公式。ROADMAP 措辞已同步修正
+- **C2 类目聚合规则冻结**（API §2.9 原文只留一句"市场聚合要求"）：类目内出现频次 ≥ min_freq（默认 0.20）的技能进入要求清单；required_level = 该技能类目内 must_have 行映射最大值（无 must_have 行取 2）；demand = frequency + sample_size + 最新快照引用
+- **D1 映射缺省**：intensity NULL → must_have 取 3（熟悉中性档）/ nice_to_have 取 2；nice_to_have 一律封顶 2
+- **D3 transferable 判定**：相关技能集 = {s} ∪ parent（一层）∪ transferable_to 双向；集合内存在 confidence ≥ 0.5 证据 → transferable（via 报证据技能，note 取 relation.note），否则 genuine
+- **排序**：gap 降序、同 gap 按 frequency 降序；ROI 公式（Demand×Gap÷Cost）属 Phase 8 roi-v1，本阶段只输出 demand/cost 原料不计算分值
+- **影响**：Phase 6 落地（src/skillgap/gap/，版本 gap-v1，零 LLM/零迁移/零新依赖）；min_freq 与 evidence 线 0.5 为 heuristic 首值，E2/Phase 7 校准后升版本
+
 ---
 
-## 待议决策（进入 Phase 2 前）
+## 待议决策
 
 无阻塞项。Phase 2 执行中如遇新决策点，按"先补 ADR/日志再动代码"纪律追加记录。

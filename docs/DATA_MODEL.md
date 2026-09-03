@@ -217,7 +217,7 @@ Overall = 100 × (0.45×coverage + 0.25×importance_coverage
 
 | 枚举 | 数值 | 用途 |
 |---|---|---|
-| 程度词（job_skill.intensity → required_level） | 精通=5 ｜ 熟练=4 ｜ 熟悉=3 ｜ 了解=2 ｜ nice_to_have 封顶 2 | Gap 计算（M7） |
+| 程度词（job_skill.intensity → required_level） | 精通=5 ｜ 熟练=4 ｜ 熟悉=3 ｜ 了解=2 ｜ nice_to_have 封顶 2 ｜ intensity 为 NULL 时 must_have 取 3（熟悉中性档）/ nice_to_have 取 2 | Gap 计算（M7，gap-v1） |
 | 学习成本（skill.learning_cost → cost_value） | Low=1 ｜ Mid=2 ｜ High=3 | ROI 公式除数 |
 | candidate_skill.level | 1-5 星 = 1-5 | Gap 计算（actual_level） |
 

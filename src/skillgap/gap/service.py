@@ -83,10 +83,13 @@ def get_gaps(conn: psycopg.Connection, candidate_id: int, *,
         if g["type"] == "transferable":
             via = _first_evidence_skill(g["skill_id"], related, evidence)
             g["via"] = via
+            if via == g["skill_id"]:
+                note = "自身已有证据但等级不足（需深化）"
+            else:
+                note = notes.get(
+                    (g["skill_id"], via), f"关联技能 {via} 有可迁移证据")
             transferable.append({
-                "skill_id": g["skill_id"], "via": via,
-                "note": notes.get(
-                    (g["skill_id"], via), f"关联技能 {via} 有可迁移证据"),
+                "skill_id": g["skill_id"], "via": via, "note": note,
             })
 
     gap_rows.sort(key=lambda g: (-g["gap"],

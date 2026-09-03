@@ -1,6 +1,6 @@
 ﻿# SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-03 ｜ 代码状态：75 commits（master，已同步 GitHub）｜ 测试：242 passed
+> 更新：2026-09-03 ｜ 代码状态：80 commits（master，本地领先远端 5 commits——push 需用户批准）｜ 测试：277 passed
 
 ## 1. 项目一句话
 
@@ -17,10 +17,11 @@ Phase 2  数据模型 + 管道 + 数据集 ✅ 代码完成；数据收集 N=201
 Phase 3  JD Analyzer + LLM 抽取  ✅ 完成（E1 基线 2026-09-02：F1=0.914 PASS，eval_run#2）
 Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#4 N=201 high，tau=0.1538）
 Phase 5  Candidate Profile          ✅ 完成（2026-09-03；conf-v1 公式冻结，画像 A/B/C 固定）
-Phase 6-11                       ⬜ 未开始（下一步 Phase 6 Skill Gap）
+Phase 6  Skill Gap                 ✅ 完成（2026-09-03；gap-v1 冻结：纯星级差 + genuine/transferable + 类目聚合）
+Phase 7-11                        ⬜ 未开始（下一步 Phase 7 Job Matching）
 ```
 
-阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md`（六维自检 + 验收核验表）。
+阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md` / `PHASE_6_REVIEW.md`（六维自检 + 验收核验表）。
 
 ## 3. 技术栈与架构
 
@@ -84,6 +85,10 @@ src/skillgap/
     extractor.py      #   LLMResumeExtractor（复用 gateway + 证据定位校验）
     service.py        #   analyze_resume/get_profile/add_manual_skill/delete_candidate
                       #   权重规则表 docs/WEIGHT_RULES.md（公开）
+  gap/                # Phase 6 Skill Gap（零 LLM）
+    gapcalc.py        #   纯函数 gap-v1（required_level 映射/gap clamp/classify，守卫测试锁定）
+    service.py        #   get_gaps：单岗(job_id)/类目聚合(category)双模式
+                      #   口径裁决与聚合规则 DECISION_LOG D-2026-09-03-13
   stats.py            #   Phase 4 市场统计：切片频率/快照/溯源/交叉对照（零 LLM，守卫测试锁定）
                       #   口径文档 docs/STATS_METHOD.md；method_version=s11-v1
   quality_metrics.py  #   E5 数据质量报告
@@ -116,6 +121,7 @@ tests/                # 24 个测试文件，conftest 起真实 PG 测试库
 | `profile-get --candidate-id N` | 画像查询（每技能证据链 + confidence） |
 | `profile-add-skill --candidate-id N --skill X --level 4 [--evidence "…"]` | 手动勾选技能（manual 证据，confidence=1.0，词表内） |
 | `candidate-delete --candidate-id N` | 级联删除画像（204/404） |
+| `gap-get --candidate-id N --job-id M` 或 `--category c [--market china --min-freq 0.2]` | 岗位要求 vs 画像差距量化（M7，零 LLM：gaps+transferable+demand/cost 原料） |
 | `quarantine-list` / `raw-cleanup` | 隔离队列 / 7 天 raw 清理 |
 
 ## 7. 当前核心工作流：JD 收集（Phase 2 遗留）
@@ -152,7 +158,8 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 3. ~~抽样 20 条人工核对字段~~ ✅ 已完成（2026-09-01，21 条分层抽查；发现并修复薪资"从 0 到 1"误判 bug，详见 §8）
 4. ~~标注集 v1 → v2~~ ✅ 已完成（2026-09-02，53 条真实 JD。**评测闭环捕获并修复真实 prompt 缺陷**：v2 数据集暴露 v1 prompt 在项目符排版 JD 上产生跨行证据 → prompt v2 增补"证据不得跨越列表符号/换行"。当前基线（eval_run#4/#5，prompt v2）：v2 数据集 warn（F1=0.8669 / R=0.802 / evidence=1.0，真实 JD 难于合成）；v1 数据集 pass（F1=0.9043）无回归。recall 0.802 距 0.85 pass 线的差距主要是 must/nice 边界与"任一"型列举的标注粒度分歧——后续 prompt 迭代方向，禁止为跑分过拟合评测集）
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
-6. ~~进入 Phase 5~~ ✅ 已完成（2026-09-03，PHASE_5_REVIEW.md；conf-v1 公式 + 3 冻结画像 + CLI 4 命令，242 测试全绿。**已知限制**：LLM level 推断无评测集背书（E2 属 Phase 7），手动勾选兜底；简历输入为纯文本，PDF 后置。下一步 Phase 6 Skill Gap——先写 docs/plans/ 计划）
+6. ~~进入 Phase 5~~ ✅ 已完成（2026-09-03，PHASE_5_REVIEW.md；conf-v1 公式 + 3 冻结画像 + CLI 4 命令，242 测试全绿。**已知限制**：LLM level 推断无评测集背书（E2 属 Phase 7），手动勾选兜底；简历输入为纯文本，PDF 后置）
+7. ~~进入 Phase 6~~ ✅ 已完成（2026-09-03，PHASE_6_REVIEW.md；gap-v1 冻结 + CLI gap-get，277 测试全绿。**口径裁决**：confidence 不进 gap（C1）/ 类目聚合规则冻结（C2）——DECISION_LOG D-2026-09-03-13。下一步 Phase 7 Job Matching——先写 docs/plans/ 计划；E2 标注集（20-30 对）是该阶段重点前置）
 
 ## 10. 已知问题与坑
 
