@@ -1,0 +1,98 @@
+[
+  {
+    "template_id": "mcp-server-python",
+    "title": "用 Python 官方 SDK 实现一个 MCP Server（暴露 2-3 个工具给 Claude/其他客户端调用）",
+    "target_skills": ["MCP", "Python"],
+    "est_days": 7,
+    "cost": "mid",
+    "source": "策划：模型上下文协议是 2025-2026 AI 应用岗高频新要求，官方 SDK 上手成本低、产出可演示"
+  },
+  {
+    "template_id": "rag-mini-search",
+    "title": "搭建迷你 RAG：文档切分 + 向量化（pgvector）+ 检索问答，带召回评测",
+    "target_skills": ["RAG", "PostgreSQL", "Python"],
+    "est_days": 14,
+    "cost": "mid",
+    "source": "策划：RAG 是中文 AI 应用岗最高频要求；pgvector 复用既有数据库技能"
+  },
+  {
+    "template_id": "agent-workflow-langgraph",
+    "title": "用 LangGraph 实现多节点 Agent 工作流（工具调用 + 状态机 + 失败重试）",
+    "target_skills": ["LangGraph", "Agent 开发", "Python"],
+    "est_days": 14,
+    "cost": "mid",
+    "source": "策划：Agent 工作流编排是 2026 招聘 JD 显著增量要求，LangGraph 为主流框架"
+  },
+  {
+    "template_id": "llm-app-fastapi",
+    "title": "FastAPI + LLM 网关的完整后端服务（流式输出、缓存、限流、可观测）",
+    "target_skills": ["FastAPI", "Python", "大模型 API"],
+    "est_days": 14,
+    "cost": "mid",
+    "source": "策划：AI 应用工程师 JD 普遍要求工程化能力（流式/网关/部署）"
+  },
+  {
+    "template_id": "prompt-eval-suite",
+    "title": "提示词评测套件：设计 20 个评测用例 + 自动打分脚本，对比 3 种 Prompt 策略",
+    "target_skills": ["Prompt Engineering", "Python"],
+    "est_days": 7,
+    "cost": "low",
+    "source": "策划：Prompt Engineering 高频且学习成本低，产出可写入简历量化成果"
+  },
+  {
+    "template_id": "docker-compose-deploy",
+    "title": "将既有 AI 项目 Docker 化：compose 编排应用+数据库+网关，写 CI 部署",
+    "target_skills": ["Docker", "Docker Compose"],
+    "est_days": 5,
+    "cost": "low",
+    "source": "策划：部署能力是全栈/应用岗的基础门槛，周期短见效快"
+  },
+  {
+    "template_id": "multimodal-vlm-demo",
+    "title": "多模态应用 Demo：图片理解 + 结构化信息抽取（发票/文档解析）",
+    "target_skills": ["多模态", "大模型 API", "Python"],
+    "est_days": 10,
+    "cost": "mid",
+    "source": "策划：多模态在 JD 中频次快速上升，Demo 型项目周期可控"
+  },
+  {
+    "template_id": "finetune-small-llm",
+    "title": "微调 7B 小模型（LoRA）：数据构造 + 训练 + 与基座对比评测",
+    "target_skills": ["模型微调", "深度学习", "Python"],
+    "est_days": 30,
+    "cost": "high",
+    "source": "策划：算法向缺口补齐路径；周期长、需 GPU 资源，适合 30 天预算"
+  },
+  {
+    "template_id": "sql-analytics-dashboard",
+    "title": "SQL 数据分析看板：业务指标 SQL + 可视化 + 周报自动化",
+    "target_skills": ["SQL", "数据分析"],
+    "est_days": 7,
+    "cost": "low",
+    "source": "策划：数据驱动 JD 的基础项；SQL 复用度高"
+  },
+  {
+    "template_id": "vue-ai-frontend",
+    "title": "AI 应用前端：对话式界面（流式渲染 + 会话管理）",
+    "target_skills": ["Vue", "前端开发", "JavaScript"],
+    "est_days": 10,
+    "cost": "mid",
+    "source": "策划：Agent 全栈岗的前端补齐项；对话 UI 是 AI 应用标配"
+  },
+  {
+    "template_id": "java-spring-ai-integration",
+    "title": "Spring AI 集成项目：给既有 Java 服务加 LLM 能力（RAG 检索 + 工具调用）",
+    "target_skills": ["Java", "Spring AI", "RAG"],
+    "est_days": 14,
+    "cost": "mid",
+    "source": "策划：Java 背景转 AI 的迁移路径——复用存量技术栈降低成本"
+  },
+  {
+    "template_id": "k8s-observability",
+    "title": "K8s 部署 LLM 应用：GPU 调度 + 服务伸缩 + 日志监控",
+    "target_skills": ["Kubernetes", "Docker", "可观测性"],
+    "est_days": 20,
+    "cost": "high",
+    "source": "策划：推理服务上生产的基础设施要求，面向平台型 JD"
+  }
+]
