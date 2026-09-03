@@ -1,0 +1,328 @@
+{
+  "dataset_version": "e2-v1-template",
+  "spec_ref": "docs/EVALUATION_PLAN.md §3（E2 岗位匹配评测）",
+  "usage": "模板：5 个差异化画像 + 25 个（画像, JD）对占位。3 个示例已填（含 2 个对抗用例），其余 22 个待人工标注。jd_text 从真实数据粘贴（库内 job / e1_seed_v2 / 新采集均可，优先 2026 真实 JD）。标注完成后另存为 e2_seed_v1.json（本模板保留不动）。",
+  "annotation_guidelines": {
+    "human_match_score_anchors": {
+      "90-100": "must_have 全部达标且深度富余，nice_to_have 大多覆盖，软性条件（年限/学历）契合",
+      "70-89": "核心 must_have 达标，少量 must 深度不足或 nice_to_have 缺失",
+      "50-69": "must_half 过半达标，基础能力在但关键技能有缺口",
+      "30-49": "仅少数 must 达标，基础与 JD 方向存在明显距离",
+      "0-29": "方向完全不匹配（或画像为纯裸声明且 JD 要求工程落地能力）"
+    },
+    "three_groups": {
+      "strong": "画像有该技能且有扎实证据（项目细节/手动确认），等级 ≥ JD 要求",
+      "weak": "画像有该技能但仅裸声明、等级不足或证据薄弱（confidence < 0.5）",
+      "missing": "画像完全不具备该技能（含可通过 transferable 关联但本体缺失时——仍标 missing，note 注明可迁移）"
+    },
+    "adversarial_checklist": [
+      "技能仅裸声明（低 confidence）→ 人工分应低于有证据技能的同级画像",
+      "JD 要求与画像完全无关 → 人工分应 ≤ 29",
+      "别名变体 JD（如 LangChain vs LangChain.js）→ 三组判定应一致（词表归一化正确性）"
+    ],
+    "annotators": ["user（必标全集）", "同学A/B（抽标 ≥10 对，检验一致性）"]
+  },
+  "profiles": [
+    {
+      "profile_id": "P1",
+      "label": "强 RAG 弱工程",
+      "skills": [
+        {"skill": "RAG", "level": 4, "confidence": 1.0},
+        {"skill": "pgvector", "level": 4, "confidence": 1.0},
+        {"skill": "Prompt Engineering", "level": 3, "confidence": 1.0},
+        {"skill": "Python", "level": 3, "confidence": 0.6}
+      ],
+      "soft_profile": {"experience_years": 2, "education": "本科·软件工程", "languages": null}
+    },
+    {
+      "profile_id": "P2",
+      "label": "全栈均衡",
+      "skills": [
+        {"skill": "Python", "level": 4, "confidence": 1.0},
+        {"skill": "FastAPI", "level": 4, "confidence": 1.0},
+        {"skill": "Docker", "level": 3, "confidence": 1.0},
+        {"skill": "MySQL", "level": 4, "confidence": 1.0},
+        {"skill": "RAG", "level": 3, "confidence": 0.9},
+        {"skill": "LangGraph", "level": 3, "confidence": 0.9}
+      ],
+      "soft_profile": {"experience_years": 3, "education": "本科·计算机", "languages": "CET-6"}
+    },
+    {
+      "profile_id": "P3",
+      "label": "新手缺 Agent",
+      "skills": [
+        {"skill": "Python", "level": 3, "confidence": 0.6},
+        {"skill": "SQL", "level": 2, "confidence": 0.6},
+        {"skill": "机器学习", "level": 2, "confidence": 0.3}
+      ],
+      "soft_profile": {"experience_years": 0, "education": "本科·应届·数据科学", "languages": null}
+    },
+    {
+      "profile_id": "P4",
+      "label": "Java 后端转 AI（transferable 用例）",
+      "skills": [
+        {"skill": "Java", "level": 5, "confidence": 1.0},
+        {"skill": "Spring Boot", "level": 5, "confidence": 1.0},
+        {"skill": "MySQL", "level": 4, "confidence": 1.0},
+        {"skill": "Python", "level": 3, "confidence": 0.6},
+        {"skill": "LangGraph", "level": 2, "confidence": 0.3}
+      ],
+      "soft_profile": {"experience_years": 3, "education": "本科·软件工程", "languages": null}
+    },
+    {
+      "profile_id": "P5",
+      "label": "裸声明对抗型（无任何项目证据）",
+      "skills": [
+        {"skill": "RAG", "level": 3, "confidence": 0.3},
+        {"skill": "Python", "level": 3, "confidence": 0.3},
+        {"skill": "MCP", "level": 2, "confidence": 0.3}
+      ],
+      "soft_profile": {"experience_years": 0, "education": "应届·未标注", "languages": null}
+    }
+  ],
+  "pairs": [
+    {
+      "id": "e2-001",
+      "profile_id": "P2",
+      "jd_text": "AI应用开发工程师\n12-17K * 12薪\n信息技术岗  深圳  本科\n收起\n岗位职责\n1、学习并掌握大型语言模型（LLM）、智能代理（Agent）及检索增强生成技术（RAG）等前沿 AI 技术，持续跟进大模型领域最新行业动态；\n2、参与Agent开发实践，熟练使用Python 编程语言及 Workflow 平台，完成基础 Agent 功能实现与 RAG 技术应用；\n3、学习 Prompt Engineering（提示工程）实操方法，结合业务场景优化提示词设计，提升模型生成效果；\n4、协助将 AI 应用与公司现有业务系统集成（如通过 HTTP 接口数据对接），参与智能问数等项目迭代优化；\n5、积极参与团队技术讨论，为 AI 项目的创新方向与解决方案贡献思路，快速积累工程实践经验。\n岗位要求\n1、2027届获得本科及以上学历，数学、计算机科学、软件工程等相关专业；\n2、对人工智能、机器学习及新兴技术有浓厚兴趣，熟悉 Python 基础语法；\n3、具备良好的逻辑思维与问题解决能力，能快速学习新技术；\n4、具有团队合作精神与沟通能力，积极主动参与项目协作；\n5、有 AI 工具（如 LangChain、ChatGPT API）使用经验或 AI 相关竞赛 / 课程实践经历者优先。",
+      "jd_source": "e1_seed_v2#v2-16（真实 JD）",
+      "ground_truth": {
+        "human_match_score": 68,
+        "strong_skills": ["Python", "RAG"],
+        "weak_skills": ["Agent 开发", "LangChain", "Prompt Engineering"],
+        "missing_skills": [],
+        "note": "示例标注：Python L4 超要求且证据扎实=strong；RAG L3 达到'技术应用'要求但无 Agent 落地=strong 偏保守；Agent 方向仅有 LangGraph L3 无完整实践、LangChain 为 nice 未用过、Prompt 未系统实践——均记 weak。整体 68：must 主体覆盖、深水区不足。"
+      },
+      "annotator": "user",
+      "annotated_at": "2026-09-03"
+    },
+    {
+      "id": "e2-002",
+      "profile_id": "P5",
+      "jd_text": "AI应用开发工程师\n12-17K * 12薪\n信息技术岗  深圳  本科\n收起\n岗位职责\n1、学习并掌握大型语言模型（LLM）、智能代理（Agent）及检索增强生成技术（RAG）等前沿 AI 技术，持续跟进大模型领域最新行业动态；\n2、参与Agent开发实践，熟练使用Python 编程语言及 Workflow 平台，完成基础 Agent 功能实现与 RAG 技术应用；\n3、学习 Prompt Engineering（提示工程）实操方法，结合业务场景优化提示词设计，提升模型生成效果；\n4、协助将 AI 应用与公司现有业务系统集成（如通过 HTTP 接口数据对接），参与智能问数等项目迭代优化；\n5、积极参与团队技术讨论，为 AI 项目的创新方向与解决方案贡献思路，快速积累工程实践经验。\n岗位要求\n1、2027届获得本科及以上学历，数学、计算机科学、软件工程等相关专业；\n2、对人工智能、机器学习及新兴技术有浓厚兴趣，熟悉 Python 基础语法；\n3、具备良好的逻辑思维与问题解决能力，能快速学习新技术；\n4、具有团队合作精神与沟通能力，积极主动参与项目协作；\n5、有 AI 工具（如 LangChain、ChatGPT API）使用经验或 AI 相关竞赛 / 课程实践经历者优先。",
+      "jd_source": "e1_seed_v2#v2-16（真实 JD，与 e2-001 同 JD——对抗用例：仅裸声明）",
+      "ground_truth": {
+        "human_match_score": 42,
+        "strong_skills": [],
+        "weak_skills": ["Python", "RAG"],
+        "missing_skills": ["Agent 开发", "Prompt Engineering", "LangChain"],
+        "note": "对抗用例 1：与 e2-001 同 JD、同技能名同等级（RAG L3 / Python L3），但全部裸声明 conf=0.3 无项目证据 → 人工分显著低于有证据画像（68 vs 42）。三组全部降级为 weak/missing，无 strong。"
+      },
+      "annotator": "user",
+      "annotated_at": "2026-09-03"
+    },
+    {
+      "id": "e2-003",
+      "profile_id": "P1",
+      "jd_text": "【待粘贴】大模型推理优化方向 JD（要求 C++/CUDA/Triton/深度学习/分布式训练，不含 RAG/检索类要求）——对抗用例：JD 与画像完全无关",
+      "jd_source": "建议从库内 job（大模型算法方向）或新采集获取，目标：与 P1 技能零交集",
+      "ground_truth": {
+        "human_match_score": null,
+        "strong_skills": [],
+        "weak_skills": [],
+        "missing_skills": [],
+        "note": "对抗用例 2（EVALUATION_PLAN §3.3）：完全无关 JD → 人工分应 ≤ 29。预期标注：Python 至多 weak（算法岗 Python 要求高），其余全 missing。"
+      },
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-004",
+      "profile_id": "P1",
+      "jd_text": "",
+      "jd_source": "建议：agent_dev 或 llm_fullstack 类 JD",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-005",
+      "profile_id": "P1",
+      "jd_text": "",
+      "jd_source": "建议：RAG 重度类 JD（检索/向量库要求多）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-006",
+      "profile_id": "P1",
+      "jd_text": "",
+      "jd_source": "建议：ai_application_dev 类 JD",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-007",
+      "profile_id": "P1",
+      "jd_text": "",
+      "jd_source": "建议：含 nice_to_have 密集的 JD（检验 nice 权重）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-008",
+      "profile_id": "P2",
+      "jd_text": "",
+      "jd_source": "建议：agent_dev 类 JD（LangGraph/LangChain 要求）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-009",
+      "profile_id": "P2",
+      "jd_text": "",
+      "jd_source": "建议：后端转 AI 类 JD（Python+FastAPI+Docker）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-010",
+      "profile_id": "P2",
+      "jd_text": "",
+      "jd_source": "建议：llm_fullstack 类 JD（要求面广）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-011",
+      "profile_id": "P2",
+      "jd_text": "",
+      "jd_source": "建议：薪资/年限要求高于画像的资深岗（检验 experience_relevance）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-012",
+      "profile_id": "P2",
+      "jd_text": "",
+      "jd_source": "对抗用例 3：与 e2-008 同岗位但 JD 技能写别名变体（LangChain.js/LangGraph.js/Python3）→ 三组判定应一致",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": "对抗用例 3（§3.3 别名变体）：标注时与 e2-008 三组一致，仅验证归一化"},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-013",
+      "profile_id": "P3",
+      "jd_text": "",
+      "jd_source": "建议：python_ai_dev 初级类 JD（画像可达）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-014",
+      "profile_id": "P3",
+      "jd_text": "",
+      "jd_source": "建议：agent_dev 类 JD（缺 Agent 主场景）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-015",
+      "profile_id": "P3",
+      "jd_text": "",
+      "jd_source": "建议：ai_application_dev 应届友好类 JD",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-016",
+      "profile_id": "P3",
+      "jd_text": "",
+      "jd_source": "建议：要求机器学习基础的数据类 JD（画像 ML 裸声明 → weak 验证）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-017",
+      "profile_id": "P4",
+      "jd_text": "",
+      "jd_source": "建议：AI 应用开发类 JD（Java 背景可迁移场景）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": "transferable 重点用例：注意 missing 中 Java↔Python 可迁移的 note 写法"},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-018",
+      "profile_id": "P4",
+      "jd_text": "",
+      "jd_source": "建议：企业级 AI 平台类 JD（Java/Spring 是加分项）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-019",
+      "profile_id": "P4",
+      "jd_text": "",
+      "jd_source": "建议：dify_dev 或低代码 AI 应用类 JD",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-020",
+      "profile_id": "P4",
+      "jd_text": "",
+      "jd_source": "建议：llm_fullstack 类 JD（Python 权重高——检验 conf_factor 折减）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-021",
+      "profile_id": "P5",
+      "jd_text": "",
+      "jd_source": "建议：agent_dev 类 JD（对照 P2 同 JD 的分差）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-022",
+      "profile_id": "P5",
+      "jd_text": "",
+      "jd_source": "建议：MCP 相关 JD（画像唯一差异化技能 MCP 为裸声明）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-023",
+      "profile_id": "P5",
+      "jd_text": "",
+      "jd_source": "建议：资深 AI 岗（年限硬要求——裸声明+应届 vs 资深 JD 双重劣势）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-024",
+      "profile_id": "P3",
+      "jd_text": "",
+      "jd_source": "自由选择：补足矩阵平衡（任何未覆盖的岗位类别）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    },
+    {
+      "id": "e2-025",
+      "profile_id": "P5",
+      "jd_text": "",
+      "jd_source": "自由选择：补足矩阵平衡（任何未覆盖的岗位类别）",
+      "ground_truth": {"human_match_score": null, "strong_skills": [], "weak_skills": [], "missing_skills": [], "note": ""},
+      "annotator": null,
+      "annotated_at": null
+    }
+  ]
+}
