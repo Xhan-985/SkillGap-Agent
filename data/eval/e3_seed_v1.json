@@ -1,0 +1,145 @@
+{
+  "dataset_version": "e3-v1",
+  "spec_ref": "docs/plans/2026-09-03-phase8-recommendation.md D8；EVALUATION_PLAN §4",
+  "annotation_guidelines": "相关性三档（note → 分）：必补/高价值=2；值得补=1；其余（已具备/方向不符/低价值）=0。仅标注 china 市场词表技能（2026-09 快照频次 ≥0.20 的候选池为主）；标注基于市场频次与画像证据的独立人工判断，非系统输出。",
+  "annotators": ["claude（初标）", "user（复核待）"],
+  "peer_review": "D8：同学抽标 ≥1 画像复核（待办）",
+  "cases": [
+    {
+      "case_id": "e3-001",
+      "profile_id": "P1",
+      "label": "强 RAG 弱工程",
+      "time_budget_days": 14,
+      "market": "china",
+      "profile": {
+        "profile_id": "P1",
+        "label": "强 RAG 弱工程",
+        "skills": [
+          {"skill": "RAG", "level": 4, "confidence": 1.0},
+          {"skill": "pgvector", "level": 4, "confidence": 1.0},
+          {"skill": "Prompt Engineering", "level": 3, "confidence": 1.0},
+          {"skill": "Python", "level": 3, "confidence": 0.6}
+        ],
+        "soft_profile": {"experience_years": 2, "education": "本科·软件工程", "languages": null}
+      },
+      "relevance": {
+        "AI Coding": "必补：Agent 开发生产力技能，市场 0.27 高频且画像完全缺失",
+        "Function Calling": "值得补：与 RAG/Prompt 协同的工具调用基础",
+        "多模态": "值得补：RAG 方向的自然延伸",
+        "Java": "低价值：Python 栈已立，方向不符",
+        "Go": "低价值：方向不符",
+        "RAG": "已具备（level 4），无需补",
+        "Prompt Engineering": "已具备（level 3），无需补",
+        "Python": "已具备（level 3），无需补"
+      }
+    },
+    {
+      "case_id": "e3-002",
+      "profile_id": "P2",
+      "label": "全栈均衡",
+      "time_budget_days": 14,
+      "market": "china",
+      "profile": {
+        "profile_id": "P2",
+        "label": "全栈均衡",
+        "skills": [
+          {"skill": "Python", "level": 4, "confidence": 1.0},
+          {"skill": "FastAPI", "level": 4, "confidence": 1.0},
+          {"skill": "Docker", "level": 3, "confidence": 1.0},
+          {"skill": "MySQL", "level": 4, "confidence": 1.0},
+          {"skill": "RAG", "level": 3, "confidence": 0.9},
+          {"skill": "LangGraph", "level": 3, "confidence": 0.9}
+        ],
+        "soft_profile": {"experience_years": 3, "education": "本科·计算机", "languages": "CET-6"}
+      },
+      "relevance": {
+        "Prompt Engineering": "必补：市场 0.40 高频，画像缺失",
+        "Function Calling": "必补：有框架经验但工具调用单列短板",
+        "AI Coding": "值得补：效率增益，优先级次于核心缺口",
+        "多模态": "值得补：RAG 延伸方向",
+        "Java": "低价值：方向不符",
+        "Go": "低价值：方向不符"
+      }
+    },
+    {
+      "case_id": "e3-003",
+      "profile_id": "P3",
+      "label": "新手缺 Agent",
+      "time_budget_days": 14,
+      "market": "china",
+      "profile": {
+        "profile_id": "P3",
+        "label": "新手缺 Agent",
+        "skills": [
+          {"skill": "Python", "level": 3, "confidence": 0.6},
+          {"skill": "SQL", "level": 2, "confidence": 0.6},
+          {"skill": "机器学习", "level": 2, "confidence": 0.3}
+        ],
+        "soft_profile": {"experience_years": 0, "education": "本科·应届·数据科学", "languages": null}
+      },
+      "relevance": {
+        "RAG": "必补：Agent 方向核心入口技能",
+        "Prompt Engineering": "必补：Agent 开发基础，市场 0.40 高频",
+        "Function Calling": "值得补：核心补齐后进阶",
+        "AI Coding": "值得补：效率增益",
+        "多模态": "低价值：新手先补核心，不宜分散",
+        "Java": "低价值：方向不符",
+        "Go": "低价值：方向不符"
+      }
+    },
+    {
+      "case_id": "e3-004",
+      "profile_id": "P4",
+      "label": "Java 后端转 AI（transferable 用例）",
+      "time_budget_days": 14,
+      "market": "china",
+      "profile": {
+        "profile_id": "P4",
+        "label": "Java 后端转 AI（transferable 用例）",
+        "skills": [
+          {"skill": "Java", "level": 5, "confidence": 1.0},
+          {"skill": "Spring Boot", "level": 5, "confidence": 1.0},
+          {"skill": "MySQL", "level": 4, "confidence": 1.0},
+          {"skill": "Python", "level": 3, "confidence": 0.6},
+          {"skill": "LangGraph", "level": 2, "confidence": 0.3}
+        ],
+        "soft_profile": {"experience_years": 3, "education": "本科·软件工程", "languages": null}
+      },
+      "relevance": {
+        "RAG": "必补：转 AI 的核心落地技能",
+        "Prompt Engineering": "必补：Agent 开发基础",
+        "Function Calling": "值得补：有后端功底，上手快",
+        "AI Coding": "值得补：效率增益",
+        "Java": "已具备（level 5），无需补",
+        "多模态": "低价值：先补核心 Agent 栈",
+        "Go": "低价值：方向不符"
+      }
+    },
+    {
+      "case_id": "e3-005",
+      "profile_id": "P5",
+      "label": "裸声明对抗型（无任何项目证据）",
+      "time_budget_days": 14,
+      "market": "china",
+      "profile": {
+        "profile_id": "P5",
+        "label": "裸声明对抗型（无任何项目证据）",
+        "skills": [
+          {"skill": "RAG", "level": 3, "confidence": 0.3},
+          {"skill": "Python", "level": 3, "confidence": 0.3},
+          {"skill": "MCP", "level": 2, "confidence": 0.3}
+        ],
+        "soft_profile": {"experience_years": 0, "education": "应届·未标注", "languages": null}
+      },
+      "relevance": {
+        "Prompt Engineering": "必补：裸声明证据弱，核心技能需重做项目立证",
+        "Function Calling": "值得补：核心补齐后进阶",
+        "AI Coding": "值得补：效率增益",
+        "RAG": "值得补：自评 level 3 但无项目证据，应深化",
+        "Java": "低价值：方向不符",
+        "Go": "低价值：方向不符",
+        "多模态": "低价值：先补核心"
+      }
+    }
+  ]
+}

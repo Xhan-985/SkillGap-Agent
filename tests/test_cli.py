@@ -345,3 +345,76 @@ def test_recommend_insufficient_market_returns_1(clean_db, capsys,
                "--templates", write_templates(tmp_path)], db_url=TEST_URL)
     assert rc == 1
     assert "INSUFFICIENT_MARKET_DATA" in capsys.readouterr().err
+
+
+# ---------- Phase 8：eval-e3（指标零 LLM——无 key 可跑） ----------
+
+def test_eval_e3_seed_only_without_key(clean_db, capsys, no_llm_key,
+                                       tmp_path):
+    """--seed-only：标注集入 evaluation_sample（幂等），不跑分不落 eval_run。"""
+    dataset = tmp_path / "e3_cli.json"
+    dataset.write_text(json.dumps({
+        "dataset_version": "e3-cli-test",
+        "cases": [{
+            "case_id": "e3c-001", "profile_id": "PT",
+            "time_budget_days": 14, "market": "china",
+            "profile": {"profile_id": "PT", "label": "t",
+                        "skills": [{"skill": "RAG", "level": 4,
+                                    "confidence": 0.9}],
+                        "soft_profile": {"experience_years": 2}},
+            "relevance": {"Docker": "必补"},
+        }], }, ensure_ascii=False), encoding="utf-8")
+    rc = main(["eval-e3", "--dataset", str(dataset), "--seed-only"],
+              db_url=TEST_URL)
+    assert rc == 0
+    assert json.loads(capsys.readouterr().out)["seeded"] == 1
+    rc = main(["eval-e3", "--dataset", str(dataset), "--seed-only"],
+              db_url=TEST_URL)
+    assert json.loads(capsys.readouterr().out)["seeded"] == 0   # 幂等
+    n = clean_db.execute(
+        "SELECT count(*) AS n FROM evaluation_sample "
+        "WHERE eval_type='recommendation'").fetchone()["n"]
+    assert n == 1
+    m = clean_db.execute(
+        "SELECT count(*) AS n FROM eval_run "
+        "WHERE eval_type='recommendation'").fetchone()["n"]
+    assert m == 0
+
+
+def test_eval_e3_run_without_key(clean_db, capsys, no_llm_key, tmp_path):
+    """E3 跑分指标零 LLM：无 key 全链路可跑（红线：recommend 规则产出）。"""
+    from tests.test_recommend_service_fixtures import seed_market
+    from tests.profile_fixtures import EXTRACTION_A
+
+    seed_market(clean_db)
+    dataset = tmp_path / "e3_cli.json"
+    dataset.write_text(json.dumps({
+        "dataset_version": "e3-cli-run",
+        "cases": [{
+            "case_id": "e3c-001", "profile_id": "PT",
+            "time_budget_days": 14, "market": "china",
+            "profile": {"profile_id": "PT", "label": "t",
+                        "skills": [{"skill": s.raw_name, "level": s.level,
+                                    "confidence": 1.0}
+                                   for s in EXTRACTION_A.skills],
+                        "soft_profile": {"experience_years": 2}},
+            "relevance": {"MCP": "必补", "Docker": "值得补"},
+        }], }, ensure_ascii=False), encoding="utf-8")
+    rc = main(["eval-e3", "--dataset", str(dataset)], db_url=TEST_URL)
+    assert rc == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["n_cases"] == 1
+    assert out["verdict"] in ("pass", "warn", "block")
+    n = clean_db.execute(
+        "SELECT count(*) AS n FROM eval_run "
+        "WHERE eval_type='recommendation' AND dataset_version='e3-cli-run'"
+    ).fetchone()["n"]
+    assert n == 1
+
+
+def test_eval_e3_missing_dataset_returns_1(clean_db, capsys, no_llm_key,
+                                          tmp_path):
+    rc = main(["eval-e3", "--dataset", str(tmp_path / "nope.json")],
+              db_url=TEST_URL)
+    assert rc == 1
+    assert "不存在" in capsys.readouterr().err

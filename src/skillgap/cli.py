@@ -200,8 +200,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_agent.add_argument("--market", default="china")
 
     p_ev3 = sub.add_parser("eval-e3",
-                            help="E3 推荐评测跑分（需 LLM_API_KEY）")
-    p_ev3.add_argument("--seed-only", action="store_true")
+                           help="E3 推荐评测跑分（指标零 LLM；"
+                                "标注集自动入库）")
+    p_ev3.add_argument("--dataset", default="data/eval/e3_seed_v1.json")
+    p_ev3.add_argument("--seed-only", action="store_true",
+                       help="仅入库标注集，不跑分")
 
     return p
 
@@ -457,13 +460,18 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
                 print(f"错误：{e}", file=sys.stderr)
                 return 1
         elif args.command == "eval-e3":
-            extractor = _make_extractor(conn)
-            if extractor is None:
-                return 2
-            from skillgap.eval.e3 import run_e3
+            from skillgap.eval.e3 import (
+                read_dataset_version, run_e3, seed_eval3,
+            )
             try:
-                _print(run_e3(conn, extractor.gateway))
-            except (ValueError, ExtractionFailed, LLMError) as e:
+                version = read_dataset_version(args.dataset)
+                n = seed_eval3(conn, args.dataset)
+                if args.seed_only:
+                    _print({"seeded": n})
+                    return 0
+                _print(run_e3(conn, dataset_version=version))
+            except (ValueError, RecommendError, RecCandidateNotFound,
+                    ExtractionFailed, LLMError) as e:
                 print(f"错误：{e}", file=sys.stderr)
                 return 1
         return 0
