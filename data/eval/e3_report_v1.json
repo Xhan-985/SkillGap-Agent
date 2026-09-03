@@ -11,6 +11,14 @@
     "coverage": 0.95,
     "n_cases": 5
   },
+  "llm_judge": {
+    "rubric_version": "rubric-v1",
+    "model": "deepseek-reasoner",
+    "mean": 5.0,
+    "n_judged": 5,
+    "note": "Warn 级参考信号（不参与 verdict，EVALUATION_PLAN §4.2）。满分符合预期：评审对象为规则引擎模板输出，数字 100% 源自 item，无幻觉空间；rubric 的区分度要在 v2 评 Agent 叙事/自由文本时才体现",
+    "eval_run": "#9"
+  },
   "per_case": [
     {"case_id": "e3-001", "profile": "P1 强 RAG 弱工程", "ndcg@5": 0.5792},
     {"case_id": "e3-002", "profile": "P2 全栈均衡", "ndcg@5": 0.8811},

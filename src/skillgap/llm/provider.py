@@ -35,17 +35,19 @@ class OpenAICompatibleProvider:
 
     def __init__(self, base_url: str, api_key: str, model: str,
                  http: httpx.Client | None = None, timeout: float = 60.0,
-                 max_retries: int = 2):
+                 max_retries: int = 2, temperature: float | None = 0.0):
         self.base_url = base_url.rstrip("/")
         self.api_key = api_key
         self.model = model
         self.http = http or httpx.Client(timeout=timeout)
         self.max_retries = max_retries
+        self.temperature = temperature   # None = 不传（reasoner 等不支持）
 
     def chat(self, messages: list[dict],
              response_json: bool = False) -> LLMResponse:
-        payload: dict = {"model": self.model, "messages": messages,
-                         "temperature": 0.0}   # 抽取任务要求确定性
+        payload: dict = {"model": self.model, "messages": messages}
+        if self.temperature is not None:
+            payload["temperature"] = self.temperature   # 抽取任务要求确定性
         if response_json:
             payload["response_format"] = {"type": "json_object"}
         last: str = ""

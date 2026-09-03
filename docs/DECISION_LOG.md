@@ -110,6 +110,14 @@
 - **D8 标注状态**：claude 初标完成，user 复核 + 同学抽标 ≥1 画像待办；e3-v1 冻结（§6 纪律），已知偏差（"Python 补到精通" / 新手画像成本项冲突）记入 e3_report_v1.json 为 v2 校准候选，不回改标注
 - **影响**：Phase 8 落地（src/skillgap/recommend/ + eval/e3.py，E3 基线 pass：nDCG@5=0.6497）；首个新依赖 langgraph 0.3.34（锁 ≥0.3,<0.4）
 
+## D-2026-09-04-16 ｜ judge + RAG 引用层提前落地（原 D-15 延后项，用户要求提前处理）
+
+- **E3 LLM-as-judge**：rubric-v1 冻结（5 点量表：数字引用真实性/无幻觉/排序逻辑/预算匹配；变更须升版本 + 10 条锚定复核）。控制红线：**Warn 级参考信号不参与 verdict**（测试锚定）；judge 模型 deepseek-reasoner 与被测 deepseek-chat 同厂商不同模型（EVALUATION_PLAN §4.2 同源限制的已知妥协，如实记录）；单条失败跳过不中断；provider 加 temperature=None 支持（reasoner 不接受该参数）
+- **真实基线**：mean=5.0 / n_judged=5（eval_run #9）。满分符合预期——评审对象是规则模板输出（数字 100% 源自 item 无幻觉空间）；rubric 区分度待 v2 评 Agent 叙事时体现，不是 rubric 失效信号
+- **RAG 引用层**：检索单位 = job_skill 证据行（非整条 JD）——命中即得 (job, skill, evidence_text) 精确溯源，与 skill-evidence SQL 精确版互补（本层管语义变体："模型上下文协议"→MCP）。migration 004：evidence_embedding vector(1024) + HNSW cosine 索引（bge-m3 1024 维）
+- **embedding 通道**：OpenAI-compatible /embeddings 端点（用户决策 2026-09-04：硅基流动 BAAI/bge-m3）；未配置 key 时 rag-index/rag-search 明确报错不臆造（ADR-008 同款纪律）。pgvector 传参零新依赖：参数按 text 传 + SQL 侧 %s::vector
+- **激活步骤**（用户注册硅基流动 key 填 .env 后）：`skillgap db-upgrade`（应用 004）→ `skillgap rag-index`（幂等回填）→ `skillgap rag-search --query "模型上下文协议"`
+
 ---
 
 ## 待议决策

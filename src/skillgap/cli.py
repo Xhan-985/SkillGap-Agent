@@ -44,6 +44,7 @@ from skillgap.ingest.contribute import (
 from skillgap.ingest.importer import parse_file
 from skillgap.ingest.normalize import JOB_CATEGORIES
 from skillgap.ingest.pipeline import run_batch
+from skillgap.llm.embedding import EmbeddingError
 from skillgap.llm.gateway import LLMGateway
 from skillgap.llm.provider import LLMError, OpenAICompatibleProvider
 from skillgap.profile.extractor import LLMResumeExtractor
@@ -205,6 +206,21 @@ def build_parser() -> argparse.ArgumentParser:
     p_ev3.add_argument("--dataset", default="data/eval/e3_seed_v1.json")
     p_ev3.add_argument("--seed-only", action="store_true",
                        help="仅入库标注集，不跑分")
+    p_ev3.add_argument("--judge", action="store_true",
+                       help="附 LLM-as-judge 评分（Warn 级参考，需 "
+                            "LLM_API_KEY；不影响 verdict）")
+
+    p_ri = sub.add_parser("rag-index",
+                          help="RAG 引用层：回填证据行 embedding（幂等，"
+                               "需 EMBEDDING_API_KEY）")
+    p_ri.add_argument("--batch-size", type=int, default=64)
+    p_rs = sub.add_parser("rag-search",
+                          help="RAG 语义检索：查询 → 证据行溯源"
+                               "（需 EMBEDDING_API_KEY；可先 rag-index）")
+    p_rs.add_argument("--query", required=True)
+    p_rs.add_argument("--market", default=None,
+                      choices=["china", "global"])
+    p_rs.add_argument("--top-k", type=int, default=5)
 
     return p
 
@@ -463,15 +479,50 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
             from skillgap.eval.e3 import (
                 read_dataset_version, run_e3, seed_eval3,
             )
+            judge_provider = None
+            if args.judge:
+                if not settings.llm_api_key:
+                    print("错误：--judge 需要配置 LLM_API_KEY",
+                          file=sys.stderr)
+                    return 2
+                # reasoner：temperature=None（不支持该参数）+ 长超时
+                judge_provider = OpenAICompatibleProvider(
+                    base_url=settings.llm_base_url,
+                    api_key=settings.llm_api_key,
+                    model=settings.llm_judge_model,
+                    timeout=max(settings.llm_timeout, 180.0),
+                    max_retries=1, temperature=None)
             try:
                 version = read_dataset_version(args.dataset)
                 n = seed_eval3(conn, args.dataset)
                 if args.seed_only:
                     _print({"seeded": n})
                     return 0
-                _print(run_e3(conn, dataset_version=version))
+                _print(run_e3(conn, dataset_version=version,
+                              judge_provider=judge_provider))
             except (ValueError, RecommendError, RecCandidateNotFound,
                     ExtractionFailed, LLMError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "rag-index":
+            from skillgap.retrieval.service import index_evidence
+            try:
+                n = index_evidence(conn, batch_size=args.batch_size)
+                _print({"indexed": n,
+                        "model": settings.embedding_model,
+                        "dim": settings.embedding_dim})
+            except (ValueError, EmbeddingError) as e:
+                print(f"错误：{e}", file=sys.stderr)
+                return 1
+        elif args.command == "rag-search":
+            from skillgap.retrieval.service import semantic_search
+            try:
+                _print({"query": args.query,
+                        "market": args.market,
+                        "results": semantic_search(
+                            conn, args.query, market=args.market,
+                            top_k=args.top_k)})
+            except (ValueError, EmbeddingError) as e:
                 print(f"错误：{e}", file=sys.stderr)
                 return 1
         return 0

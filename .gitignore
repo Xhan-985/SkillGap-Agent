@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .pytest_tmp/
+.pytest_tmp_*/
 .env
 dist/
 build/
@@ -12,3 +13,15 @@ build/
 scripts/
 # 提示词测试文件仅本地保留（prompt.py 本体已恢复跟踪）
 tests/test_prompt.py
+# 探针/临时输出（本地调试残留）
+.p*_out.txt
+# 个人数据与学习文档（不入库——隐私与范围外）
+data/resume_sample.txt
+jd.txt
+.trae/
+docs/INTERVIEW_QUESTION_BANK.md
+docs/KNOWLEDGE_GAPS.md
+docs/LEARNING_ROADMAP.md
+docs/PROJECT_LEARNING_GUIDE.md
+docs/PROJECT_TECH_MAP.md
+docs/RESUME_TECH_MAPPING.md

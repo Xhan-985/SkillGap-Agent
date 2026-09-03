@@ -20,5 +20,15 @@ class Settings(BaseSettings):
     llm_timeout: float = 60.0     # API.md §0：LLM 相关 60s
     llm_max_retries: int = 2      # ADR-009：失败重试 ≤2 次后明示
 
+    # Phase 8: E3 LLM-as-judge（EVALUATION_PLAN §4.2——与被测生成模型不同源）
+    llm_judge_model: str = "deepseek-reasoner"
+
+    # Phase 8: RAG 引用层 embedding（OpenAI-compatible——用户决策硅基流动 bge-m3 2026-09-04）
+    embedding_base_url: str = "https://api.siliconflow.cn/v1"
+    embedding_api_key: str = ""
+    embedding_model: str = "BAAI/bge-m3"
+    embedding_dim: int = 1024
+    embedding_timeout: float = 30.0
+
 
 settings = Settings()

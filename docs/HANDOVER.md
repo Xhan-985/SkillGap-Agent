@@ -132,7 +132,9 @@ tests/                # 24 个测试文件，conftest 起真实 PG 测试库
 | `gap-get --candidate-id N --job-id M` 或 `--category c [--market china --min-freq 0.2]` | 岗位要求 vs 画像差距量化（M7，零 LLM：gaps+transferable+demand/cost 原料） |
 | `recommend --candidate-id N [--budget 14] [--market china] [--templates P]` | ROI 优先级建议（M9，零 LLM：Top-10 排序 + 模板项目匹配 + recommendation 落库） |
 | `agent-plan --candidate-id N [--budget 14]` | Career Planner 叙事（LangGraph，需 key；数字一致性校验 + 失败降级模板） |
-| `eval-e3 [--dataset P] [--seed-only]` | E3 推荐评测跑分（指标零 LLM 无 key 可跑；标注集自动入库） |
+| `eval-e3 [--dataset P] [--seed-only] [--judge]` | E3 推荐评测跑分（指标零 LLM 无 key 可跑；标注集自动入库；--judge 附 deepseek-reasoner 评分，Warn 级不参与 verdict） |
+| `rag-index [--batch-size N]` | RAG 引用层：回填 job_skill 证据行 embedding（bge-m3 1024 维，幂等；需 EMBEDDING_API_KEY） |
+| `rag-search --query Q [--market M] [--top-k K]` | RAG 语义检索：查询 → (job, skill, evidence_text) 溯源（"模型上下文协议"→MCP 类语义变体；先 rag-index） |
 | `quarantine-list` / `raw-cleanup` | 隔离队列 / 7 天 raw 清理 |
 
 ## 7. 当前核心工作流：JD 收集（Phase 2 遗留）
@@ -171,7 +173,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
 6. ~~进入 Phase 5~~ ✅ 已完成（2026-09-03，PHASE_5_REVIEW.md；conf-v1 公式 + 3 冻结画像 + CLI 4 命令，242 测试全绿。**已知限制**：LLM level 推断无评测集背书（E2 属 Phase 7），手动勾选兜底；简历输入为纯文本，PDF 后置）
 7. ~~进入 Phase 6~~ ✅ 已完成（2026-09-03，PHASE_6_REVIEW.md；gap-v1 冻结 + CLI gap-get，277 测试全绿。**口径裁决**：confidence 不进 gap（C1）/ 类目聚合规则冻结（C2）——DECISION_LOG D-2026-09-03-13。下一步 Phase 7 Job Matching——先写 docs/plans/ 计划；E2 标注集（20-30 对）是该阶段重点前置）
-8. ~~进入 Phase 8~~ ✅ 已完成（2026-09-04，PHASE_8_REVIEW.md；roi-v1 + LangGraph Agent + E3 基线 pass（nDCG@5=0.6497），394 测试全绿。**未尽事项延后 Phase 9**：E3 LLM-as-judge（rubric-v1 + deepseek-reasoner）+ RAG 引用层（pgvector）+ E3 标注双人复核（user 复核 + 同学抽标）。已知偏差（"Python 补到精通"/新手画像成本项冲突）为 v2 校准候选，见 data/eval/e3_report_v1.json）
+8. ~~进入 Phase 8~~ ✅ 已完成（2026-09-04，PHASE_8_REVIEW.md；roi-v1 + LangGraph Agent + E3 基线 pass（nDCG@5=0.6497），410 测试全绿。**judge 已补做**：rubric-v1 真实基线 mean=5.0（eval_run #9，Warn 级不参与 verdict）。**RAG 引用层代码就绪待激活**：migration 004 + rag-index/rag-search 已实现，等 EMBEDDING_API_KEY（推荐硅基流动 BAAI/bge-m3）注册后 `skillgap db-upgrade && skillgap rag-index` 即可用。待办：E3 标注双人复核（user 复核 + 同学抽标）。已知偏差（"Python 补到精通"/新手画像成本项冲突）为 v2 校准候选，见 data/eval/e3_report_v1.json）
 9. **进入 Phase 9**：评测汇总（系统级）——CI 门禁 + 评测报告生成 + 人为劣化演练；先写 docs/plans/ 计划
 
 ## 10. 已知问题与坑

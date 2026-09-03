@@ -18,13 +18,13 @@ def test_parser_subcommands():
                 "snapshot-create", "skill-evidence", "market-crosscheck",
                 "resume-analyze", "profile-get", "profile-add-skill",
                 "candidate-delete", "gap-get", "recommend", "agent-plan",
-                "eval-e3"]:
+                "eval-e3", "rag-index", "rag-search"]:
         ns = parser.parse_args([cmd] if cmd not in (
             "ingest-adzuna", "import", "contribute", "delete-contribution",
             "stats", "jd-analyze", "skill-evidence",
             "resume-analyze", "profile-get", "profile-add-skill",
             "candidate-delete", "gap-get", "recommend", "agent-plan",
-            "eval-e3") else [cmd] + (
+            "eval-e3", "rag-search") else [cmd] + (
             ["--country", "gb", "--query", "LLM"] if cmd == "ingest-adzuna"
             else ["--file", "x.csv"] if cmd == "import"
             else ["--title", "t", "--file", "j.txt", "--consent"]
@@ -46,8 +46,19 @@ def test_parser_subcommands():
             if cmd == "agent-plan"
             else []
             if cmd == "eval-e3"
+            else ["--query", "模型上下文协议"]
+            if cmd == "rag-search"
             else ["--candidate-id", "1"]))
         assert ns.command == cmd
+
+
+def test_parser_judge_flag_and_rag_defaults():
+    ns = build_parser().parse_args(["eval-e3", "--judge"])
+    assert ns.judge is True
+    ns = build_parser().parse_args(["rag-search", "--query", "MCP"])
+    assert ns.top_k == 5 and ns.market is None
+    ns = build_parser().parse_args(["rag-index"])
+    assert ns.batch_size == 64
 
 
 # ---------- Phase 3：LLM 命令（无 key 路径——不触发真实调用） ----------

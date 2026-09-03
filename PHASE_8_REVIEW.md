@@ -54,7 +54,7 @@ demand 全部来自 snapshot#4（china, N=201, high）+ 实时 SQL 聚合双通�
 ### Evaluation —— 结果可验证吗？诚实记录限制：
 1. **nDCG@5=0.6497 未达 0.7 pass 线**（达 0.5 起步线）：主因是两个系统性偏差（见 e3_report_v1.json analysis）——①"Python 补到精通"偏差：市场 must_have 最高档为精通（required=5），level 3 画像一律 gap=2 且 gain≈1.31 全场第一，但标注者视为"已具备"（rel=0），压低 P1/P3/P5；②新手画像（P3 最低 0.48）下低成本工程效率类（AI Coding）排在中成本核心类（RAG）前，与"先核心后效率"标注观冲突。均为 v2 校准候选（required 分位数化 / 预算感知加权），留 DECISION_LOG 痕迹，不回改 e3-v1 冻结标注
 2. **标注薄样本**：5 画像 × 1 条排序（D8 已知）；claude 初标 + user 复核待完成，同学抽标 ≥1 画像待办——v2 扩 8-10 画像复验
-3. **judge（rubric-v1）与 RAG 引用层未做**：计划 D7 的 LLM-as-judge（deepseek-reasoner）与 D10 一起延后——judge 定位 Warn 级信号非 Block 依据，规则指标已支撑验收；如实记录为 Phase 8 未尽事项，Phase 9 评测汇总时补
+3. ~~**judge（rubric-v1）与 RAG 引用层未做**~~ → **2026-09-04 补做完成**（用户要求提前处理）：judge rubric-v1 已落地（真实基线 mean=5.0 / 5 条全覆盖，eval_run #9；满分符合预期——模板输出数字 100% 源自 item 无幻觉空间，rubric 区分度待 v2 评 Agent 叙事时体现；Warn 级不参与 verdict 的红线由测试锚定）；RAG 引用层代码完成（migration 004 + rag-index/rag-search CLI + retrieval 服务），等用户注册 embedding API（硅基流动 bge-m3）后 `rag-index` 回填即可用
 
 ### Resume —— 简历价值？
 可展开叙事：①"我先证明规则够用，才在需要推理的环节引入 LangGraph"——roi-v1 纯函数先行独立验收（任务 1-3 零 Agent），Agent 只做规则覆盖不了的个性化解释；②"Agent 拿不到改数字的权限"——verify 节点程序比对 + 真实 e2e 拦截降级案例（trace 可展示）；③ nDCG@5 增益公式（2^rel−1）与排序质量评测的工程落地。

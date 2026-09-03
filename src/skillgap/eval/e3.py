@@ -129,12 +129,14 @@ def seed_eval3(conn, dataset_path: str = DATASET_PATH) -> int:
     return inserted
 
 
-def run_e3(conn, gateway=None, dataset_version: str = DATASET_VERSION) -> dict:
+def run_e3(conn, gateway=None, dataset_version: str = DATASET_VERSION,
+           judge_provider=None) -> dict:
     """端到端：加载样本 → 物化画像（复用 e2）→ 逐画像 recommend() →
-    指标 → eval_run 留痕。
+    指标 →（可选）LLM-as-judge → eval_run 留痕。
 
-    红线：排序指标全部来自 recommend() 规则产出；gateway 仅预留给
-    叙事/judge 层（不参与指标计算）。
+    红线：排序指标全部来自 recommend() 规则产出；judge 为 Warn 级参考
+    信号（EVALUATION_PLAN §4.2），**不参与 verdict**；单条 judge 失败
+    跳过不中断（报告明示覆盖率）。
     """
     with conn.cursor() as cur:
         cur.execute(
@@ -153,6 +155,7 @@ def run_e3(conn, gateway=None, dataset_version: str = DATASET_VERSION) -> dict:
 
     ndcgs, precs, hits, covs = [], [], [], []
     per_case = []
+    recs = []                       # judge pass 复用（不重跑 recommend）
     for row in rows:
         case = row["input_payload"]
         gt = row["ground_truth"]
@@ -160,6 +163,7 @@ def run_e3(conn, gateway=None, dataset_version: str = DATASET_VERSION) -> dict:
         rec = recommend(conn, cid,
                         time_budget_days=case.get("time_budget_days", 14),
                         market=case.get("market", "china"))
+        recs.append((case, rec))
         top = [it["skill"] for it in rec["priority_items"]]
         rel = {s: relevance_of(note, s)
                for s, note in gt["relevance"].items()}
@@ -184,6 +188,24 @@ def run_e3(conn, gateway=None, dataset_version: str = DATASET_VERSION) -> dict:
         "n_cases": len(rows),
         "per_case": per_case,
     }
+
+    if judge_provider is not None:
+        from skillgap.eval.judge import RUBRIC_VERSION, judge_recommendation
+        scores, judged_cases = [], []
+        for case, rec in recs:
+            try:
+                j = judge_recommendation(judge_provider, rec)
+            except Exception:      # 失败跳过（计划风险条款）
+                continue
+            scores.append(j["score"])
+            judged_cases.append(case.get("case_id"))
+        metrics["judge"] = {
+            "mean": round(sum(scores) / len(scores), 2) if scores else None,
+            "n_judged": len(scores),
+            "rubric_version": RUBRIC_VERSION,
+            "judged_cases": judged_cases,
+        }
+
     metrics["verdict"] = _verdict(metrics)
 
     with conn.cursor() as cur:
