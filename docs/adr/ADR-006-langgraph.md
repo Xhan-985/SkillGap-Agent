@@ -1,6 +1,6 @@
 # ADR-006：为什么/为什么不使用 LangGraph？
 
-状态：**已接受（v1 无 Agent；Phase 8 引入单 Agent + LangGraph Workflow，届时复议）** ｜ 日期：2026-08-31 ｜ 前身：Phase 0 DESIGN_DECISIONS ADR-005
+状态：**已接受并复议（2026-09-04 Phase 8 落地：单 Career Planner Agent + LangGraph，边界=解释层旁路，数值路径零 LLM 权限；结论见文末复议记录）** ｜ 日期：2026-08-31 ｜ 前身：Phase 0 DESIGN_DECISIONS ADR-005
 
 ## Context
 
@@ -31,3 +31,13 @@ v1（M1-M11）的任务链：抽取→归一→统计→打分→排序→解释
 
 撤销成本：**中**（Agent 是旁路编排层，撤除不影响确定性核心；深度集成 UI 则需返工展示层）。
 复议触发条件：① Phase 8 评测显示规则推荐质量已达标且追问需求弱 → 延后；② 规则无法覆盖的用户场景 >30% → 提前。
+
+## 复议记录（2026-09-04，Phase 8 落地时）
+
+**结论：引入成立，但边界严格。**
+
+- 规则推荐（roi-v1）先行独立验收：任务 1-3 零 Agent 可用（E3 基线 pass 证明规则达标），Agent 不在数值路径上
+- 引入的正当场景 = 解释个性化（"为什么推荐它而非它"的叙事），这是规则模板覆盖不了的
+- 落地形态：4 节点单图 load（确定性）→ generate（叙事）→ verify（数字程序比对）→（revise 一次 → 仍败 → 降级模板），复杂度与问题规模匹配
+- 真实 e2e 证据：DeepSeek 两次生成无来源数字（"20 个评测用例"）均被 verify 拦截 → 降级模板输出（fallback=true，trace 六步留档）——"Agent 拿不到改数字的权限"在真实 LLM 流量下工作
+- 版本锁定 langgraph ≥0.3,<0.4（Reversibility：撤除成本已验证——图仅 4 节点，回退手写状态机成本低）

@@ -152,6 +152,7 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 
 **红线**：`potential_gain` 等数值 100% 公式计算（Demand×Gap÷Cost），rationale 由模板/LLM 生成但**不得引入公式外数字**。
 **Error**：`SAMPLE_INSUFFICIENT`（所选市场样本不足时，demand 缺省并明示）。
+**实现口径（Phase 8 落地，DECISION_LOG D-2026-09-04-15）**：demand 参照系 = market 全类目聚合（频次 ≥0.20 入清单、required 取 must_have 映射最大值、无 must 取 2）；demand 溯源最新快照 evidence_ref；N<30 → INSUFFICIENT_MARKET_DATA 拒推（ADR-008 守门）。time_budget_days（7/14/30）不影响 ROI 排序，仅过滤 project_suggestions（est_days ≤ budget）。Agent 叙事（agent-plan）数字经 check_consistency 程序比对，越界即 revise/降级模板。E3 基线（2026-09-04，china N=201 × 五画像）：nDCG@5=0.6497 pass / hit_rate@3=1.0 / coverage=0.95（eval_run #8）。
 
 ### 2.11 GET /api/market/skills（M8）
 

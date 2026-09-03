@@ -119,6 +119,7 @@ Phase 11 Docker + CI + Documentation
 | 产出 | ROI 公式实现（Demand×Gap÷Cost，纯函数+单测）；项目推荐模板库（人工策划，标注来源）；**Career Planner Agent（LangGraph 单 Agent）**：输入=确定性快照（只读），输出=建议解释，带 Trace/回放；**E3 评测**：nDCG@5 + 数值正确性 + 引用真实性 + LLM-as-judge（rubric 版本化）；（按需）RAG 引用层：pgvector 索引 + 检索引用"哪些 JD 要求 MCP" |
 | 验收 | E3 nDCG@5 ≥ 0.5 起步；解释引用与 snapshot 一致率 100%；Agent 回放测试（同输入同 trace 确定性部分一致） |
 | 自检重点 | AI：Agent 未篡改数值；Engineering：Agent 是否必要（若规则已达标记录复议结论） |
+| 状态 | ✅ **完成（2026-09-04）**：roi-v1（394 测试）；E3 基线 **pass**（nDCG@5=0.6497 / hit_rate@3=1.0 / coverage=0.95）；ADR-006 复议=引入成立（解释个性化是规则覆盖不了的场景，数值路径零 LLM 权限，真实 e2e 拦截降级案例见 PHASE_8_REVIEW §4）；已知限制（Python 补到精通偏差 / 新手画像成本项冲突 / judge 与 RAG 引用层延后 Phase 9）见 PHASE_8_REVIEW |
 
 ## Phase 9：Evaluation 汇总（系统级）
 

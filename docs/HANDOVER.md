@@ -1,6 +1,6 @@
 ﻿# SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-03 ｜ 代码状态：master 本地（push 需用户批准）｜ 测试：342 passed
+> 更新：2026-09-04 ｜ 代码状态：master 本地（push 需用户批准）｜ 测试：394 passed
 
 ## 1. 项目一句话
 
@@ -19,19 +19,21 @@ Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#4 N=201 high
 Phase 5  Candidate Profile          ✅ 完成（2026-09-03；conf-v1 公式冻结，画像 A/B/C 固定）
 Phase 6  Skill Gap                 ✅ 完成（2026-09-03；gap-v1 冻结：纯星级差 + genuine/transferable + 类目聚合）
 Phase 7  Job Matching              ✅ 完成（2026-09-03；scoring 1.0.0 + E2 基线 PASS：ρ=0.8433/MAE=9.38/对抗三用例全过）
-Phase 8-11                        ⬜ 未开始（下一步 Phase 8 Recommendation：ROI 公式 + LangGraph Agent + E3）
+Phase 8  Recommendation           ✅ 完成（2026-09-04；roi-v1 + LangGraph Agent + E3 基线 PASS：nDCG@5=0.6497；首个新依赖 langgraph 0.3.34）
+Phase 9-11                        ⬜ 未开始（下一步 Phase 9 Evaluation 汇总：CI 门禁 + 评测报告 + 劣化演练；E3 judge 与 RAG 引用层在此补）
 ```
 
-阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md` / `PHASE_6_REVIEW.md` / `PHASE_7_REVIEW.md`（六维自检 + 验收核验表）。
+阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md` / `PHASE_6_REVIEW.md` / `PHASE_7_REVIEW.md` / `PHASE_8_REVIEW.md`（六维自检 + 验收核验表）。
 
 ## 3. 技术栈与架构
 
 | 层 | 选型 | 说明 |
 |---|---|---|
 | 语言 | Python 3.12+（项目 `.venv`） | 入口 `skillgap` CLI（pyproject scripts） |
-| 数据库 | PostgreSQL 16 + pgvector（Docker） | `pgvector/pgvector:pg16`；pgvector 索引 Phase 8 才建（ADR-004） |
+| 数据库 | PostgreSQL 16 + pgvector（Docker） | `pgvector/pgvector:pg16`；pgvector 索引延后（ADR-004"Phase 8 才建"≠"必须建"——精确溯源已由 skill-evidence SQL 覆盖，语义检索未达触发线，见 D-2026-09-04-15） |
 | LLM | DeepSeek（deepseek-chat） | OpenAI-compatible 直连 httpx，**不用 openai SDK**（用户决策 Q4） |
-| 测试 | pytest（需真实 PostgreSQL 跑 `skillgap_test` 库） | 202 项，全部本地可跑 |
+| Agent 编排 | langgraph 0.3.34（锁 ≥0.3,<0.4） | Phase 8 引入（ADR-006 复议）：单 Career Planner Agent，4 节点图，解释层旁路——数值路径零 LLM 权限 |
+| 测试 | pytest（需真实 PostgreSQL 跑 `skillgap_test` 库） | 394 项，全部本地可跑 |
 
 **三层分离纪律（全局红线）**：LLM 只做抽取和解释，统计/评分/ROI 数值全部 SQL 与纯函数计算；评测指标 LLM 不参与。CI 计划静态检查守门。
 
@@ -92,6 +94,11 @@ src/skillgap/
                       #   口径裁决与聚合规则 DECISION_LOG D-2026-09-03-13
   stats.py            #   Phase 4 市场统计：切片频率/快照/溯源/交叉对照（零 LLM，守卫测试锁定）
                       #   口径文档 docs/STATS_METHOD.md；method_version=s11-v1
+  recommend/          # Phase 8 Recommendation
+    roi.py           #   纯函数 roi-v1（Demand×Gap÷Cost，零 LLM/零 import，守卫测试锁定）
+    service.py       #   recommend：market 聚合 + snapshot demand + 模板匹配 + 落库（ADR-008 守门）
+    agent.py         #   LangGraph Career Planner（load→generate→verify→revise/降级，数值零污染）
+  eval/               #   e1.py / e2.py / e3.py（三评测器，eval_run 历史连续）+ seed.py
   quality_metrics.py  #   E5 数据质量报告
 migrations/           # 001 init / 002 batch error_count / 003 llm_cache+eval_run
 docs/                 # 全部设计文档 + adr/（10 份 ADR）+ plans/
@@ -123,6 +130,9 @@ tests/                # 24 个测试文件，conftest 起真实 PG 测试库
 | `profile-add-skill --candidate-id N --skill X --level 4 [--evidence "…"]` | 手动勾选技能（manual 证据，confidence=1.0，词表内） |
 | `candidate-delete --candidate-id N` | 级联删除画像（204/404） |
 | `gap-get --candidate-id N --job-id M` 或 `--category c [--market china --min-freq 0.2]` | 岗位要求 vs 画像差距量化（M7，零 LLM：gaps+transferable+demand/cost 原料） |
+| `recommend --candidate-id N [--budget 14] [--market china] [--templates P]` | ROI 优先级建议（M9，零 LLM：Top-10 排序 + 模板项目匹配 + recommendation 落库） |
+| `agent-plan --candidate-id N [--budget 14]` | Career Planner 叙事（LangGraph，需 key；数字一致性校验 + 失败降级模板） |
+| `eval-e3 [--dataset P] [--seed-only]` | E3 推荐评测跑分（指标零 LLM 无 key 可跑；标注集自动入库） |
 | `quarantine-list` / `raw-cleanup` | 隔离队列 / 7 天 raw 清理 |
 
 ## 7. 当前核心工作流：JD 收集（Phase 2 遗留）
@@ -161,6 +171,8 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
 6. ~~进入 Phase 5~~ ✅ 已完成（2026-09-03，PHASE_5_REVIEW.md；conf-v1 公式 + 3 冻结画像 + CLI 4 命令，242 测试全绿。**已知限制**：LLM level 推断无评测集背书（E2 属 Phase 7），手动勾选兜底；简历输入为纯文本，PDF 后置）
 7. ~~进入 Phase 6~~ ✅ 已完成（2026-09-03，PHASE_6_REVIEW.md；gap-v1 冻结 + CLI gap-get，277 测试全绿。**口径裁决**：confidence 不进 gap（C1）/ 类目聚合规则冻结（C2）——DECISION_LOG D-2026-09-03-13。下一步 Phase 7 Job Matching——先写 docs/plans/ 计划；E2 标注集（20-30 对）是该阶段重点前置）
+8. ~~进入 Phase 8~~ ✅ 已完成（2026-09-04，PHASE_8_REVIEW.md；roi-v1 + LangGraph Agent + E3 基线 pass（nDCG@5=0.6497），394 测试全绿。**未尽事项延后 Phase 9**：E3 LLM-as-judge（rubric-v1 + deepseek-reasoner）+ RAG 引用层（pgvector）+ E3 标注双人复核（user 复核 + 同学抽标）。已知偏差（"Python 补到精通"/新手画像成本项冲突）为 v2 校准候选，见 data/eval/e3_report_v1.json）
+9. **进入 Phase 9**：评测汇总（系统级）——CI 门禁 + 评测报告生成 + 人为劣化演练；先写 docs/plans/ 计划
 
 ## 10. 已知问题与坑
 

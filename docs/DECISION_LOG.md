@@ -101,6 +101,15 @@
 - **D9 E2 runner 物化**：画像按 soft_profile.e2_profile_id upsert；JD 按 jd_source job#N 直用（e2-001 的 v2-16 文本与库内 job#16 content_hash 相同 → 自动去重复用，零 LLM）；别名变体样本（e2-012）走 backfill_pending LLM 物化（1 次调用，content_hash 幂等）
 - **影响**：Phase 7 落地（src/skillgap/match/ + eval/e2.py，E2 基线 pass 全指标过线）；已知限制（系统性低估 + 三组指标与标注同构的循环验证风险）见 PHASE_7_REVIEW.md
 
+## D-2026-09-04-15 ｜ roi-v1 冻结：C4 market 聚合 + E3 口径 + ADR-006 复议结论
+
+- **C4 裁决（demand 参照系）**：API §2.10 request 只有 market（无 category）→ 需求侧 = market 全类目聚合（复用 D-2026-09-03-13 类目聚合规则，scope 从 category 扩为 market）：频次 ≥0.20 入清单、required_level 取 must_have 映射最大值（无 must 取 2）、demand = 最新快照 frequency + evidence_ref；N<30 → INSUFFICIENT_MARKET_DATA 拒推（ADR-008）
+- **C1 复议结论（ADR-006）**：**引入成立但边界严格**——规则推荐（roi-v1）先行独立验收（任务 1-3 零 Agent 可用），LangGraph Agent 仅做解释个性化（规则覆盖不了的场景）；数值路径零 LLM 权限（verify 程序比对 + revise 一次 + 降级模板）；真实 e2e 拦截降级案例（LLM 生成无来源数字 "20" 两次被拦 → fallback）见 PHASE_8_REVIEW §4
+- **D7 部分（E3 指标）**：nDCG@5 增益 2^rel−1（计划 D7 原文）；HitRate@3 无必补标注不惩罚（=1.0）；coverage = 标注 ≥1 技能入清单比例；阈值起步线 nDCG ≥0.5 pass / ≥0.35 warn（薄样本 5 画像）
+- **D7 延后**：LLM-as-judge（rubric-v1 + deepseek-reasoner）与 D10 RAG 引用层（pgvector）延后 Phase 9——judge 定位 Warn 级非 Block，规则指标已支撑 M9 验收；如实记录为 Phase 8 未尽事项
+- **D8 标注状态**：claude 初标完成，user 复核 + 同学抽标 ≥1 画像待办；e3-v1 冻结（§6 纪律），已知偏差（"Python 补到精通" / 新手画像成本项冲突）记入 e3_report_v1.json 为 v2 校准候选，不回改标注
+- **影响**：Phase 8 落地（src/skillgap/recommend/ + eval/e3.py，E3 基线 pass：nDCG@5=0.6497）；首个新依赖 langgraph 0.3.34（锁 ≥0.3,<0.4）
+
 ---
 
 ## 待议决策
