@@ -1,6 +1,6 @@
 ﻿# SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-03 ｜ 代码状态：80 commits（master，本地领先远端 5 commits——push 需用户批准）｜ 测试：277 passed
+> 更新：2026-09-03 ｜ 代码状态：master 本地（push 需用户批准）｜ 测试：342 passed
 
 ## 1. 项目一句话
 
@@ -18,10 +18,11 @@ Phase 3  JD Analyzer + LLM 抽取  ✅ 完成（E1 基线 2026-09-02：F1=0.914 
 Phase 4  Market Intelligence     ✅ 完成（2026-09-02；snapshot#4 N=201 high，tau=0.1538）
 Phase 5  Candidate Profile          ✅ 完成（2026-09-03；conf-v1 公式冻结，画像 A/B/C 固定）
 Phase 6  Skill Gap                 ✅ 完成（2026-09-03；gap-v1 冻结：纯星级差 + genuine/transferable + 类目聚合）
-Phase 7-11                        ⬜ 未开始（下一步 Phase 7 Job Matching）
+Phase 7  Job Matching              ✅ 完成（2026-09-03；scoring 1.0.0 + E2 基线 PASS：ρ=0.8433/MAE=9.38/对抗三用例全过）
+Phase 8-11                        ⬜ 未开始（下一步 Phase 8 Recommendation：ROI 公式 + LangGraph Agent + E3）
 ```
 
-阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md` / `PHASE_6_REVIEW.md`（六维自检 + 验收核验表）。
+阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md` / `PHASE_6_REVIEW.md` / `PHASE_7_REVIEW.md`（六维自检 + 验收核验表）。
 
 ## 3. 技术栈与架构
 

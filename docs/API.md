@@ -120,6 +120,7 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 
 **Error**：`VALIDATION_ERROR`；`NOT_FOUND`。**LLM**：分数计算**零 LLM**（CI 静态检查）；解释生成可选。
 **数据来源**：candidate + job 表。
+**实现备注**（Phase 7 落地，DECISION_LOG D-2026-09-03-14）：CLI `match-score --candidate-id N --job-id M [--llm-explain]` 为本契约载体；响应额外含 `neutral_flags`（§4.3 中性 0.5 维度清单，如 `no_must_have`/`no_matched_skills`/`soft_not_evaluable`）与 `invalid`（`no_skills`=JD 零技能）。三组为技能名数组；`strong/weak` 判定线 confidence ≥ 0.5（与 gap-v1 同源），满足 ⇔ 等级达标。解释默认确定性模板（数字 100% 来自 breakdown）；`--llm-explain` 走 LLM 生成但数字经程序比对（不一致即拦截降级）。经验相关性：真实库 JD `soft_requirements` 全空 → 恒中性 0.5（C1 裁决，回填需 E1 prompt 变更走 E1 门禁）。结果落 `match_result` 表留痕（重复评分多行历史）。
 
 ### 2.9 GET /api/candidates/{id}/gaps（M7）
 

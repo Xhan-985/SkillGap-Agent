@@ -91,6 +91,16 @@
 - **排序**：gap 降序、同 gap 按 frequency 降序；ROI 公式（Demand×Gap÷Cost）属 Phase 8 roi-v1，本阶段只输出 demand/cost 原料不计算分值
 - **影响**：Phase 6 落地（src/skillgap/gap/，版本 gap-v1，零 LLM/零迁移/零新依赖）；min_freq 与 evidence 线 0.5 为 heuristic 首值，E2/Phase 7 校准后升版本
 
+## D-2026-09-03-14 ｜ match scoring 1.0.0 冻结：满足性口径 + 三组规则 + C1/C2 裁决
+
+- **C1 口径裁决（experience_relevance 数据现状）**：DATA_MODEL §4.1 要求 JD 侧 soft_requirements 参与经验相关性，但探测发现真实库 201 条 JD 的 soft_requirements **全部为空**（jd-analyze 管线从未抽取存储）——v1.0.0 实现完整软性匹配逻辑（年限≥/学历包含/语言包含→逐项匹配率），但真实数据下恒走 §4.3 中性 0.5 分支（neutral_flags: soft_not_evaluable 明示）。回填需 E1 prompt 变更（走 E1 评测门禁），Phase 7 不做
+- **C2 口径裁决（E2 校准纪律）**：基线一次 pass（ρ=0.84）未触发校准；若未来触发：每轮升 scoring_version patch 号 + eval_run 留痕 + 变化 <3% 视为噪声不调参；同集校准的过拟合风险如实记录（25 对小样本，v2 扩集后复验）
+- **D2 满足性**：计入 coverage 的 ach_w ⇔ actual_level ≥ required_level（required_level 复用 gap-v1 映射，单一事实来源）；conf_factor = 0.5+0.5×confidence **只折减贡献权重不改变满足性**——与 gap 的 confidence 不进 gap 互补，共同构成 H1 修复两面
+- **D4 三组规则**：missing ⇔ 画像无记录；strong ⇔ 满足 ∧ confidence ≥ 0.5（与 gap-v1 证据线同源）；weak ⇔ 有记录但不满足，或满足但证据薄（conf < 0.5）
+- **D7 解释双模式**：默认确定性模板（数字 100% 来自 breakdown）；--llm-explain 走 LLM（Prompt 明令禁止自算数字）+ check_consistency 程序比对（解释中数字 ⊄ breakdown 派生集即拦截），LLM 失败降级模板
+- **D9 E2 runner 物化**：画像按 soft_profile.e2_profile_id upsert；JD 按 jd_source job#N 直用（e2-001 的 v2-16 文本与库内 job#16 content_hash 相同 → 自动去重复用，零 LLM）；别名变体样本（e2-012）走 backfill_pending LLM 物化（1 次调用，content_hash 幂等）
+- **影响**：Phase 7 落地（src/skillgap/match/ + eval/e2.py，E2 基线 pass 全指标过线）；已知限制（系统性低估 + 三组指标与标注同构的循环验证风险）见 PHASE_7_REVIEW.md
+
 ---
 
 ## 待议决策

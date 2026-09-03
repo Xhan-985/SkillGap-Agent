@@ -109,6 +109,7 @@ Phase 11 Docker + CI + Documentation
 | 产出 | 确定性加权评分器（scoring_version 版本化）；分项 breakdown + Strong/Weak/Missing；LLM 解释生成（只文本）；**E2 标注集（20-30 对）+ Spearman/MAE/Jaccard 基线** |
 | 验收 | E2 ρ ≥ 0.5 起步；单调性测试 100%；解释中每个数字与 breakdown 一致（程序比对）；可解释性对照 Huntr 基线自查（四维+覆盖状态+原因） |
 | 自检重点 | AI：LLM 未影响任何分数；Evaluation：评分器版本与结果绑定 |
+| 状态 | ✅ **完成（2026-09-03）**：scoring 1.0.0（342 测试）；E2 基线 **pass**（ρ=0.84 / MAE=9.38 / Jaccard=0.98 / 三组 micro F1=0.996 / Missing F1=1.0）；对抗三用例全过（裸声明分差 29.6、无关 JD 25.5≤29、别名变体同分）；已知限制见 PHASE_7_REVIEW（系统性低估 + C1 中性维度） |
 
 ## Phase 8：Recommendation（引入 LangGraph，ADR-006 复议点）
 
