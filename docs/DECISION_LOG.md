@@ -116,7 +116,7 @@
 - **真实基线**：mean=5.0 / n_judged=5（eval_run #9）。满分符合预期——评审对象是规则模板输出（数字 100% 源自 item 无幻觉空间）；rubric 区分度待 v2 评 Agent 叙事时体现，不是 rubric 失效信号
 - **RAG 引用层**：检索单位 = job_skill 证据行（非整条 JD）——命中即得 (job, skill, evidence_text) 精确溯源，与 skill-evidence SQL 精确版互补（本层管语义变体："模型上下文协议"→MCP）。migration 004：evidence_embedding vector(1024) + HNSW cosine 索引（bge-m3 1024 维）
 - **embedding 通道**：OpenAI-compatible /embeddings 端点（用户决策 2026-09-04：硅基流动 BAAI/bge-m3）；未配置 key 时 rag-index/rag-search 明确报错不臆造（ADR-008 同款纪律）。pgvector 传参零新依赖：参数按 text 传 + SQL 侧 %s::vector
-- **激活步骤**（用户注册硅基流动 key 填 .env 后）：`skillgap db-upgrade`（应用 004）→ `skillgap rag-index`（幂等回填）→ `skillgap rag-search --query "模型上下文协议"`
+- **激活记录（2026-09-04 已完成）**：1514 行证据回填（24 批 bge-m3 调用），重跑索引=0（幂等验证过）。真实检索验证：①跨语言——中文"模型上下文协议"命中英文证据 "Model Context Protocol"（sim 0.639，且该变体恰在 alias 表，SQL 版同样可查——两版分工：alias 管**已知**变体，RAG 管**长尾**变体）；②语义变体——"检索增强"→ RAG（sim 0.764）。**诚实限制**：evidence_text 多为 2-10 字短语（"上下文工程"/"提示词工程"），长自然语句查询（如"搭建知识库问答系统需要什么技能"）相似度信号弱（Top1 仅 0.53 且非最相关技能）——evidence 粒度是短语级非句子级，属已知特征非缺陷；后续若需句级检索须回填 JD 原文分句（不在本层范围）
 
 ---
 

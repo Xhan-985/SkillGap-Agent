@@ -173,7 +173,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 5. **Adzuna 首批拉取**（额度节奏 250 req/day，market=global 无污染验证；global 快照通道已就绪）
 6. ~~进入 Phase 5~~ ✅ 已完成（2026-09-03，PHASE_5_REVIEW.md；conf-v1 公式 + 3 冻结画像 + CLI 4 命令，242 测试全绿。**已知限制**：LLM level 推断无评测集背书（E2 属 Phase 7），手动勾选兜底；简历输入为纯文本，PDF 后置）
 7. ~~进入 Phase 6~~ ✅ 已完成（2026-09-03，PHASE_6_REVIEW.md；gap-v1 冻结 + CLI gap-get，277 测试全绿。**口径裁决**：confidence 不进 gap（C1）/ 类目聚合规则冻结（C2）——DECISION_LOG D-2026-09-03-13。下一步 Phase 7 Job Matching——先写 docs/plans/ 计划；E2 标注集（20-30 对）是该阶段重点前置）
-8. ~~进入 Phase 8~~ ✅ 已完成（2026-09-04，PHASE_8_REVIEW.md；roi-v1 + LangGraph Agent + E3 基线 pass（nDCG@5=0.6497），410 测试全绿。**judge 已补做**：rubric-v1 真实基线 mean=5.0（eval_run #9，Warn 级不参与 verdict）。**RAG 引用层代码就绪待激活**：migration 004 + rag-index/rag-search 已实现，等 EMBEDDING_API_KEY（推荐硅基流动 BAAI/bge-m3）注册后 `skillgap db-upgrade && skillgap rag-index` 即可用。待办：E3 标注双人复核（user 复核 + 同学抽标）。已知偏差（"Python 补到精通"/新手画像成本项冲突）为 v2 校准候选，见 data/eval/e3_report_v1.json）
+8. ~~进入 Phase 8~~ ✅ 已完成（2026-09-04，PHASE_8_REVIEW.md；roi-v1 + LangGraph Agent + E3 基线 pass（nDCG@5=0.6497），410 测试全绿。**judge 已补做**：rubric-v1 真实基线 mean=5.0（eval_run #9，Warn 级不参与 verdict）。**RAG 引用层已激活**：1514 行证据已回填（bge-m3），跨语言/语义变体检索验证过（D-2026-09-04-16 激活记录）。待办：E3 标注双人复核（user 复核 + 同学抽标）。已知偏差（"Python 补到精通"/新手画像成本项冲突）为 v2 校准候选，见 data/eval/e3_report_v1.json）
 9. **进入 Phase 9**：评测汇总（系统级）——CI 门禁 + 评测报告生成 + 人为劣化演练；先写 docs/plans/ 计划
 
 ## 10. 已知问题与坑
