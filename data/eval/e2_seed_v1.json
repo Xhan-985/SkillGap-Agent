@@ -1,0 +1,861 @@
+{
+ "dataset_version": "e2-v1",
+ "spec_ref": "docs/EVALUATION_PLAN.md §3（E2 岗位匹配评测）",
+ "annotation_guidelines": {
+  "human_match_score_anchors": {
+   "90-100": "must_have 全部达标且深度富余，nice_to_have 大多覆盖，软性条件（年限/学历）契合",
+   "70-89": "核心 must_have 达标，少量 must 深度不足或 nice_to_have 缺失",
+   "50-69": "must_half 过半达标，基础能力在但关键技能有缺口",
+   "30-49": "仅少数 must 达标，基础与 JD 方向存在明显距离",
+   "0-29": "方向完全不匹配（或画像为纯裸声明且 JD 要求工程落地能力）"
+  },
+  "three_groups": {
+   "strong": "画像有该技能且有扎实证据（项目细节/手动确认），等级 ≥ JD 要求",
+   "weak": "画像有该技能但仅裸声明、等级不足或证据薄弱（confidence < 0.5）",
+   "missing": "画像完全不具备该技能（含可通过 transferable 关联但本体缺失时——仍标 missing，note 注明可迁移）"
+  },
+  "adversarial_checklist": [
+   "技能仅裸声明（低 confidence）→ 人工分应低于有证据技能的同级画像",
+   "JD 要求与画像完全无关 → 人工分应 ≤ 29",
+   "别名变体 JD（如 LangChain vs LangChain.js）→ 三组判定应一致（词表归一化正确性）"
+  ],
+  "annotators": [
+   "user（必标全集）",
+   "同学A/B（抽标 ≥10 对，检验一致性）"
+  ]
+ },
+ "profiles": [
+  {
+   "profile_id": "P1",
+   "label": "强 RAG 弱工程",
+   "skills": [
+    {
+     "skill": "RAG",
+     "level": 4,
+     "confidence": 1.0
+    },
+    {
+     "skill": "pgvector",
+     "level": 4,
+     "confidence": 1.0
+    },
+    {
+     "skill": "Prompt Engineering",
+     "level": 3,
+     "confidence": 1.0
+    },
+    {
+     "skill": "Python",
+     "level": 3,
+     "confidence": 0.6
+    }
+   ],
+   "soft_profile": {
+    "experience_years": 2,
+    "education": "本科·软件工程",
+    "languages": null
+   }
+  },
+  {
+   "profile_id": "P2",
+   "label": "全栈均衡",
+   "skills": [
+    {
+     "skill": "Python",
+     "level": 4,
+     "confidence": 1.0
+    },
+    {
+     "skill": "FastAPI",
+     "level": 4,
+     "confidence": 1.0
+    },
+    {
+     "skill": "Docker",
+     "level": 3,
+     "confidence": 1.0
+    },
+    {
+     "skill": "MySQL",
+     "level": 4,
+     "confidence": 1.0
+    },
+    {
+     "skill": "RAG",
+     "level": 3,
+     "confidence": 0.9
+    },
+    {
+     "skill": "LangGraph",
+     "level": 3,
+     "confidence": 0.9
+    }
+   ],
+   "soft_profile": {
+    "experience_years": 3,
+    "education": "本科·计算机",
+    "languages": "CET-6"
+   }
+  },
+  {
+   "profile_id": "P3",
+   "label": "新手缺 Agent",
+   "skills": [
+    {
+     "skill": "Python",
+     "level": 3,
+     "confidence": 0.6
+    },
+    {
+     "skill": "SQL",
+     "level": 2,
+     "confidence": 0.6
+    },
+    {
+     "skill": "机器学习",
+     "level": 2,
+     "confidence": 0.3
+    }
+   ],
+   "soft_profile": {
+    "experience_years": 0,
+    "education": "本科·应届·数据科学",
+    "languages": null
+   }
+  },
+  {
+   "profile_id": "P4",
+   "label": "Java 后端转 AI（transferable 用例）",
+   "skills": [
+    {
+     "skill": "Java",
+     "level": 5,
+     "confidence": 1.0
+    },
+    {
+     "skill": "Spring Boot",
+     "level": 5,
+     "confidence": 1.0
+    },
+    {
+     "skill": "MySQL",
+     "level": 4,
+     "confidence": 1.0
+    },
+    {
+     "skill": "Python",
+     "level": 3,
+     "confidence": 0.6
+    },
+    {
+     "skill": "LangGraph",
+     "level": 2,
+     "confidence": 0.3
+    }
+   ],
+   "soft_profile": {
+    "experience_years": 3,
+    "education": "本科·软件工程",
+    "languages": null
+   }
+  },
+  {
+   "profile_id": "P5",
+   "label": "裸声明对抗型（无任何项目证据）",
+   "skills": [
+    {
+     "skill": "RAG",
+     "level": 3,
+     "confidence": 0.3
+    },
+    {
+     "skill": "Python",
+     "level": 3,
+     "confidence": 0.3
+    },
+    {
+     "skill": "MCP",
+     "level": 2,
+     "confidence": 0.3
+    }
+   ],
+   "soft_profile": {
+    "experience_years": 0,
+    "education": "应届·未标注",
+    "languages": null
+   }
+  }
+ ],
+ "pairs": [
+  {
+   "id": "e2-001",
+   "profile_id": "P2",
+   "jd_text": "AI应用开发工程师\n12-17K * 12薪\n信息技术岗  深圳  本科\n收起\n岗位职责\n1、学习并掌握大型语言模型（LLM）、智能代理（Agent）及检索增强生成技术（RAG）等前沿 AI 技术，持续跟进大模型领域最新行业动态；\n2、参与Agent开发实践，熟练使用Python 编程语言及 Workflow 平台，完成基础 Agent 功能实现与 RAG 技术应用；\n3、学习 Prompt Engineering（提示工程）实操方法，结合业务场景优化提示词设计，提升模型生成效果；\n4、协助将 AI 应用与公司现有业务系统集成（如通过 HTTP 接口数据对接），参与智能问数等项目迭代优化；\n5、积极参与团队技术讨论，为 AI 项目的创新方向与解决方案贡献思路，快速积累工程实践经验。\n岗位要求\n1、2027届获得本科及以上学历，数学、计算机科学、软件工程等相关专业；\n2、对人工智能、机器学习及新兴技术有浓厚兴趣，熟悉 Python 基础语法；\n3、具备良好的逻辑思维与问题解决能力，能快速学习新技术；\n4、具有团队合作精神与沟通能力，积极主动参与项目协作；\n5、有 AI 工具（如 LangChain、ChatGPT API）使用经验或 AI 相关竞赛 / 课程实践经历者优先。",
+   "jd_source": "e1_seed_v2#v2-16（真实 JD）",
+   "ground_truth": {
+    "human_match_score": 55,
+    "strong_skills": [
+     "Python",
+     "RAG"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "LangChain",
+     "Prompt Engineering",
+     "网络协议"
+    ],
+    "note": "标注与库内 job#16 抽取对齐（Python/LangChain/RAG/PE/网络协议 5 must）：Python L4 超要求且证据扎实=strong；RAG L3 达到'技术应用'要求=strong；LangChain P2 无（仅有 related 的 LangGraph）=missing；PE 未系统实践=missing；网络协议（HTTP 集成要求）=missing。整体 55：must 5 中 2 达标，LangChain/PE 属可快速补足缺口。"
+   },
+   "annotator": "user+claude",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-002",
+   "profile_id": "P5",
+   "jd_text": "AI应用开发工程师\n12-17K * 12薪\n信息技术岗  深圳  本科\n收起\n岗位职责\n1、学习并掌握大型语言模型（LLM）、智能代理（Agent）及检索增强生成技术（RAG）等前沿 AI 技术，持续跟进大模型领域最新行业动态；\n2、参与Agent开发实践，熟练使用Python 编程语言及 Workflow 平台，完成基础 Agent 功能实现与 RAG 技术应用；\n3、学习 Prompt Engineering（提示工程）实操方法，结合业务场景优化提示词设计，提升模型生成效果；\n4、协助将 AI 应用与公司现有业务系统集成（如通过 HTTP 接口数据对接），参与智能问数等项目迭代优化；\n5、积极参与团队技术讨论，为 AI 项目的创新方向与解决方案贡献思路，快速积累工程实践经验。\n岗位要求\n1、2027届获得本科及以上学历，数学、计算机科学、软件工程等相关专业；\n2、对人工智能、机器学习及新兴技术有浓厚兴趣，熟悉 Python 基础语法；\n3、具备良好的逻辑思维与问题解决能力，能快速学习新技术；\n4、具有团队合作精神与沟通能力，积极主动参与项目协作；\n5、有 AI 工具（如 LangChain、ChatGPT API）使用经验或 AI 相关竞赛 / 课程实践经历者优先。",
+   "jd_source": "job#16（真实库，与 e2-001 同 JD——对抗用例：仅裸声明）",
+   "ground_truth": {
+    "human_match_score": 35,
+    "strong_skills": [],
+    "weak_skills": [
+     "Python",
+     "RAG"
+    ],
+    "missing_skills": [
+     "LangChain",
+     "Prompt Engineering",
+     "网络协议"
+    ],
+    "note": "对抗用例 1：与 e2-001 同 JD、同技能名同等级（RAG L3 / Python L3），但全部裸声明 conf=0.3 无项目证据 → 人工分显著低于有证据画像（55 vs 35），技能全部降级为 weak（等级达标但证据薄），无 strong。"
+   },
+   "annotator": "user",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-003",
+   "profile_id": "P1",
+   "jd_text": "AI 算法工程师 1-2万\n成都\n1年及以上\n本科\n收藏\n立即投递\n职位描述\n竞争力分析微信分享\n五险一金\n年终奖金\n定期体检\n绩效奖金\n专业培训\n餐饮补贴\n员工旅游\n带薪年假\n交通补贴\n补充医疗保险\n免费班车\n周末双休\n节日福利\n有餐补\n出差补贴\n岗位职责：\n1、参与大语言模型（LLM）全流程研发工作，包括数据处理、数据清洗、模型微调、效果测试、推理优化等相关任务；\n2、熟悉大模型使用，能独立部署、微调、量化等；\n3、配合产品、业务团队，将大模型能力落地到实际产品中，参与需求沟通与方案落地；\n4、学习并跟踪国内外大模型前沿技术与开源项目，协助团队完成技术沉淀与迭代优化。\n\n任职要求：\n本科及以上，计算机、数学、数据相关专业；\n精通 Python，熟悉数据处理与机器学习开发；\n1年以上AI数据项目管理/交付经验，熟悉数据回流、清洗、标注、验收等全流程；\n学习能力强，逻辑清晰，做事踏实，对 AI 与大模型技术有长期发展意愿；\n有大模型相关自学、项目、实战经验（如微调、提示词、数据集处理）优先。",
+   "jd_source": "job#110（真实库，AI 算法工程师 1-2万）",
+   "ground_truth": {
+    "human_match_score": 25,
+    "strong_skills": [
+     "Prompt Engineering"
+    ],
+    "weak_skills": [
+     "Python"
+    ],
+    "missing_skills": [
+     "SFT/LoRA",
+     "推理优化"
+    ],
+    "note": "对抗用例 2（完全无关）：算法岗 must 全缺；PE 恰为 nice 且 L3 达标=唯一 strong；Python L3 远低于'精通'(5) 且证据仅 project_desc(0.6)=weak。人工分 25 ≤ 29 锚点内"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-004",
+   "profile_id": "P1",
+   "jd_text": "AI Agent 应用开发工程师-网易有道\n热招\n网易互联网2027届校园招聘\n|\n北京\n|\n技术\n|\n2026-08-27\n岗位描述\n我们不要求你已经是成熟的 Agent 开发者。希望你在 Web、iOS、Android、Windows/macOS 等至少一种端侧开发方向具备技术长板，并愿意在入职后逐步向 Agent 应用与全栈方向发展。\n岗位职责\n1、负责 Agent 产品的大前端交互与应用开发，参与产品从方案设计到开发上线的完整流程。\n2、在团队支持下学习并应用任务编排、工具调用、RAG/知识库等 Agent 技术，推动现有业务场景 Agent 化，并持续优化产品效果与体验。\n岗位要求\n1、本科及以上学历，计算机、软件工程等相关专业优先。\n2、编程和软件工程基础扎实，至少熟悉一门主流语言，如 Java、Python、JavaScript/TypeScript、Swift、Kotlin 等。\n3、熟悉 Web、iOS、Android、Windows/macOS 中至少一种技术栈及其运行原理，有完整应用开发或从 0 到 1 的项目实践。\n4、对 LLM 和 Agent 产品开发有兴趣，了解 Prompt、RAG、Tool/Function Calling 等基本概念。\n5、具有好奇心、自驱力，以及良好的学习、沟通和问题解决能力。\n我们更看重你在某一端的技术长板、学习能力和工程潜力，不要求同时掌握所有端，也不要求已有完整的 Agent 项目经验。\n加分项\n有 Agent、RAG、MCP/Skill、跨端或全栈项目，以及相关实习、开源或技术分享经历者优先。\n工作地点\n北京",
+   "jd_source": "job#72（真实库，AI Agent 应用开发工程师-网易有道）",
+   "ground_truth": {
+    "human_match_score": 60,
+    "strong_skills": [
+     "RAG",
+     "Prompt Engineering",
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "Function Calling",
+     "Java",
+     "JavaScript",
+     "Kotlin",
+     "MCP",
+     "TypeScript"
+    ],
+    "note": "must 2 个：RAG L4 证据 1.0=strong 核心达标；FC 缺失是主要缺口。nice 中 PE/Python 均达标。60：核心在、Agent 工具链缺"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-005",
+   "profile_id": "P1",
+   "jd_text": "AI Agent 应用研发工程师(J14187)\n校园招聘\n安徽省·合肥市\nAI研发类\n2026-08-26 发布\n工作职责\n1. 打造面向真实用户的 AI Agent\n参与讯飞星火及各讯飞产品中的 Agent 设计与研发，围绕办公、学习、内容创作、信息管理和跨语言沟通等场景，完成需求分析、技术验证、工程实现和产品迭代。\n你可能参与会议助理、个人知识助理、文档 Agent、求职 Agent、翻译 Agent 或智能硬件 Agent 等方向。\n2. 建设 Agent 核心能力\n参与以下一个或多个方向：\n• 目标理解、任务规划与执行；\n• Context Engineering 与长短期记忆；\n• Tool Calling、MCP 与 Skills 接入；\n• RAG、个人知识库与多模态检索；\n• 工作流编排与多 Agent 协作；\n• 结果校验、失败恢复与个性化能力。\n你需要判断哪些环节适合使用大模型，哪些环节更适合使用确定性程序、搜索、规则或人工确认。\n3. 让 Agent 稳定、可信地工作\n建设 Agent 的评测、Tracing 和可观测体系，围绕任务完成率、结果准确性、工具调用成功率、响应延迟、模型成本和用户体验持续迭代。\n你将参与解决幻觉、死循环、执行失败和成本失控等问题，让 Agent 从“能够演示”走向“稳定可用”。\n4. 探索端云协同与软硬一体化 Agent\n结合科大讯飞在智能语音、机器翻译、多模态交互和消费硬件领域的积累，探索：\n• 语音、文本、图片、文档及手写内容的多模态理解；\n• 录音、转写、理解、生成与执行的一体化链路；\n• App、云服务与智能硬件之间的协同；\n• 端侧模型与云端大模型的能力分配；\n• 弱网、离线、功耗、延迟及设备资源约束下的用户体验；\n• 个人数据的隐私保护、权限管理与安全执行。\n5. 用 AI 原生方式研发 AI 产品\n深度使用 AI 编程工具辅助需求分析、方案设计、代码开发、测试调试和知识沉淀。\n与产品、设计、算法、测试及硬件团队协作，把快速变化的模型能力转化为可靠、可维护的软件产品。\n任职资格\n1. 计算机、软件工程、人工智能及相关专业优先，专业背景不是绝对限制。\n2. 熟练使用 Python、Java、Go、C++、JavaScript/TypeScript 中至少一种语言，具备良好的计算机基础和软件工程能力。\n3. 真正动手完成过一个大模型应用、AI Agent、智能助手或自动化工具。个人项目、课程设计、比赛作品和实习项目均可。\n4. 理解大语言模型的基本能力与局限，了解 Prompt/Context Engineering、Tool Calling、RAG 和结构化输出等常见应用范式。\n5. 能够清楚说明一个项目解决了什么问题、为何这样设计、如何评测效果，以及经历过哪些失败和改进。\n6. 关注用户体验和工程质量，不仅关心模型能否回答，也关心结果是否可信、响应是否及时、用户是否愿意持续使用。\n7. 具备主动学习、问题拆解和协作能力，愿意在快速变化、没有标准答案的领域中持续实验并完成交付。\n我们不要求你掌握所有热门框架。相比记住框架 API，我们更看重你的工程基础、作品质量、思考深度和成长潜力。\n加分项\n如果你拥有以下任一经历，我们会很感兴趣：\n• 有可访问的 Agent Demo、GitHub 项目、技术博客或开源贡献；\n• 做过会议助手、个人知识库、语音助手、浏览器 Agent 或代码 Agent；\n• 使用过主流 Agent 框架，并能解释其适用场景和设计取舍；\n• 有 MCP、复杂工作流、多智能体或 Agent Eval 实践；\n• 有语音识别、机器翻译、OCR、文档解析或多模态应用经验；\n• 有移动端、Web、桌面端、后端服务或智能硬件开发经历；\n• 了解端侧推理、模型量化、性能优化、隐私保护或可信 AI；\n• 在竞赛、论文、开源社区或真实用户产品中取得过有说服力的成果。",
+   "jd_source": "job#83（真实库，AI Agent 应用研发工程师(J14187)）",
+   "ground_truth": {
+    "human_match_score": 48,
+    "strong_skills": [
+     "RAG",
+     "Prompt Engineering"
+    ],
+    "weak_skills": [
+     "Python"
+    ],
+    "missing_skills": [
+     "Function Calling",
+     "MCP",
+     "多模态",
+     "C++",
+     "Evaluation（LLM 评测）",
+     "Git",
+     "Go",
+     "Java",
+     "JavaScript",
+     "TypeScript",
+     "多智能体协作"
+    ],
+    "note": "RAG 重度岗但 FC/MCP/多模态 3 个 must 全缺；Python L3<'熟练'且 0.6=weak。P1 检索强但工程化短板暴露"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-006",
+   "profile_id": "P1",
+   "jd_text": "AI应用开发工程师(J10355)\n校园招聘\n全职\n浙江省·杭州市\n2026-07-22 发布\n工作职责\n1.\t负责AI应用的探索与验证，聚焦内部研发提效场景落地，推进相关提效工具的研发与迭代。\n2.\t使用Python完成大模型调用、数据处理及接口封装，支撑AI应用探索与提效工具功能实现，兼顾开发效率与功能稳定性。\n3.\t参与大模型能力在内部提效场景的工程化落地，协助完成模型部署、优化及技术文档编写，保障提效方案落地见效。\n任职资格\n1.\t本科及以上学历，计算机、软件工程、人工智能等相关专业。同步开放博士与博后招聘；\n2.\t熟练掌握Python或Java任一语言，有大模型工具开发、AI应用落地经验（如RAG系统、智能助手）者优先。\n3.\t具备扎实的数据结构、算法、计算机网络、操作系统基础。\n4.\t熟悉Linux环境、Git版本控制，掌握SQL基本操作。\n5.\t了解Python（Flask/FastAPI）或Java（SpringBoot）后端框架者优先。\n6.\t掌握大模型核心相关概念（如模型选型、上下文理解、token机制等）。\n7.\t熟悉大模型基本原理，具备主流LLM API（通义千问、文心一言等）调用与调试经验。\n8.\t了解Prompt工程技巧、RAG检索增强生成核心流程，能落地基础优化方案。\n9.\t有Hugging Face、LangChain等大模型开发工具使用经验，了解PyTorch/TensorFlow基础者优先。",
+   "jd_source": "job#63（真实库，AI应用开发工程师(J10355)）",
+   "ground_truth": {
+    "human_match_score": 38,
+    "strong_skills": [
+     "RAG",
+     "Python",
+     "Prompt Engineering"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "Git",
+     "Hugging Face",
+     "Java",
+     "LangChain",
+     "Linux",
+     "SQL",
+     "FastAPI",
+     "Flask",
+     "PyTorch",
+     "Spring Boot",
+     "TensorFlow"
+    ],
+    "note": "8 个 must 仅 RAG/Python 达标；LangChain/HF/SQL 等 must 全缺。P1 无工程栈（Git/Linux/SQL）→ 38"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-007",
+   "profile_id": "P1",
+   "jd_text": "平台研发-后端开发工程师（AI 应用方向）全职\n上海\n程序&技术类\n2027届（2026.9-2027.8之间毕业）\n工作职责\n1.面向用户增长业务，深度参与业务讨论，探索 AI 技术在各场景的落地机会，构建提升业务效率和效果的 AI 能力；\n2.挖掘游戏玩家核心需求，与产品、运营团队协作，打造面向玩家的 AI 创新体验产品；\n3.负责 Agent 应用的性能与稳定性优化，确保系统在高并发场景下的可靠运行；\n4.设计并实现易用高效的 Agent 开发周边工具套件，提升研发效率，降低 Agent 技术的使用门槛，保障交付质量。\n任职要求\n1.计算机或相关专业本科及以上学历；\n2.热爱计算机科学和互联网技术，至少熟练掌握一门后端编程语言，包括但不限于：C、C++、Go、Python、Java 等；\n3.深度使用 AI 编程工具（如 Claude Code、Codex、Cursor、OpenCode 等），能够高效利用 AI 辅助开发；\n4.具备扎实的后端工程能力，熟悉常用数据库设计与优化（MySQL/Redis 等），了解分布式系统基本原理，有服务接口设计与高可用实践经验；\n5.具备较强的问题拆解、快速学习和实验迭代能力，能够在不确定的需求和技术环境中持续推进方案落地；\n6.具备良好的跨团队协作能力，能够理解产品、业务等非工程角色的需求，并推动技术实现；\n7.对大语言模型、Agent 技术的基本原理、应用方式和能力边界有一定理解。\n加分项\n1.有 LLM、Agent、RAG、工具调用、多智能体等相关项目经验；\n2.有高并发C端项目后端工程项目经验；\n3.有研发提效工具、代码生成、自动化测试或 AI 工具链相关经验；\n4.有借助 AI 能力独立完成全栈项目并落地上线的经验。",
+   "jd_source": "job#59（真实库，平台研发-后端开发工程师（AI 应用方向）全职）",
+   "ground_truth": {
+    "human_match_score": 55,
+    "strong_skills": [
+     "RAG",
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AI Coding",
+     "C++",
+     "Function Calling",
+     "Go",
+     "Java",
+     "MySQL",
+     "Redis",
+     "分布式系统",
+     "多智能体协作"
+    ],
+    "note": "nice 密集型（1M+10N）：RAG/Python 达标；唯一 must=AI Coding 缺失。must 一票否决文化下唯一 must 缺 → 55 中档"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-008",
+   "profile_id": "P2",
+   "jd_text": "AI Agent开发工程师\n\n应届生招聘AI开发类所属部门：China Geo北京\n岗位职责\n1.参与AI Agent核心能力建设，包括任务规划、工具调用、记忆管理、多Agent协同等关键能力的设计与开发，参与Agent Runtime、上下文管理、任务调度及工作流编排等核心模块建设，在实际项目中持续提升工程开发能力。\n2.参与大模型与Agent系统的工程化开发与优化，实现模型调用、流式交互、工作流编排、结构化输出、异步任务处理等核心能力，推动Agent系统基础能力持续演进。\n3.参与Agent工具生态与Skill体系建设，推动Agent与搜索、知识库、业务系统及外部服务的连接与协同，不断提升智能体解决复杂任务的能力。\n4.与产品、算法、架构等团队紧密合作，将AI Agent相关需求转化为稳定、高质量、可维护的工程方案，持续优化系统性能、可靠性和可扩展性。\n5.持续关注大模型、AI Agent及相关技术领域的发展趋势，探索新框架、新协议及新工程范式在实际业务场景中的创新应用。\n\n任职要求\n1.毕业时间为2026年9月至2027年8月的海内外应届毕业生，计算机科学、软件工程、人工智能、自动化、数学等相关专业优先。\n2.熟悉Python、Java、Go等至少一门编程语言，具备良好的编程能力、工程实践意识及代码质量意识。\n3.掌握数据结构与算法、计算机网络、操作系统、数据库等计算机基础知识，具备扎实的软件开发基础。\n4.对AI Agent和大模型技术具有浓厚兴趣，愿意主动学习和探索AI原生应用开发，并持续关注相关技术发展与行业趋势。\n5.具备良好的学习能力、问题分析与解决能力，以及团队协作和沟通能力，能够主动定位并解决实际开发过程中的问题。\n6.了解AI Agent系统的基本架构与核心能力，对任务规划、工具调用、上下文管理、记忆机制等方向具有一定理解。\n7.具备AI Agent、RAG、多Agent协作等相关项目实践经验，或了解LangChain、LangGraph、AutoGen等Agent开发框架;具有开源项目、技术博客、科研成果等相关经历者优先。\n\n工作地点",
+   "jd_source": "job#11（真实库，AI Agent开发工程师）",
+   "ground_truth": {
+    "human_match_score": 62,
+    "strong_skills": [
+     "LangGraph",
+     "RAG",
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AutoGen",
+     "Function Calling",
+     "上下文管理",
+     "多智能体协作",
+     "Go",
+     "Java",
+     "LangChain"
+    ],
+    "note": "6 must 中 LangGraph/RAG 达标（conf0.9 扎实）；Python L4 超要求。AutoGen/FC/上下文/多智能体 4 must 缺 → 62"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-009",
+   "profile_id": "P2",
+   "jd_text": "Python研发工程师-北京\n分享\nAI研发中心（人工智能研究院）\n发布于 2026-08-26\n申请职位\n职位描述\n投递提示：此岗位为Python后端研发，专注于智能体平台的服务架构、调度编排与性能优化，非算法类岗位。请确认您的技术兴趣与经验主要在后端工程方向后再行投递，感谢关注！\n\n\n\n我们在做什么\n\n我们正在打造下一代企业级AI智能体平台。在这里，你将面对的不只是高并发的后端系统，更有AI Agent调度、知识库引擎、模型网关等极具挑战的核心场景。我们的业务不仅覆盖\"小龙虾\"、\"爱马仕\"等个人智能体助手，更延伸至面向多用户的企业级智能体平台。如果你对\"让AI在企业级场景真正落地干活\"这件事充满热情，这里就是你的舞台。\n\n\n\n岗位职责\n\n1. 负责公司AI智能体平台、知识库、模型网关等AI核心研发平台后端的设计与开发，并协助智能体的调度编排、上下文管理等工作，构建高可用、高性能的分布式服务，支撑智能体业务的高速增长。\n\n2. 深度参与接口设计、数据存储方案及服务治理，确保系统在微服务架构下的稳定性、可扩展性与安全性。\n\n3. 与前端、算法团队紧密配合，高效完成联调测试，推动复杂技术问题的闭环解决，并输出清晰、规范的技术文档。\n\n4. 参与技术方案评审与代码走查，践行DevOps理念，从代码到部署全链路提升系统性能与研发效率。\n\n5. 保持对AI工程化、云原生等前沿技术的敏锐度，结合业务场景落地创新方案，持续提升团队整体技术竞争力。\n\n\n\n任职资格\n\n1. 本科及以上学历，计算机、软件工程等相关专业优先。\n\n2. 深入理解Python核心机制，熟悉多线程、异步IO（asyncio）、装饰器、上下文管理器等特性；熟悉FastAPI、Django或Flask等主流Web框架者优先。\n\n3. 熟悉至少一种Python ORM框架（如SQLAlchemy、Django ORM），具备数据库设计与查询优化能力。\n\n4. 熟悉MySQL或PostgreSQL，深入理解数据库索引原理及事务隔离级别；熟悉Redis等NoSQL缓存技术。\n\n5. 了解分布式系统常见挑战及解决方案；熟悉消息队列（如RocketMQ、Kafka）的基本使用场景；熟悉Nacos、Sentinel等服务治理组件者优先。\n\n6. 有AI编程助手（如Cursor、ClaudeCode）深度使用经验者优先；了解主流开源智能体框架，或有大模型API调用经验者优先。\n\n7. 具备出色的快速学习能力，能够快速掌握Java、Go等其他语言技术栈。",
+   "jd_source": "job#76（真实库，Python研发工程师-北京）",
+   "ground_truth": {
+    "human_match_score": 45,
+    "strong_skills": [
+     "FastAPI",
+     "Python",
+     "MySQL"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AI Coding",
+     "Go",
+     "Java",
+     "Kafka",
+     "Redis",
+     "上下文管理",
+     "微服务",
+     "Django",
+     "Flask",
+     "PostgreSQL",
+     "分布式系统"
+    ],
+    "note": "9 must 仅 FastAPI/Python 达标；基建型 Python 岗（Kafka/Redis/微服务）与 P2 数据面技能集错位 → 45"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-010",
+   "profile_id": "P2",
+   "jd_text": "AI全栈工程师 - 飞书项目\n杭州、北京\n正式\n研发 - 后端\n2027届校园招聘\n职位 ID：A32532\n职位描述\n团队介绍：飞书项目是专为复杂业务场景打造的专业项目管理平台，通过可视化AI 工作流引擎，帮助企业规范协作流程、提升执行效率。目前，飞书项目已服务多家先进企业，覆盖软件研发、硬件开发、企业经营管理等复杂协同场景，领跑研发项目管理数字化工具赛道。\n\n1、参与飞书项目核心模块的前后端全链路研发，端到端负责功能设计、开发、测试与上线；\n2、不断探索各种新技术，参与系统架构演进、性能与稳定性优化，保障平台在大规模企业客户下的高可用；\n3、以AI为默认工作方式，深度实践AI Coding，持续沉淀团队研发提效方法与工具。\n职位要求\n1、2027届获得本科及以上学历，计算机、软件工程等相关专业优先；\n2、数据结构、算法、操作系统、网络、数据库基础扎实，熟练掌握至少一门主流编程语言（Go/TypeScript/Java/Python等），代码逻辑清晰、结构良好；\n3、熟悉React/Vue等主流前端框架，掌握至少一种常用Web框架，熟悉MySQL/Redis等常用存储；\n4、至少熟练使用一种AI编码工具Cursor/Claude Code/Copilot/TRAE/Codex等；了解大模型、Agent、RAG、MCP、CLI、Prompt、Harness等核心概念并有自己的理解；能识别AI输出的正确性、风险与边界，并设计验证机制；\n5、具备良好的逻辑思考与问题拆解能力，好奇心与学习动手能力强，主动自驱，面对复杂问题具备攻坚钻研的毅力和解决能力，沟通协作顺畅。\n\n加分项：\n1）独立AI相关作品项目经验；\n2）优秀的开源贡献或个人项目；\n3）ACM/NOI/CTF等竞赛获奖；\n4）有To B/SaaS类产品实习或复杂业务开发经历。",
+   "jd_source": "job#77（真实库，AI全栈工程师 - 飞书项目）",
+   "ground_truth": {
+    "human_match_score": 42,
+    "strong_skills": [
+     "RAG",
+     "MySQL",
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AI Coding",
+     "MCP",
+     "Prompt Engineering",
+     "Go",
+     "Java",
+     "ReAct",
+     "Redis",
+     "TypeScript"
+    ],
+    "note": "4 must 仅 RAG 达标；P2 无 AI Coding/MCP/PE 三大 must。MySQL/Python nice 达标保底 → 42"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-011",
+   "profile_id": "P2",
+   "jd_text": "急\n资深Agent研发工程师\n分享\n全职|技术类|北京市\n发布于 2026-08-10\n申请职位\n职位描述\n如果你想做的不是一次性 demo，而是真正被大规模用户持续使用、能够沉淀为核心产品能力的 AI Agent 系统——这个岗位是你的。你将参与 Kimi 最核心的 Agent 方向研发，围绕 Agent 内核、任务执行、工具生态与工程基础设施，打造一体化的产品体系。你的代码不仅支撑真实业务场景，也会成为智能产品持续演进的重要基础。\n\n你将亲手打造：\n\n设计与开发 Agent 相关主线产品的关键特性，包括内核框架、业务逻辑、效果调优；\n建设稳定可靠的 Agent 工程基座，让复杂任务的执行过程可控、可查、可复现；\n关注业务数据与指标，围绕模型效果与用户体验做持续打磨；\n与模型、工具生态、前端、产品等团队协作，把优秀实践沉淀为可复用的框架能力；\n引入 AI 改善研发工作流和工程质量，建设先进的 CI/CD 和 DevOps 工具。\n我们希望你：\n\n具备优秀的 AI Agent 产品与技术认知，深入理解 Agent 的产品形态、核心能力与落地路径，关注模型效果、任务执行、工具调用与用户体验；\n熟悉 Agent 主流技术栈（如 Skills、MCP、Sandbox 等），有真实 Agent 系统的开发经验；\n具备扎实的后端工程与基础设施认知：精通 Go，熟悉微服务、RESTful API、gRPC、OpenTelemetry 等主流后端技术栈，具备复杂后端系统设计能力；\n理解 PostgreSQL、MySQL、Redis、Elasticsearch、S3、HBase 等存储组件的使用场景与核心原理；\n熟悉 Linux、Docker、Kubernetes、CI/CD、DevOps 等工程基础设施；\n具备出色的技术抽象与工程创新能力，强自驱、好奇心强，善于使用 AI 工具提升研发效率，能够完成从产品原型到工程落地的闭环。\n工作地点：北京/上海",
+   "jd_source": "job#78（真实库，资深Agent研发工程师）",
+   "ground_truth": {
+    "human_match_score": 32,
+    "strong_skills": [
+     "Docker",
+     "MySQL"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "CI/CD",
+     "Elasticsearch",
+     "Function Calling",
+     "Go",
+     "gRPC",
+     "Kubernetes",
+     "Linux",
+     "MCP",
+     "PostgreSQL",
+     "Redis",
+     "微服务"
+    ],
+    "note": "资深基建岗：13 must 仅 2 达标（Docker L3=3/MySQL L4）；3 年经验贴线。K8s/gRPC/ES 全缺 → 32"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-012",
+   "profile_id": "P2",
+   "jd_text": "AI Agent开发工程师\n\n应届生招聘AI开发类所属部门：China Geo北京\n岗位职责\n1.参与AI Agent核心能力建设，包括任务规划、工具调用、记忆管理、多Agent协同等关键能力的设计与开发，参与Agent Runtime、Context 管理、任务调度及工作流编排等核心模块建设，在实际项目中持续提升工程开发能力。\n2.参与大模型与Agent系统的工程化开发与优化，实现模型调用、流式交互、工作流编排、结构化输出、异步任务处理等核心能力，推动Agent系统基础能力持续演进。\n3.参与Agent工具生态与Skill体系建设，推动Agent与搜索、知识库、业务系统及外部服务的连接与协同，不断提升智能体解决复杂任务的能力。\n4.与产品、算法、架构等团队紧密合作，将AI Agent相关需求转化为稳定、高质量、可维护的工程方案，持续优化系统性能、可靠性和可扩展性。\n5.持续关注大模型、AI Agent及相关技术领域的发展趋势，探索新框架、新协议及新工程范式在实际业务场景中的创新应用。\n\n任职要求\n1.毕业时间为2026年9月至2027年8月的海内外应届毕业生，计算机科学、软件工程、人工智能、自动化、数学等相关专业优先。\n2.熟悉Python3、Java、Golang等至少一门编程语言，具备良好的编程能力、工程实践意识及代码质量意识。\n3.掌握数据结构与算法、计算机网络、操作系统、数据库等计算机基础知识，具备扎实的软件开发基础。\n4.对AI Agent和大模型技术具有浓厚兴趣，愿意主动学习和探索AI原生应用开发，并持续关注相关技术发展与行业趋势。\n5.具备良好的学习能力、问题分析与解决能力，以及团队协作和沟通能力，能够主动定位并解决实际开发过程中的问题。\n6.了解AI Agent系统的基本架构与核心能力，对任务规划、工具调用、Context 管理、记忆机制等方向具有一定理解。\n7.具备AI Agent、检索增强生成 RAG、多Agent协作等相关项目实践经验，或了解LangChain.js、LangGraph.js、AutoGen 框架等Agent开发框架;具有开源项目、技术博客、科研成果等相关经历者优先。\n\n工作地点",
+   "jd_source": "job#11（真实库，AI Agent开发工程师）——别名变体改写（对抗用例 3）",
+   "ground_truth": {
+    "human_match_score": 62,
+    "strong_skills": [
+     "LangGraph",
+     "RAG",
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AutoGen",
+     "Function Calling",
+     "上下文管理",
+     "多智能体协作",
+     "Go",
+     "Java",
+     "LangChain"
+    ],
+    "note": "对抗用例 3（别名变体）：与 e2-008 同 JD 同画像，仅技能词写法不同（LangGraph.js/Python3/Golang/检索增强生成/Tool Use 等）→ 三组判定与人工分必须与 e2-008 完全一致（归一化正确性验收）"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-013",
+   "profile_id": "P3",
+   "jd_text": "岗位职责:\n1、参与公司核心业务模块的Python代码开发与迭代,负责接口设计、功能实现,确保代码可读性、可维护性及性能达标,熟练使用claude code工具。\n2、团队协作与交付:以敏捷开发模式参与项目迭代,与团队密切协作,推动项目按时交付;撰写技术文档,参与代码评审与技术解决瓶颈。\n\n任职要求:\n1、统招大专及以上学历,双证齐全可查;励志深耕Python开发方向,有完整的后端项目落地经历优先。\n2、技术能力:熟练掌握Python基础语法,熟悉常用数据结构(列表、字典、集合)及算法逻辑,能完成中等复杂度功能开发(如条件判断、循环处理、函数封装)\n3、掌握至少1种Python Web框架(如Django、Flask、FastAPI),了解MVC/MTV架构思想,能独立开发简单接口并对接数据库。\n4、熟悉关系型数据库(MySQL/PostgreSQL),能编写基础SQL语句(增删改查、联表查询),了解索引优化基础;对Redis等缓存工具或MongoDB等NoSQL数据库有使用经验者优先。\n5、了解Linux基本操作(如文件管理、进程查看、日志查询),能在Linux环境下部署简单Python服务;熟悉Git版本控制(提交、分支管理、冲突解决)。\n\n可广州参加现场面试的再投递,谢谢",
+   "jd_source": "job#147（真实库，【Python初级开发工程师(可应届)】10-12k）",
+   "ground_truth": {
+    "human_match_score": 40,
+    "strong_skills": [
+     "Python"
+    ],
+    "weak_skills": [
+     "SQL"
+    ],
+    "missing_skills": [
+     "Django",
+     "FastAPI",
+     "Flask",
+     "Git",
+     "MongoDB",
+     "Redis",
+     "Linux",
+     "MySQL",
+     "PostgreSQL"
+    ],
+    "note": "应届友好初级岗：Python L3=must 中性档达标（conf0.6 不算薄弱）；SQL L2<3=weak；Web 框架全家桶缺 → 40"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-014",
+   "profile_id": "P3",
+   "jd_text": "岗位描述\n1、负责智能Agent系统的架构设计与开发，包括多Agent协作框架、任务规划与调度、工具调用与执行引擎等核心模块建设；\n2、设计并实现Agent的记忆系统、推理链路和决策机制，提升Agent在复杂业务场景下的自主性与可靠性；\n3、搭建Agent应用的评测与质量保障体系，建立系统性的效果评估、持续优化与性能、成本管控机制；\n4、跟踪Agent技术前沿发展，结合业务需求进行技术预研与落地实践。\n\n岗位要求\n1、熟练掌握至少一门主流编程语言（Python/TypeScript/Go 等），具备扎实的数据结构与算法基础，代码质量意识强；\n2、深入理解Agent原理与架构，包括 Planning、Memory、Tool Use、Reflection等核心机制；\n3、 熟悉主流Agent开发框架（如 LangGraph、AutoGen、CrewAI、MetaGPT 等），有实际搭建经验；\n4、了解大模型基本原理，熟悉Prompt Engineering技巧，能设计高质量的系统提示词与工具描述；\n5、对AI Agent技术有强烈兴趣，关注行业动态，具备独立调研与技术选型能力；\n6、 具备良好的系统思维和问题解决能力，能在复杂场景中设计可靠的Agent方案。\n\n加分项或注意事项\n1、有Agent系统构建经验（如自主任务执行、多 Agent 协作、复杂工作流编排等）；\n2、有Agent评测与质量体系建设经验，能系统性评估Agent效果并持续改进；\n3、 有RAG系统搭建经验，了解向量检索、知识图谱等知识增强技术；\n4、 参与过相关开源项目或有技术博客、Agent应用作品展示。",
+   "jd_source": "job#82（真实库，Agent开发工程师）",
+   "ground_truth": {
+    "human_match_score": 22,
+    "strong_skills": [
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AutoGen",
+     "CrewAI",
+     "Function Calling",
+     "LangGraph",
+     "Prompt Engineering",
+     "多智能体协作",
+     "Go",
+     "RAG",
+     "TypeScript"
+    ],
+    "note": "6 must 全缺（Agent 全家桶）；仅 Python nice 达标。新手画像对 agent_dev 硬缺口 → 22"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-015",
+   "profile_id": "P3",
+   "jd_text": "AI应用开发工程师-campus-2027\n分享\n内推分享\n全职|研发技术|协同研发平台事业部|四川·成都市 北京市 天津市\n发布于 2026-08-20\n申请职位\n职位描述\n岗位职责：\n\n1、参与公司现有AI测试产品（面向汽车嵌入式软件）的功能开发与迭代维护，包括但不限于测试用例生成、缺陷检测、自动化测试脚本优化等模块。\n\n2、基于Python开发AI应用工具，结合大语言模型（如GPT、BERT等）或传统机器学习方法，提升测试效率与覆盖率。\n\n3、与测试工程师、产品经理协作，理解汽车嵌入式软件测试场景（如CAN/LIN总线、AUTOSAR、ADAS等），将业务需求转化为技术实现。4、参与代码审查、技术文档编写及单元测试，保证代码质量和可维护性。5、跟踪AI在软件测试领域的前沿技术（如LLM微调、RAG、Agent等），探索其在现有产品中的落地可能性。\n\n\n\n任职资格：\n\n1、2026届本科及以上学历，计算机、软件工程、人工智能、自动化、车辆工程等相关专业。\n\n2、熟悉Python编程，了解至少一种深度学习框架（如PyTorch、TensorFlow）\n\n3、了解大语言模型（LLM）的基本原理，有使用OpenAI API、Hugging Face或LangChain等工具进行简单开发的经验。\n\n4、对软件测试流程或嵌入式系统有基本了解（如通过课程项目、竞赛或实习经历）。\n\n5、具备良好的逻辑思维、学习能力与团队协作精神。Flow基础者优先。",
+   "jd_source": "job#64（真实库，AI应用开发工程师-campus-2027）",
+   "ground_truth": {
+    "human_match_score": 48,
+    "strong_skills": [
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "RAG",
+     "SFT/LoRA",
+     "Hugging Face",
+     "LangChain",
+     "PyTorch",
+     "TensorFlow"
+    ],
+    "note": "campus-2027：3 must 中 Python 达标；RAG/SFT-LoRA 缺。应届+数据科学背景软性契合 → 48"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-016",
+   "profile_id": "P3",
+   "jd_text": "【校招】AI算法工程师\n分享\n全职\n发布于 2026-08-19\n申请职位\n职位描述\n工作职责：\n\n负责游戏研发场景下多模态内容（涵盖动画、3D模型、2D图像等）生成算法的落地与深度应用。探索并实现AIGC技术，将其转化为提升游戏生产力及玩家交互体验的实际解决方案；\n\n针对多模态内容的生成需求，主导构建数据集、数据预处理流水线及算法配套工具。负责搭建从模型训练、逻辑评估到工程化部署的标准化工作流程；\n\n研究多模态感知、角色动画生成、3D网格重建/处理、贴图生成等技术，针对项目特有的艺术风格和性能需求，进行算法定制与推理优化，确保生成内容符合生产标准；\n\n与美术、程序团队紧密协作，深度介入游戏制作全生命周期。识别并解决生产管线中的痛点问题，通过AI手段消除技术瓶颈，提升各职能团队的开发效率；\n\n持续跟踪领域前沿技术；\n\n岗位要求：\n\n计算机、人工智能、数学或统计等相关专业，具备扎实的算法理论与数学功底；\n\n精通PyTorch/TensorFlow，深度理解主流生成式模型（动画/3D/2D）原理，熟练掌握模型训练、微调及推理优化；\n\n熟悉角色动画生成、3D网格处理或游戏美术建模者优先；\n\n有AI+游戏研发提效的相关经验者优先；",
+   "jd_source": "job#58（真实库，【校招】AI算法工程师）",
+   "ground_truth": {
+    "human_match_score": 15,
+    "strong_skills": [],
+    "weak_skills": [],
+    "missing_skills": [
+     "SFT/LoRA",
+     "多模态",
+     "推理优化",
+     "PyTorch",
+     "TensorFlow"
+    ],
+    "note": "完全零交集：算法岗五技能 P3 全无（机器学习 L2 0.3 未被此 JD 要求）。下限锚点 → 15"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-017",
+   "profile_id": "P4",
+   "jd_text": "平台研发-后端开发工程师（AI 应用方向）全职\n上海\n程序&技术类\n2027届（2026.9-2027.8之间毕业）\n工作职责\n1.面向用户增长业务，深度参与业务讨论，探索 AI 技术在各场景的落地机会，构建提升业务效率和效果的 AI 能力；\n2.挖掘游戏玩家核心需求，与产品、运营团队协作，打造面向玩家的 AI 创新体验产品；\n3.负责 Agent 应用的性能与稳定性优化，确保系统在高并发场景下的可靠运行；\n4.设计并实现易用高效的 Agent 开发周边工具套件，提升研发效率，降低 Agent 技术的使用门槛，保障交付质量。\n任职要求\n1.计算机或相关专业本科及以上学历；\n2.热爱计算机科学和互联网技术，至少熟练掌握一门后端编程语言，包括但不限于：C、C++、Go、Python、Java 等；\n3.深度使用 AI 编程工具（如 Claude Code、Codex、Cursor、OpenCode 等），能够高效利用 AI 辅助开发；\n4.具备扎实的后端工程能力，熟悉常用数据库设计与优化（MySQL/Redis 等），了解分布式系统基本原理，有服务接口设计与高可用实践经验；\n5.具备较强的问题拆解、快速学习和实验迭代能力，能够在不确定的需求和技术环境中持续推进方案落地；\n6.具备良好的跨团队协作能力，能够理解产品、业务等非工程角色的需求，并推动技术实现；\n7.对大语言模型、Agent 技术的基本原理、应用方式和能力边界有一定理解。\n加分项\n1.有 LLM、Agent、RAG、工具调用、多智能体等相关项目经验；\n2.有高并发C端项目后端工程项目经验；\n3.有研发提效工具、代码生成、自动化测试或 AI 工具链相关经验；\n4.有借助 AI 能力独立完成全栈项目并落地上线的经验。",
+   "jd_source": "job#59（真实库，平台研发-后端开发工程师（AI 应用方向）全职）",
+   "ground_truth": {
+    "human_match_score": 62,
+    "strong_skills": [
+     "Java",
+     "MySQL",
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AI Coding",
+     "C++",
+     "Function Calling",
+     "Go",
+     "RAG",
+     "Redis",
+     "分布式系统",
+     "多智能体协作"
+    ],
+    "note": "transferable 重点对：唯一 must=AI Coding 缺，但 Java L5/MySQL L4/Python L3 三个 nice 全 strong。3 年后端经验契合平台研发 → 62"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-018",
+   "profile_id": "P4",
+   "jd_text": "【岗位名称】:Java开发技术人员(AI编程方向)\n【公司性质】:大型军工央企,主营业务为中小型涡轮喷气发动机、涡轮风扇发动机、固体火箭发动机、冲压发动机、组合发动机等动力装置的研制与生产。\n【工作地点】:北京市丰台区云岗西路\n【薪资待遇】:薪资面议\n【岗位职责】:\n1、负责加强企业内部信息系统 SAP ERP、PDM、MES等核心系统自主化开发运维能力,负责需求分析、系统架构设计、核心模块编码、测试优化及上线交付,确保系统稳定、高效、可扩展。\n2、主导AI编程相关技术在内部系统中的落地应用,结合Java技术栈,整合AI工具提升开发效率,优化系统智能化体验。\n3、参与系统架构的迭代升级,结合AI技术特性,优化系统性能、安全性及可维护性,解决开发过程中的技术难题。\n4、配合产品、测试及运维团队,完成系统需求对接、测试支持、上线部署及后期迭代维护工作。\n5、关注Java技术及AI编程领域的前沿动态,将合适的技术方案引入项目,推动团队技术能力提升,规范开发流程。\n6、完成领导交办的其他工作。\n【任职条件】:\n1、熟悉了解相关企业内部信息系统SAP ERP、PDM、MES等核心系统,掌握应用系统接口及数据管理知识技能。\n2、具备AI编程相关经验,熟悉至少1种AI开发工具,能熟练运用AI工具辅助代码编写、调试、优化。\n3、Java基础扎实,熟练掌握 JDK8及以上版本特性,精通 Spring Boot、Spring Cloud、MyBatis等主流Java框架,熟悉微服务架构设计与开发。\n4、熟悉数据库技术,熟练使用MySQL、Oracle等关系型数据库,掌握SQL 优化、事务管理等核心技能;了解Redis、MongoDB等非关系型数据库。\n5、具备系统架构设计能力,能独立完成中小型内部系统的架构设计、模块划分,具备良好的编码规范和技术文档编写能力。\n6、掌握AI编程核心逻辑,能结合业务需求,运用AI工具提升开发效率,能独立解决AI与Java系统集成过程中的技术问题。\n7、具有5年以上企业内部系统开发经验,硕士及以上学历。",
+   "jd_source": "job#175（真实库，Java(AI编程方向)）",
+   "ground_truth": {
+    "human_match_score": 60,
+    "strong_skills": [
+     "Java",
+     "Spring Boot",
+     "MySQL"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AI Coding",
+     "SQL",
+     "微服务",
+     "系统架构",
+     "MongoDB",
+     "Redis"
+    ],
+    "note": "核心栈完美（Java L5/SB L5 精通/MySQL L4 熟练）；7 must 3 达标。AI Coding/SQL/架构缺 → 60"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-019",
+   "profile_id": "P4",
+   "jd_text": "岗位职责:\n- 深度对接客户业务场景,设计定制化 AI 解决方案,推动需求落地\n- 独立完成 Prompt 设计、效果评测与持续调优,沉淀 Prompt 工程方法论\n- 参与客户大模型技术选型、产品方案设计及交付过程,确保质量达标\n- 收集优质 Prompt 案例,构建 Prompt 模板库,推动资产产品化\n- 跟踪大模型技术演进,开展竞品方案分析,为产品迭代提供策略支持\n\n任职要求:\n- 本科及以上,计算机、AI、数学等相关专业优先,1年以上 AI 项目经理工作经验优先;\n- 有 AI 项目实践经验,熟悉机器学习基础原理\n- 精通 Prompt 工程,具备独立设计、优化、效果量化能力\n- 具备 Coze、Dify、N8n 等 Agent 平台搭建经验\n- 逻辑清晰,书面/口头表达能力强\n\n加分项:\n有 LangChain、LlamaIndex 等框架使用经验;具备 Python/Shell 基础编程能力",
+   "jd_source": "job#143（真实库，AI工作流工程师(Coze、Dify)）",
+   "ground_truth": {
+    "human_match_score": 25,
+    "strong_skills": [
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "Coze",
+     "Dify",
+     "Prompt Engineering",
+     "机器学习",
+     "LangChain",
+     "LlamaIndex",
+     "Shell 脚本"
+    ],
+    "note": "工作流岗 4 must（Coze/Dify/PE/ML）全缺；Java 栈无用武之地 → 25"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-020",
+   "profile_id": "P4",
+   "jd_text": "AI全栈开发工程师\n\n应届生招聘AI开发类所属部门：China Geo北京,天津,成都\n岗位职责\n1.参与AI应用核心功能的需求分析、方案设计与开发实施，覆盖客户端、服务端、Web前端及端侧应用等多个技术方向，在项目实践中持续提升全栈开发能力。\n2.借助AI Coding等智能开发工具参与软件研发全流程工作，包括需求理解、方案设计、编码实现、测试优化及版本迭代，不断提升工程实践能力和交付效率。\n3.深度参与产品需求讨论与功能设计，与产品、设计、测试等跨职能团队紧密协作，共同推动产品高质量落地。\n4.参与AI Agent、智能体应用等创新技术场景的研究与实践，推动AI技术在实际业务中的应用与创新。\n5.探索AI时代的软件开发新模式，参与AI研发工作流建设与优化，持续提升研发效率和工程质量。\n\n任职要求\n1.毕业时间为2026年9月至2027年8月的海内外应届毕业生，计算机科学、软件工程、人工智能、电子信息等相关专业优先。\n2.具备扎实的计算机基础知识，熟悉计算机网络、数据结构与算法等核心内容，至少熟练掌握一门编程语言（如Java、Python、Go、C++等），具备良好的编码规范与代码设计能力。\n3.对AI技术及相关产品具有浓厚兴趣，认可AI驱动的软件研发方式，并能够主动利用AI工具提升学习与开发效率。\n4.具备以下至少一个方向的开发基础：\n• Web开发（如HTML、CSS、JavaScript、TypeScript、Vue、React等）;\n• 服务端开发（如Java、Python、Go等）;\n• 客户端或端侧开发（如Android、C/C++、C#等）。\n5.具备良好的学习能力，能够快速掌握新技术，并愿意借助AI工具持续拓展跨技术栈开发能力。\n6.具备较强的责任心、沟通协调能力和团队合作意识，能够主动理解业务需求，并与不同角色高效协同推进项目落地。",
+   "jd_source": "job#60（真实库，AI全栈开发工程师）",
+   "ground_truth": {
+    "human_match_score": 30,
+    "strong_skills": [
+     "Java",
+     "Python"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "AI Coding",
+     "C#",
+     "JavaScript",
+     "ReAct",
+     "TypeScript",
+     "C++",
+     "Go"
+    ],
+    "note": "前端向全栈：5 must（AI Coding/C#/JS/ReAct/TS）全缺；Java/Python 仅 nice 达标 → 30"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-021",
+   "profile_id": "P5",
+   "jd_text": "AI Agent开发工程师\n\n应届生招聘AI开发类所属部门：China Geo北京\n岗位职责\n1.参与AI Agent核心能力建设，包括任务规划、工具调用、记忆管理、多Agent协同等关键能力的设计与开发，参与Agent Runtime、上下文管理、任务调度及工作流编排等核心模块建设，在实际项目中持续提升工程开发能力。\n2.参与大模型与Agent系统的工程化开发与优化，实现模型调用、流式交互、工作流编排、结构化输出、异步任务处理等核心能力，推动Agent系统基础能力持续演进。\n3.参与Agent工具生态与Skill体系建设，推动Agent与搜索、知识库、业务系统及外部服务的连接与协同，不断提升智能体解决复杂任务的能力。\n4.与产品、算法、架构等团队紧密合作，将AI Agent相关需求转化为稳定、高质量、可维护的工程方案，持续优化系统性能、可靠性和可扩展性。\n5.持续关注大模型、AI Agent及相关技术领域的发展趋势，探索新框架、新协议及新工程范式在实际业务场景中的创新应用。\n\n任职要求\n1.毕业时间为2026年9月至2027年8月的海内外应届毕业生，计算机科学、软件工程、人工智能、自动化、数学等相关专业优先。\n2.熟悉Python、Java、Go等至少一门编程语言，具备良好的编程能力、工程实践意识及代码质量意识。\n3.掌握数据结构与算法、计算机网络、操作系统、数据库等计算机基础知识，具备扎实的软件开发基础。\n4.对AI Agent和大模型技术具有浓厚兴趣，愿意主动学习和探索AI原生应用开发，并持续关注相关技术发展与行业趋势。\n5.具备良好的学习能力、问题分析与解决能力，以及团队协作和沟通能力，能够主动定位并解决实际开发过程中的问题。\n6.了解AI Agent系统的基本架构与核心能力，对任务规划、工具调用、上下文管理、记忆机制等方向具有一定理解。\n7.具备AI Agent、RAG、多Agent协作等相关项目实践经验，或了解LangChain、LangGraph、AutoGen等Agent开发框架;具有开源项目、技术博客、科研成果等相关经历者优先。\n\n工作地点",
+   "jd_source": "job#11（真实库，AI Agent开发工程师）",
+   "ground_truth": {
+    "human_match_score": 40,
+    "strong_skills": [],
+    "weak_skills": [
+     "RAG",
+     "Python"
+    ],
+    "missing_skills": [
+     "AutoGen",
+     "Function Calling",
+     "LangGraph",
+     "上下文管理",
+     "多智能体协作",
+     "Go",
+     "Java",
+     "LangChain"
+    ],
+    "note": "对照用例：与 e2-008 同 JD（P2=62）同技能名（RAG L3/Python L3）但全部裸声明 conf0.3 → 无 strong、人工分降 22 分。conf_factor 折减的直观验收锚点"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-022",
+   "profile_id": "P5",
+   "jd_text": "AI Agent 应用研发工程师(J14187)\n校园招聘\n安徽省·合肥市\nAI研发类\n2026-08-26 发布\n工作职责\n1. 打造面向真实用户的 AI Agent\n参与讯飞星火及各讯飞产品中的 Agent 设计与研发，围绕办公、学习、内容创作、信息管理和跨语言沟通等场景，完成需求分析、技术验证、工程实现和产品迭代。\n你可能参与会议助理、个人知识助理、文档 Agent、求职 Agent、翻译 Agent 或智能硬件 Agent 等方向。\n2. 建设 Agent 核心能力\n参与以下一个或多个方向：\n• 目标理解、任务规划与执行；\n• Context Engineering 与长短期记忆；\n• Tool Calling、MCP 与 Skills 接入；\n• RAG、个人知识库与多模态检索；\n• 工作流编排与多 Agent 协作；\n• 结果校验、失败恢复与个性化能力。\n你需要判断哪些环节适合使用大模型，哪些环节更适合使用确定性程序、搜索、规则或人工确认。\n3. 让 Agent 稳定、可信地工作\n建设 Agent 的评测、Tracing 和可观测体系，围绕任务完成率、结果准确性、工具调用成功率、响应延迟、模型成本和用户体验持续迭代。\n你将参与解决幻觉、死循环、执行失败和成本失控等问题，让 Agent 从“能够演示”走向“稳定可用”。\n4. 探索端云协同与软硬一体化 Agent\n结合科大讯飞在智能语音、机器翻译、多模态交互和消费硬件领域的积累，探索：\n• 语音、文本、图片、文档及手写内容的多模态理解；\n• 录音、转写、理解、生成与执行的一体化链路；\n• App、云服务与智能硬件之间的协同；\n• 端侧模型与云端大模型的能力分配；\n• 弱网、离线、功耗、延迟及设备资源约束下的用户体验；\n• 个人数据的隐私保护、权限管理与安全执行。\n5. 用 AI 原生方式研发 AI 产品\n深度使用 AI 编程工具辅助需求分析、方案设计、代码开发、测试调试和知识沉淀。\n与产品、设计、算法、测试及硬件团队协作，把快速变化的模型能力转化为可靠、可维护的软件产品。\n任职资格\n1. 计算机、软件工程、人工智能及相关专业优先，专业背景不是绝对限制。\n2. 熟练使用 Python、Java、Go、C++、JavaScript/TypeScript 中至少一种语言，具备良好的计算机基础和软件工程能力。\n3. 真正动手完成过一个大模型应用、AI Agent、智能助手或自动化工具。个人项目、课程设计、比赛作品和实习项目均可。\n4. 理解大语言模型的基本能力与局限，了解 Prompt/Context Engineering、Tool Calling、RAG 和结构化输出等常见应用范式。\n5. 能够清楚说明一个项目解决了什么问题、为何这样设计、如何评测效果，以及经历过哪些失败和改进。\n6. 关注用户体验和工程质量，不仅关心模型能否回答，也关心结果是否可信、响应是否及时、用户是否愿意持续使用。\n7. 具备主动学习、问题拆解和协作能力，愿意在快速变化、没有标准答案的领域中持续实验并完成交付。\n我们不要求你掌握所有热门框架。相比记住框架 API，我们更看重你的工程基础、作品质量、思考深度和成长潜力。\n加分项\n如果你拥有以下任一经历，我们会很感兴趣：\n• 有可访问的 Agent Demo、GitHub 项目、技术博客或开源贡献；\n• 做过会议助手、个人知识库、语音助手、浏览器 Agent 或代码 Agent；\n• 使用过主流 Agent 框架，并能解释其适用场景和设计取舍；\n• 有 MCP、复杂工作流、多智能体或 Agent Eval 实践；\n• 有语音识别、机器翻译、OCR、文档解析或多模态应用经验；\n• 有移动端、Web、桌面端、后端服务或智能硬件开发经历；\n• 了解端侧推理、模型量化、性能优化、隐私保护或可信 AI；\n• 在竞赛、论文、开源社区或真实用户产品中取得过有说服力的成果。",
+   "jd_source": "job#83（真实库，AI Agent 应用研发工程师(J14187)）",
+   "ground_truth": {
+    "human_match_score": 35,
+    "strong_skills": [],
+    "weak_skills": [
+     "RAG",
+     "MCP",
+     "Python"
+    ],
+    "missing_skills": [
+     "Function Calling",
+     "多模态",
+     "C++",
+     "Evaluation（LLM 评测）",
+     "Git",
+     "Go",
+     "Java",
+     "JavaScript",
+     "Prompt Engineering",
+     "TypeScript",
+     "多智能体协作"
+    ],
+    "note": "P5 唯一差异化技能 MCP L2 0.3：等级不足+证据薄=weak 而非 strong。RAG/Python 同理。2 must 弱 2 must 缺 → 35"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-023",
+   "profile_id": "P5",
+   "jd_text": "急\n资深Agent研发工程师\n分享\n全职|技术类|北京市\n发布于 2026-08-10\n申请职位\n职位描述\n如果你想做的不是一次性 demo，而是真正被大规模用户持续使用、能够沉淀为核心产品能力的 AI Agent 系统——这个岗位是你的。你将参与 Kimi 最核心的 Agent 方向研发，围绕 Agent 内核、任务执行、工具生态与工程基础设施，打造一体化的产品体系。你的代码不仅支撑真实业务场景，也会成为智能产品持续演进的重要基础。\n\n你将亲手打造：\n\n设计与开发 Agent 相关主线产品的关键特性，包括内核框架、业务逻辑、效果调优；\n建设稳定可靠的 Agent 工程基座，让复杂任务的执行过程可控、可查、可复现；\n关注业务数据与指标，围绕模型效果与用户体验做持续打磨；\n与模型、工具生态、前端、产品等团队协作，把优秀实践沉淀为可复用的框架能力；\n引入 AI 改善研发工作流和工程质量，建设先进的 CI/CD 和 DevOps 工具。\n我们希望你：\n\n具备优秀的 AI Agent 产品与技术认知，深入理解 Agent 的产品形态、核心能力与落地路径，关注模型效果、任务执行、工具调用与用户体验；\n熟悉 Agent 主流技术栈（如 Skills、MCP、Sandbox 等），有真实 Agent 系统的开发经验；\n具备扎实的后端工程与基础设施认知：精通 Go，熟悉微服务、RESTful API、gRPC、OpenTelemetry 等主流后端技术栈，具备复杂后端系统设计能力；\n理解 PostgreSQL、MySQL、Redis、Elasticsearch、S3、HBase 等存储组件的使用场景与核心原理；\n熟悉 Linux、Docker、Kubernetes、CI/CD、DevOps 等工程基础设施；\n具备出色的技术抽象与工程创新能力，强自驱、好奇心强，善于使用 AI 工具提升研发效率，能够完成从产品原型到工程落地的闭环。\n工作地点：北京/上海",
+   "jd_source": "job#78（真实库，资深Agent研发工程师）",
+   "ground_truth": {
+    "human_match_score": 10,
+    "strong_skills": [],
+    "weak_skills": [
+     "MCP"
+    ],
+    "missing_skills": [
+     "CI/CD",
+     "Docker",
+     "Elasticsearch",
+     "Function Calling",
+     "Go",
+     "gRPC",
+     "Kubernetes",
+     "Linux",
+     "MySQL",
+     "PostgreSQL",
+     "Redis",
+     "微服务"
+    ],
+    "note": "双重劣势：应届+裸声明 vs 13 must 资深岗。唯一交集 MCP L2 0.3=weak。下限锚点 → 10"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-024",
+   "profile_id": "P2",
+   "jd_text": "AI软件测试工程师 7千-1.2万\n郑州-中原区\n无需经验\n大专\n招6人\n收藏\n立即投递\n职位描述\n竞争力分析微信分享\n岗位职责：\n1、参与公司Web、APP、小程序等软件产品的全流程质量保障工作，跟进项目迭代，配合团队完成版本测试与上线验收。\n2、熟读产品需求文档、原型设计，参与需求评审，梳理业务逻辑，精准识别需求漏洞与不合理之处，输出优化建议。\n3、独立编写测试计划、完整测试用例，覆盖功能、界面、兼容性、异常场景、回归测试等，保证用例覆盖率与有效性。\n4、执行日常测试工作，精准发现产品缺陷，使用Jira等工具规范提交bug，清晰描述问题、复现步骤、环境及预期结果，全程跟踪缺陷修复、复测闭环。\n5、负责版本迭代回归测试、上线前整体测试、线上问题复盘验证，保障产品稳定交付与线上运行质量。\n6、整理输出测试报告、迭代质量总结，沉淀测试经验，协助团队优化测试流程，提升整体测试效率。\n7、配合产品、开发、运维团队高效协作，及时同步测试进度、风险问题，保障项目按期高质量交付。\n任职要求：\n1、专科及以上学历，计算机、软件工程、电子信息等相关专业优先，有无经验均可，接受优秀应届生、转行零基础人员。\n2、熟练掌握软件测试基础理论、测试流程、测试方法，具备独立设计测试用例、开展功能测试的能力。\n3、熟悉主流测试工具，会使用Jira管理缺陷、掌握基础抓包工具，了解MySQL基础数据库查询语句，可完成简单数据校验测试。\n4、了解HTTP/HTTPS基础协议，熟悉接口测试基本流程，会使用Postman进行简单接口测试者优先。\n5、具备良好的逻辑思维、问题排查能力，细心严谨、责任心强，能快速定位问题、梳理测试风险。\n6、具备良好的沟通协作能力，服从团队安排，学习能力强，愿意主动学习自动化、性能测试相关技术。\n职能类别：软件测试\n\n关键字：计算机mysql测试测试用例自动化功能测试软件测试web软件工程",
+   "jd_source": "job#104（真实库，AI软件测试工程师 7千-1.2万）",
+   "ground_truth": {
+    "human_match_score": 76,
+    "strong_skills": [
+     "MySQL"
+    ],
+    "weak_skills": [],
+    "missing_skills": [
+     "网络协议"
+    ],
+    "note": "弱要求 JD（仅 2 nice 无 must）：MySQL L4 1.0 远超'了解'；importance_coverage 中性 0.5 场景——高匹配分但岗位信息量低。检验'无 must'分支的评分行为 → 76"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  },
+  {
+   "id": "e2-025",
+   "profile_id": "P5",
+   "jd_text": "AI测试开发工程师（上海）\n分享\n测试及测试开发|上海市\n申请职位\n职位描述\n职位简介：\n\n质量是产品的核心竞争力之一，测试是产品质量的守门员。测试团队聚焦在质量管理、自动化和智能化测试等领域的体系建设和应用，致力于打造全面、高效和智能的产品质量保障体系。加入该团队，有机会深度参与贯穿“芯片-操作系统-算法-应用软件-云端软件-硬件-结构”全栈技术的测试业务挑战，获得快速成长。\n\n\n\n工作职责：\n\n1. 参与到自动化测试与智能化测试解决方案的研发中，为测试效能负责，包括但不限于：自动化用例开发，以及应用AI大模型技术开发智能测试方案（如：基于LLM的测试用例智能生成、缺陷智能分析与定位、测试数据智能构造、UI/接口智能化测试、测试报告智能生成等）；\n\n2. 参与到公司产品的研发全流程中，为产品的高质高效交付负责，包括但不限于：需求分析、测试方案设计、测试用例设计、测试执行和质量风险管控等关键环节；\n\n3. 参与到研发效能解决方案的研发中，为研发效能负责，包括但不限于：持续集成、持续发布、持续部署和效能度量等；\n\n4. 探索并实践AI技术在质量保障领域的创新应用，持续跟踪业界AI+测试前沿技术，为构建智能化产品质量保障体系提供技术支撑。\n\n\n\n任职要求：\n\n1. 本科及以上学历，软件工程、计算机科学、电子、通信、网络等相关专业；\n\n2. 熟悉Python/C/C++/Java/JavaScript/LabVIEW等编程语言中的一种或多种；\n\n3. 较好的系统软件开发和集成经验；\n\n4. 良好的学习能力及团队合作能力，责任心强，喜欢挑战，对技术有追求；\n\n5. 具备以下一种或多种技能、经验者优先：\n\n① 丰富的Linux应用程序开发经验，熟练运用Linux的同步互斥机制，或有Linux内核开发经验，如：Linux内核的移植和开发，Linux设备驱动程序的设计和开发，有良好的问题定位能力；\n\n② 参与过CI/CD、DevOps整体解决方案实现，有Iaas/Paas/Saas平台开发经验；\n\n③ 理解RTOS的运行机制，能够独立开发设计RTOS的应用；\n\n④ 理解硬件和ARMv7、ARMv8架构；\n\n⑤ 熟悉NI RT及FPGA开发；\n\n⑥ 熟悉操作系统、计算机组成原理；\n\n⑦ 熟练使用Flask/Django/Tornado/SpringBoot等一种或多种Web开发框架，熟悉MySQL、Mongodb等数据库及RabbitMQ/Kafka等消息列队组件，熟悉pytest、testNG框架；\n\n⑧ 熟悉Vue/Electron/React/Angular等前端框架的一种或多种；⑨ 参与过测试设计和测试执行工作，有测试岗位相关实习经验；\n\n6. 具有RoboMaster/ROBOCON等机器人赛事经验者优先。",
+   "jd_source": "job#90（真实库，AI测试开发工程师（上海））",
+   "ground_truth": {
+    "human_match_score": 18,
+    "strong_skills": [],
+    "weak_skills": [
+     "Python"
+    ],
+    "missing_skills": [
+     "CI/CD",
+     "Linux",
+     "MongoDB",
+     "MySQL",
+     "ReAct",
+     "Spring Boot",
+     "C++",
+     "Django",
+     "Flask",
+     "Java",
+     "JavaScript",
+     "Kafka",
+     "RabbitMQ"
+    ],
+    "note": "7 must 仅 Python（L3<熟练 4 且 conf0.3）=weak，其余全缺。裸声明画像 vs 工程化测开岗 → 18"
+   },
+   "annotator": "user+claude（双人复核见 annotators）",
+   "annotated_at": "2026-09-03"
+  }
+ ]
+}

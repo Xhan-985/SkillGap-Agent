@@ -87,26 +87,26 @@
       "jd_text": "AI应用开发工程师\n12-17K * 12薪\n信息技术岗  深圳  本科\n收起\n岗位职责\n1、学习并掌握大型语言模型（LLM）、智能代理（Agent）及检索增强生成技术（RAG）等前沿 AI 技术，持续跟进大模型领域最新行业动态；\n2、参与Agent开发实践，熟练使用Python 编程语言及 Workflow 平台，完成基础 Agent 功能实现与 RAG 技术应用；\n3、学习 Prompt Engineering（提示工程）实操方法，结合业务场景优化提示词设计，提升模型生成效果；\n4、协助将 AI 应用与公司现有业务系统集成（如通过 HTTP 接口数据对接），参与智能问数等项目迭代优化；\n5、积极参与团队技术讨论，为 AI 项目的创新方向与解决方案贡献思路，快速积累工程实践经验。\n岗位要求\n1、2027届获得本科及以上学历，数学、计算机科学、软件工程等相关专业；\n2、对人工智能、机器学习及新兴技术有浓厚兴趣，熟悉 Python 基础语法；\n3、具备良好的逻辑思维与问题解决能力，能快速学习新技术；\n4、具有团队合作精神与沟通能力，积极主动参与项目协作；\n5、有 AI 工具（如 LangChain、ChatGPT API）使用经验或 AI 相关竞赛 / 课程实践经历者优先。",
       "jd_source": "e1_seed_v2#v2-16（真实 JD）",
       "ground_truth": {
-        "human_match_score": 68,
+        "human_match_score": 55,
         "strong_skills": ["Python", "RAG"],
-        "weak_skills": ["Agent 开发", "LangChain", "Prompt Engineering"],
-        "missing_skills": [],
-        "note": "示例标注：Python L4 超要求且证据扎实=strong；RAG L3 达到'技术应用'要求但无 Agent 落地=strong 偏保守；Agent 方向仅有 LangGraph L3 无完整实践、LangChain 为 nice 未用过、Prompt 未系统实践——均记 weak。整体 68：must 主体覆盖、深水区不足。"
+        "weak_skills": [],
+        "missing_skills": ["LangChain", "Prompt Engineering", "网络协议"],
+        "note": "标注与库内 job#16 抽取对齐（Python/LangChain/RAG/PE/网络协议 5 must）：Python L4 超要求且证据扎实=strong；RAG L3 达到'技术应用'要求=strong；LangChain P2 无（仅有 related 的 LangGraph）=missing；PE 未系统实践=missing；网络协议（HTTP 集成要求）=missing。整体 55：must 5 中 2 达标，LangChain/PE 属可快速补足缺口。"
       },
-      "annotator": "user",
+      "annotator": "user+claude",
       "annotated_at": "2026-09-03"
     },
     {
       "id": "e2-002",
       "profile_id": "P5",
       "jd_text": "AI应用开发工程师\n12-17K * 12薪\n信息技术岗  深圳  本科\n收起\n岗位职责\n1、学习并掌握大型语言模型（LLM）、智能代理（Agent）及检索增强生成技术（RAG）等前沿 AI 技术，持续跟进大模型领域最新行业动态；\n2、参与Agent开发实践，熟练使用Python 编程语言及 Workflow 平台，完成基础 Agent 功能实现与 RAG 技术应用；\n3、学习 Prompt Engineering（提示工程）实操方法，结合业务场景优化提示词设计，提升模型生成效果；\n4、协助将 AI 应用与公司现有业务系统集成（如通过 HTTP 接口数据对接），参与智能问数等项目迭代优化；\n5、积极参与团队技术讨论，为 AI 项目的创新方向与解决方案贡献思路，快速积累工程实践经验。\n岗位要求\n1、2027届获得本科及以上学历，数学、计算机科学、软件工程等相关专业；\n2、对人工智能、机器学习及新兴技术有浓厚兴趣，熟悉 Python 基础语法；\n3、具备良好的逻辑思维与问题解决能力，能快速学习新技术；\n4、具有团队合作精神与沟通能力，积极主动参与项目协作；\n5、有 AI 工具（如 LangChain、ChatGPT API）使用经验或 AI 相关竞赛 / 课程实践经历者优先。",
-      "jd_source": "e1_seed_v2#v2-16（真实 JD，与 e2-001 同 JD——对抗用例：仅裸声明）",
+      "jd_source": "job#16（真实库，与 e2-001 同 JD——对抗用例：仅裸声明）",
       "ground_truth": {
-        "human_match_score": 42,
+        "human_match_score": 35,
         "strong_skills": [],
         "weak_skills": ["Python", "RAG"],
-        "missing_skills": ["Agent 开发", "Prompt Engineering", "LangChain"],
-        "note": "对抗用例 1：与 e2-001 同 JD、同技能名同等级（RAG L3 / Python L3），但全部裸声明 conf=0.3 无项目证据 → 人工分显著低于有证据画像（68 vs 42）。三组全部降级为 weak/missing，无 strong。"
+        "missing_skills": ["LangChain", "Prompt Engineering", "网络协议"],
+        "note": "对抗用例 1：与 e2-001 同 JD、同技能名同等级（RAG L3 / Python L3），但全部裸声明 conf=0.3 无项目证据 → 人工分显著低于有证据画像（55 vs 35），技能全部降级为 weak（等级达标但证据薄），无 strong。"
       },
       "annotator": "user",
       "annotated_at": "2026-09-03"
