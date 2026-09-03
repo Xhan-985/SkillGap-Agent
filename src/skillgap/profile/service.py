@@ -67,7 +67,13 @@ def analyze_resume(conn, resume_text: str, extractor: ResumeExtractor,
             alias_map = load_alias_map(conn)
             unresolved: list[str] = []
             manual_overridden: list[str] = []
-            skills_out: list[dict] = []
+            merged_duplicates: list[str] = []
+            # LLM 可能产出多个 raw_name 归一到同一 skill（e2e 捕获：
+            # "RAG"与"RAG 检索"同 skill_id 触发 UNIQUE 冲突）——按 skill_id
+            # 合并：证据累积、level 取最大（最有利的能力宣称）
+            by_skill: dict[int, list] = {}
+            level_by_skill: dict[int, int] = {}
+            name_by_skill: dict[int, str] = {}
             for ann in result.skills:
                 skill_id = resolve_skill_id(ann.raw_name, alias_map)
                 if skill_id is None:
@@ -76,9 +82,27 @@ def analyze_resume(conn, resume_text: str, extractor: ResumeExtractor,
                 if skill_id in manual_skills:      # D1 冲突跳过
                     manual_overridden.append(ann.raw_name)
                     continue
-                skills_out.append(
-                    _insert_skill(cur, candidate_id, skill_id, ann,
-                                  resume_text, source_type="resume_text"))
+                if skill_id in by_skill:
+                    merged_duplicates.append(ann.raw_name)
+                    existing = {e.text for e in by_skill[skill_id]}
+                    by_skill[skill_id].extend(
+                        e for e in ann.evidences
+                        if e.text not in existing)   # 同段原文不重复计（不论 type）
+                    level_by_skill[skill_id] = max(
+                        level_by_skill[skill_id], ann.level)
+                else:
+                    by_skill[skill_id] = list(ann.evidences)
+                    level_by_skill[skill_id] = ann.level
+                    name_by_skill[skill_id] = ann.raw_name
+            skills_out = []
+            for skill_id, evidences in by_skill.items():
+                skills_out.append(_insert_skill(
+                    cur, candidate_id, skill_id,
+                    ResumeSkillAnnotation(
+                        raw_name=name_by_skill[skill_id],
+                        level=level_by_skill[skill_id],
+                        evidences=evidences),
+                    resume_text, source_type="resume_text"))
             if unresolved:
                 record_candidates(conn, unresolved, None)
             soft_profile = _soft_profile_json(result)
@@ -96,7 +120,8 @@ def analyze_resume(conn, resume_text: str, extractor: ResumeExtractor,
         "skills": skills_out,
         "soft_profile": soft_profile,
         "notices": {"unresolved": unresolved,
-                    "manual_overridden": manual_overridden},
+                    "manual_overridden": manual_overridden,
+                    "merged_duplicates": merged_duplicates},
     }
 
 

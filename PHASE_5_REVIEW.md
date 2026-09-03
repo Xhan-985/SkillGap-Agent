@@ -54,9 +54,19 @@ conf-v1 同输入零漂移（纯函数）。3 冻结画像 A/B/C 作为回归锚
 ### Resume —— 简历价值？
 "证据分三级、置信度可手算、声明和证明分开呈现——画像不是关键词匹配。" 面试可展开：为什么次数衰减 γ=0.5（防证据堆刷分）；为什么 level 与 confidence 正交（声明 vs 证明）；为什么重分析用替换式（简历=当前快照，陈旧证据不累积）。
 
-## 4. 遗留与下一步
+## 4. 真实 e2e 验证（2026-09-03，真实 LLM + 真实简历文本）
+
+基于用户真实技术背景构造简历（Java/Spring Boot/Spring AI/Python/LangGraph/pgvector/Docker/MCP，data/resume_sample.txt），跑完整链路 `resume-analyze → profile-add-skill → 重分析 → profile-get`：
+
+- **抽取质量**：11 技能全部正确归一（Java/Spring Boot/Python/LangGraph/Docker/MCP/Function Calling/RAG/pgvector/Spring AI/PostgreSQL）；证据分级准确（「熟悉/掌握/了解」→bare_claim，项目行→project_detail）；行号定位（resume#L9/L17/L29）全对；soft_profile 正确提取 education、experience_years 置 null（在读学生无年限，符合"缺失置 null"）
+- **e2e 捕获缺陷 1**（已修复+回归测试）：LLM 产出「Docker」与「Docker Compose」两个 raw_name 归一到同一 skill_id → UNIQUE 冲突。修复：按 skill_id 合并（证据累积、confidence 重算、level 取最大）+ merged_duplicates notice
+- **e2e 捕获缺陷 2**（已修复+回归测试）：合并时同段原文证据被计两次（L25 重复）。修复：按证据 text 去重（不论 type——同句话不给同一技能计两次）
+- **D1 全语义验证**：手动勾选 LangGraph L5 → 重分析后 manual 行保留（level 5/conf 1.0/manual 证据），manual_overridden notice 正确
+- **词表外信号**：Hybrid Search / RRF / GitHub Actions 入 new_skill_candidate 队列（first_seen_job_id NULL 可区分简历来源）——GitHub Actions（CI 方向）为真实词表候选，待 S9 周级裁决
+
+## 5. 遗留与下一步
 
 1. **Phase 6 Skill Gap**：岗位要求 vs 画像的差距量化（actual_level 已就绪——candidate_skill.level；transferable 判定需 skill_relations 数据）
-2. **真实简历 e2e**：用户以自身简历跑 `resume-analyze`，验证 prompt v1 在真实简历上的抽取质量（可发现分级/level 推断偏差）
+2. ~~真实简历 e2e~~ ✅ 已完成（见 §4；prompt v1 在真实简历上抽取质量良好，2 个合并缺陷已修复）
 3. **PDF 输入**（后置）：需 ADR + pypdf 依赖，MVP 外 Should Have
 4. **resume 评测集**（可选）：真实使用后若 level 推断偏差显著，建立 E-画像评测集（同 E1 模式：冻结标注 + F1）

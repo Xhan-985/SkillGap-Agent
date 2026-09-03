@@ -179,6 +179,34 @@ def test_delete_candidate_cascades(clean_db):
     assert delete_candidate(clean_db, out["candidate_id"]) is False
 
 
+def test_duplicate_canonical_skills_merged(clean_db):
+    """e2e 捕获缺陷回归：多个 raw_name 归一同一 skill_id → 合并一行
+    （证据累积 + confidence 重算 + level 取最大），不再 UNIQUE 冲突。"""
+    from skillgap.models import (
+        ResumeEvidence, ResumeExtraction, ResumeSkillAnnotation,
+    )
+    ext = ResumeExtraction(skills=[
+        ResumeSkillAnnotation(raw_name="RAG", level=3, evidences=[
+            ResumeEvidence(type="bare_claim", text="熟悉 RAG"),
+        ]),
+        ResumeSkillAnnotation(raw_name="检索增强生成", level=4, evidences=[
+            ResumeEvidence(type="project_detail",
+                           text="pgvector+Hybrid Search+RRF+Rerank 搭建检索链路"),
+            # 同段证据重复（e2e：Docker/Docker Compose 同引 L25）→ 不重复计
+            ResumeEvidence(type="project_detail",
+                           text="熟悉 RAG"),
+        ]),
+    ])
+    out = analyze_resume(clean_db, RESUME_A, FakeResumeExtractor(ext))
+    assert len(out["skills"]) == 1
+    rag = out["skills"][0]
+    assert rag["skill_id"] == "RAG"
+    assert rag["level"] == 4                       # 取最大
+    assert rag["confidence"] == 1.0                # 1.0 + 0.3×0.5 → 截断
+    assert len(rag["evidences"]) == 2              # 证据累积
+    assert out["notices"]["merged_duplicates"] == ["检索增强生成"]
+
+
 def test_transaction_rollback_on_failure(clean_db):
     """中途异常不残留（CandidateNotFound 在插入后抛出 → rollback）。"""
     from skillgap.models import (
