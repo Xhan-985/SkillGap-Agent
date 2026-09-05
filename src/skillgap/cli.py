@@ -230,6 +230,13 @@ def build_parser() -> argparse.ArgumentParser:
                         help="时点门禁：各类型取 id ≤ N 的最新一条"
                              "（回放历史用）")
 
+    p_rep = sub.add_parser("eval-report",
+                           help="评测报告：eval_run 历史 → Markdown"
+                                "（版本三元组/关键指标差异/时间序列/"
+                                "诚实边界）")
+    p_rep.add_argument("--out", default=None,
+                       help="写入文件路径（默认 stdout）")
+
     return p
 
 
@@ -546,6 +553,14 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
                       "（首次跑分前的正常态，不阻断）", file=sys.stderr)
             _print(result)
             return gate_exit_code(result)
+        elif args.command == "eval-report":
+            from skillgap.eval.report import generate_report
+            md = generate_report(conn, out_path=args.out)
+            if args.out:
+                _print({"written": args.out, "chars": len(md)})
+            else:
+                print(md)
+            return 0
         return 0
     finally:
         conn.close()
