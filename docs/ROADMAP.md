@@ -129,6 +129,7 @@ Phase 11 Docker + CI + Documentation
 | 产出 | 评测集 v1 冻结（E1+E2+E3）；评测报告生成（指标表+版本三元组+与上版差异）；CI 集成（PR 快检 / main 全量 / 阈值 Block）；失败分诊流程文档化；EVALUATION.md（README 级文档） |
 | 验收 | 同版本重跑确定性指标零漂移；LLM 指标方差 ≤ 3%；一次人为劣化演练（改坏评分权重 → CI 应拦截） |
 | 自检重点 | Evaluation：结果可验证；Resume：形成"评测资产"（中文技能抽取标注集可开源） |
+| 状态 | ✅ **完成（2026-09-08）**：443 测试（+49）。gate/`eval-gate`（block→exit 1，judge 永不进门禁）+ `eval-report`（差异同版本优先）+ CI 首个 workflow（PR+push master 全量 pytest；E1 仅 dispatch）+ 零漂移/taxonomy/劣化演练测试锚定 + E1 方差演练 **PASS**（极差 0.0145<0.03，每轮清 llm_cache 防假信号）+ EVALUATION.md；真实劣化案例（DeepSeek 波动→gate 真实 block→恢复）替代人为演练，详见 PHASE_9_REVIEW §2；**开放项：CI 首跑绿待 push**。详见 docs/EVALUATION.md + PHASE_9_REVIEW.md |
 
 ## Phase 10：Dashboard
 

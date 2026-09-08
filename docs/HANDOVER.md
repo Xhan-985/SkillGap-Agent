@@ -1,4 +1,4 @@
-﻿# SkillGap Agent —— 项目交接文档
+# SkillGap Agent —— 项目交接文档
 
 > 更新：2026-09-04 ｜ 代码状态：master 本地（push 需用户批准）｜ 测试：394 passed
 
@@ -174,7 +174,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 6. ~~进入 Phase 5~~ ✅ 已完成（2026-09-03，PHASE_5_REVIEW.md；conf-v1 公式 + 3 冻结画像 + CLI 4 命令，242 测试全绿。**已知限制**：LLM level 推断无评测集背书（E2 属 Phase 7），手动勾选兜底；简历输入为纯文本，PDF 后置）
 7. ~~进入 Phase 6~~ ✅ 已完成（2026-09-03，PHASE_6_REVIEW.md；gap-v1 冻结 + CLI gap-get，277 测试全绿。**口径裁决**：confidence 不进 gap（C1）/ 类目聚合规则冻结（C2）——DECISION_LOG D-2026-09-03-13。下一步 Phase 7 Job Matching——先写 docs/plans/ 计划；E2 标注集（20-30 对）是该阶段重点前置）
 8. ~~进入 Phase 8~~ ✅ 已完成（2026-09-04，PHASE_8_REVIEW.md；roi-v1 + LangGraph Agent + E3 基线 pass（nDCG@5=0.6497），410 测试全绿。**judge 已补做**：rubric-v1 真实基线 mean=5.0（eval_run #9，Warn 级不参与 verdict）。**RAG 引用层已激活**：1514 行证据已回填（bge-m3），跨语言/语义变体检索验证过（D-2026-09-04-16 激活记录）。待办：E3 标注双人复核（user 复核 + 同学抽标）。已知偏差（"Python 补到精通"/新手画像成本项冲突）为 v2 校准候选，见 data/eval/e3_report_v1.json）
-9. **进入 Phase 9**：评测汇总（系统级）——CI 门禁 + 评测报告生成 + 人为劣化演练；先写 docs/plans/ 计划
+9. ~~进入 Phase 9~~ ✅ 已完成（2026-09-08，PHASE_9_REVIEW.md；gate 汇总门禁 + eval-report 报告 + CI 首个 workflow + 零漂移/taxonomy/劣化演练测试锚定 + E1 方差演练 PASS（极差 0.0145<0.03），443 测试全绿。docs/EVALUATION.md 为评测 README。**开放项**：CI 首跑绿待 push（workflow 须在远端生效）；E3 标注双人复核（user + 同学）仍待办。**遗留观察**：E1 verdict 对 LLM 服务可用性敏感——evidence_rate<1.0 一票 block 会被 DeepSeek 瞬时失败触发（T6 真实案例：#10-12 block → #14 恢复 warn），分诊处置见 EVALUATION.md §9）。下一步 Phase 10 Dashboard——先写 docs/plans/ 计划
 
 ## 10. 已知问题与坑
 
@@ -206,8 +206,9 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 | `docs/DATA_COLLECTION.md` | 人工收集规范与批次协议 |
 | `docs/API.md` | 16 端点契约（§2.1 jd-analyze 结构） |
 | `docs/EVALUATION_PLAN.md` | E1-E5 指标与阈值（§7 失败分诊） |
+| `docs/EVALUATION.md` | 评测 README（冻结宣告/基线/方差/演练/分诊，**面试三问之"怎么证明有效"**） |
 | `docs/adr/ADR-001~010` | 全部架构决策（Context/Options/Decision） |
-| `PHASE_1~4_REVIEW.md` | 各阶段验收与六维自检 |
-| `docs/plans/` | Phase 2/3/4 实施计划（下一步：Phase 5 Candidate Profile 计划待写） |
+| `PHASE_1~9_REVIEW.md` | 各阶段验收与六维自检 |
+| `docs/plans/` | Phase 2-9 实施计划（下一步：Phase 10 Dashboard 计划待写） |
 
 个人学习文档（面试题库/知识缺口/学习路线/简历映射）：根目录 `docs/INTERVIEW_QUESTION_BANK.md`、`KNOWLEDGE_GAPS.md`、`LEARNING_ROADMAP.md`、`PROJECT_LEARNING_GUIDE.md`、`PROJECT_TECH_MAP.md`、`RESUME_TECH_MAPPING.md`（均为未跟踪文件，未入库）。

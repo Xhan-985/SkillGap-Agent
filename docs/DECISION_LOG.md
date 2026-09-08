@@ -118,8 +118,23 @@
 - **embedding 通道**：OpenAI-compatible /embeddings 端点（用户决策 2026-09-04：硅基流动 BAAI/bge-m3）；未配置 key 时 rag-index/rag-search 明确报错不臆造（ADR-008 同款纪律）。pgvector 传参零新依赖：参数按 text 传 + SQL 侧 %s::vector
 - **激活记录（2026-09-04 已完成）**：1514 行证据回填（24 批 bge-m3 调用），重跑索引=0（幂等验证过）。真实检索验证：①跨语言——中文"模型上下文协议"命中英文证据 "Model Context Protocol"（sim 0.639，且该变体恰在 alias 表，SQL 版同样可查——两版分工：alias 管**已知**变体，RAG 管**长尾**变体）；②语义变体——"检索增强"→ RAG（sim 0.764）。**诚实限制**：evidence_text 多为 2-10 字短语（"上下文工程"/"提示词工程"），长自然语句查询（如"搭建知识库问答系统需要什么技能"）相似度信号弱（Top1 仅 0.53 且非最相关技能）——evidence 粒度是短语级非句子级，属已知特征非缺陷；后续若需句级检索须回填 JD 原文分句（不在本层范围）
 
+## D-2026-09-04-17 ｜ Phase 9 评测汇总口径裁决（C1-C5）+ 冻结决策（D1-D8）归档
+
+> 原文：`docs/plans/2026-09-04-phase9-evaluation-consolidation.md`（本条为决策日志摘要；执行期 2026-09-04~09-08，落地记录见 PHASE_9_REVIEW.md）
+
+- **C1（CI 分层）**：PR 只跑测试（<5min 快反馈）；全量基线评测（E1 真实 LLM + 真实市场数据）**留本地**——真实数据与 key 都在本地，CI 无法触达且仓库不分发数据，eval_run 是 source of truth，gate/report 离线读库。E1 进 CI 的风险（key 泄露/费用/flaky）由 C2 消解
+- **C2（E1 触发）**：仅 workflow_dispatch 手动；无 secrets.LLM_API_KEY 时 warning + exit 0 skip（不红）
+- **C3（gate 语义）**：`block`→exit 1（阻断），`warn`→exit 0（stderr 提示不阻断）；judge 分数**永不进门禁**（rubric 是参考信号）；`--run-id N` 时点回放（复现历史 gate）
+- **C4（劣化演练双轨）**：轨① monkeypatch 改坏权重（coverage→0，不升版本）→ ρ 崩至 -0.866 → gate block exit 1 + 反向对照 pass（进 pytest 可重复）；轨② 真实库演练——执行期由 T6 真实案例替代（DeepSeek 波动 → E1 #10-12 真实 block → exit 1 → #14 恢复 warn，全链路走通 §7 Flaky 分诊路径，PHASE_9_REVIEW §2）
+- **C5（方差演练口径）**：同版本重跑 3 次取中位；**每轮 TRUNCATE llm_cache**（缓存会把失败原样复现 → 零方差假信号，#13 实证：与 #12 逐位相同）；F1 差异 <3%（绝对百分点）视为噪声级。实测（2026-09-08）：0.8326/0.8471/0.8451，极差 0.0145 **PASS**
+- **D7（评测集 v1 冻结宣告）**：E1×2（v1 20 JD / v2 53 真实 JD）+ E2（25 对，判定依据 market snapshot #4 china N=201）+ E3（5 画像复用 E2）——见 docs/EVALUATION.md §2；开放项：E3 双人复核（user + 同学）不阻塞
+- **D8（分诊具体化）**：EVALUATION_PLAN §7 五类 → 本仓库处置表（EVALUATION.md §9）；Flaky 关键句："看 verdict 前先看 extraction_failures"——E1 evidence_rate 一票 block 对 LLM 服务可用性敏感（T6 发现，基线 warn 依赖 failures=0 条件；不改冻结规则，若频繁误拦记待议复议）
+- **影响**：Phase 9 落地（eval/gate.py + eval/report.py + ci.yml + 测试锚定 49 项，443 绿）；docs/EVALUATION.md 成为评测 README；遗留开放项：CI 首跑绿待 push、E1 dispatch 待 secret 配置
+
 ---
 
 ## 待议决策
 
-无阻塞项。Phase 2 执行中如遇新决策点，按"先补 ADR/日志再动代码"纪律追加记录。
+- **E1 verdict 对 LLM 可用性敏感**（T6 发现，见 D-2026-09-04-17 C5/D8）：DeepSeek 瞬时失败即触发 evidence_rate<1.0 一票 block——若未来频繁误拦，复议方向：失败样本重试一次或 evidence_rate 阈值分级（如 ≥0.98 warn）。Phase 9 内不改冻结规则。
+
+
