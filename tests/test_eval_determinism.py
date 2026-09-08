@@ -1,6 +1,6 @@
-"""劣化演练自动化（Phase 9 T2——计划 C4 轨①：进 pytest 即进 CI）。
+"""评测确定性与一致性（Phase 9 T2 劣化演练 + T4 零漂移/taxonomy）。
 
-证明"PR 带劣化会被拦"的可重复路径：
+T2（C4 轨①，进 pytest 即进 CI）：
 monkeypatch 改坏 match.scoring.WEIGHTS（coverage→0.0，**不动 SCORING_VERSION**
 ——模拟不升版的坏改动，版本三元组失守时由 gate 兜底）→ run_e2 在
 fixture 市场上跑分 → ρ/MAE 崩 → eval_run verdict=block → gate 汇总
@@ -17,12 +17,21 @@ fixture 市场设计（劣化必须让**排序翻转**，而非仅分数下降�
 importance 主导（J2=J3 > J1，排序翻转）→ ρ 崩至负值。三组技能判定
 （strong/weak/missing）不依赖权重 → jaccard/prf 不变，block 纯来自分数。
 
+T4（D4 零漂移 + D5 taxonomy 一致性）：
+- D4：run_e2/run_e3 同一 fixture 市场连跑两次，两次 metrics dict
+  **完全相等**（E1 排除——LLM 非确定性由 C5 方差演练覆盖）
+- D5：E2/E3 标注集里出现的技能名 ⊆ 词表 canonical_name（文件级，
+  读 JSON + taxonomy CSV，不触 DB——CI 无库也能跑；E1 两版已由
+  test_eval_seed.py::test_ground_truth_uses_taxonomy_canonical_names 覆盖）
+
 真实库手动演练（C4 轨②：改权重 → eval-gate exit 1 → 复原）记入
 PHASE_9_REVIEW，不在本文件。
 """
 from __future__ import annotations
 
+import csv
 import json
+from pathlib import Path
 
 import pytest
 
@@ -159,3 +168,83 @@ def test_degradation_drill_control_same_path_passes(clean_db, _drill_market):
     result = apply_gate(latest_runs(clean_db))
     assert result["overall"] == "pass"
     assert gate_exit_code(result) == 0
+
+
+# ---------- T4 / D4：零漂移（同版本重跑确定性指标完全相等） ----------
+
+def test_run_e2_zero_drift_double_run(clean_db, _drill_market):
+    """E2 双跑：同一 fixture 市场连跑两次，两次 metrics dict 完全相等
+    （ROADMAP"同版本重跑确定性指标零漂移"；E1 排除——LLM 非确定性
+    由 C5 方差演练覆盖）。"""
+    m1 = run_e2(clean_db, extractor=None, dataset_version=DATASET_VERSION)
+    m2 = run_e2(clean_db, extractor=None, dataset_version=DATASET_VERSION)
+    assert m1 == m2
+    # 留痕两条且库内指标一致（强于返回值相等：JSONB 回读无损）
+    rows = clean_db.execute(
+        "SELECT metrics FROM eval_run WHERE eval_type='matching' "
+        "ORDER BY id").fetchall()
+    assert len(rows) == 2
+    assert rows[0]["metrics"] == rows[1]["metrics"]
+
+
+def test_run_e3_zero_drift_double_run(clean_db, tmp_path):
+    """E3 双跑：同市场同标注集连跑两次，metrics dict 完全相等
+    （画像 upsert 幂等 + recommend 规则确定 → 零漂移）。"""
+    from skillgap.eval.e3 import run_e3, seed_eval3
+    from tests.test_eval_e3_runner import _DATASET as E3_DATASET
+    from tests.test_recommend_service_fixtures import seed_market
+
+    seed_market(clean_db)
+    path = tmp_path / "e3_zero.json"
+    path.write_text(json.dumps(E3_DATASET, ensure_ascii=False),
+                    encoding="utf-8")
+    assert seed_eval3(clean_db, str(path)) == len(E3_DATASET["cases"])
+
+    m1 = run_e3(clean_db, dataset_version=E3_DATASET["dataset_version"])
+    m2 = run_e3(clean_db, dataset_version=E3_DATASET["dataset_version"])
+    assert m1 == m2
+    assert m1["n_cases"] == len(E3_DATASET["cases"])   # 非空跑（防 0==0 自欺）
+
+
+# ---------- T4 / D5：taxonomy 一致性（标注集技能 ⊆ 词表，文件级） ----------
+
+REPO = Path(__file__).resolve().parents[1]
+EVAL_DIR = REPO / "data" / "eval"
+TAXONOMY_CSV = (REPO / "src" / "skillgap" / "taxonomy" / "data"
+                / "skills_v1.csv")
+
+
+def _canonical_names() -> set[str]:
+    """词表 canonical_name 集合（文件级读取，不触 DB）。"""
+    with TAXONOMY_CSV.open(encoding="utf-8-sig") as f:
+        return {row["canonical_name"].strip() for row in csv.DictReader(f)
+                if row["canonical_name"].strip()}
+
+
+def test_e2_seed_skills_within_taxonomy():
+    """E2 标注集：画像技能 + 三组判定（strong/weak/missing）⊆ 词表
+    （EVALUATION_PLAN §6 词表与评测集一致性由 CI 检查）。"""
+    canon = _canonical_names()
+    data = json.loads(
+        (EVAL_DIR / "e2_seed_v1.json").read_text(encoding="utf-8"))
+    names = {s["skill"] for p in data["profiles"] for s in p["skills"]}
+    for pair in data["pairs"]:
+        gt = pair["ground_truth"]
+        for k in ("strong_skills", "weak_skills", "missing_skills"):
+            names |= set(gt.get(k, []))
+    outside = names - canon
+    assert not outside, f"E2 标注集词表外技能: {sorted(outside)}"
+
+
+def test_e3_seed_skills_within_taxonomy():
+    """E3 标注集：画像技能 + 相关性标注键（含 rel=0 的"已具备"技能）
+    ⊆ 词表。"""
+    canon = _canonical_names()
+    data = json.loads(
+        (EVAL_DIR / "e3_seed_v1.json").read_text(encoding="utf-8"))
+    names = {s["skill"] for c in data["cases"]
+             for s in c["profile"]["skills"]}
+    for c in data["cases"]:
+        names |= set(c["relevance"])
+    outside = names - canon
+    assert not outside, f"E3 标注集词表外技能: {sorted(outside)}"
