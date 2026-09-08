@@ -1,0 +1,99 @@
+# Phase 9 T5 / D6：仓库首个 CI（EVALUATION_PLAN §8 的工程化适配——C1 裁决）
+#
+# 分层策略（C1/C2 冻结口径）：
+# - test job：PR + push master 双触发，全量 pytest（评测器逻辑由 fixture 测试
+#   覆盖：E2/E3 全链路、E1 无 key 路径、劣化演练、零漂移、taxonomy 一致性）
+#   + db-upgrade 迁移预检（CLI 入口在 pytest 之外的真实验证）
+# - e1 job：仅 workflow_dispatch 手动触发（E1 需真实 LLM——key 泄露风险 +
+#   费用 + flaky，PR/push 不跑）；secrets.LLM_API_KEY 缺席时 skip 并打印原因
+# - 全量基线评测（真实市场数据 × E2/E3）留在本地——eval_run 是 source of
+#   truth，gate/report 离线读库（数据治理：仓库不分发 201 岗真实数据）
+#
+# 服务容器 env 对齐 tests/conftest.py 硬编码：
+#   ADMIN_URL = postgresql://skillgap:skillgap@localhost:5432/postgres
+#   （连 postgres 库 ensure_database 建 skillgap_test）
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch: # E1 手动入口（PR/push 时 e1 job 显示为 skipped）
+
+jobs:
+  test:
+    name: pytest 全量（PR 快检）
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: skillgap
+          POSTGRES_PASSWORD: skillgap
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U skillgap"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://skillgap:skillgap@localhost:5432/skillgap_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: 安装依赖
+        run: pip install -e ".[dev]"
+      - name: 迁移预检（建 test 库 + db-upgrade）
+        run: |
+          python -c "from skillgap.db import ensure_database; ensure_database('postgresql://skillgap:skillgap@localhost:5432/postgres', 'skillgap_test')"
+          DATABASE_URL="$TEST_DATABASE_URL" skillgap db-upgrade
+      - name: pytest 全量
+        run: pytest -q
+
+  e1:
+    name: E1 评测（仅手动 dispatch）
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: skillgap
+          POSTGRES_PASSWORD: skillgap
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U skillgap"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://skillgap:skillgap@localhost:5432/skillgap
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: 安装依赖
+        run: pip install -e ".[dev]"
+      - name: 建库 + 迁移 + 词表种子
+        run: |
+          python -c "from skillgap.db import ensure_database; ensure_database('postgresql://skillgap:skillgap@localhost:5432/postgres', 'skillgap')"
+          skillgap db-upgrade
+          skillgap seed
+      - name: E1 跑分（无 key 时 skip 有提示）
+        run: |
+          if [ -z "$LLM_API_KEY" ]; then
+            echo "::warning::skip：未配置 secrets.LLM_API_KEY——E1 需真实 LLM（C2：PR/push 不跑；本任务仅手动 dispatch）"
+            exit 0
+          fi
+          skillgap eval-e1 --dataset-version e1_seed_v2
+          skillgap eval-e1 --dataset-version e1_seed_v1
