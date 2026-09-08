@@ -8,6 +8,7 @@
   resume-analyze / profile-get / profile-add-skill / candidate-delete
     （Phase 5 Candidate Profile；resume-analyze 需 LLM_API_KEY）
   gap-get（Phase 6 Skill Gap：--job-id 单岗 或 --category 类目聚合，零 LLM）
+  serve（Phase 10 Dashboard：FastAPI 服务，默认仅绑定 127.0.0.1——API.md §0 红线）
 """
 from __future__ import annotations
 
@@ -124,6 +125,11 @@ def build_parser() -> argparse.ArgumentParser:
                           help="粘贴 JD → 结构化分析（M1，不落库）")
     p_jd.add_argument("--file", required=True, help="JD 文本文件")
     p_jd.add_argument("--title", default="")
+
+    p_srv = sub.add_parser("serve", help="Dashboard/API 服务（Phase 10）")
+    p_srv.add_argument("--host", default="127.0.0.1",
+                       help="默认仅本机（API.md §0 部署红线）；对外须显式传参")
+    p_srv.add_argument("--port", type=int, default=8000)
     p_col = sub.add_parser("collect",
                            help="交互式收集器：粘贴 JD→字段自动识别→回车确认→写批次 CSV")
     p_col.add_argument("--out", default="data/batch_1.csv",
@@ -278,6 +284,11 @@ def main(argv: list[str] | None = None, db_url: str | None = None) -> int:
         if getattr(args, "drop_last", False):
             return drop_last(args.out)
         return run_collect(args.out, jd_file=getattr(args, "jd_file", None))
+    if args.command == "serve":          # 每请求连接（api.deps），无需预建
+        import uvicorn
+        from skillgap.api.app import create_app
+        uvicorn.run(create_app(), host=args.host, port=args.port)
+        return 0
     conn = db.connect(db_url)
 
     try:

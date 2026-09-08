@@ -131,10 +131,25 @@
 - **D8（分诊具体化）**：EVALUATION_PLAN §7 五类 → 本仓库处置表（EVALUATION.md §9）；Flaky 关键句："看 verdict 前先看 extraction_failures"——E1 evidence_rate 一票 block 对 LLM 服务可用性敏感（T6 发现，基线 warn 依赖 failures=0 条件；不改冻结规则，若频繁误拦记待议复议）
 - **影响**：Phase 9 落地（eval/gate.py + eval/report.py + ci.yml + 测试锚定 49 项，443 绿）；docs/EVALUATION.md 成为评测 README；遗留开放项：CI 首跑绿待 push、E1 dispatch 待 secret 配置
 
+## D-2026-09-08-18 ｜ Phase 10 Dashboard 口径裁决（C1-C7）+ 设计冻结（D1-D10）
+
+> 原文：`docs/plans/2026-09-08-phase10-dashboard.md`（本条为决策日志摘要）
+
+- **C1（范围）**：10 端点 + 6 页。延后 Phase 11：contribute/import/adzuna 三管道端点 + tasks 异步（CLI 已覆盖；贡献区在 PRODUCT_SPEC §3 属"可选"）、quality/report + eval/results（M11）、Data & Quality 页
+- **C2（前端）**：Jinja2 SSR + 原生 JS + 手写 SVG 雷达/CSS 条形——零框架零构建零 CDN（离线可用）
+- **C3（新依赖）**：fastapi≥0.115 + uvicorn + jinja2 → ADR-011；`serve` 默认 127.0.0.1（API.md §0 红线落地，显式传参才可改绑）
+- **C4（match jd_text 模式）**：契约 §2.8 二选一 vs 服务层只有 job_id——新增 `match_score_text()`：jd_text → analyze_jd 无状态抽取 → 复用 compute_match 纯函数 → 不落库（无 consent 不入库，B1）；双模式同分一致性测试锚定
+- **C6（会话）**：candidate_id 前端 localStorage 持有、请求显式携带；匹配概览数据源 = localStorage 缓存最近一次 /api/match 响应（不加新端点）
+- **D1-D3**：create_app 工厂 + 每请求连接（不引入池——本地单用户 YAGNI，Phase 11 复议点）；错误映射 VALIDATION 422/NOT_FOUND 404/LLM 类 502；SAMPLE_INSUFFICIENT 双口径（market 200+insufficient:true vs recommendations 422 错误体，按契约原文）；API 层零计算只组装
+- **D7**：templates/static 打包进 api/ 包（package-data，Phase 11 compose 直接受益）
+- **影响**：Phase 10 落地（src/skillgap/api/ 新包 + match/service.py +match_score_text + cli serve + ~40 测试）；首个新依赖 ADR-011
+
 ---
 
 ## 待议决策
 
 - **E1 verdict 对 LLM 可用性敏感**（T6 发现，见 D-2026-09-04-17 C5/D8）：DeepSeek 瞬时失败即触发 evidence_rate<1.0 一票 block——若未来频繁误拦，复议方向：失败样本重试一次或 evidence_rate 阈值分级（如 ≥0.98 warn）。Phase 9 内不改冻结规则。
+
+
 
 
