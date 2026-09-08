@@ -1,0 +1,65 @@
+{
+  "drill": "e1-variance-v1",
+  "date": "2026-09-08",
+  "dataset_version": "e1_seed_v2",
+  "prompt_version": "v2",
+  "model": "deepseek-chat",
+  "protocol": "C5：每轮 TRUNCATE llm_cache 后全量重跑（清缓存防零方差假信号）；F1 差异 <3%（绝对百分点）视为噪声级（EVALUATION_PLAN §61）；同版本重跑 3 次取中位（§152）",
+  "rounds": [
+    {
+      "round": 1,
+      "eval_run_id": 10,
+      "f1": 0.8326,
+      "precision": 0.9149,
+      "recall": 0.764,
+      "macro_f1": 0.7505,
+      "evidence_rate": 0.9623,
+      "importance_accuracy": 0.6678,
+      "extraction_failures": 2,
+      "verdict": "block",
+      "seconds": 317.4
+    },
+    {
+      "round": 2,
+      "eval_run_id": 11,
+      "f1": 0.8471,
+      "precision": 0.9072,
+      "recall": 0.7944,
+      "macro_f1": 0.7709,
+      "evidence_rate": 0.9811,
+      "importance_accuracy": 0.6709,
+      "extraction_failures": 1,
+      "verdict": "block",
+      "seconds": 313.2
+    },
+    {
+      "round": 3,
+      "eval_run_id": 12,
+      "f1": 0.8451,
+      "precision": 0.9094,
+      "recall": 0.7893,
+      "macro_f1": 0.7694,
+      "evidence_rate": 0.9811,
+      "importance_accuracy": 0.6817,
+      "extraction_failures": 1,
+      "verdict": "block",
+      "seconds": 678.5
+    }
+  ],
+  "f1_values": [
+    0.8326,
+    0.8471,
+    0.8451
+  ],
+  "f1_median": 0.8451,
+  "f1_range": 0.0145,
+  "threshold": 0.03,
+  "within_threshold": true,
+  "analysis": {
+    "variance_verdict": "PASS：F1 极差 0.0145 < 0.03（噪声级以内，EVALUATION_PLAN §61）",
+    "vs_baseline": "三轮 F1 均值 0.8416，较历史基线 0.8669（eval_run#4/#6，failures=0）低约 2.5 个百分点；主因：本轮每轮 1-2 个抽取失败（失败率 1/53-2/53 ≈ 1.9%-3.8%）计为空抽取拉低 recall（0.764-0.794 vs 基线 0.802）",
+    "verdict_finding": "三轮 verdict 均为 block——并非 F1 阈值触发（f1/recall 均落在 warn 区间 0.75-0.85），而是 verdict_for 的 evidence_rate<1.0 一票 block 规则被 LLM 瞬时失败触发（0.9623/0.9811/0.9811）。暴露 E1 verdict 对 LLM 服务可用性的敏感性：历史基线的 warn 依赖 failures=0 的幸运条件",
+    "gate_impact": "E1 最新 run（#12）block → gate overall=block（exit 1）。按 Phase 9 冻结纪律（不动三评测器本体判定规则）不改代码；处置走 EVALUATION_PLAN §152 Flaky 分诊：同版本重跑 3 次取中位、方差写入报告。gate 恢复需下一次 failures=0 的 E1 跑分",
+    "attribution": "temperature=0 非严格确定性承诺 + DeepSeek 服务端偶发超时/输出异常（轮 3 耗时 678.5s 较前两轮 317s/313s 翻倍，佐证服务端延迟波动期）"
+  }
+}
