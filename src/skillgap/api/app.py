@@ -53,5 +53,7 @@ def create_app() -> FastAPI:
 
     from skillgap.api.routes_market import router as market_router
     app.include_router(market_router)
+    from skillgap.api.routes_profile import router as profile_router
+    app.include_router(profile_router)
 
     return app
