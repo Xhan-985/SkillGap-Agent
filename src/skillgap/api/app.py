@@ -11,19 +11,8 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from skillgap.api.deps import get_conn
+from skillgap.api.errors import ApiError
 from skillgap.config import settings
-
-
-class ApiError(Exception):
-    """业务错误 → 统一错误体（routes 层抛出，handler 兜底格式化）。"""
-
-    def __init__(self, status_code: int, code: str, message: str,
-                 details: dict | None = None):
-        super().__init__(message)
-        self.status_code = status_code
-        self.code = code
-        self.message = message
-        self.details = details or {}
 
 
 def _error_body(code: str, message: str, details: dict | None = None) -> dict:
@@ -61,5 +50,8 @@ def create_app() -> FastAPI:
             db_ok = False
         return {"status": "ok" if db_ok else "degraded", "db": db_ok,
                 "llm": "configured" if settings.llm_api_key else "not_configured"}
+
+    from skillgap.api.routes_market import router as market_router
+    app.include_router(market_router)
 
     return app

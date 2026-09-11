@@ -4,8 +4,9 @@ from __future__ import annotations
 import pytest
 from fastapi.testclient import TestClient
 
-from skillgap.api.app import ApiError, create_app
+from skillgap.api.app import create_app
 from skillgap.api.deps import get_conn
+from skillgap.api.errors import ApiError
 
 
 @pytest.fixture()
