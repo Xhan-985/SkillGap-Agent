@@ -147,6 +147,11 @@ def _soft_item_matches(item: Mapping, cand: Mapping) -> bool | None:
     v = str(item.get("value") or "")
     if t == "experience":
         years = cand.get("experience_years")
+        if isinstance(years, dict):
+            # soft_profile 存储结构 {value, evidence_text}（profile/service
+            # _soft_profile_json）——取裸值参与比较（T4 修复：原先 dict>=int 必崩，
+            # 真实库 JD soft 全空从未触发；非公式变更，SCORING_VERSION 不动）
+            years = years.get("value")
         if years is None:
             return None
         need = _parse_years(v)
