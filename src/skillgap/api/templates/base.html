@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}SkillGap Agent{% endblock %}</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">SkillGap Agent</span>
+  <nav>
+    <a href="/">总览</a>
+    <a href="/resume">简历分析</a>
+    <a href="/jd">JD 分析</a>
+    <a href="/match">匹配</a>
+    <a href="/recommend">推荐</a>
+    <a href="/market">市场</a>
+  </nav>
+  <span class="market-switch">
+    市场：
+    <a class="{{ 'active' if market == 'china' else '' }}"
+       href="/?market=china{% if candidate_id %}&amp;candidate_id={{ candidate_id }}{% endif %}">China</a>
+    <a class="{{ 'active' if market == 'global' else '' }}"
+       href="/?market=global{% if candidate_id %}&amp;candidate_id={{ candidate_id }}{% endif %}">Global</a>
+  </span>
+</header>
+<main>
+{% block content %}{% endblock %}
+</main>
+<footer class="foot">样本量与数据窗口在各视图内标注 · 本地单用户部署（API.md §0）</footer>
+</body>
+</html>

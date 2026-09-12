@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}市场 · SkillGap Agent{% endblock %}
+{% block content %}
+<h1>市场技能频率</h1>
+<p class="hint">单一市场视图（China / Global 切换，无合并）。每行可查看证据 JD 列表。</p>
+
+<div class="market-switch">
+  <a class="{{ 'active' if market == 'china' else '' }}" href="/market?market=china">China</a>
+  <a class="{{ 'active' if market == 'global' else '' }}" href="/market?market=global">Global</a>
+</div>
+
+{% if market_view.insufficient %}
+<div class="gate-gray">样本量不足以判断趋势（N={{ market_view.sample_size }}）</div>
+{% else %}
+<p class="meta">
+  窗口 {{ market_view.window.start }} ~ {{ market_view.window.end }}
+  · N={{ market_view.sample_size }}
+  · 置信度 {{ market_view.confidence_label }}
+</p>
+<table class="roi">
+  <thead><tr><th>技能</th><th>频率</th><th>JJ 数</th><th>操作</th></tr></thead>
+  <tbody>
+  {% for s in market_view.skills %}
+    <tr>
+      <td>{{ s.canonical_name }}</td>
+      <td>{{ (s.frequency * 100)|round(1) }}%</td>
+      <td>{{ s.jd_count }}</td>
+      <td><a href="/api/market/skills/{{ s.canonical_name | urlencode }}/evidence">查看证据</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% if market == 'global' %}
+<p class="meta" style="text-align:right">Jobs by <a href="https://www.adzuna.co.uk" rel="noopener">Adzuna</a></p>
+{% endif %}
+{% endif %}
+{% endblock %}

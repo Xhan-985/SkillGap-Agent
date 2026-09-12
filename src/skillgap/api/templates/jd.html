@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}JD 分析 · SkillGap Agent{% endblock %}
+{% block content %}
+<h1>JD 分析</h1>
+<p class="hint">粘贴 JD 文本 → 结构化分析（无状态即时计算，默认不落库；贡献到市场数据集需另行明确勾选）。</p>
+
+<form id="jd-form" data-endpoint="/api/jd/analyze">
+  <input type="text" id="jd-title" placeholder="岗位标题（可选）" style="width:60%">
+  <textarea id="jd-text" rows="12" style="width:100%"
+            placeholder="粘贴 JD 全文：职责、要求、加分项……"></textarea>
+  <p class="meta" id="jd-counter">0 字符</p>
+  <button type="submit">分析 JD</button>
+</form>
+
+<div id="jd-error" class="banner-error" hidden></div>
+<div id="jd-result" hidden>
+  <h2>分析结果</h2>
+  <div id="jd-job-card"></div>
+  <h3>核心技能（must_have）</h3><div id="jd-core"></div>
+  <h3>次要技能（nice_to_have）</h3><div id="jd-secondary"></div>
+  <h3>软性要求</h3><div id="jd-soft"></div>
+  <details><summary class="meta">抽取元信息（模型 / prompt 版本 / 延迟）</summary>
+    <pre id="jd-meta" class="meta"></pre>
+  </details>
+</div>
+{% endblock %}

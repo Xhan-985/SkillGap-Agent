@@ -1,0 +1,117 @@
+/* SkillGap Agent —— 桌面优先、无动画、够用即止（UI_SPEC §3） */
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, "Segoe UI", "Microsoft YaHei", sans-serif;
+  margin: 0; color: #222; background: #f6f7f9;
+}
+a { color: #2563eb; }
+
+.topbar {
+  display: flex; gap: 16px; align-items: center;
+  padding: 10px 20px; background: #1e293b; color: #fff;
+}
+.topbar .brand { font-weight: 700; }
+.topbar nav a { color: #cbd5e1; text-decoration: none; margin-right: 10px; }
+.topbar nav a:hover { color: #fff; }
+.market-switch { margin-left: auto; font-size: 14px; }
+.market-switch a { margin-left: 6px; color: #94a3b8; text-decoration: none; }
+.market-switch a.active { color: #fff; font-weight: 600; }
+
+main { max-width: 1100px; margin: 20px auto; padding: 0 16px; }
+h1 { font-size: 20px; }
+.hint { color: #64748b; font-size: 13px; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.view {
+  background: #fff; border: 1px solid #e2e8f0;
+  border-radius: 8px; padding: 16px;
+}
+.view h2 { margin-top: 0; font-size: 15px; color: #334155; }
+.empty { color: #94a3b8; }
+
+/* 样本量守门灰态（D5） */
+.gate-gray {
+  background: #eef0f3; border: 1px dashed #cbd5e1; color: #64748b;
+  padding: 18px; border-radius: 6px; text-align: center;
+}
+
+/* 画像技能卡 + confidence 色阶 */
+.skill-card {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 6px 8px; border-radius: 6px; margin-bottom: 4px;
+}
+.conf-high { background: #ecfdf5; }
+.conf-mid  { background: #fffbeb; }
+.conf-low  { background: #fef2f2; }
+.skill-name { min-width: 70px; font-weight: 600; }
+.stars { letter-spacing: 2px; color: #f59e0b; }
+.conf { font-size: 12px; color: #64748b; }
+
+/* 市场条形图（CSS div 宽度，D6） */
+.bars { list-style: none; padding: 0; margin: 8px 0 0; }
+.bar-row {
+  display: grid; grid-template-columns: 90px 1fr 170px;
+  gap: 8px; align-items: center; margin-bottom: 6px;
+}
+.bar-label { font-size: 13px; }
+.bar { background: #e2e8f0; height: 14px; border-radius: 3px; overflow: hidden; }
+.bar-fill { background: #3b82f6; height: 100%; }
+.bar-note { font-size: 12px; color: #64748b; }
+
+/* ROI 表 */
+table.roi { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.roi th, table.roi td {
+  border-bottom: 1px solid #e2e8f0; padding: 6px 8px; text-align: left;
+}
+table.roi th { color: #64748b; font-weight: 600; }
+
+/* 推荐卡片 */
+.action-card {
+  border: 1px solid #e2e8f0; border-radius: 6px;
+  padding: 10px; margin-bottom: 8px;
+}
+.action-card p { margin: 6px 0 0; font-size: 13px; color: #475569; }
+.priority {
+  display: inline-block; background: #1d4ed8; color: #fff;
+  font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-right: 8px;
+}
+
+/* 雷达（手写 SVG，D6） */
+.radar { width: 100%; max-width: 320px; display: block; margin: 0 auto; }
+.radar-ring { fill: none; stroke: #e2e8f0; }
+.radar-required { fill: rgba(239, 68, 68, .12); stroke: #ef4444; stroke-dasharray: 4 2; }
+.radar-actual { fill: rgba(59, 130, 246, .18); stroke: #2563eb; }
+.radar-label { font-size: 11px; fill: #475569; text-anchor: middle; }
+.legend .swatch {
+  display: inline-block; width: 12px; height: 12px;
+  border-radius: 2px; vertical-align: -1px;
+}
+.legend .swatch.actual { background: rgba(59, 130, 246, .55); border: 1px solid #2563eb; }
+.legend .swatch.required { background: rgba(239, 68, 68, .25); border: 1px dashed #ef4444; }
+
+.meta { font-size: 12px; color: #64748b; }
+.foot { text-align: center; color: #94a3b8; font-size: 12px; padding: 16px; }
+
+/* 流程页（T7） */
+button {
+  background: #1d4ed8; color: #fff; border: none; padding: 8px 18px;
+  border-radius: 6px; cursor: pointer; font-size: 14px;
+}
+button.danger { background: #dc2626; }
+textarea, input[type="text"], input[type="number"], select {
+  border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px;
+  font-family: inherit; margin: 4px 0;
+}
+form { margin: 12px 0; }
+form label { margin-right: 16px; }
+.banner-error {
+  background: #fef2f2; border: 1px solid #dc2626; color: #991b1b;
+  padding: 10px 14px; border-radius: 6px; margin: 10px 0;
+}
+.swimlanes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.swimlanes h3 { font-size: 13px; color: #64748b; margin: 8px 0 4px; }
+blockquote {
+  margin: 4px 0; padding: 6px 10px; background: #f1f5f9;
+  border-left: 3px solid #94a3b8; border-radius: 3px;
+}
+details summary { cursor: pointer; }
