@@ -95,3 +95,24 @@ def test_health_connection_closed_per_request(clean_db):
     with TestClient(app) as c:
         assert c.get("/api/health").json()["db"] is True
     assert conns[0].closed, "请求结束后连接应已关闭"
+
+
+def test_no_leaked_query_conn_params():
+    """回归（T8 真实走查发现）：依赖工厂的 conn 必须走 Depends(get_conn)——
+    写成裸参数会被 FastAPI 解析为 query 参数（真实路径 422 query.conn），
+    而 dependency_overrides 整棵替换子树导致测试路径不可见。结构级断言
+    覆盖全部路由，防同类复发。"""
+    from fastapi.routing import APIRoute
+
+    app = create_app()
+
+    def _walk(dependant, acc):
+        acc.extend(f.name for f in dependant.query_params)
+        for dep in dependant.dependencies:
+            _walk(dep, acc)
+
+    for route in app.routes:
+        if isinstance(route, APIRoute):
+            names = []
+            _walk(route.dependant, names)
+            assert "conn" not in names, route.path

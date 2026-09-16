@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}总览 · SkillGap Agent{% endblock %}
+{% block content %}
+<h1>总览</h1>
+<p class="hint">六视图数据全部来自服务端，可点击溯源；样本不足处如实灰显。</p>
+
+<div class="grid">
+
+  <!-- 1 我的画像 -->
+  <section class="view" id="view-profile">
+    <h2>我的画像</h2>
+    {% if profile %}
+      {% for s in profile.skills %}
+      <div class="skill-card conf-{{ 'high' if s.confidence >= 0.7 else ('mid' if s.confidence >= 0.4 else 'low') }}">
+        <span class="skill-name">{{ s.skill_id }}</span>
+        <span class="stars">{{ '★' * s.level }}{{ '☆' * (5 - s.level) }}</span>
+        <span class="conf">置信度 {{ '%.2f'|format(s.confidence) }}</span>
+      </div>
+      {% endfor %}
+      <p class="meta">技能 {{ profile.skills|length }} 项 · 星级为画像水平（1-5）</p>
+    {% elif candidate_missing %}
+      <p class="empty">candidate {{ candidate_id }} 不存在——请核对画像 ID（简历分析页生成）。</p>
+    {% else %}
+      <p class="empty">尚未创建画像——先到「简历分析」页粘贴简历生成。</p>
+    {% endif %}
+  </section>
+
+  <!-- 2 技能雷达 -->
+  <section class="view" id="view-radar">
+    <h2>技能雷达</h2>
+    {% if radar and radar.enough %}
+    <svg viewBox="0 0 260 260" class="radar" role="img"
+         aria-label="画像水平与类目要求雷达图">
+      {% for ring in radar.grid_rings %}<polygon class="radar-ring" points="{{ ring }}"/>{% endfor %}
+      <polygon class="radar-required" points="{{ radar.required_points }}"/>
+      <polygon class="radar-actual" points="{{ radar.actual_points }}"/>
+      {% for l in radar.labels %}<text x="{{ l.x }}" y="{{ l.y }}" class="radar-label">{{ l.skill }}</text>{% endfor %}
+    </svg>
+    <p class="meta legend">
+      <span class="swatch actual"></span>画像水平
+      vs <span class="swatch required"></span>类目要求
+      （{{ radar.category }} · 频次 ≥20% 技能）
+    </p>
+    {% elif profile %}
+    <p class="empty">可绘制的技能点不足 3 个，暂无法生成雷达图。</p>
+    {% else %}
+    <p class="empty">尚未创建画像。</p>
+    {% endif %}
+  </section>
+
+  <!-- 3 市场热门技能 -->
+  <section class="view" id="view-market">
+    <h2>市场热门技能</h2>
+    {% if market_view.insufficient %}
+    <div class="gate-gray">样本量不足以判断趋势（N={{ market_view.sample_size }}）</div>
+    {% else %}
+    <p class="meta">
+      窗口 {{ market_view.window.start }} ~ {{ market_view.window.end }}
+      · N={{ market_view.sample_size }}
+      · 置信度 {{ market_view.confidence_label }}
+    </p>
+    <ul class="bars">
+      {% for s in market_view.skills[:10] %}
+      <li class="bar-row">
+        <a class="bar-label"
+           href="/api/market/skills/{{ s.canonical_name | urlencode }}/evidence">{{ s.canonical_name }}</a>
+        <div class="bar"><div class="bar-fill" style="width: {{ (s.frequency * 100)|round(1) }}%"></div></div>
+        <span class="bar-note">{{ (s.frequency * 100)|round(0)|int }}% · N={{ market_view.sample_size }} · {{ market_view.confidence_label }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if market == 'global' %}
+    <p class="meta" style="text-align:right">Jobs by <a href="https://www.adzuna.co.uk" rel="noopener">Adzuna</a></p>
+    {% endif %}
+  </section>
+
+  <!-- 4 我的缺口 -->
+  <section class="view" id="view-gaps">
+    <h2>我的缺口</h2>
+    {% if last_rec %}
+    <table class="roi">
+      <thead><tr>
+        <th>Skill</th><th>Demand</th><th>Gap</th><th>Cost</th><th>Potential Gain</th>
+      </tr></thead>
+      <tbody>
+      {% for it in last_rec.priority_items %}
+        <tr>
+          <td><a href="/api/market/skills/{{ it.skill | urlencode }}/evidence">{{ it.skill }}</a></td>
+          <td>{{ (it.frequency * 100)|round(0)|int }}%（N={{ it.sample_size }}）</td>
+          <td>{{ it.gap }}</td>
+          <td>{{ it.cost }}</td>
+          <td>{{ '%.2f'|format(it.potential_gain) }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="meta">预算 {{ last_rec.time_budget_days }} 天 · Demand 引用市场快照（市场页可查窗口）</p>
+    {% else %}
+    <p class="empty">暂无推荐记录——先到「推荐」页生成（此处展示最近一次结果）。</p>
+    {% endif %}
+  </section>
+
+  <!-- 5 推荐行动 -->
+  <section class="view" id="view-actions">
+    <h2>推荐行动</h2>
+    {% if last_rec %}
+      {% for it in last_rec.priority_items[:3] %}
+      <div class="action-card">
+        <span class="priority">Priority {{ loop.index }}</span>
+        <strong>{{ it.skill }}</strong>
+        <p>{{ it.rationale }}</p>
+      </div>
+      {% endfor %}
+    {% else %}
+    <p class="empty">暂无推荐记录——先到「推荐」页生成。</p>
+    {% endif %}
+  </section>
+
+  <!-- 6 匹配概览（C6：前端 localStorage 呈现，SSR 渲染容器） -->
+  <section class="view" id="view-match">
+    <h2>匹配概览</h2>
+    <div id="match-overview" data-candidate="{{ candidate_id if candidate_id else '' }}">
+      <p class="empty">暂无匹配记录——先到「匹配」页跑一次匹配；最近一次结果将在此展示。</p>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

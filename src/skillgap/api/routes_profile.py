@@ -28,7 +28,7 @@ class ResumeAnalyzeRequest(BaseModel):
     candidate_id: int | None = None
 
 
-def make_resume_extractor(conn):
+def make_resume_extractor(conn=Depends(get_conn)):
     """真实 LLM 装配（复用 cli.py 同构逻辑；未配 key → 502 明示，不静默）。"""
     from skillgap.llm.gateway import LLMGateway
     from skillgap.llm.provider import OpenAICompatibleProvider

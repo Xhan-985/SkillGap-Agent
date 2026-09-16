@@ -62,4 +62,16 @@ def create_app() -> FastAPI:
     from skillgap.api.routes_jd import router as jd_router
     app.include_router(jd_router)
 
+    # SSR 页面 + 静态资源（Phase 10 D7/D8）
+    from pathlib import Path
+
+    from fastapi.staticfiles import StaticFiles
+
+    static_dir = Path(__file__).parent / "static"
+    if static_dir.is_dir():
+        app.mount("/static", StaticFiles(directory=static_dir),
+                  name="static")
+    from skillgap.api.routes_web import router as web_router
+    app.include_router(web_router)
+
     return app

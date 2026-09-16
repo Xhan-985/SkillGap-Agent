@@ -28,10 +28,8 @@ async function api(url, options) {
   try { body = await resp.json(); } catch (_) { /* 非 JSON（罕见）*/ }
   if (!resp.ok) {
     const err = body && body.error;
-    const detail = err && err.details
-      ? "（" + JSON.stringify(err.details) + "）" : "";
     throw new Error((err && (err.code + ": " + err.message)) ||
-                    ("HTTP " + resp.status)) + "";
+                    ("HTTP " + resp.status));
   }
   return body;
 }
@@ -132,7 +130,7 @@ function renderJdResult(body) {
     (j.city ? `城市 ${esc(j.city)} · ` : "") + `薪资 ${esc(j.salary || "—")}</p></div>`;
   const chip = (s) =>
     `<div class="action-card"><strong>${esc(s.raw_name)}</strong>
-     <p class="meta">${esc(s.importance)} · ${esc(s.intensity)}</p>
+     <p class="meta">${esc(s.importance)}${s.intensity ? " · " + esc(s.intensity) : ""}</p>
      <blockquote class="meta">${esc(s.evidence_text)}</blockquote></div>`;
   $("jd-core").innerHTML = body.core_skills.map(chip).join("") || "（无）";
   $("jd-secondary").innerHTML = body.secondary_skills.map(chip).join("") || "（无）";
@@ -191,7 +189,7 @@ function renderMatch(body) {
      <div class="bar"><div class="bar-fill" style="width:${(bd[k] * 100).toFixed(1)}%"></div></div>
      <span class="bar-note">${(bd[k] * 100).toFixed(1)}%</span></div>`).join("");
   $("match-overview-main").innerHTML =
-    `<div class="action-card"><strong style="font-size:22px">${(body.overall_score * 100).toFixed(1)}</strong>
+    `<div class="action-card"><strong style="font-size:22px">${body.overall_score.toFixed(1)}</strong>
      <ul class="bars">${bars}</ul></div>`;
   const lane = (arr, tpl) => arr.map(tpl).join("") || "（无）";
   $("match-strong").innerHTML = lane(body.strong_skills, (s) =>
@@ -237,7 +235,7 @@ function initRecommend() {
       $("recommend-projects").innerHTML =
         body.project_suggestions.map((p) =>
           `<div class="action-card"><strong>${esc(p.title)}</strong>
-           <p class="meta">覆盖技能：${p.skills.map(esc).join("、")} · 预估 ${p.est_days} 天 · 模板人工策划</p></div>`)
+           <p class="meta">覆盖技能：${p.matched_skills.map(esc).join("、")} · 预估 ${p.est_days} 天 · 模板人工策划</p></div>`)
         .join("") || "（预算内无匹配模板）";
       $("recommend-result").hidden = false;
     } catch (err) {
@@ -265,7 +263,7 @@ function initDashboardMatchOverview() {
        <span class="bar-note">${(bd[k] * 100).toFixed(1)}%</span></div>`).join("");
     el.innerHTML =
       `<div class="action-card">
-       <strong style="font-size:22px">${(body.overall_score * 100).toFixed(1)}</strong>
+       <strong style="font-size:22px">${body.overall_score.toFixed(1)}</strong>
        <span class="meta">（最近一次匹配 · scoring_version ${esc(body.scoring_version)}）</span>
        <ul class="bars">${bars}</ul></div>`;
   } catch (_) { /* 损坏缓存视同无记录 */ }
