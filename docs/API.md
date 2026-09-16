@@ -63,6 +63,7 @@
 
 **Error**：`VALIDATION_ERROR`（长度/为空）；`LLM_EXTRACTION_FAILED`（重试 2 次后 Schema 仍失败，**明示失败不降级**）；`LLM_TIMEOUT`。
 **数据来源**：用户输入。**是否 LLM**：是（唯一受控抽取节点）。**soft_requirements 存储说明**：soft_requirements（经验年限/学历/语言）随 contribute 入库时写入 job.soft_requirements（DATA_MODEL §2.2），作为 Match 公式 experience_relevance 的 JD 侧输入。
+**实现备注（Phase 10 落地）**：响应透传服务层超集（技能层额外含 `raw_name`/`importance`/`intensity`——`intensity` 为 JD 熟练度词，**可空**：JD 未写熟练度时为 null）；未配 `LLM_API_KEY` → 502 明示不静默；标题 `title` 可选透传。
 
 ### 2.2 POST /api/jd/contribute（M3）
 
@@ -99,6 +100,7 @@
 **soft_profile 说明**：经验年限/学历/语言的证据化抽取（DATA_MODEL §2.7），作为 Match 公式 experience_relevance 的用户侧输入；无对应简历内容时字段为 null（公式按中性 0.5 处理，DATA_MODEL §4.3）。
 **Error**：`VALIDATION_ERROR`；`LLM_EXTRACTION_FAILED`（证据识别失败——**部分失败策略**：未识别技能不出现，不伪造低置信技能）。
 **说明**：简历原文仅本会话保留，不进任何市场数据。`evidence_ref` 为分析会话内的简历行号定位（`resume#L<n>`，尽力而为）——简历原文不落库，故 profile 查询（§2.6）返回的 evidence_ref 为 null；CLI `resume-analyze` 响应为契约超集（额外含 notices/extraction 元信息），FastAPI 层落地时按本契约裁剪。
+**实现备注（Phase 10 落地）**：已按契约裁剪（剥 notices）；错误映射——`ResumeValidationError`→422 / `ExtractionFailed`→502（details.retries）/ `LLMError`→502 `LLM_TIMEOUT`（provider 层不区分超时与网络错误，details.cause 携带原始异常名保真）/ 不存在 candidate→404。
 
 ### 2.6 GET /api/candidates/{id}/profile ／ 2.7 DELETE /api/candidates/{id}
 
@@ -121,6 +123,7 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 **Error**：`VALIDATION_ERROR`；`NOT_FOUND`。**LLM**：分数计算**零 LLM**（CI 静态检查）；解释生成可选。
 **数据来源**：candidate + job 表。
 **实现备注**（Phase 7 落地，DECISION_LOG D-2026-09-03-14）：CLI `match-score --candidate-id N --job-id M [--llm-explain]` 为本契约载体；响应额外含 `neutral_flags`（§4.3 中性 0.5 维度清单，如 `no_must_have`/`no_matched_skills`/`soft_not_evaluable`）与 `invalid`（`no_skills`=JD 零技能）。三组为技能名数组；`strong/weak` 判定线 confidence ≥ 0.5（与 gap-v1 同源），满足 ⇔ 等级达标。解释默认确定性模板（数字 100% 来自 breakdown）；`--llm-explain` 走 LLM 生成但数字经程序比对（不一致即拦截降级）。经验相关性：真实库 JD `soft_requirements` 全空 → 恒中性 0.5（C1 裁决，回填需 E1 prompt 变更走 E1 门禁）。结果落 `match_result` 表留痕（重复评分多行历史）。
+**实现备注**（Phase 10 落地，jd_text 模式 C4）：`POST /api/match` 支持 `jd_text`/`job_id` 二选一（缺一/双缺 → 422）。jd_text 模式 = LLM 无状态抽取 → 词表归一组装 reqs → 复用 `compute_match` 纯函数 → **不落库**（无 consent 不入库，B1）；与 job_id 模式对同一 JD **同分一致性测试锚定**（无第二套公式）。`explain=true` 走 LLM 叙事、数字不一致拦截降级为确定性模板；job_id 模式零 LLM（不因缺 key 502）。
 
 ### 2.9 GET /api/candidates/{id}/gaps（M7）
 
@@ -135,6 +138,7 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
   "gap_version": "gap-v1" }
 ```
 **判定依据**：required/actual_level 与 gap 由 DATA_MODEL §4.2 映射与 §4.4 规则计算（程度词→等级；confidence 不进 gap——H1 口径）；transferable 依据 skill_relation(relation_type=transferable_to) + parent（一层）+ 自身证据（confidence ≥0.5），via 报证据技能、note 取 relation.note。排序：gap 降序、同 gap 按 frequency 降序；demand/cost 为 Phase 8 ROI 公式的原料（本端点不计算 potential_gain）。
+**实现备注**（Phase 10 落地）：`GET /api/candidates/{id}/gaps` 双模式已落地（job_id 与 category 二选一，缺/双传 → 422）。
 **类目聚合规则**（DECISION_LOG D-2026-09-03-13）：类目内出现频次 ≥ min_freq（默认 0.20）的技能进入要求清单；required_level = 该技能类目内 must_have 行映射最大值（无 must_have 行取 2）；响应含 category_sample_size 与该市场最新快照引用（demand 溯源）。
 
 ### 2.10 POST /api/recommendations（M9）
@@ -153,6 +157,7 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 **红线**：`potential_gain` 等数值 100% 公式计算（Demand×Gap÷Cost），rationale 由模板/LLM 生成但**不得引入公式外数字**。
 **Error**：`SAMPLE_INSUFFICIENT`（所选市场样本不足时，demand 缺省并明示）。
 **实现口径（Phase 8 落地，DECISION_LOG D-2026-09-04-15）**：demand 参照系 = market 全类目聚合（频次 ≥0.20 入清单、required 取 must_have 映射最大值、无 must 取 2）；demand 溯源最新快照 evidence_ref；N<30 → INSUFFICIENT_MARKET_DATA 拒推（ADR-008 守门）。time_budget_days（7/14/30）不影响 ROI 排序，仅过滤 project_suggestions（est_days ≤ budget）。Agent 叙事（agent-plan）数字经 check_consistency 程序比对，越界即 revise/降级模板。E3 基线（2026-09-04，china N=201 × 五画像）：nDCG@5=0.6497 pass / hit_rate@3=1.0 / coverage=0.95（eval_run #8）。
+**实现备注**（Phase 10 落地，D2 双口径）：本端点为**决策侧**——N<30 拒推返回 422 `SAMPLE_INSUFFICIENT` 统一错误体；与 §2.11 market/skills 的**展示侧**（200 + `insufficient: true` 灰态）构成"同一守门规则、两种表达"（展示可看、决策拒推，Phase 8 冻结语义）。time_budget_days/market 词表外 → 422。
 
 ### 2.11 GET /api/market/skills（M8）
 
@@ -168,10 +173,12 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 
 **Error**：`SAMPLE_INSUFFICIENT`（N<30：**这是正确行为而非故障**——返回 200 + `insufficient: true` 结构亦可，v1 冻结为 200 + 明示字段，避免前端当错误处理）。
 **LLM**：禁止（统计纯 SQL）。
+**实现备注**（Phase 10 落地，D3 裁剪）：服务层超集剥离——`canonical_name`→`skill_id`、`source_distribution` 聚合 tier_a/b/c 键、`stats_filter`/`method_version` 不外露；`evidence_ref` = 溯源端点 URI（percent-encode，前端可直接点击——D10）。参数校验：market 枚举、category 严格枚举（对齐 CLI choices + DB CHECK）、`min_sample≥1`、window 须成对（服务层静默忽略 → API 层 422 明示）。
 
 ### 2.12 GET /api/market/skills/{skill_id}/evidence
 
 **Response 200**：`{ "skill_id": "python", "jd_refs": [ { "job_id": 1, "title": "…", "source_type": "user_submitted", "evidence_text": "精通 Python…", "source_url": null, "collected_at": "…" } ] }`——每个百分比的溯源底账。
+**实现备注**（Phase 10 落地）：词表外技能 → 404 `NOT_FOUND`；底账 `jd_count` 与 §2.11 频率口径一致（一致性测试锚定，不漂移）。
 
 ### 2.13 GET /api/quality/report（M11）
 
@@ -184,6 +191,7 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 ### 2.15 GET /api/eval/results ／ 2.16 GET /api/health
 
 eval：评测历史列表（指标 + 版本三元组 + 差异摘要）。health：`{ "status": "ok", "db": true, "llm": "reachable" }`。
+**实现备注**（Phase 10 落地）：§2.16 已实现——`db` 为真实探活（SELECT 1）；`llm` 字段报告 **key 配置状态**而非真实连通性（健康检查不触发付费 LLM 调用——诚实偏差，与契约 "reachable" 的差异如实记录）。§2.15 延后 Phase 11（C1 裁决）。
 
 ---
 

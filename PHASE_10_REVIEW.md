@@ -3,9 +3,94 @@
 > 阶段：FastAPI 10 端点 + Jinja2 SSR 六页 + 原生 JS 前端 + 真实 LLM e2e 走查。
 > 计划：`docs/plans/2026-09-08-phase10-dashboard.md`（口径裁决 C1-C7 +
 > 冻结决策 D1-D10）。
->
-> **本文件随 T8 提交先落 §4（真实走查记录）**；§0 交付物清单 / §1 验收
-> 核验表 / §2-§3 六维自检 / §5 遗留移交由 T9 收口补齐。
+
+## 0. 交付物清单
+
+| # | 交付 | 位置 | commit |
+|---|---|---|---|
+| T1 | ADR-011 + FastAPI 骨架（create_app 工厂/统一错误体三 handler/get_conn 每请求连接/health/`serve` CLI 默认 127.0.0.1） | `api/app.py` + `api/deps.py` + `api/errors.py` + `test_api_app.py`（5 测试） | 62bac30 |
+| T2 | 市场端点（§2.11 频率 + §2.12 溯源；D3 裁剪 + D10 证据 URI） | `api/routes_market.py` + `test_api_market.py`（8 测试） | 5e09583 |
+| T3 | 画像端点（§2.5/§2.6/§2.7；FakeLLM 三分支） | `api/routes_profile.py` + `test_api_profile.py`（8 测试） | 6b8a30c |
+| T4 | 匹配+缺口端点 + `match_score_text()`（C4 双模式同分锚定） | `match/service.py` + `api/routes_match.py` + 13 测试 | 89f9930 |
+| T5 | 推荐+JD 分析端点（D2 决策侧 422；B1 不落库锚定） | `api/routes_recommend.py` + `api/routes_jd.py` + 10 测试 | 2beb8f1 |
+| T6 | 前端骨架 + Dashboard 六视图（SSR + 手写 SVG 雷达） | `api/routes_web.py` + `templates/` + `static/` + `test_web_pages.py`（7 测试） | 6198e73* |
+| T7 | 流程页五页 + app.js（C6 localStorage 会话模型） | `templates/` 五页 + `static/app.js` + 10 测试 | 6198e73 |
+| T8 | 溯源交互 + 真实 LLM 全流程走查（7 缺陷修复） | 见 §4；`PHASE_10_REVIEW.md` §4 + 结构级回归测试 | 1150586 |
+| T9 | 收口：本 Review 补齐 + ROADMAP/HANDOVER 同步 + API.md 实现备注 | 本 commit |
+
+\* T6 的 `app.py`（/static 挂载 + web_router include）与
+`dashboard.html` 因 staging 遗漏未随 6198e73 入库（该提交单检出不自洽），
+随 T8（1150586）补齐——详见 §4.3。
+
+测试：**505 全绿**（Phase 9 收口 443 → +62）。
+
+## 1. 验收核验表（对照 ROADMAP Phase 10 + 计划验收清单）
+
+| 验收项 | 结果 | 证据 |
+|---|---|---|
+| 六视图数据全部来自 API（无前端硬编码数字） | ✅ | T6 渲染测试（fixture 数字必现 + 空库渲染断言）+ T9 模板抽查；走查六视图数字与 API 响应一致（§4.1 步骤 6） |
+| 样本量守门在 UI 呈现（N<30 灰态占位+文案） | ✅ | T2 口径（200+insufficient 展示侧）+ T6 渲染测试 + T8 真实 global N=0 灰态走查（"样本量不足以判断趋势（N=0）"） |
+| 端到端用户流程走通（PRODUCT_SPEC §3） | ✅ | T8 真实 LLM 全流程走查七步全通（§4.1：简历→画像→JD→匹配→缺口→推荐→Dashboard→global 灰态） |
+| 每个数字可点击溯源（evidence_ref → JD/证据页） | ✅ | 市场页每行"查看证据" + Dashboard 缺口表技能名/热门技能条 → `/api/market/skills/{skill}/evidence` JSON 台账（job_id/标题/来源/URL/时间），T8 逐步点击验证 |
+| 全量回归绿 + 六维自检 | ✅ | 505 绿（+62）；§3 |
+
+计划 T1-T8 任务验收（各任务交付+测试数）见 §0；T9 验收 =
+文档同步零偏差抽查（ROADMAP/HANDOVER/API.md 与实现一致）。
+
+## 2. 口径裁决落地核对（C1-C7）
+
+| # | 裁决 | 落地 |
+|---|---|---|
+| C1 | 10 端点 + 6 页（延后 Phase 11：contribute/import/adzuna 管道 + tasks 异步 + quality/eval 端点 + Data & Quality 页） | ✅ 10 端点全部落地；延后清单移交 §5 |
+| C2 | Jinja2 SSR + 原生 JS + 手写 SVG/CSS，零框架零构建零 CDN | ✅ 无 package.json/构建步骤；雷达/条形全手写 |
+| C3 | 新依赖 ADR-011 + serve 默认 127.0.0.1 | ✅ ADR-011（Flask/纯静态/Streamlit 否决理由）；`--host` 显式传参才可改绑 |
+| C4 | match jd_text 模式复用 compute_match + 双模式同分锚定 | ✅ `test_dual_mode_consistency`：同 JD 双模式结果 dict 全等 |
+| C5 | 无硬编码操作化为渲染测试 | ✅ fixture 数字必现 + 空库渲染断言（test_web_pages.py） |
+| C6 | localStorage 会话模型（candidate_id + 最近匹配缓存） | ✅ T8 走查实证：cid=9 跨页预填、匹配概览 78.1 呈现 |
+| C7 | LLM 端点 FakeLLM 三分支 + 真实 e2e 一次走查 | ✅ 全部 LLM 端点测试零真实调用；走查见 §4 |
+
+## 3. 六维自检
+
+### Product —— 真的解决问题吗？
+六视图把"数据与决策的可视化呈现（非聊天框）"落地：每个频率数字
+可点开 JD 底账、每个缺口挂着 ROI 理由、匹配分拆四维可核——用户
+看到的所有数字都能回答"从哪来"。走查主流程（简历→推荐）七步无断点。
+
+### Engineering —— 过度设计了吗？
+克制点：不引入前端框架/构建链（C2）；不加"最近匹配"查询端点
+（C6 用 localStorage，避免为展示加契约）；不引入连接池（D1，本地
+单用户）；10 端点而非 16（C1 范围裁决，CLI 已覆盖的管道不重复暴露）。
+新增代码集中在一个 `api/` 包，模板/JS 无抽象层。
+
+### AI —— LLM 被滥用了吗？
+LLM 只出现在两处受控抽取（简历/JD）+ 可选解释（explain 非默认）；
+匹配分数/推荐 ROI/市场统计零 LLM（CI 静态检查红线延续）。所有 LLM
+端点测试走 FakeLLM 三分支；真实 LLM 只在 T8 走查消耗一次。
+explain 叙事数字不一致即拦截降级（Phase 8 机制延续，走查确认在场）。
+
+### Data —— 数字真实吗？
+走查全部数字真实：N=201/132、78.1 分、Docker 置信度 0.30（简历仅
+"了解"→低置信诚实呈现）；global N=0 灰态不隐藏不编造；Adzuna 归属
+在 Global 视图常驻（含灰态——数据来源声明与有无数据无关）。
+
+### Evaluation —— 结果可验证吗？
+诚实记录限制与盲区：
+- **测试盲区实证**：dependency_overrides 整树替换子依赖 →
+  `make_resume_extractor` 裸参数缺陷测试全绿而真实路径 422（§4.2-1）；
+  已补结构级回归测试（遍历路由依赖树），但该模式提示：**依赖注入
+  测试替身会掩盖真实装配错误**，真实 e2e 走查不可被测试替代
+- 7 个走查缺陷中 5 个（null 渲染/分制/字段名/归属×2）属"测试断言
+  未覆盖的展示细节"——渲染测试锚定结构而非逐字段文案，残余风险
+  由走查兜底（一次性成本，非每回归重跑）
+- T6/T7 staging 遗漏（app.py/dashboard.html 未入库）暴露"本地全绿
+  ≠ 提交自洽"——工作区与 HEAD 的偏差只能靠单检出验证发现，已补齐
+
+### Resume —— 简历价值？
+可讲：FastAPI 依赖注入的真实盲区案例（测试绿但真实 422，根因是
+dependency_overrides 替换粒度）；SSR vs SPA 的克制选型（零构建、
+离线可用、SEO 无关场景不引入 React）；e2e 走查方法论（真实 LLM
+全流程 + 截图 + 缺陷全记录——7 缺陷中 6 个是测试没覆盖的）；
+契约分制/字段名这类"文档与实现漂移"的捕获方式。
 
 ## 4. 真实 LLM 全流程走查（T8，2026-09-16）
 
@@ -65,3 +150,21 @@ LangChain/pgvector 熟练、Docker 了解）+ 合成 JD（精通 Python / 熟练
 - 雷达顶点 ≤8（D6 max_axes 设计，缺口技能优先、画像纯技能补位）
 - Dashboard"我的缺口"（最近推荐 priority_items）与雷达（类目 gaps
   查询）技能集不同：数据源口径不同，均为设计约定（SSR 只读不重算）
+
+## 5. 遗留与移交（Phase 11 输入）
+
+| 项 | 状态 | 处置 |
+|---|---|---|
+| CI 首跑绿验收 | ⏳ 待 push | 远端 master 现至 Phase 8（665d0db）；Phase 9/10 待用户审批后 push，push 后盯首跑 |
+| E1 dispatch 验收 | ⏳ 待 push + secret | GitHub 配 `LLM_API_KEY` 后手动 dispatch 一次 |
+| E3 标注双人复核 | ⏳ 用户 + 同学 | 不阻塞（Phase 8 遗留延续） |
+| Adzuna 首批拉取 | ⏳ 待办 | global 市场 N=0（走查灰态即此）；250 req/day 额度节奏 |
+| C1 延后端点 | Phase 11 | contribute/import/adzuna 管道端点 + tasks 异步查询 + quality/report + eval/results + Data & Quality 页 |
+| compose 化连接池复议 | Phase 11 | D1 预留（本地单用户每请求连接；容器编排下再议） |
+
+## 6. 下一步（Phase 11）
+
+Docker + CI + Documentation（发布就绪）：compose 全栈编排、README
+（Problem/Solution/Architecture/Demo/Evaluation/Limitations/Roadmap）、
+文档终版与零偏差抽查、ADR 归档核对（≥5 全部已接受/已复议——现 11 个）、
+自演示录制。先写 docs/plans/ 计划。

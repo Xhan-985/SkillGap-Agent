@@ -139,6 +139,7 @@ Phase 11 Docker + CI + Documentation
 | 产出 | 六视图：画像（星级+置信度）/ Match Score / 技能雷达 / 热门技能（频率+样本量标注）/ 缺口（ROI 排序）/ 推荐学习与项目；每个数字可点击溯源（evidence_ref → JD/证据页） |
 | 验收 | 六视图数据全部来自 API（无前端硬编码数字）；样本量守门在 UI 呈现；端到端用户流程走通（PRODUCT_SPEC §3） |
 | 自检重点 | Product：展示数据和决策；Engineering：无花哨前端框架依赖 |
+| 状态 | ✅ **完成（2026-09-16）**：505 测试（+62）。FastAPI 10 端点（ADR-011；match jd_text 双模式同分锚定 C4；D2 双口径——market/skills 200+insufficient 展示侧 vs recommendations 422 决策侧）+ Jinja2 SSR 六页 + 原生 JS（C6 localStorage 会话模型；零框架零构建零 CDN C2）+ 真实 LLM 全流程走查七步全通（简历→画像→JD→匹配 78.1 分→推荐→市场溯源→六视图→global 灰态 N=0）；走查捕获并修复 7 真实缺陷（含 dependency_overrides 测试盲区案例——结构级回归测试固化），详见 PHASE_10_REVIEW §4；**开放项：CI 首跑绿待 push（远端现至 Phase 8）**。详见 PHASE_10_REVIEW.md |
 
 ## Phase 11：Docker + CI + Documentation（发布就绪）
 
