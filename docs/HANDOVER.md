@@ -1,6 +1,7 @@
 # SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-04 ｜ 代码状态：master 本地（push 需用户批准）｜ 测试：394 passed
+> 更新：2026-09-16 ｜ 代码状态：master 本地领先远端 16 笔（远端 665d0db = Phase 8 收官；push 需用户批准）｜ 测试：505 passed
+> **换账号 / 换机交接：先读 §13 迁移清单**
 
 ## 1. 项目一句话
 
@@ -20,10 +21,12 @@ Phase 5  Candidate Profile          ✅ 完成（2026-09-03；conf-v1 公式冻�
 Phase 6  Skill Gap                 ✅ 完成（2026-09-03；gap-v1 冻结：纯星级差 + genuine/transferable + 类目聚合）
 Phase 7  Job Matching              ✅ 完成（2026-09-03；scoring 1.0.0 + E2 基线 PASS：ρ=0.8433/MAE=9.38/对抗三用例全过）
 Phase 8  Recommendation           ✅ 完成（2026-09-04；roi-v1 + LangGraph Agent + E3 基线 PASS：nDCG@5=0.6497；首个新依赖 langgraph 0.3.34）
-Phase 9-11                        ⬜ 未开始（下一步 Phase 9 Evaluation 汇总：CI 门禁 + 评测报告 + 劣化演练；E3 judge 与 RAG 引用层在此补）
+Phase 9  Evaluation 汇总          ✅ 完成（2026-09-08；eval-gate 门禁 + eval-report 报告 + CI 首个 workflow + E1 方差演练 PASS；443 测试）
+Phase 10 Dashboard                ✅ 完成（2026-09-16；FastAPI 10 契约端点 + Jinja2 SSR 六页 + 原生 JS；真实 LLM 全流程走查七步全通；505 测试）
+Phase 11 Docker + CI + 文档       ⬜ 未开始（下一步：先写 docs/plans/ 计划）
 ```
 
-阶段验收记录：根目录 `PHASE_1_REVIEW.md` / `PHASE_2_REVIEW.md` / `PHASE_3_REVIEW.md` / `PHASE_4_REVIEW.md` / `PHASE_5_REVIEW.md` / `PHASE_6_REVIEW.md` / `PHASE_7_REVIEW.md` / `PHASE_8_REVIEW.md`（六维自检 + 验收核验表）。
+阶段验收记录：根目录 `PHASE_1_REVIEW.md` ~ `PHASE_10_REVIEW.md`（每阶段一份：六维自检 + 验收核验表）。
 
 ## 3. 技术栈与架构
 
@@ -33,7 +36,7 @@ Phase 9-11                        ⬜ 未开始（下一步 Phase 9 Evaluation �
 | 数据库 | PostgreSQL 16 + pgvector（Docker） | `pgvector/pgvector:pg16`；pgvector 索引延后（ADR-004"Phase 8 才建"≠"必须建"——精确溯源已由 skill-evidence SQL 覆盖，语义检索未达触发线，见 D-2026-09-04-15） |
 | LLM | DeepSeek（deepseek-chat） | OpenAI-compatible 直连 httpx，**不用 openai SDK**（用户决策 Q4） |
 | Agent 编排 | langgraph 0.3.34（锁 ≥0.3,<0.4） | Phase 8 引入（ADR-006 复议）：单 Career Planner Agent，4 节点图，解释层旁路——数值路径零 LLM 权限 |
-| 测试 | pytest（需真实 PostgreSQL 跑 `skillgap_test` 库） | 394 项，全部本地可跑 |
+| 测试 | pytest（需真实 PostgreSQL 跑 `skillgap_test` 库） | 505 项，全部本地可跑（本机必须 `--basetemp`，见 §4/§10） |
 
 **三层分离纪律（全局红线）**：LLM 只做抽取和解释，统计/评分/ROI 数值全部 SQL 与纯函数计算；评测指标 LLM 不参与。CI 计划静态检查守门。
 
@@ -92,17 +95,30 @@ src/skillgap/
     gapcalc.py        #   纯函数 gap-v1（required_level 映射/gap clamp/classify，守卫测试锁定）
     service.py        #   get_gaps：单岗(job_id)/类目聚合(category)双模式
                       #   口径裁决与聚合规则 DECISION_LOG D-2026-09-03-13
+  match/              # Phase 7 Job Matching（零 LLM）
+    scoring.py        #   compute_match 纯函数（scoring 1.0.0 四维加权，守卫测试锁定）
+    service.py        #   match_score（job_id 模式）+ match_score_text（jd_text 无状态模式 C4，不落库）
+    explanation.py    #   确定性模板解释（数字 100% 来自 breakdown；LLM 解释数字经程序比对）
   stats.py            #   Phase 4 市场统计：切片频率/快照/溯源/交叉对照（零 LLM，守卫测试锁定）
                       #   口径文档 docs/STATS_METHOD.md；method_version=s11-v1
   recommend/          # Phase 8 Recommendation
     roi.py           #   纯函数 roi-v1（Demand×Gap÷Cost，零 LLM/零 import，守卫测试锁定）
     service.py       #   recommend：market 聚合 + snapshot demand + 模板匹配 + 落库（ADR-008 守门）
     agent.py         #   LangGraph Career Planner（load→generate→verify→revise/降级，数值零污染）
+  retrieval/          # Phase 8 RAG 引用层
+    service.py        #   embedding 回填（bge-m3 1024 维）+ 语义检索 → (job, skill, evidence) 溯源
   eval/               #   e1.py / e2.py / e3.py（三评测器，eval_run 历史连续）+ seed.py
   quality_metrics.py  #   E5 数据质量报告
-migrations/           # 001 init / 002 batch error_count / 003 llm_cache+eval_run
-docs/                 # 全部设计文档 + adr/（10 份 ADR）+ plans/
-tests/                # 24 个测试文件，conftest 起真实 PG 测试库
+  api/                # Phase 10 FastAPI + Dashboard（ADR-011）
+    app.py            #   create_app 工厂（统一错误体三 handler + /static 挂载 + 路由装配）
+    deps.py           #   get_conn 每请求连接（无池；连接池 Phase 11 复议 D1）
+    errors.py         #   ApiError 独立模块（防循环导入）
+    routes_*.py       #   10 契约端点（jd/profile/market/match/recommend）+ routes_web.py SSR 六页
+    templates/        #   Jinja2 七页（base + dashboard/jd/match/recommend/resume/market）
+    static/           #   app.js + style.css（零框架零构建零 CDN；localStorage 会话 C6）
+migrations/           # 001 init / 002 batch error_count / 003 llm_cache+eval_run / 004 rag_evidence
+docs/                 # 全部设计文档 + adr/（11 份 ADR）+ plans/
+tests/                # 52 个测试文件（另 1 份仅本地），conftest 起真实 PG 测试库
 ```
 
 依赖方向（冻结）：`analyzer → extractor → gateway → provider`；`eval/` 只读消费；`llm/` 不知道抽取 Schema。
@@ -132,6 +148,7 @@ tests/                # 24 个测试文件，conftest 起真实 PG 测试库
 | `gap-get --candidate-id N --job-id M` 或 `--category c [--market china --min-freq 0.2]` | 岗位要求 vs 画像差距量化（M7，零 LLM：gaps+transferable+demand/cost 原料） |
 | `recommend --candidate-id N [--budget 14] [--market china] [--templates P]` | ROI 优先级建议（M9，零 LLM：Top-10 排序 + 模板项目匹配 + recommendation 落库） |
 | `agent-plan --candidate-id N [--budget 14]` | Career Planner 叙事（LangGraph，需 key；数字一致性校验 + 失败降级模板） |
+| `serve [--host] [--port]` | Dashboard/API 服务（Phase 10；默认 127.0.0.1:8000 仅本机——API.md §0 部署红线，对外须显式传参） |
 | `eval-e3 [--dataset P] [--seed-only] [--judge]` | E3 推荐评测跑分（指标零 LLM 无 key 可跑；标注集自动入库；--judge 附 deepseek-reasoner 评分，Warn 级不参与 verdict） |
 | `rag-index [--batch-size N]` | RAG 引用层：回填 job_skill 证据行 embedding（bge-m3 1024 维，幂等；需 EMBEDDING_API_KEY） |
 | `rag-search --query Q [--market M] [--top-k K]` | RAG 语义检索：查询 → (job, skill, evidence_text) 溯源（"模型上下文协议"→MCP 类语义变体；先 rag-index） |
@@ -163,6 +180,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 - 词表 v1.9：87 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering；**候选裁决**：新增 Agent 开发/小程序 2 技能 + AI Coding(claude code/codex/claude)、LLM 应用开发(大模型API)、前端开发(前端) 别名扩充，11 accepted / 25 rejected，队列清零）；来源注册表 6 条（adzuna / company_career_page / boss_zhipin / user_contribution / community_csv / demo_dataset）
 - E1 标注集：v1（20 条合成变体，冻结）+ **v2（53 条真实 JD**：28 条人工确认行直取库内标注 + 25 条平台采集行逐条复核重标——修正规则误标：react 模式≠前端 React、GitHub Copilot≠Git、任一/均可≠must、补 Claude Code→AI Coding；`data/eval/e1_seed_v2.json`）
 - **market_snapshot：snapshot#4**（2026-09-02，N=201，**high**，s11-v1；top：Python 0.66 / RAG 0.45 / Prompt Engineering 0.40 / Java 0.36 / AI Coding 0.27；来源构成 boss_zhipin 64% + company_career_page 36%；快照历史 #1 N=50 → #2 N=100 → #3 N=193 → #4 N=201）
+- 走查留痕（2026-09-16，Phase 10 T8 真实 LLM 全流程走查）：candidate cid=9 画像（8 技能）+ match/recommendation 结果行——开发验证数据，可随时 `candidate-delete --candidate-id 9` 级联清除
 
 ## 9. 遗留任务（按优先级）
 
@@ -208,8 +226,54 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 | `docs/API.md` | 16 端点契约（§2.1 jd-analyze 结构） |
 | `docs/EVALUATION_PLAN.md` | E1-E5 指标与阈值（§7 失败分诊） |
 | `docs/EVALUATION.md` | 评测 README（冻结宣告/基线/方差/演练/分诊，**面试三问之"怎么证明有效"**） |
-| `docs/adr/ADR-001~010` | 全部架构决策（Context/Options/Decision） |
+| `docs/adr/ADR-001~011` | 全部架构决策（Context/Options/Decision；ADR-011 = Phase 10 FastAPI 引入） |
 | `PHASE_1~10_REVIEW.md` | 各阶段验收与六维自检 |
 | `docs/plans/` | Phase 2-10 实施计划（下一步：Phase 11 Docker+CI+Documentation 计划待写） |
 
 个人学习文档（面试题库/知识缺口/学习路线/简历映射）：根目录 `docs/INTERVIEW_QUESTION_BANK.md`、`KNOWLEDGE_GAPS.md`、`LEARNING_ROADMAP.md`、`PROJECT_LEARNING_GUIDE.md`、`PROJECT_TECH_MAP.md`、`RESUME_TECH_MAPPING.md`（均为未跟踪文件，未入库）。
+
+## 13. 账号切换与环境迁移清单（2026-09-16）
+
+> 换账号（GitHub / IDE·AI 助手）或换机前逐项核对。两类场景影响面不同：**同机换账号**——磁盘文件、git 仓库、Docker 数据库全部保留，受影响的只有账号凭证与 AI 会话上下文；**换机 / 重新克隆**——下表"仅本地"文件一律不随 git 走，必须单独带走。
+
+### 13.1 Git 与远端（换 GitHub 账号必读）
+
+- 远端：`origin = https://github.com/Xhan-985/SkillGap-Agent.git`，`origin/master = 665d0db`（Phase 8 收官）
+- 本地：`master = fd4249f`（Phase 10 T9 收口），**领先远端 16 笔提交**——Phase 9 八笔（f8cb120 计划 + 8fc8acc~6b1d277 七任务）+ Phase 10 八笔（62bac30~fd4249f，其中 T6 并入 T8 提交）
+- ⚠️ **切换前必须先推送**（或 `git bundle create skillgap.bundle master` 带走）：新环境重新克隆只能拿到 Phase 8，Phase 9/10 全部工作不在远端
+- 推送纪律：push 需用户明确批准；本地代理 127.0.0.1:2019 不可用时直连单次覆盖：`git -c http.proxy= -c https.proxy= push origin master`
+- 换账号后动作：`git remote set-url origin <新仓库地址>`；新仓库 GitHub Secrets 重配 `LLM_API_KEY`（E1 dispatch workflow 依赖）；推送后验证 **CI 首跑绿**（workflow 仅在远端生效——Phase 9 起的开放项）
+
+### 13.2 仅本地文件（git 不跟踪——换机/重新克隆会丢）
+
+| 文件/目录 | 内容 | 换机动作 |
+|---|---|---|
+| `.env` | 全部密钥：`DATABASE_URL` / `TEST_DATABASE_URL` / `LLM_API_KEY`（DeepSeek）/ `ADZUNA_APP_ID`+`ADZUNA_APP_KEY` / `EMBEDDING_API_KEY` | **必须手动带走**（或按 `.env.example` 重填） |
+| `tests/test_prompt.py` | 本地提示词实验（纪律：仅本地不入库） | 按需 |
+| `jd.txt`、`data/resume_sample.txt` | 个人数据（纪律：不入库） | 手动带走 |
+| `docs/` 下 6 份个人学习文档 | 面试题库/知识缺口/学习路线/技术映射等（清单见 §12 末行） | 手动带走 |
+| `.boss/`、`.boss-data/`、`scripts/` | 本地工具与调试目录（.gitignore 约定不入库） | 按需 |
+| `.venv/` | Python 环境 | 不迁移，新机 `pip install -e ".[dev]"` 重建 |
+
+### 13.3 数据库（同机换账号不受影响；换机必读）
+
+- 数据在 Docker PostgreSQL（`pgvector/pgvector:pg16`）中，**不在 git**：201 条 active 岗位 + 1505 行 job_skill + 词表 v1.9（87 技能）+ 来源注册表 + market_snapshot#4 + eval_run 14 条评测历史 + RAG 向量 1514 行 + 走查留痕（candidate cid=9 等）
+- 换机重建路径：`db-upgrade` + `seed`（词表/来源表可重建）→ 逐批 `import data/batch_1~3.csv`（岗位可重建，批次 CSV 已入库跟踪）→ `snapshot-create`（快照可重算）→ `rag-index`（向量可重灌，需 EMBEDDING_API_KEY）
+- **不可自动重建**：eval_run 评测历史（14 条真实 LLM 跑分——E1 基线/方差演练/gate 恢复链）与走查留痕 → 建议换机前 `pg_dump` 整库带走最稳妥
+
+### 13.4 AI 会话上下文（换 IDE / AI 助手账号）
+
+- AI 助手的项目记忆与历史会话**不保证随账号迁移——按不迁移做最坏打算**：新账号首个会话没有任何历史上下文
+- 恢复路径（新会话按序阅读即可接续）：本文档 → `docs/ROADMAP.md`（阶段总览与状态行）→ `PHASE_10_REVIEW.md`（最近阶段验收 + 口径裁决核对）→ `docs/plans/`（各阶段实施计划，含口径裁决 C* 与冻结决策 D*）
+- 工作纪律速查：§11（git/范围/测试/prompt 纪律）+ §4（测试必须 `--basetemp` + `.venv\Scripts\python.exe`，系统 Python 无 pytest）+ §10（本机已知坑）
+
+### 13.5 迁移后自验（三步确认环境完好）
+
+```powershell
+# 前置：Docker Desktop 手动启动；.venv 重建（pip install -e ".[dev]"）；.env 就位
+docker compose up -d postgres
+& .venv\Scripts\skillgap.exe db-upgrade
+& .venv\Scripts\skillgap.exe seed
+& .venv\Scripts\python.exe -m pytest tests/ -q --basetemp=".pytest_tmp"   # 期望 505 passed, 0 skipped
+& .venv\Scripts\skillgap.exe serve                                        # http://127.0.0.1:8000 浏览器六页走一遍
+```
