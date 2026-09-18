@@ -144,6 +144,20 @@
 - **D7**：templates/static 打包进 api/ 包（package-data，Phase 11 compose 直接受益）
 - **影响**：Phase 10 落地（src/skillgap/api/ 新包 + match/service.py +match_score_text + cli serve + ~40 测试）；首个新依赖 ADR-011
 
+## D-2026-09-18-19 ｜ Phase 11 Docker+CI+文档 口径裁决（C1-C7）+ 设计冻结（D1-D10）+ Phase 10 D1 连接池复议关闭
+
+> 原文：`docs/plans/2026-09-18-phase11-docker-ci-docs.md`（本条为决策日志摘要）；部署容器化依据见 ADR-012
+
+- **C1（端点范围）**：Phase 10 C1 延后清单 **做 5 裁 2**——做：jd/contribute（§2.2，F12 核心机制）+ tasks/{id}（§2.2 内嵌）+ quality/report（§2.13）+ contributions DELETE（§2.14）+ eval/results（§2.15）；**裁：jd/import（§2.3）+ ingest/adzuna（§2.4）→ CLI 通道**（管理操作暴露无鉴权 HTTP 反而扩大攻击面——API.md §0 本地单用户红线；API.md 端点表标注）
+- **C2（异步任务实现）**：**DB 任务表 + FastAPI BackgroundTasks**（migration 005 新表 task：uuid/kind/status 状态机/result jsonb/error；单进程 uvicorn 够用）；否决 celery/rq（新依赖+broker 运维，YAGNI）；否决纯内存（deletion_code 须持久，重启丢失不可接受）
+- **C3（连接池复议 → 关闭 Phase 10 D1 挂起项）**：**维持无池**——compose 不改变部署语义（API.md §0 本地单用户，只是免去本机装 PG）；每请求连接容器网络 ~ms 级；引入池须回归全部端点，收益低于成本。依据 ADR-012
+- **C4（compose 入口）**：entrypoint 自动 `db-upgrade → seed → uvicorn`（幂等，迁移失败 fail-fast）；compose `environment` 注入服务名连接串（优先级高于 env_file）——用户 .env 无须为容器改动
+- **C5（自演示录制）**：DEMO.md 脚本入库（步骤+命令+预期），录制产物不入库（个人资产，Windows 工具链用户侧执行）；走查记录入 PHASE_11_REVIEW §4
+- **C6（CI 增强）**：+docker build job（只 build 不 push，无 registry 凭证依赖，与 test 并行）；compose 全栈 e2e 不进 CI（留 T8 手动——CI 只保证镜像可构建，不保证 compose 全绿，诚实边界）
+- **C7（演示数据）**：README Demo 可选步骤 `docker compose exec app skillgap import --file data/batch_1.csv`（批次 CSV 已入库跟踪）；空库跑通也算过（灰态即诚实降级演示）
+- **D1-D10 冻结**：Dockerfile 单阶段 3.12-slim/非 root/`*.sh` 强制 LF；compose 端口 `127.0.0.1:8000`（红线延续）；任务表 BackgroundTasks 内自建连接 + failed 状态 error 明示；**deletion_code 一次性展示**（task.result 存明文，GET tasks/{id} 首次返回后置 null——DB 本体仍只存哈希，§2.14 防探测不变）；质量页 SSR+fetch（对齐 Phase 10 模式）七页导航；贡献区交互够用即止；README 七段结构冻结 + 禁营销话术红线；DATA.md/DEVELOPMENT.md 新建 + ARCHITECTURE/API/EVALUATION/DESIGN_DECISIONS 更新 + ADR-001~012 状态核对；测试纪律延续（TestClient+fixture+FakeLLM，容器内 pytest 不做）
+- **影响**：Phase 11 落地（T1-T9，见计划任务表）；**零新 Python 依赖**（docker/compose 属基础设施非代码依赖，部署决策入 ADR-012）；CI 首跑绿依赖用户批准 push（时点用户定）
+
 ---
 
 ## 待议决策
