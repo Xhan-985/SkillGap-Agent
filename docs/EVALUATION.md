@@ -26,6 +26,9 @@
 | E2 匹配标注集 | `e2-v1` | 25 对（5 画像 × 真实库 JD） | market snapshot #4（china N=201） | `data/eval/e2_seed_v1.json` |
 | E3 推荐标注集 | `e3-v1` | 5 画像（复用 E2 画像） | 同上 | `data/eval/e3_seed_v1.json` |
 
+> 判定依据快照列为冻结时点记录；2026-09-22 数据卷事故后库内快照重建为
+> #1（N=202），三评测重跑全部落基线带内（见 §4 与 DATA.md §6）。
+
 **冻结纪律**（EVALUATION_PLAN §6）：新用例进 v2，不静默修改 v1；修标注
 须 `dataset_version+1` 并全量重跑。词表与评测集一致性由 CI 测试锚定
 （`test_eval_determinism.py`，文件级检查不触 DB）。
@@ -45,15 +48,23 @@
 
 ## 4. 基线（当前最新 run，全历史见 `skillgap eval-report`）
 
+> 2026-09-22 数据卷事故后 eval_run 表重建为 4 条（历史 14 条的数值存档于
+> `data/eval/*.json` 与本节历史基线行；重建过程与稳健性结论见 DATA.md §6 /
+> DECISION_LOG D-2026-09-22-20）。
+
 | 评测 | eval_run | 版本三元组 | 关键指标 | verdict |
 |---|---|---|---|---|
-| E1 | #14 | e1_seed_v2 / prompt v2 / deepseek-chat | F1=0.8628 / recall=0.8223 / evidence=1.0（N=53） | warn |
-| E2 | #7 | e2-v1 / scoring 1.0.0 / deterministic | ρ=0.8433 / MAE=9.38 / Jaccard=0.9822（N=25） | pass |
-| E3 | #9 | e3-v1 / roi-v1 / deterministic | nDCG@5=0.6497 / hit@3=1.0 / coverage=0.95（N=5） | pass |
-| judge | #9 内附 | rubric-v1 / deepseek-reasoner | mean=5.0（n=5） | 参考（不门禁） |
+| E1 | #1 | e1_seed_v2 / prompt v2 / deepseek-chat | F1=0.8644 / recall=0.8173 / evidence=1.0 / failures=0（N=53） | warn |
+| E2 | #4 | e2-v1 / scoring 1.0.0 / deterministic | ρ=0.8277 / MAE=9.67 / Jaccard=0.9667（N=25） | pass |
+| E3 | #3 | e3-v1 / roi-v1 / deterministic | nDCG@5=0.6497 / hit@3=1.0 / coverage=0.95（N=5） | pass |
+| E2 | #2 | e2-v1 / scoring 1.0.0 / deterministic | ρ=0.445——**评测集 id 引用漂移缺陷的真实拦截案例**（库重建后 `job#N` 引用错位；修复 e90c76b 改内容寻址，重跑 #4 恢复带内） | block（留档） |
 
-eval_run 共 14 条历史（#10-12 为 T6 方差演练轮，#13 缓存复现轮——
-详见 §6）。当前 gate：**warn**（E1 warn + E2/E3 pass → exit 0）。
+**历史基线（事故前存档）**：E1 #14 F1=0.8628 warn / E2 #7 ρ=0.8433 pass /
+E3 #9 nDCG=0.6497 pass / judge #9 内附 rubric-v1 mean=5.0（参考不门禁）；
+#10-12 为 T6 方差演练轮、#13 缓存复现轮（§6）。重建后各评测与历史基线同水位
+（E1 +0.0016 / E2 -0.0156 / E3 持平）——**评测结论对数据重建稳健**。
+
+当前 gate：**warn**（E1 warn + E2/E3 pass → exit 0）。
 
 ## 5. 工具链
 
@@ -109,10 +120,13 @@ run_e2 → 排序翻转（ρ≈-0.866）→ verdict=block → gate 整体 block 
 
 ## 8. CI 集成（`.github/workflows/ci.yml`，C1/C2 分层裁决）
 
-- **PR + push master**：全量 pytest（443 项：三评测器 fixture 全链路 + 零漂移
-  + taxonomy + 劣化演练）+ db-upgrade 迁移预检；pgvector 服务容器
+- **PR + push master**：test job 全量 pytest（514 项：三评测器 fixture 全链路 + 零漂移
+  + taxonomy + 劣化演练 + API 契约）+ db-upgrade 迁移预检；pgvector 服务容器；
+  docker job 仅构建镜像不推送（Phase 11 T6/C6，与 test 并行不阻塞）
 - **E1 dispatch**：仅 `workflow_dispatch` 手动触发（key 泄露/费用/flaky 不进
   PR）；无 `secrets.LLM_API_KEY` 时 skip 并打印原因
+- **首跑绿**（Phase 9 收口遗留项闭环）：run 35686447520 @ 6b1d277——test
+  completed success，e1 skipped 属正常（非 dispatch 触发）
 - **全量基线评测留本地**（C1 工程化适配）：真实市场数据（201 岗）与 LLM
   key 都在本地，CI 无法触达且仓库不分发数据——eval_run 是 source of
   truth，gate/report 离线读库工作且被单测锚定

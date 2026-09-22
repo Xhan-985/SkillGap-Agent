@@ -100,6 +100,8 @@ dependency_overrides 替换粒度）；SSR vs SPA 的克制选型（零构建、
 LangChain/pgvector 熟练、Docker 了解）+ 合成 JD（精通 Python / 熟练 RAG /
 熟悉 PostgreSQL / 了解 Docker / MCP+LangGraph 加分 / 3 年经验）。
 
+> 注（2026-09-22 T7 同步）：本节 cid=9 为事故前走查实录；数据卷事故后画像重建为 cid=1（9 技能），走查结论不受影响（见 DECISION_LOG D-2026-09-22-20）。
+
 ### 4.1 步骤与结果（PRODUCT_SPEC §3 主流程）
 
 | # | 步骤 | 结果 | 截图（本地） |

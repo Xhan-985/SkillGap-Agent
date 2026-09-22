@@ -24,24 +24,26 @@
 
 ## 1. 端点总表
 
-| Method | Path | 功能 | 同步 | LLM | MVP |
-|---|---|---|---|---|---|
-| POST | /api/jd/analyze | JD 结构化分析 | ✅ | ✅（抽取） | M1 |
-| POST | /api/jd/contribute | 匿名贡献 JD 进市场数据集 | ❌ 异步 | ✅（抽取，管道内） | M3 |
-| POST | /api/jd/import | CSV/JSON 批量导入 | ❌ 异步 | ✅（抽取，管道内） | M4 |
-| POST | /api/ingest/adzuna | 拉取 Adzuna 海外岗位 | ❌ 异步 | ✅（抽取，管道内） | M4 |
-| POST | /api/resumes/analyze | 简历 → 证据化画像 | ✅ | ✅（证据识别） | M5 |
-| GET | /api/candidates/{id}/profile | 画像查询 | ✅ | ❌ | M5 |
-| DELETE | /api/candidates/{id} | 删除画像 | ✅ | ❌ | M5 |
-| POST | /api/match | 匹配打分 | ✅ | 解释可选 | M6 |
-| GET | /api/candidates/{id}/gaps | Skill Gap | ✅ | ❌ | M7 |
-| POST | /api/recommendations | ROI 建议 | ✅ | 解释可选 | M9 |
-| GET | /api/market/skills | 技能频率统计 | ✅ | ❌ | M8 |
-| GET | /api/market/skills/{skill_id}/evidence | 频率溯源 | ✅ | ❌ | M8 |
-| GET | /api/quality/report | 数据质量报告 | ✅ | ❌ | M11 |
-| DELETE | /api/contributions/{deletion_code} | 删除匿名贡献 | ✅ | ❌ | M3 |
-| GET | /api/eval/results | 评测结果历史 | ✅ | ❌ | M11 |
-| GET | /api/health | 健康检查 | ✅ | ❌ | — |
+| Method | Path | 功能 | 同步 | LLM | MVP | 实现（Phase 11 T3 后） |
+|---|---|---|---|---|---|---|
+| POST | /api/jd/analyze | JD 结构化分析 | ✅ | ✅（抽取） | M1 | ✅ Phase 10 |
+| POST | /api/jd/contribute | 匿名贡献 JD 进市场数据集 | ❌ 异步 | ✅（抽取，管道内） | M3 | ⬜ Phase 11 T4（CLI 通道可用） |
+| POST | /api/jd/import | CSV/JSON 批量导入 | ❌ 异步 | ✅（抽取，管道内） | M4 | 🔧 CLI 通道（C1 裁决） |
+| POST | /api/ingest/adzuna | 拉取 Adzuna 海外岗位 | ❌ 异步 | ✅（抽取，管道内） | M4 | 🔧 CLI 通道（C1 裁决） |
+| POST | /api/resumes/analyze | 简历 → 证据化画像 | ✅ | ✅（证据识别） | M5 | ✅ Phase 10 |
+| GET | /api/candidates/{id}/profile | 画像查询 | ✅ | ❌ | M5 | ✅ Phase 10 |
+| DELETE | /api/candidates/{id} | 删除画像 | ✅ | ❌ | M5 | ✅ Phase 10 |
+| POST | /api/match | 匹配打分 | ✅ | 解释可选 | M6 | ✅ Phase 10 |
+| GET | /api/candidates/{id}/gaps | Skill Gap | ✅ | ❌ | M7 | ✅ Phase 10 |
+| POST | /api/recommendations | ROI 建议 | ✅ | 解释可选 | M9 | ✅ Phase 10 |
+| GET | /api/market/skills | 技能频率统计 | ✅ | ❌ | M8 | ✅ Phase 10 |
+| GET | /api/market/skills/{skill_id}/evidence | 频率溯源 | ✅ | ❌ | M8 | ✅ Phase 10 |
+| GET | /api/quality/report | 数据质量报告 | ✅ | ❌ | M11 | ✅ Phase 11 T3 |
+| DELETE | /api/contributions/{deletion_code} | 删除匿名贡献 | ✅ | ❌ | M3 | ✅ Phase 11 T3 |
+| GET | /api/eval/results | 评测结果历史 | ✅ | ❌ | M11 | ✅ Phase 11 T3 |
+| GET | /api/health | 健康检查 | ✅ | ❌ | — | ✅ Phase 10 |
+
+> **实现状态说明（Phase 11 C1 裁决）**：16 端点 = 13 HTTP 实现 + 2 管理端点裁为 CLI 通道（jd/import、ingest/adzuna——管理操作，无鉴权 HTTP 暴露反而扩大攻击面，§0 本地单用户红线）+ 1 待实现（jd/contribute，T4：migration 005 task 表 + BackgroundTasks + §2.2 内嵌 `GET /api/tasks/{id}`）。
 
 ---
 
@@ -78,6 +80,7 @@
 
 **Error**：`VALIDATION_ERROR`；`QUARANTINED`（质检隔离，含原因）；重复时返回 `deduplicated: true` 与既有 job_id（不算错误）。
 **数据来源**：用户主动提交（Tier B）。**LLM**：管道内抽取。**说明**：source_hint 仅作来源统计标签，系统不向该平台发起任何请求。
+**实现备注（Phase 11 现状）**：HTTP 端点未实现（T4 计划：migration 005 task 表 + FastAPI BackgroundTasks + D5 deletion_code 一次性展示语义）。当前贡献通道由 CLI 承载：`skillgap contribute` / `skillgap delete-contribution`（PII 脱敏 + deletion_code 哈希存储，管道已全量落地）；配套的 §2.14 DELETE 端点已实现（T3）。
 
 ### 2.3 POST /api/jd/import（M4）
 
@@ -85,6 +88,7 @@
 **Response 202** → 导入报告：`{ "total": 300, "inserted": 271, "duplicates": 24, "rejected": 5, "quarantined": 0, "errors": [行级错误] }`
 **Error**：`VALIDATION_ERROR`（文件格式/列缺失，**整批拒绝**）；行级错误不中断整批。
 **数据来源**：社区贡献（Tier C）。
+**实现备注（Phase 11 C1 裁决）**：不暴露 HTTP——批量导入属管理操作，无鉴权面不扩大攻击面；CLI 通道：`skillgap import --file <csv|json>`（批次报告落 ingest_batch 回归历史，行级错误不中断整批）。
 
 ### 2.4 POST /api/ingest/adzuna（M4，管理命令暴露端点）
 
@@ -92,6 +96,7 @@
 **Response 202** → `{ "fetched": 500, "inserted": 412, "duplicates": 88, "attribution": "Jobs by Adzuna" }`
 **Error**：`UPSTREAM_ERROR`（Adzuna 429/5xx，退避重试 3 次后失败）；`RATE_LIMITED`（本地额度守卫）。
 **数据来源**：Adzuna 公开 API（Tier A，Global 专用）。**约束**：拉取结果 market=global，永不可入中国市场统计（DB 约束 + 服务层双保险）。
+**实现备注（Phase 11 C1 裁决）**：不暴露 HTTP（理由同 §2.3）；CLI 通道：`skillgap ingest-adzuna`（默认 gb，本地额度守卫 250 req/day；**尚未首拉**——global N=0 灰态属预期）。
 
 ### 2.5 POST /api/resumes/analyze（M5）
 
@@ -183,15 +188,18 @@ GET：画像 + 每技能证据链（即 2.5 响应结构）。DELETE：级联删
 ### 2.13 GET /api/quality/report（M11）
 
 **Response 200**：`{ "duplicate_rate": 0.08, "missing_field_rate": 0.01, "pii_detection": { "rules_version": "v1", "scan_count": 1200, "hit_rate": 0.12, "manual_audit_pass": true }, "invalid_jd_rate": 0.03, "skill_extraction_error_rate": 0.02, "computed_at": "…" }`
+**实现备注（Phase 11 T3 落地）**：五指标结构已实现——批次三率（duplicate / invalid_jd / missing_field）由 ingest_batch 全历史聚合（分子分母口径与单批报告一致）+ 全库扫描两率 + PII 检测（`manual_audit_pass` 人工抽查后回填，未抽查时如实为 null）；服务层超集字段（batches_today / job_count / hit_total 等）不外露（D3 裁剪纪律）。当前真实值见 DATA.md §5（duplicate 1.94% / invalid 0.49% / missing 0）。
 
 ### 2.14 DELETE /api/contributions/{deletion_code}
 
 哈希比对删除对应贡献（DATA_GOVERNANCE §3）。`204` / `NOT_FOUND`（code 错误或已删）。**错误不区分"不存在"与"已删除"**（防探测）。
+**实现备注（Phase 11 T3 落地）**：哈希比对删除 + 级联（job_skill / deletion_code 行）；不存在与已删除返回**字节级一致**的 404 统一错误体（防探测测试锚定）；无路径格式校验——无效格式自然哈希不匹配，不暴露 code 有效性。
 
 ### 2.15 GET /api/eval/results ／ 2.16 GET /api/health
 
 eval：评测历史列表（指标 + 版本三元组 + 差异摘要）。health：`{ "status": "ok", "db": true, "llm": "reachable" }`。
-**实现备注**（Phase 10 落地）：§2.16 已实现——`db` 为真实探活（SELECT 1）；`llm` 字段报告 **key 配置状态**而非真实连通性（健康检查不触发付费 LLM 调用——诚实偏差，与契约 "reachable" 的差异如实记录）。§2.15 延后 Phase 11（C1 裁决）。
+**实现备注（Phase 10 落地）**：§2.16 已实现——`db` 为真实探活（SELECT 1）；`llm` 字段报告 **key 配置状态**而非真实连通性（健康检查不触发付费 LLM 调用——诚实偏差，与契约 "reachable" 的差异如实记录）。
+**实现备注（Phase 11 T3 落地）**：§2.15 已实现——响应 `{ "runs": [...] }`，每行含指标 + 版本三元组（dataset/prompt 为顶层列，scoring_version 自 metrics 提升）+ 与上一条的**差异摘要**（同版本三元组优先比较，跨版本明示"谨慎解读"——与 `eval-report` 单一口径复用同一实现）。
 
 ---
 

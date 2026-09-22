@@ -12,12 +12,15 @@
 | [ADR-001](adr/ADR-001-no-crawler.md) | 为什么不爬招聘平台（红线） | 已接受 | Phase 0 ADR-004 |
 | [ADR-002](adr/ADR-002-data-sources.md) | 为什么 Public API + Public Job Pages + User Submitted JD | 已接受 | Phase 0 ADR-004（扩展） |
 | [ADR-003](adr/ADR-003-postgresql.md) | 为什么 PostgreSQL | 已接受 | Phase 0 ADR-001 |
-| [ADR-004](adr/ADR-004-pgvector.md) | 为什么/为什么不 pgvector（表预留不建索引） | 已接受 | Phase 0 ADR-001（拆分） |
+| [ADR-004](adr/ADR-004-pgvector.md) | 为什么/为什么不 pgvector（表预留不建索引） | 已接受（Phase 8 条件触发：HNSW 索引已建，migration 004） | Phase 0 ADR-001（拆分） |
 | [ADR-005](adr/ADR-005-deterministic-match-score.md) | 为什么 LLM 不负责最终 Match Score | 已接受 | Phase 0 ADR-002 |
-| [ADR-006](adr/ADR-006-langgraph.md) | 为什么/为什么不 LangGraph（v1 无 Agent） | 已接受 | Phase 0 ADR-005 |
+| [ADR-006](adr/ADR-006-langgraph.md) | 为什么/为什么不 LangGraph（v1 无 Agent） | 已接受并复议（Phase 8 落地单 Career Planner Agent） | Phase 0 ADR-005 |
 | [ADR-007](adr/ADR-007-evidence.md) | 为什么需要 Evidence | 已接受 | Phase 1 新增 |
 | [ADR-008](adr/ADR-008-sample-size.md) | 为什么市场统计必须显示 Sample Size | 已接受 | Phase 1 新增 |
 | [ADR-009](adr/ADR-009-skill-extraction.md) | 技能抽取：LLM Structured Output + Taxonomy | 已接受 | Phase 0 ADR-003 |
+| [ADR-010](adr/ADR-010-persistence-sql-first.md) | 为什么 SQL-first（统计口径冻结在 SQL 常量） | 已接受 | Phase 2 新增 |
+| [ADR-011](adr/ADR-011-fastapi-introduction.md) | 为什么 FastAPI（契约端点 + SSR Dashboard 层） | 已接受 | Phase 10 新增 |
+| [ADR-012](adr/ADR-012-docker-deployment.md) | 为什么 Docker 全栈部署（compose + entrypoint 幂等） | 已接受 | Phase 11 新增 |
 
 每个 ADR 统一结构：Context → Options（含 Pros/Cons）→ Decision → Consequences → Reversibility。
 

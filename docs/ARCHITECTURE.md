@@ -1,6 +1,7 @@
 # ARCHITECTURE —— 技术架构（Phase 1 冻结版）
 
 > SkillGap Agent ｜ Phase 1 交付物 ｜ 本版在 Phase 0 基础上新增数据采集上下文（Adzuna ingest + 用户贡献通道），API 契约冻结至 API.md，ADR 迁移至 docs/adr/（变更记录见 DECISION_LOG.md）
+> **Phase 11 现状增补**：§2/§4/§10 标注落地现状（FastAPI Dashboard、LangGraph Agent、RAG、Docker 部署）；冻结正文保留 Phase 1 原文。
 > 架构一句话：**模块化单体（Modular Monolith）+ 三层智能分离（Deterministic / LLM / Evidence），Agent 只在 Phase 8 以单 Agent + Workflow 形式引入。**
 
 ---
@@ -71,6 +72,8 @@
 
 **外部数据源（经 Ingestion Context 进入，全部确定性代码，无爬虫）**：Adzuna 公开 API（Tier A，Global）｜公司官方招聘页人工摘录（Tier A）｜用户 opt-in 匿名贡献（Tier B，China 主通道）｜CSV/JSON 导入（Tier C）。管道分步规格见 DATA_PIPELINE.md。
 
+**落地现状（Phase 11 增补，与上图对照）**：Dashboard 六页 SSR（Jinja2 + 原生 JS，零框架零构建零 CDN）与 FastAPI 13 个契约端点已上线（ADR-011）；Career Planner Agent（LangGraph 单 Agent，4 节点）Phase 8 落地（ADR-006 复议成立，数值路径零 LLM 权限）；RAG 引用层已激活（pgvector HNSW + bge-m3 1024 维，migration 004）；LLM 缓存落 DB `llm_cache` 表（migration 003）——Redis 服务在 compose 中保留但应用未接入（ADR-012 D2 维持）。数据现状（2026-09-22 事故重建后）见 DATA.md。
+
 **三层智能分离**（需求第十四节要求的架构化表达）：
 
 | 层 | 职责 | 技术手段 | 禁止事项 |
@@ -110,13 +113,13 @@ LLM API（外部依赖）→ 只用于抽取/解释，输出必过校验 → 展
 | 技术 | 为什么需要 | 不用的后果 | 深度决策 |
 |---|---|---|---|
 | Python 3.11+ | 数据处理(Pandas) + LLM 生态 + 用户技术栈匹配 | 双语言维护成本 | ADR-003 |
-| **FastAPI** | 异步 API + Pydantic 原生 Schema 校验（Structured Output 的校验层直接复用） | 校验逻辑两套实现 | ADR-003 |
+| **FastAPI** | 异步 API + Pydantic 原生 Schema 校验（Structured Output 的校验层直接复用）；Phase 10 起承载 13 契约端点 + SSR Dashboard | 校验逻辑两套实现 | ADR-011 |
 | **PostgreSQL** | 结构化 JD/技能关系数据 + 关系查询（频率统计全是 SQL，含 market 分区约束） | 频率统计退化成内存计算，无法审计 | ADR-003 |
-| pgvector（表结构预留） | Phase 8 RAG 候选场景；**不提前建索引** | 届时需迁移表结构 | ADR-004 |
-| **Redis** | LLM 抽取结果缓存（同 JD content_hash 命中免重抽，成本控制）+ 评测结果缓存 | LLM 成本随重复分析线性增长 | ADR-003 |
+| pgvector | Phase 8 RAG 引用层已激活（migration 004 加列 + HNSW 索引，bge-m3 1024 维）——按 ADR-004 预约条件触发，未提前 | 无语义变体检索 | ADR-004 |
+| Redis | 冻结期为缓存设计；实际落地：LLM 缓存走 DB `llm_cache` 表，Redis 服务在编未接入（ADR-012 D2 维持） | — | ADR-003/012 |
 | LLM API（OpenAI-compatible） | 抽取/解释的唯一智能来源 | 无核心功能 | ADR-005/009 |
 | Structured Output（JSON Schema） | 抽取结果可校验、可入库、可评测 | 自由文本无法进数据库 | ADR-009 |
-| **LangGraph**（Phase 8 起） | Career Planner Agent 的确定性编排（状态机 + 检查点），只用于真正需要决策的环节 | v1 不需要；直接手写规则更可解释 | ADR-006 |
+| **LangGraph**（Phase 8 已落地） | Career Planner Agent 的确定性编排（状态机 + 检查点），只用于真正需要决策的环节 | v1 不需要；直接手写规则更可解释 | ADR-006 |
 | Pandas | 数据集导入清洗、评测集分析 | 手写循环 | ADR-003 |
 | Docker Compose | clone→run 一条命令（MVP 成功标准） | 环境不可复现 | ADR-003 |
 | pytest | 纯函数层（评分/ROI/置信度/PII 规则）单测 + 评测集回归 | 确定性层无质量门 | ADR-005 |
@@ -214,14 +217,16 @@ GET  /api/quality/report ｜ /api/eval/results ｜ /api/health                  
 
 ---
 
-## 10. 部署拓扑（MVP）
+## 10. 部署拓扑（Phase 11 落地版，ADR-012）
 
 ```
-Docker Compose：
-  web(FastAPI+Dashboard) ──→ postgres(pgvector镜像，索引按需)
-                        ──→ redis(缓存)
-                        ──→ LLM API(外部，经 LLM Gateway)
-  ci(GitHub Actions)：test → eval(评测集回归) → lint → docs 检查
+Docker Compose（docker-compose.yml，clone 后三条命令跑通）：
+  app(FastAPI+Dashboard；entrypoint = db-upgrade → seed → uvicorn，幂等 fail-fast)
+     ──→ postgres(pgvector/pgvector:pg16，卷持久化)
+     ──→ LLM API(外部 DeepSeek，经 LLM Gateway；缓存落 llm_cache 表)
+  redis(服务在编，应用未接入——ADR-012 D2)
+  端口 127.0.0.1:8000（部署红线：仅本机；API.md §0）
+ci(GitHub Actions)：test(pytest 全量+迁移预检) ∥ docker build(仅构建不推送)；e1 仅手动 dispatch
 ```
 
-不做：K8s、多环境、CD 自动发布（简历项目无此收益）。
+不做：K8s、多环境、CD 自动发布、连接池（本地单用户每请求连接——Phase 11 C3 复议维持）。

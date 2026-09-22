@@ -180,7 +180,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 - 词表 v1.9：87 技能（2026-09-02 增补算法/测试/系统架构/前端 + Context Engineering + Harness Engineering；**候选裁决**：新增 Agent 开发/小程序 2 技能 + AI Coding(claude code/codex/claude)、LLM 应用开发(大模型API)、前端开发(前端) 别名扩充，11 accepted / 25 rejected，队列清零）；来源注册表 6 条（adzuna / company_career_page / boss_zhipin / user_contribution / community_csv / demo_dataset）
 - E1 标注集：v1（20 条合成变体，冻结）+ **v2（53 条真实 JD**：28 条人工确认行直取库内标注 + 25 条平台采集行逐条复核重标——修正规则误标：react 模式≠前端 React、GitHub Copilot≠Git、任一/均可≠must、补 Claude Code→AI Coding；`data/eval/e1_seed_v2.json`）
 - **market_snapshot：snapshot#4**（2026-09-02，N=201，**high**，s11-v1；top：Python 0.66 / RAG 0.45 / Prompt Engineering 0.40 / Java 0.36 / AI Coding 0.27；来源构成 boss_zhipin 64% + company_career_page 36%；快照历史 #1 N=50 → #2 N=100 → #3 N=193 → #4 N=201）
-- 走查留痕（2026-09-16，Phase 10 T8 真实 LLM 全流程走查）：candidate cid=9 画像（8 技能）+ match/recommendation 结果行——开发验证数据，可随时 `candidate-delete --candidate-id 9` 级联清除
+- 走查留痕（2026-09-22 事故恢复重建）：candidate cid=1 画像（9 技能）——开发验证数据，可随时 `candidate-delete --candidate-id 1` 级联清除（Phase 10 走查原为 cid=9，随数据卷事故丢失后重建，见 DECISION_LOG D-2026-09-22-20）
 
 ## 9. 遗留任务（按优先级）
 
@@ -257,9 +257,9 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 
 ### 13.3 数据库（同机换账号不受影响；换机必读）
 
-- 数据在 Docker PostgreSQL（`pgvector/pgvector:pg16`）中，**不在 git**：201 条 active 岗位 + 1505 行 job_skill + 词表 v1.9（87 技能）+ 来源注册表 + market_snapshot#4 + eval_run 14 条评测历史 + RAG 向量 1514 行 + 走查留痕（candidate cid=9 等）
+- 数据在 Docker PostgreSQL（`pgvector/pgvector:pg16`）中，**不在 git**（2026-09-22 事故重建后现状，明细见 docs/DATA.md §2）：202 条 active 岗位 + 1518 行 job_skill（RAG 向量 1512）+ 词表 v1.9（87 技能 + 288 别名）+ 来源注册表 + market_snapshot#1（重建）+ eval_run 4 条（重建）+ 走查留痕（candidate cid=1 等）
 - 换机重建路径：`db-upgrade` + `seed`（词表/来源表可重建）→ 逐批 `import data/batch_1~3.csv`（岗位可重建，批次 CSV 已入库跟踪）→ `snapshot-create`（快照可重算）→ `rag-index`（向量可重灌，需 EMBEDDING_API_KEY）
-- **不可自动重建**：eval_run 评测历史（14 条真实 LLM 跑分——E1 基线/方差演练/gate 恢复链）与走查留痕 → 建议换机前 `pg_dump` 整库带走最稳妥
+- **不可自动重建**：eval_run 历史行与画像/匹配留痕（2026-09-22 事故实证：14 条历史丢失，E1/E2/E3 重跑可回基线带内但历史轨迹仅存档于 data/eval/*.json 与 EVALUATION.md）→ 建议换机前 `pg_dump` 整库带走最稳妥
 
 ### 13.4 AI 会话上下文（换 IDE / AI 助手账号）
 
