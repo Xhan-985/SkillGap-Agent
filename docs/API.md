@@ -24,10 +24,11 @@
 
 ## 1. 端点总表
 
-| Method | Path | 功能 | 同步 | LLM | MVP | 实现（Phase 11 T3 后） |
+| Method | Path | 功能 | 同步 | LLM | MVP | 实现（Phase 11 T4 后） |
 |---|---|---|---|---|---|---|
 | POST | /api/jd/analyze | JD 结构化分析 | ✅ | ✅（抽取） | M1 | ✅ Phase 10 |
-| POST | /api/jd/contribute | 匿名贡献 JD 进市场数据集 | ❌ 异步 | ✅（抽取，管道内） | M3 | ⬜ Phase 11 T4（CLI 通道可用） |
+| POST | /api/jd/contribute | 匿名贡献 JD 进市场数据集 | ❌ 异步 | ✅（抽取，管道内） | M3 | ✅ Phase 11 T4 |
+| GET | /api/tasks/{task_id} | 异步任务状态查询（§2.2 内嵌） | ✅ | ❌ | M3 | ✅ Phase 11 T4 |
 | POST | /api/jd/import | CSV/JSON 批量导入 | ❌ 异步 | ✅（抽取，管道内） | M4 | 🔧 CLI 通道（C1 裁决） |
 | POST | /api/ingest/adzuna | 拉取 Adzuna 海外岗位 | ❌ 异步 | ✅（抽取，管道内） | M4 | 🔧 CLI 通道（C1 裁决） |
 | POST | /api/resumes/analyze | 简历 → 证据化画像 | ✅ | ✅（证据识别） | M5 | ✅ Phase 10 |
@@ -43,7 +44,7 @@
 | GET | /api/eval/results | 评测结果历史 | ✅ | ❌ | M11 | ✅ Phase 11 T3 |
 | GET | /api/health | 健康检查 | ✅ | ❌ | — | ✅ Phase 10 |
 
-> **实现状态说明（Phase 11 C1 裁决）**：16 端点 = 13 HTTP 实现 + 2 管理端点裁为 CLI 通道（jd/import、ingest/adzuna——管理操作，无鉴权 HTTP 暴露反而扩大攻击面，§0 本地单用户红线）+ 1 待实现（jd/contribute，T4：migration 005 task 表 + BackgroundTasks + §2.2 内嵌 `GET /api/tasks/{id}`）。
+> **实现状态说明（Phase 11 C1 裁决）**：16 端点 = 14 HTTP 实现（含 §2.2 内嵌 tasks 查询）+ 2 管理端点裁为 CLI 通道（jd/import、ingest/adzuna——管理操作，无鉴权 HTTP 暴露反而扩大攻击面，§0 本地单用户红线）。
 
 ---
 
@@ -69,7 +70,7 @@
 
 ### 2.2 POST /api/jd/contribute（M3）
 
-**Request**：`{ "jd_text": "string", "consent": true, "source_hint": "boss|nowcoder|liepin|other" }`（consent=false 拒绝）
+**Request**：`{ "jd_text": "string", "consent": true, "title": "string?", "source_hint": "boss|nowcoder|liepin|other" }`（consent=false 拒绝；title 可选——空标题走质检 quarantine 明示，与 CLI `--title` 必填同口径）
 **Response 202**：`{ "task_id": "…", "message": "脱敏与去重处理中" }` → 完成后 `GET /api/tasks/{id}` 返回：
 
 ```json
@@ -80,7 +81,7 @@
 
 **Error**：`VALIDATION_ERROR`；`QUARANTINED`（质检隔离，含原因）；重复时返回 `deduplicated: true` 与既有 job_id（不算错误）。
 **数据来源**：用户主动提交（Tier B）。**LLM**：管道内抽取。**说明**：source_hint 仅作来源统计标签，系统不向该平台发起任何请求。
-**实现备注（Phase 11 现状）**：HTTP 端点未实现（T4 计划：migration 005 task 表 + FastAPI BackgroundTasks + D5 deletion_code 一次性展示语义）。当前贡献通道由 CLI 承载：`skillgap contribute` / `skillgap delete-contribution`（PII 脱敏 + deletion_code 哈希存储，管道已全量落地）；配套的 §2.14 DELETE 端点已实现（T3）。
+**实现备注（Phase 11 T4 落地）**：migration 005 `task` 表（D4：uuid/kind/status(pending→running→completed|failed)/result jsonb/error）+ FastAPI BackgroundTasks（C2：单进程 uvicorn 够用；任务内自建连接）；失败语义不静默——QuarantinedContribution/管道异常 → `status=failed` + error 明示，LLM 抽取失败/未配置 key → 任务仍 `completed` + `extraction_status=pending`（job 已入库，deletion_code 照常送达——删除权合规优先，CLI `backfill-extraction` 可补抽）；D5 一次性展示：deletion_code 明文存 task.result，`GET /api/tasks/{id}` 首次返回后即置 null（"已展示，请使用已保存的 code"），DB 本体（deletion_code 表）仍只存哈希；dedup 命中 → `deduplicated:true` + 既有 job_id + deletion_code=null，零 LLM 调用。
 
 ### 2.3 POST /api/jd/import（M4）
 

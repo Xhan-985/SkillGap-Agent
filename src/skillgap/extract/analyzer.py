@@ -62,6 +62,38 @@ def analyze_jd(conn: psycopg.Connection, jd_text: str,
     }
 
 
+def backfill_job(conn: psycopg.Connection, extractor, job_id: int,
+                 raw_text: str, amap: dict | None = None) -> None:
+    """单 job LLM 抽取回填（backfill_pending 与 contribute 任务管道共用实现）。
+
+    词表外技能进 new_skill_candidate（周级裁决）；成功后清除
+    extraction_status=pending 标记。
+    """
+    if amap is None:
+        amap = alias_map_from_db(conn)
+    anns = extractor.extract(raw_text)
+    unresolved: list[str] = []
+    with conn.cursor() as cur:
+        for a in anns:
+            sid = resolve_skill_id(a.raw_name, amap)
+            if sid is None:
+                unresolved.append(a.raw_name)
+                continue
+            cur.execute(
+                """INSERT INTO job_skill (job_id, skill_id, importance,
+                   intensity, evidence_text, extracted_by)
+                   VALUES (%s, %s, %s, %s, %s, 'llm')
+                   ON CONFLICT (job_id, skill_id) DO NOTHING""",
+                (job_id, sid, a.importance, a.intensity, a.evidence_text))
+        if unresolved:
+            record_candidates(conn, unresolved, job_id)
+        cur.execute(
+            """UPDATE job SET parsed_metadata =
+               parsed_metadata - 'extraction_status' WHERE id = %s""",
+            (job_id,))
+    conn.commit()
+
+
 def backfill_pending(conn: psycopg.Connection, extractor,
                      limit: int = 100) -> int:
     """回填 extraction_status=pending 的 job（Phase 2 移交项）。
@@ -84,29 +116,8 @@ def backfill_pending(conn: psycopg.Connection, extractor,
     done = 0
     for row in rows:
         try:
-            anns = extractor.extract(row["raw_text"])
+            backfill_job(conn, extractor, row["id"], row["raw_text"], amap)
         except (ExtractionFailed, LLMError):
             continue
-        unresolved: list[str] = []
-        with conn.cursor() as cur:
-            for a in anns:
-                sid = resolve_skill_id(a.raw_name, amap)
-                if sid is None:
-                    unresolved.append(a.raw_name)
-                    continue
-                cur.execute(
-                    """INSERT INTO job_skill (job_id, skill_id, importance,
-                       intensity, evidence_text, extracted_by)
-                       VALUES (%s, %s, %s, %s, %s, 'llm')
-                       ON CONFLICT (job_id, skill_id) DO NOTHING""",
-                    (row["id"], sid, a.importance, a.intensity,
-                     a.evidence_text))
-            if unresolved:
-                record_candidates(conn, unresolved, row["id"])
-            cur.execute(
-                """UPDATE job SET parsed_metadata =
-                   parsed_metadata - 'extraction_status' WHERE id = %s""",
-                (row["id"],))
-        conn.commit()
         done += 1
     return done
