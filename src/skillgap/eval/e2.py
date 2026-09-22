@@ -265,22 +265,15 @@ def _materialize_candidate(conn, profile: dict) -> int:
 
 
 def _materialize_job(conn, sample: dict) -> int:
-    """E2 JD → job_id。job#N 直用；新文本（别名变体）插入 active 零技能
-    job（content_hash 去重）——由调用方触发 LLM 回填。"""
-    import re as _re
+    """E2 JD → job_id。内容寻址优先：content_hash(jd_text) 命中即复用——
+    库重建后 job#N 的 id 会重排（2026-09-22 卷丢失事故实证：24/24 引用
+    漂移致 E2 全对错配），jd_text 才是配对真相；未命中一律按新文本落
+    active 零技能 job（content_hash 去重，调用方触发 LLM 回填）——
+    job#N 仅作溯源元数据，不回退 id（id 回退=静默错配根源）。"""
     from psycopg.types.json import Json
     from skillgap.ingest.normalize import content_hash
     from skillgap.ingest.sources import get_source
 
-    src = sample["jd_source"]
-    m = _re.search(r"job#(\d+)", src)
-    if m:
-        jid = int(m.group(1))
-        with conn.cursor() as cur:
-            cur.execute("SELECT 1 FROM job WHERE id = %s", (jid,))
-            if cur.fetchone() is None:
-                raise ValueError(f"E2 引用的 job#{jid} 不存在")
-        return jid
     chash = content_hash(sample["jd_text"])
     with conn.cursor() as cur:
         cur.execute("SELECT id FROM job WHERE content_hash = %s", (chash,))

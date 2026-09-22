@@ -158,6 +158,17 @@
 - **D1-D10 冻结**：Dockerfile 单阶段 3.12-slim/非 root/`*.sh` 强制 LF；compose 端口 `127.0.0.1:8000`（红线延续）；任务表 BackgroundTasks 内自建连接 + failed 状态 error 明示；**deletion_code 一次性展示**（task.result 存明文，GET tasks/{id} 首次返回后置 null——DB 本体仍只存哈希，§2.14 防探测不变）；质量页 SSR+fetch（对齐 Phase 10 模式）七页导航；贡献区交互够用即止；README 七段结构冻结 + 禁营销话术红线；DATA.md/DEVELOPMENT.md 新建 + ARCHITECTURE/API/EVALUATION/DESIGN_DECISIONS 更新 + ADR-001~012 状态核对；测试纪律延续（TestClient+fixture+FakeLLM，容器内 pytest 不做）
 - **影响**：Phase 11 落地（T1-T9，见计划任务表）；**零新 Python 依赖**（docker/compose 属基础设施非代码依赖，部署决策入 ADR-012）；CI 首跑绿依赖用户批准 push（时点用户定）
 
+## D-2026-09-22-20 ｜ T2 事故：dev 数据卷误删（down -v 执行目录漂移）+ 恢复记录 + Docker 破坏性命令纪律
+
+> Phase 11 T2 干净环境验证的拆除阶段；恢复源 = git 跟踪工件（批次 CSV / 评测数据集 / 词表，均已推远端 master）
+
+- **事故**：干净环境三命令验证全部通过后，清理链中 `docker compose down -v` 的执行目录回退到仓库主目录——`Set-Location` 不跨命令持久化（仅 `cwd` 参数持久化）；此时 dev 栈容器已停仅剩数据卷，`down -v` 删除了 `skillgapagent_pgdata`，随后 `compose up` 重建同名空卷，原数据不可恢复
+- **丢失（仅 DB 独有层）**：LLM 抽取富化 job_skill / eval_run 历史行（数值已存档于 data/eval/*.json 与 EVALUATION.md）/ llm_cache（仅成本影响）/ candidate 画像（cid=9）/ jd_embedding。**完好**：批次 CSV、评测数据集、词表（git 跟踪 + 远端 master）、全部代码与文档、T2 交付本身（3d5ab98，验收于事故前全部通过）
+- **恢复（用户批准 R1-R3，当日完成）**：R1 零 LLM——import 批次 1-3 → 201 job（全 china，global=0 灰态符合预期）/ 1505 job_skill / 词表 87；R2——backfill 11（零命中兜底，5 个词表外岗位按设计保持零技能）+ 画像重建（cid=1，9 技能；原 cid=9 文档引用待 T7 文档终版同步）+ rag-index 1512 行；R3——E1 f1=0.8644（基线 0.8628）/ evidence 1.0 / warn，E3 pass（nDCG 均值 ≈0.65 与基线一致），E2 见下
+- **R3 发现并修复 E2 物化缺陷（真实缺陷，非评测劣化）**：E2 首跑 block（ρ=0.445 vs 基线 0.8433）——根因 `_materialize_job` 对 `job#N` 引用 **id 直用**，库重建后 24/24 引用 id 漂移全对错配（数据集每对自带 jd_text，content_hash 校验实证全不匹配）；修复=**内容寻址优先**（hash 命中即复用，未命中按自带文本落库待回填，id 不回退——id 回退即静默错配根源），`job#N` 降级为溯源元数据；回归锚定 `test_materialize_job_id_drift_guard` + 两 fixture 对齐内容寻址语义，12 测试绿；修复后 E2 **pass**（ρ=0.8277 / MAE=9.67 / Jaccard=0.9667，基线带内；alias_scores_equal=false 系别名对全新抽取的正常方差，非门禁项，如实记录）；**eval-gate 恢复 warn / exit 0**（E1 warn + E2/E3 pass，与事故前结构一致）
+- **纪律（即日生效）**：① 破坏性 docker 命令（`down -v` / `volume rm`）执行前必须确认 project/卷归属，临时栈全程 `-p <project>` 隔离；② 跨命令目录定位只用 `cwd` 参数，不依赖 `Set-Location`；③ **永不对 dev project（skillgapagent）使用 `down -v`**——数据卷只随明确人工指令删除
+- **影响**：T2 交付不受影响；eval_run 历史以重跑行替代（原数值以文档存档为准）；llm_cache 清零 = 后续 LLM 操作全量计费
+
 ---
 
 ## 待议决策

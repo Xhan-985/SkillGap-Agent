@@ -87,11 +87,16 @@ def _req(clean_db, job_id, skill, importance, intensity):
 
 @pytest.fixture()
 def _drill_market(clean_db, tmp_path):
-    """三岗位 fixture 市场 + 标注集入库（jd_source 回填真实 job id）。"""
+    """三岗位 fixture 市场 + 标注集入库（jd_source 回填真实 job id；
+    content_hash 与 pair jd_text 对齐——E2 物化按内容寻址）。"""
+    from skillgap.ingest.normalize import content_hash
     sid = _source(clean_db)
-    j1 = _insert_job(clean_db, **_job_kwargs(sid, content_hash="h-d1"))
-    j2 = _insert_job(clean_db, **_job_kwargs(sid, content_hash="h-d2"))
-    j3 = _insert_job(clean_db, **_job_kwargs(sid, content_hash="h-d3"))
+    j1 = _insert_job(clean_db, **_job_kwargs(
+        sid, content_hash=content_hash("a" * 200)))
+    j2 = _insert_job(clean_db, **_job_kwargs(
+        sid, content_hash=content_hash("b" * 200)))
+    j3 = _insert_job(clean_db, **_job_kwargs(
+        sid, content_hash=content_hash("c" * 200)))
     # J1：纯 nice 全满足（coverage 0.95 / importance 0.5）
     for s in ("RAG", "Python", "Docker"):
         _req(clean_db, j1, s, "nice_to_have", "熟悉")

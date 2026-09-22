@@ -1,5 +1,5 @@
-"""E2 runner 物化/跑分机制测试（Fake 物化：job# 直用 + 别名 JD 手工技能，
-零 LLM——真实 LLM 物化在 eval-e2 实跑中验证）。"""
+"""E2 runner 物化/跑分机制测试（Fake 物化：content_hash 内容寻址复用 +
+别名 JD 手工技能，零 LLM——真实 LLM 物化在 eval-e2 实跑中验证）。"""
 import json
 
 import pytest
@@ -60,8 +60,8 @@ def _dataset_file(clean_db, tmp_path):
     本 fixture 预置同 content_hash 的已抽取版本模拟 LLM 回填完成。"""
     from skillgap.ingest.normalize import content_hash
 
-    j1 = _mk_job(clean_db, _hash="h-r1")
-    j2 = _mk_job(clean_db, _hash="h-r2")
+    j1 = _mk_job(clean_db, _hash=content_hash("x" * 200))
+    j2 = _mk_job(clean_db, _hash=content_hash("y" * 200))
     _req(clean_db, j1, "RAG", "must_have", "熟练")
     _req(clean_db, j1, "Python", "must_have", "熟悉")
     _req(clean_db, j1, "Docker", "nice_to_have", "熟悉")
@@ -88,6 +88,21 @@ def test_seed_eval2_idempotent(clean_db, _dataset_file):
         "SELECT count(*) AS n FROM evaluation_sample "
         "WHERE eval_type='matching'").fetchone()["n"]
     assert n == 3
+
+
+def test_materialize_job_id_drift_guard(clean_db):
+    """id 漂移防护（2026-09-22 卷丢失事故回归锚定）：jd_source 的 job#N
+    失效/指向他岗时，按 jd_text 的 content_hash 复用正确岗位——旧实现
+    id 直用曾在库重建后致 E2 24/24 对错配（ρ 0.84→0.45 假性 block）。"""
+    from skillgap.eval.e2 import _materialize_job
+    from skillgap.ingest.normalize import content_hash
+
+    sid = _source(clean_db)
+    j1 = _insert_job(clean_db, **_job_kwargs(
+        sid, content_hash=content_hash("x" * 200)))
+    sample = {"id": "t-drift", "jd_text": "x" * 200,
+              "jd_source": "job#424242（重建后原 id 已指向他岗）"}
+    assert _materialize_job(clean_db, sample) == j1
 
 
 def test_run_e2_end_to_end_fake_materialization(clean_db, _dataset_file):
