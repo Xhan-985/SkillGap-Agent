@@ -82,20 +82,27 @@ def _fetch_all_runs(conn: Connection) -> list[dict]:
         return [dict(r) for r in cur.fetchall()]
 
 
+def _pick_prev_for(hist: list[dict], idx: int) -> tuple[dict | None, str]:
+    """对 hist[idx] 选对比基线（诚实优先，§9；泛化到任意位次）：优先同
+    版本三元组（dataset+prompt）的上一条——同版本差异才是纯系统差异；
+    无同版本时退回紧邻上一条并标'cross_version'（口径变化，不能归因
+    系统好坏）；首条无基线。"""
+    cur = hist[idx]
+    for r in reversed(hist[:idx]):
+        if (r["dataset_version"] == cur["dataset_version"]
+                and r["prompt_version"] == cur["prompt_version"]):
+            return r, "same_version"
+    if idx > 0:
+        return hist[idx - 1], "cross_version"
+    return None, "first"
+
+
 def _pick_prev(hist: list[dict]) -> tuple[dict | None, str]:
-    """选对比基线（诚实优先，§9）：优先同版本三元组（dataset+prompt）
-    的上一条——同版本差异才是纯系统差异；无同版本时退回紧邻上一条
-    并明示'跨版本'（口径变化，不能归因系统好坏）。
-    """
-    latest = hist[-1]
-    for r in reversed(hist[:-1]):
-        if (r["dataset_version"] == latest["dataset_version"]
-                and r["prompt_version"] == latest["prompt_version"]):
-            return r, f"vs #{r['id']}（同版本）"
-    if len(hist) > 1:
-        prev = hist[-2]
-        return prev, f"vs #{prev['id']}（跨版本，谨慎解读）"
-    return None, "首条基线"
+    prev, kind = _pick_prev_for(hist, len(hist) - 1)
+    if prev is None:
+        return None, "首条基线"
+    label = "同版本" if kind == "same_version" else "跨版本，谨慎解读"
+    return prev, f"vs #{prev['id']}（{label}）"
 
 
 def _label(eval_type: str) -> str:
@@ -232,3 +239,53 @@ def generate_report(conn: Connection, out_path: Path | str | None = None) -> str
     if out_path is not None:
         Path(out_path).write_text(report, encoding="utf-8")
     return report
+
+
+# ==================== API 组装源（Phase 11 T3 / API.md §2.15） ====================
+
+def _diff_deltas(latest: dict, prev: dict | None) -> dict:
+    """KEY_METRICS 内两方都有的键的数值差（结论性指标；嵌套过程数据
+    如 per_case/adversarial 不进 diff——与报告 §2 口径一致）。"""
+    if prev is None:
+        return {}
+    out: dict[str, float] = {}
+    for k in KEY_METRICS.get(latest["eval_type"], []):
+        lm, pm = latest.get("metrics") or {}, prev.get("metrics") or {}
+        if k in lm and k in pm:
+            out[k] = round(float(lm[k]) - float(pm[k]), 4)
+    return out
+
+
+def runs_payload(conn: Connection) -> list[dict]:
+    """eval_run 全历史（id 升序）+ 版本三元组 + 差异摘要——API §2.15
+    组装源（本模块只做只读呈现的定位不变）。版本三元组 = dataset +
+    prompt + scoring（scoring_version 自 metrics 提升；E1 无则 None）；
+    diff 基线选择与报告 §2 同一套 _pick_prev_for（同版本优先/跨版本
+    明示/首条无基线）。"""
+    runs = _fetch_all_runs(conn)
+    by_type: dict[str, list[dict]] = {}
+    for r in runs:
+        by_type.setdefault(r["eval_type"], []).append(r)
+    out: list[dict] = []
+    for hist in by_type.values():
+        for i, r in enumerate(hist):
+            prev, kind = _pick_prev_for(hist, i)
+            out.append({
+                "id": r["id"],
+                "eval_type": r["eval_type"],
+                "dataset_version": r["dataset_version"],
+                "prompt_version": r["prompt_version"],
+                "scoring_version": (r.get("metrics") or {}).get(
+                    "scoring_version"),
+                "model": r["model"],
+                "sample_size": r["sample_size"],
+                "verdict": r["verdict"],
+                "metrics": r.get("metrics") or {},
+                "diff": {
+                    "baseline_run_id": prev["id"] if prev else None,
+                    "baseline_kind": None if prev is None else kind,
+                    "deltas": _diff_deltas(r, prev),
+                },
+                "created_at": r["created_at"].isoformat(),
+            })
+    return out

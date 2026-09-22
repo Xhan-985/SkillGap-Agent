@@ -33,6 +33,25 @@ def batch_metrics(report: BatchReport) -> dict:
     }
 
 
+def batch_rates(conn: psycopg.Connection) -> dict:
+    """批次聚合三率（ingest_batch 全历史；分子分母口径同 batch_metrics，
+    聚合源为库内批次报告而非内存 BatchReport——API §2.13 全库视角）。"""
+    with conn.cursor() as cur:
+        cur.execute(
+            """SELECT coalesce(sum(total), 0) AS total,
+                      coalesce(sum(duplicates), 0) AS duplicates,
+                      coalesce(sum(quarantined + rejected), 0) AS invalid,
+                      coalesce(sum(extraction_failed), 0) AS failed,
+                      coalesce(sum(inserted + extraction_failed), 0) AS attempts
+               FROM ingest_batch""")
+        row = cur.fetchone()
+    return {
+        "duplicate_rate": _rate(row["duplicates"], row["total"]),
+        "invalid_jd_rate": _rate(row["invalid"], row["total"]),
+        "skill_extraction_error_rate": _rate(row["failed"], row["attempts"]),
+    }
+
+
 def full_scan(conn: psycopg.Connection) -> dict:
     """全库扫描：missing_field_rate（DB 约束兜底应为 0）+ PII 命中聚合。"""
     with conn.cursor() as cur:
@@ -87,10 +106,12 @@ def quality_report(conn: psycopg.Connection) -> dict:
     return {
         "batches_today": batches_today,
         **scan,
+        **batch_rates(conn),
         "pii_detection": {
             "rules_version": scan["pii_rules_version"],
             "scan_count": scan["pii_scan_count"],
             "hit_total": scan["pii_hit_total"],
+            "hit_rate": _rate(scan["pii_hit_total"], scan["pii_scan_count"]),
             "manual_audit_pass": None,   # 人工抽查后回填（E5 §5.1 每月抽样）
         },
         "computed_at": datetime.now(timezone.utc).isoformat(),

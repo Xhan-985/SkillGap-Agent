@@ -61,6 +61,10 @@ def create_app() -> FastAPI:
     app.include_router(recommend_router)
     from skillgap.api.routes_jd import router as jd_router
     app.include_router(jd_router)
+    from skillgap.api.routes_quality import router as quality_router
+    app.include_router(quality_router)
+    from skillgap.api.routes_contribute import router as contribute_router
+    app.include_router(contribute_router)
 
     # SSR 页面 + 静态资源（Phase 10 D7/D8）
     from pathlib import Path
