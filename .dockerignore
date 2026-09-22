@@ -1,0 +1,12 @@
+# 构建上下文瘦身 + 防泄漏：个人文件与密钥绝不进镜像层
+.git
+.venv
+.env
+.pytest_cache
+**/__pycache__
+**/*.pyc
+tests
+docs
+jd.txt
+data/resume_sample.txt
+*.md

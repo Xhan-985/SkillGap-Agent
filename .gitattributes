@@ -1,0 +1,3 @@
+# shell 脚本强制 LF：entrypoint.sh 带 CRLF 进容器会以 `\r` 报错
+# （Windows 检出坑，Phase 11 计划风险表对策）
+*.sh text eol=lf

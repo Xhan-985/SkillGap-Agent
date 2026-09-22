@@ -22,5 +22,20 @@ services:
     ports:
       - "6379:6379"
 
+  # Phase 11 T2（ADR-012）：app 全栈服务——entrypoint 自动 migrate + seed + serve
+  app:
+    build: .
+    container_name: skillgap-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env          # LLM/EMBEDDING key 透传（DATABASE_URL 被下方 environment 覆盖）
+    environment:
+      # C4：服务名连接串，优先级高于 env_file——用户 .env 无须为容器改任何配置
+      DATABASE_URL: postgresql://skillgap:skillgap@postgres:5432/skillgap
+    ports:
+      - "127.0.0.1:8000:8000"   # 部署红线：仅本机可达（API.md §0 / ADR-012 D2）
+
 volumes:
   pgdata:
