@@ -1,9 +1,14 @@
 # Phase 9 T5 / D6：仓库首个 CI（EVALUATION_PLAN §8 的工程化适配——C1 裁决）
+# Phase 11 T6 / C6：增 docker build job（仅构建不推送——无 registry 凭证
+#   依赖；compose 全栈 e2e 不进 CI，时长+Docker Desktop 依赖留给 T8 手动）
 #
 # 分层策略（C1/C2 冻结口径）：
 # - test job：PR + push master 双触发，全量 pytest（评测器逻辑由 fixture 测试
 #   覆盖：E2/E3 全链路、E1 无 key 路径、劣化演练、零漂移、taxonomy 一致性）
 #   + db-upgrade 迁移预检（CLI 入口在 pytest 之外的真实验证）
+# - docker job：与 test 并行不阻塞，验证 Dockerfile 可构建（镜像可运行性
+#   由 entrypoint 幂等 + T8 全新环境走查覆盖）；不引入 buildx 缓存与
+#   registry 推送（无凭证依赖，slim 拉取+pip install 增时可接受）
 # - e1 job：仅 workflow_dispatch 手动触发（E1 需真实 LLM——key 泄露风险 +
 #   费用 + flaky，PR/push 不跑）；secrets.LLM_API_KEY 缺席时 skip 并打印原因
 # - 全量基线评测（真实市场数据 × E2/E3）留在本地——eval_run 是 source of
@@ -54,6 +59,14 @@ jobs:
           DATABASE_URL="$TEST_DATABASE_URL" skillgap db-upgrade
       - name: pytest 全量
         run: pytest -q
+
+  docker:
+    name: docker build（仅构建不推送——C6）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 构建应用镜像
+        run: docker build -t skillgap-app:ci .
 
   e1:
     name: E1 评测（仅手动 dispatch）
