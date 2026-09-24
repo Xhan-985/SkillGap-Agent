@@ -110,6 +110,25 @@ def market_page(request: Request,
                  market_view=view)
 
 
+@router.get("/quality", response_class=HTMLResponse)
+def quality_page(request: Request, conn=Depends(get_conn)):
+    """Data & Quality 透明度页（UI_SPEC §2.7；D6）。
+
+    来源分布/Tier/terms_checked_at SSR 直出（data_source 注册表是 Tier
+    的 source of truth，不受样本量守门影响——D6 的 source_distribution
+    组装落此）；质量五指标与评测历史由 app.js fetch /api/quality/report
+    + /api/eval/results 填充（D6：SSR 骨架 + 前端填充）。"""
+    with conn.cursor() as cur:
+        cur.execute(
+            """SELECT source_name, source_type, trust_tier, covers_market,
+                      terms_checked_at
+               FROM data_source
+               ORDER BY trust_tier, source_name""")
+        sources = cur.fetchall()
+    return _page("quality", request, market="china", candidate_id=None,
+                 sources=sources)
+
+
 def _market_view(freq: dict, market: str) -> dict:
     """skill_frequency 超集 → 模板形状（D5 灰态口径；D3 超集裁剪）。"""
     if freq.get("status") == "insufficient_sample":

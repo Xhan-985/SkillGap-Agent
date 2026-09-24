@@ -168,10 +168,11 @@ def test_appjs_served_and_cid_convention(client):
 
 
 def test_nav_links_all_pages(client):
-    """base.html 导航六页链接齐全（流程串联导航）。"""
+    """base.html 导航七页链接齐全（Phase 11 T5：+数据与质量页）。"""
     c, _ = client
     html = c.get("/").text
-    for href in ("/", "/resume", "/jd", "/match", "/recommend", "/market"):
+    for href in ("/", "/resume", "/jd", "/match", "/recommend", "/market",
+                 "/quality"):
         assert f'href="{href}"' in html
 
 

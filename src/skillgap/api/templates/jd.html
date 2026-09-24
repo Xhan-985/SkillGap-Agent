@@ -22,5 +22,20 @@
   <details><summary class="meta">抽取元信息（模型 / prompt 版本 / 延迟）</summary>
     <pre id="jd-meta" class="meta"></pre>
   </details>
+  <div id="jd-contribute" hidden>
+    <h3>匿名贡献到市场数据集</h3>
+    <p class="meta">opt-in：默认不贡献。提交即表示同意将此 JD（PII 自动检测替换后）匿名纳入市场统计；将生成 deletion_code（一次性展示，请自行保存）供你随时删除。</p>
+    <label><input type="checkbox" id="jd-consent"> 我同意匿名贡献此 JD（consent）</label>
+    <label class="meta">来源标签（仅统计用，系统不向该平台发起请求）：
+      <select id="jd-source-hint">
+        <option value="boss">BOSS 直聘</option>
+        <option value="nowcoder">牛客</option>
+        <option value="liepin">猎聘</option>
+        <option value="other" selected>其他</option>
+      </select>
+    </label>
+    <button type="button" id="jd-contribute-btn">提交贡献</button>
+  </div>
 </div>
+<div id="jd-contribute-result" hidden></div>
 {% endblock %}

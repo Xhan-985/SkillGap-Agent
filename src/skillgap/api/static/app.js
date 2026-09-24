@@ -116,10 +116,73 @@ function initJd() {
       });
       renderJdResult(body);
       $("jd-result").hidden = false;
+      $("jd-contribute").hidden = false;   // D7：分析成功后出现贡献区
     } catch (err) {
       showBanner($("jd-error"), "JD 分析失败：" + err.message);
     }
   });
+  $("jd-contribute-btn").addEventListener("click", async () => {
+    hideBanner($("jd-error"));
+    $("jd-contribute-result").hidden = true;
+    if (!$("jd-consent").checked) {
+      showBanner($("jd-error"), "请先勾选同意贡献（opt-in，默认不贡献）。");
+      return;
+    }
+    try {
+      const task = await api("/api/jd/contribute", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jd_text: $("jd-text").value, consent: true,
+          title: $("jd-title").value,
+          source_hint: $("jd-source-hint").value }),
+      });
+      const done = await pollTask(task.task_id);
+      renderContributeResult(done);
+    } catch (err) {
+      showBanner($("jd-error"), "贡献失败：" + err.message);
+    }
+  });
+}
+
+async function pollTask(taskId) {
+  /* 轮询任务状态（1s 间隔，60s 上限——本地单任务管道足够）；终态
+     completed/failed 返回；deletion_code 一次性展示在 renderContributeResult。 */
+  for (let i = 0; i < 60; i++) {
+    const t = await api("/api/tasks/" + taskId);
+    if (t.status === "completed" || t.status === "failed") return t;
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+  throw new Error("任务轮询超时（60s）——请稍后重试");
+}
+
+function renderContributeResult(t) {
+  const el = $("jd-contribute-result");
+  if (t.status === "failed") {
+    el.className = "banner-error";
+    el.innerHTML = `贡献未通过：${esc(t.error || "未知原因")}` +
+      `<p class="meta">（质检隔离的原文进入人工复核队列，不会入库统计）</p>`;
+    el.hidden = false;
+    return;
+  }
+  el.className = "action-card";
+  const pii = t.pii_redaction;
+  const piiNote = pii && Object.keys(pii.hits || {}).length
+    ? `已检测并替换 PII：${Object.entries(pii.hits)
+        .map(([k, v]) => `${esc(k)} ×${v}`).join("、")}` : "未检测到 PII";
+  if (t.deduplicated) {
+    el.innerHTML = `<strong>内容已存在（deduplicated）</strong>
+      <p class="meta">复用既有岗位 #${t.job_id}，未重复入库。</p>
+      <p class="meta">${esc(piiNote)}</p>`;
+  } else {
+    const extract = t.extraction_status === "done" ? "已完成" : "待回填（pending）";
+    el.innerHTML = `<strong>贡献成功（岗位 #${t.job_id}，技能抽取${esc(extract)}）</strong>
+      <p class="meta">${esc(piiNote)}</p>
+      <p class="meta">deletion_code（<strong style="color:#b00">一次性展示，请立即保存</strong>——离开本页后不可再查看）：</p>
+      <p style="font-size:22px;letter-spacing:2px"><code>${esc(t.deletion_code || "—")}</code></p>
+      <p class="meta">删除贡献：DELETE /api/contributions/${esc(t.deletion_code || "")}</p>`;
+  }
+  el.hidden = false;
 }
 
 function renderJdResult(body) {
@@ -269,6 +332,62 @@ function initDashboardMatchOverview() {
   } catch (_) { /* 损坏缓存视同无记录 */ }
 }
 
+/* ---------- 数据与质量页（D6：SSR 骨架 + fetch 填充） ---------- */
+
+function initQuality() {
+  if (!$("quality-metrics")) return;
+  api("/api/quality/report").then((q) => {
+    $("quality-computed-at").textContent =
+      "计算时间 " + q.computed_at + "（批次三率来自 ingest_batch 聚合，全库两率为实时扫描）";
+    $("qm-duplicate-val").textContent = (+q.duplicate_rate).toFixed(4);
+    $("qm-missing-val").textContent = (+q.missing_field_rate).toFixed(4);
+    $("qm-invalid-val").textContent = (+q.invalid_jd_rate).toFixed(4);
+    $("qm-extraction-val").textContent =
+      (+q.skill_extraction_error_rate).toFixed(4);
+    const pii = q.pii_detection;
+    const audit = pii.manual_audit_pass == null
+      ? "待人工抽查" : (pii.manual_audit_pass ? "通过" : "未通过");
+    $("qm-pii-val").textContent =
+      `命中率 ${(+pii.hit_rate).toFixed(4)} · 规则 ${esc(pii.rules_version)}` +
+      ` · 扫描 ${pii.scan_count} 条 · 人工抽查 ${audit}`;
+  }).catch((err) => {
+    $("quality-computed-at").textContent = "质量指标加载失败：" + err.message;
+  });
+  api("/api/eval/results").then((r) => {
+    const rows = r.runs;
+    if (!rows.length) {
+      $("quality-eval-note").textContent = "暂无评测记录（eval_run 空）。";
+      return;
+    }
+    $("quality-eval-note").hidden = true;
+    const mainMetric = (run) => {
+      const m = run.metrics || {};
+      if (m.f1 != null) return "F1 " + (+m.f1).toFixed(4);
+      if (m.spearman != null) return "ρ " + (+m.spearman).toFixed(4);
+      if (m.spearman_rho != null) return "ρ " + (+m.spearman_rho).toFixed(4);
+      if (m.ndcg != null) return "nDCG " + (+m.ndcg).toFixed(4);
+      return "—";
+    };
+    $("quality-eval-table").querySelector("tbody").innerHTML =
+      rows.map((run) => {
+        const d = run.diff || {};
+        const base = d.baseline_run_id == null ? "（首条，无基线）"
+          : `#${d.baseline_run_id}（${esc(d.baseline_kind || "")}）`;
+        return `<tr><td>${run.id}</td>
+          <td>${esc(run.eval_type)}</td>
+          <td>${esc(run.dataset_version)}</td>
+          <td>${esc(run.prompt_version)}</td>
+          <td>${esc(run.scoring_version || "—")}</td>
+          <td>${run.sample_size}</td>
+          <td>${mainMetric(run)}</td>
+          <td>${esc(run.verdict)}</td>
+          <td>${base}</td></tr>`;
+      }).join("");
+  }).catch((err) => {
+    $("quality-eval-note").textContent = "评测历史加载失败：" + err.message;
+  });
+}
+
 /* ---------- 入口 ---------- */
 
 function esc(s) {
@@ -283,4 +402,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initMatch();
   initRecommend();
   initDashboardMatchOverview();
+  initQuality();
 });
