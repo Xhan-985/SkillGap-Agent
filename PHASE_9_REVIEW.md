@@ -4,6 +4,11 @@
 > 劣化演练双轨 / 零漂移与 taxonomy 锚定 / E1 方差演练 / EVALUATION.md。
 > 计划：`docs/plans/2026-09-04-phase9-evaluation-consolidation.md`（口径裁决
 > C1-C5 + 冻结决策 D1-D8）。
+>
+> **补注（2026-09-24 Phase 11 T9 收口核对）**：本文"CI 首跑绿待 push"
+> 遗留项已闭环——Phase 9 于 2026-09-22 push 后远端首跑绿
+> （run 35686447520 @6b1d277：test completed success；e1 skipped 属
+> 正常——dispatch 专属 job 无 secret 时跳过）。§1/§5 相关行按此读。
 
 ## 0. 交付物清单
 
