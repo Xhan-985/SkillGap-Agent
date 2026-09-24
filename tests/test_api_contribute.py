@@ -231,16 +231,20 @@ def test_contribute_no_llm_key_pending(client, monkeypatch):
 
 def test_contribute_pii_redaction_passthrough(client, monkeypatch):
     """JD 含手机号 → 脱敏后入库（raw_text 无原号）+ pii_redaction
-    透传（rules_version + hits.phone）。"""
+    透传（rules_version + hits.phone）+ **落库元数据回写真实报告**
+    （T8 走查缺陷 #2 回归锚：process_record 对已脱敏文本二次扫描恒空
+    hits，贡献通道须覆盖——否则质量报表 PII 处置低报）。"""
     _install_fake_llm(monkeypatch)
     c, conn = client
     jd_with_phone = "联系我 13800138000。" + JD_TEXT
     task = c.get(f"/api/tasks/{_contribute(c, jd_text=jd_with_phone).json()['task_id']}").json()
     assert task["status"] == "completed"
     assert task["pii_redaction"]["hits"]["phone"] == 1
-    job = conn.execute("SELECT raw_text FROM job WHERE id = %s",
+    row = conn.execute("SELECT raw_text, parsed_metadata FROM job WHERE id = %s",
                        (task["job_id"],)).fetchone()
-    assert "13800138000" not in job["raw_text"]
+    assert "13800138000" not in row["raw_text"]
+    assert row["parsed_metadata"]["pii_redaction"]["hits"]["phone"] == 1
+    assert row["parsed_metadata"]["pii_redaction"]["rules_version"] == "v1"
 
 
 def test_task_pending_running_states(client):

@@ -76,12 +76,15 @@ def contribute_jd(conn: psycopg.Connection, jd_text: str, consent: bool,
     if outcome.status == "error" or outcome.job_id is None:
         raise RuntimeError(f"贡献入库失败: {outcome.status} {outcome.reasons}")
 
-    # source_hint：仅来源统计标签，写入 parsed_metadata
+    # source_hint：仅来源统计标签，写入 parsed_metadata；pii_redaction：回写
+    # 本通道真实扫描报告（process_record 对已脱敏文本二次扫描恒为空 hits——
+    # 真实处置记录以贡献通道的原始文本扫描为准，否则质量报表低报 PII 处置）
     with conn.cursor() as cur:
         cur.execute(
             "UPDATE job SET parsed_metadata = coalesce(parsed_metadata, '{}'::jsonb)"
-            " || jsonb_build_object('source_hint', %s::text) WHERE id = %s",
-            (source_hint, outcome.job_id))
+            " || jsonb_build_object('source_hint', %s::text,"
+            " 'pii_redaction', %s::jsonb) WHERE id = %s",
+            (source_hint, json.dumps(report, ensure_ascii=False), outcome.job_id))
 
     # deletion_code：明文一次性返回
     code = "-".join("".join(secrets.choice(_ALPHABET) for _ in range(4))
