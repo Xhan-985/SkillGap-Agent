@@ -1,117 +1,158 @@
-/* SkillGap Agent —— 桌面优先、无动画、够用即止（UI_SPEC §3） */
+/* SkillGap Agent —— 瑞士网格风设计系统（2026-10-03 翻新）
+ * 白底黑线 + 国际橙单强调 + 超粗字重 + 2px 微圆角 + 零阴影零渐变。
+ * 反 AI 味清单：无紫渐变/无毛玻璃/无大圆角阴影卡/无 emoji/无位移动画。
+ * 约束：零框架零构建零 CDN（C2）；无动画，仅 hover 换色（UI_SPEC §3）。 */
+
+/* ---------- 令牌 ---------- */
+:root {
+  --ink: #111;            /* 正文/结构线/超粗标题 */
+  --accent: #FF4F00;      /* 国际橙：激活态/关键数字/主 CTA */
+  --muted: #555;          /* 次级文字 */
+  --faint: #888;          /* 弱文字 */
+  --line: #111;           /* 结构边框 1.5-2px */
+  --hairline: #ddd;       /* 行内细分隔 1px */
+  --paper: #fff;          /* 背景 */
+  --radius: 2px;          /* 全局唯一圆角 */
+  --font: system-ui, "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
 * { box-sizing: border-box; }
 body {
-  font-family: system-ui, "Segoe UI", "Microsoft YaHei", sans-serif;
-  margin: 0; color: #222; background: #f6f7f9;
+  font-family: var(--font); margin: 0; color: var(--ink);
+  background: var(--paper); font-variant-numeric: tabular-nums;
+  font-size: 14px; line-height: 1.6;
 }
-a { color: #2563eb; }
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
 
+/* ---------- 顶栏 ---------- */
 .topbar {
-  display: flex; gap: 16px; align-items: center;
-  padding: 10px 20px; background: #1e293b; color: #fff;
+  display: flex; gap: 28px; align-items: center;
+  padding: 12px 24px; background: var(--paper);
+  border-bottom: 2px solid var(--line); position: sticky; top: 0; z-index: 10;
 }
-.topbar .brand { font-weight: 700; }
-.topbar nav a { color: #cbd5e1; text-decoration: none; margin-right: 10px; }
-.topbar nav a:hover { color: #fff; }
-.market-switch { margin-left: auto; font-size: 14px; }
-.market-switch a { margin-left: 6px; color: #94a3b8; text-decoration: none; }
-.market-switch a.active { color: #fff; font-weight: 600; }
-
-main { max-width: 1100px; margin: 20px auto; padding: 0 16px; }
-h1 { font-size: 20px; }
-.hint { color: #64748b; font-size: 13px; }
-
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.view {
-  background: #fff; border: 1px solid #e2e8f0;
-  border-radius: 8px; padding: 16px;
+.topbar .brand { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
+.topbar .brand i { color: var(--accent); font-style: normal; }
+.topbar nav { display: flex; gap: 4px; }
+.topbar nav a {
+  color: var(--ink); text-decoration: none; font-size: 13px;
+  letter-spacing: 0.05em; padding: 3px 10px; border-radius: var(--radius);
 }
-.view h2 { margin-top: 0; font-size: 15px; color: #334155; }
-.empty { color: #94a3b8; }
+.topbar nav a:hover { border: 1.5px solid var(--line); padding: 1.5px 8.5px; color: var(--ink); }
+.topbar nav a.on { background: var(--ink); color: var(--paper); font-weight: 600; }
 
-/* 样本量守门灰态（D5） */
-.gate-gray {
-  background: #eef0f3; border: 1px dashed #cbd5e1; color: #64748b;
-  padding: 18px; border-radius: 6px; text-align: center;
+/* 分段市场切换（base.html 配合） */
+.segmented { margin-left: auto; display: flex; border: 1.5px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.segmented a {
+  color: var(--ink); text-decoration: none; font-size: 12px;
+  letter-spacing: 0.08em; padding: 4px 12px; font-weight: 600;
 }
+.segmented a + a { border-left: 1.5px solid var(--line); }
+.segmented a.on { background: var(--accent); color: var(--paper); }
+/* 兼容旧 .market-switch（过渡期保险，base.html 已换 .segmented） */
+.market-switch { margin-left: auto; font-size: 13px; }
+.market-switch a { margin-left: 6px; color: var(--faint); text-decoration: none; }
+.market-switch a.active { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--accent); }
 
-/* 画像技能卡 + confidence 色阶 */
-.skill-card {
-  display: flex; gap: 12px; align-items: baseline;
-  padding: 6px 8px; border-radius: 6px; margin-bottom: 4px;
-}
-.conf-high { background: #ecfdf5; }
-.conf-mid  { background: #fffbeb; }
-.conf-low  { background: #fef2f2; }
+/* ---------- 版心与页面头 ---------- */
+main { max-width: 1200px; margin: 32px auto; padding: 0 24px; }
+.page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; border-bottom: 2px solid var(--line); padding-bottom: 12px; margin-bottom: 24px; }
+.page-head h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; margin: 0; }
+.page-head .hint { margin: 4px 0 0; }
+.hint { color: var(--muted); font-size: 13px; }
+.page-meta { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; white-space: nowrap; }
+h1 { font-size: 26px; font-weight: 800; }
+
+/* ---------- 面板（编号面板） ---------- */
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.view { background: var(--paper); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 0; }
+.view > :last-child { margin-bottom: 16px; }
+.view h2 { margin: 0; font-size: 15px; font-weight: 700; }
+.panel-head { display: flex; align-items: baseline; gap: 10px; padding: 12px 16px 10px; border-bottom: 1px solid var(--hairline); margin-bottom: 12px; }
+.panel-num { font-weight: 800; color: var(--accent); font-size: 14px; font-variant-numeric: tabular-nums; }
+.panel-tag { margin-left: auto; font-size: 10px; letter-spacing: 0.12em; color: var(--faint); text-transform: uppercase; }
+.view > h2:only-child { padding: 12px 16px 10px; border-bottom: 1px solid var(--hairline); margin-bottom: 12px; }
+.view > *:not(.panel-head):not(h2) { margin-left: 16px; margin-right: 16px; }
+.empty { color: var(--faint); }
+.empty::before { content: "—— "; color: var(--accent); font-weight: 700; }
+
+/* ---------- 技能行（点阵星级 + 置信度） ---------- */
+.skill-card { display: flex; gap: 12px; align-items: baseline; padding: 6px 8px; border-top: 1px solid var(--hairline); margin-bottom: 0; }
+.skill-card:first-child { border-top: none; }
 .skill-name { min-width: 70px; font-weight: 600; }
-.stars { letter-spacing: 2px; color: #f59e0b; }
-.conf { font-size: 12px; color: #64748b; }
+.stars { letter-spacing: 2px; color: var(--ink); font-size: 12px; }
+.stars::selection { color: var(--accent); }
+.conf { font-size: 12px; color: var(--muted); margin-left: auto; }
+/* 置信度三档：去背景色块；低置信橙左边线（语义保留 D5 精神） */
+.skill-card.conf-low { border-left: 2px solid var(--accent); padding-left: 8px; }
+.skill-card.conf-high, .skill-card.conf-mid { border-left: 2px solid transparent; padding-left: 8px; }
 
-/* 市场条形图（CSS div 宽度，D6） */
+/* ---------- 市场条形 ---------- */
 .bars { list-style: none; padding: 0; margin: 8px 0 0; }
-.bar-row {
-  display: grid; grid-template-columns: 90px 1fr 170px;
-  gap: 8px; align-items: center; margin-bottom: 6px;
-}
-.bar-label { font-size: 13px; }
-.bar { background: #e2e8f0; height: 14px; border-radius: 3px; overflow: hidden; }
-.bar-fill { background: #3b82f6; height: 100%; }
-.bar-note { font-size: 12px; color: #64748b; }
+.bar-row { display: grid; grid-template-columns: 90px 1fr 190px; gap: 10px; align-items: center; margin-bottom: 8px; }
+.bar-label { font-size: 13px; font-weight: 600; }
+.bar { background: var(--paper); border: 1px solid var(--line); height: 14px; border-radius: var(--radius); overflow: hidden; }
+.bar-fill { background: var(--accent); height: 100%; }
+.bar-note { font-size: 12px; color: var(--muted); }
 
-/* ROI 表 */
+/* ---------- 表格 ---------- */
 table.roi { width: 100%; border-collapse: collapse; font-size: 13px; }
-table.roi th, table.roi td {
-  border-bottom: 1px solid #e2e8f0; padding: 6px 8px; text-align: left;
-}
-table.roi th { color: #64748b; font-weight: 600; }
+table.roi th, table.roi td { border-bottom: 1px solid var(--hairline); padding: 8px 10px; text-align: left; }
+table.roi th { color: var(--muted); font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+table.roi td { font-variant-numeric: tabular-nums; }
 
-/* 推荐卡片 */
-.action-card {
-  border: 1px solid #e2e8f0; border-radius: 6px;
-  padding: 10px; margin-bottom: 8px;
-}
-.action-card p { margin: 6px 0 0; font-size: 13px; color: #475569; }
-.priority {
-  display: inline-block; background: #1d4ed8; color: #fff;
-  font-size: 12px; padding: 2px 8px; border-radius: 10px; margin-right: 8px;
-}
+/* ---------- 行动卡与徽章 ---------- */
+.action-card { border: 1.5px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 10px; background: var(--paper); }
+.action-card p { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.priority { display: inline-block; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; padding: 2px 8px; border-radius: var(--radius); margin-right: 8px; text-transform: uppercase; }
+.score-big { font-size: 40px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; line-height: 1; }
+.score-big small { font-size: 14px; color: var(--ink); font-weight: 600; }
 
-/* 雷达（手写 SVG，D6） */
+/* ---------- 雷达（SVG 类名保留，配色瑞士化） ---------- */
 .radar { width: 100%; max-width: 320px; display: block; margin: 0 auto; }
-.radar-ring { fill: none; stroke: #e2e8f0; }
-.radar-required { fill: rgba(239, 68, 68, .12); stroke: #ef4444; stroke-dasharray: 4 2; }
-.radar-actual { fill: rgba(59, 130, 246, .18); stroke: #2563eb; }
-.radar-label { font-size: 11px; fill: #475569; text-anchor: middle; }
-.legend .swatch {
-  display: inline-block; width: 12px; height: 12px;
-  border-radius: 2px; vertical-align: -1px;
-}
-.legend .swatch.actual { background: rgba(59, 130, 246, .55); border: 1px solid #2563eb; }
-.legend .swatch.required { background: rgba(239, 68, 68, .25); border: 1px dashed #ef4444; }
+.radar-ring { fill: none; stroke: var(--hairline); }
+.radar-required { fill: none; stroke: var(--ink); stroke-dasharray: 4 2; }
+.radar-actual { fill: rgba(255, 79, 0, 0.18); stroke: var(--accent); }
+.radar-label { font-size: 11px; fill: var(--muted); text-anchor: middle; }
+.legend .swatch { display: inline-block; width: 12px; height: 12px; border-radius: var(--radius); vertical-align: -1px; }
+.legend .swatch.actual { background: rgba(255, 79, 0, 0.55); border: 1px solid var(--accent); }
+.legend .swatch.required { background: var(--paper); border: 1px dashed var(--ink); }
 
-.meta { font-size: 12px; color: #64748b; }
-.foot { text-align: center; color: #94a3b8; font-size: 12px; padding: 16px; }
+/* ---------- 灰态（D5 诚实语义） ---------- */
+.gate-gray { background: var(--paper); border: 1.5px dashed var(--line); color: var(--muted); padding: 18px; border-radius: var(--radius); text-align: center; }
+.gate-gray::before { content: "INSUFFICIENT · "; color: var(--accent); font-weight: 800; letter-spacing: 0.08em; }
 
-/* 流程页（T7） */
-button {
-  background: #1d4ed8; color: #fff; border: none; padding: 8px 18px;
-  border-radius: 6px; cursor: pointer; font-size: 14px;
-}
-button.danger { background: #dc2626; }
+/* ---------- 表单与按钮 ---------- */
+button { background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink); padding: 8px 18px; border-radius: var(--radius); cursor: pointer; font-size: 14px; font-weight: 600; }
+button:hover { background: var(--paper); color: var(--ink); }
+button.btn-accent { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+button.btn-accent:hover { background: var(--ink); border-color: var(--ink); }
+button.danger { background: var(--paper); color: #b00; border: 1.5px solid var(--ink); }
+button.danger:hover { background: #b00; color: var(--paper); border-color: #b00; }
 textarea, input[type="text"], input[type="number"], select {
-  border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px;
-  font-family: inherit; margin: 4px 0;
+  border: 1.5px solid var(--line); border-radius: var(--radius); padding: 8px 10px;
+  font-family: inherit; margin: 4px 0; background: var(--paper); font-size: 13px;
 }
+textarea:focus, input:focus, select:focus { outline: none; border: 2px solid var(--accent); padding: 7.5px 9.5px; }
 form { margin: 12px 0; }
 form label { margin-right: 16px; }
-.banner-error {
-  background: #fef2f2; border: 1px solid #dc2626; color: #991b1b;
-  padding: 10px 14px; border-radius: 6px; margin: 10px 0;
+.banner-error { background: var(--paper); border: 1.5px solid #b00; color: #b00; padding: 10px 14px; border-radius: var(--radius); margin: 10px 0; font-weight: 600; }
+code { background: var(--paper); border: 1px solid var(--hairline); padding: 1px 5px; border-radius: var(--radius); font-size: 0.92em; }
+
+/* ---------- 泳道（流程页三栏） ---------- */
+.swimlanes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.swimlanes h3 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; padding-bottom: 4px; border-bottom: 2px solid var(--line); }
+h3 { font-size: 14px; font-weight: 700; }
+blockquote { margin: 4px 0; padding: 6px 10px; background: var(--paper); border-left: 3px solid var(--accent); border-radius: var(--radius); color: var(--muted); }
+details summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+
+/* ---------- 页脚 ---------- */
+.meta { font-size: 12px; color: var(--muted); }
+.foot { text-align: center; color: var(--faint); font-size: 11px; letter-spacing: 0.05em; padding: 20px; border-top: 1px solid var(--hairline); margin-top: 40px; }
+
+/* ---------- 最小响应（桌面优先，仅一档） ---------- */
+@media (max-width: 900px) {
+  .grid, .swimlanes { grid-template-columns: 1fr; }
+  .topbar { flex-wrap: wrap; gap: 12px; }
+  .segmented { margin-left: 0; }
 }
-.swimlanes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.swimlanes h3 { font-size: 13px; color: #64748b; margin: 8px 0 4px; }
-blockquote {
-  margin: 4px 0; padding: 6px 10px; background: #f1f5f9;
-  border-left: 3px solid #94a3b8; border-radius: 3px;
-}
-details summary { cursor: pointer; }
