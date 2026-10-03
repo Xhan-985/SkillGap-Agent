@@ -128,7 +128,7 @@ task.result 置 null）；empty_title quarantine 失败横幅如实渲染（不
 | 项 | 状态 | 处置 |
 |---|---|---|
 | ~~CI docker build job 远端首跑绿~~ | ✅ 已闭环（2026-10-03） | Phase 10/11 十九笔 push 后 run 37092541082 @753abd7 三 job 全绿（§1 验收表）；Phase 11 验收清单全项达成 |
-| E1 dispatch 验收 | ⏳ 待 secret | GitHub 配 `LLM_API_KEY` 后手动 dispatch 一次（Phase 9 遗留延续） |
+| ~~E1 dispatch 验收~~ | ✅ 已闭环（2026-10-03） | `LLM_API_KEY` secret 已配置（GCM token 走 API，201 Created）；dispatch 首跑 run 37093065875 @f93be93 三 job 全绿——E1 真实跑分（一次性库，数字以 CI 日志为准不落生产 eval_run）：e1_seed_v2 **f1=0.8710 warn**（precision 0.9257/recall 0.8223/evidence_rate 1.0/failures 0，与库内基线 0.8628/0.8644 同带）+ e1_seed_v1 **f1=0.8962 warn**（failures 0） |
 | E3 标注双人复核 | ⏳ 用户 + 同学 | 不阻塞（Phase 8 遗留延续） |
 | Adzuna 首批拉取 | ⏳ 待办 | global 市场 N=0 灰态（README Limitations 如实声明）；250 req/day 额度节奏 |
 | 自演示录制 | ⏳ 用户侧执行 | DEMO.md 脚本已入库（C5），Windows 录屏工具链用户执行，产物不入库 |
