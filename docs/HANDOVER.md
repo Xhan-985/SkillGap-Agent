@@ -1,6 +1,6 @@
 # SkillGap Agent —— 项目交接文档
 
-> 更新：2026-09-24（Phase 11 收口）｜ 代码状态：master 本地领先远端 18 笔（远端 6b1d277 = Phase 9 收官；Phase 10/11 待 push，push 需用户批准）｜ 测试：540 passed
+> 更新：2026-10-03（Phase 11 收口 + CI 首跑闭环同步）｜ 代码状态：master 已与远端同步（Phase 11 收官，run 37092541082 三 job 全绿）｜ 测试：540 passed
 > **换账号 / 换机交接：先读 §13 迁移清单**
 
 ## 1. 项目一句话
@@ -195,7 +195,7 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 8. ~~进入 Phase 8~~ ✅ 已完成（2026-09-04，PHASE_8_REVIEW.md；roi-v1 + LangGraph Agent + E3 基线 pass（nDCG@5=0.6497），410 测试全绿。**judge 已补做**：rubric-v1 真实基线 mean=5.0（eval_run #9，Warn 级不参与 verdict）。**RAG 引用层已激活**：1514 行证据已回填（bge-m3），跨语言/语义变体检索验证过（D-2026-09-04-16 激活记录）。待办：E3 标注双人复核（user 复核 + 同学抽标）。已知偏差（"Python 补到精通"/新手画像成本项冲突）为 v2 校准候选，见 data/eval/e3_report_v1.json）
 9. ~~进入 Phase 9~~ ✅ 已完成（2026-09-08，PHASE_9_REVIEW.md；gate 汇总门禁 + eval-report 报告 + CI 首个 workflow + 零漂移/taxonomy/劣化演练测试锚定 + E1 方差演练 PASS（极差 0.0145<0.03），443 测试全绿。docs/EVALUATION.md 为评测 README。**开放项**：CI 首跑绿待 push（workflow 须在远端生效）；E3 标注双人复核（user + 同学）仍待办。**遗留观察**：E1 verdict 对 LLM 服务可用性敏感——evidence_rate<1.0 一票 block 会被 DeepSeek 瞬时失败触发（T6 真实案例：#10-12 block → #14 恢复 warn），分诊处置见 EVALUATION.md §9）
 10. ~~进入 Phase 10~~ ✅ 已完成（2026-09-16，PHASE_10_REVIEW.md；FastAPI 10 端点 + Jinja2 SSR 六页 + 原生 JS 前端，505 测试全绿。**走查**：真实 LLM 全流程七步全通，捕获并修复 7 真实缺陷（含 dependency_overrides 测试盲区——结构级回归测试固化）。**远端进度**：master 已推至 Phase 8（665d0db），Phase 9/10 本地待审批推送；CI 首跑绿仍待 push。**Phase 11 输入**：C1 延后端点清单（contribute/import/adzuna/tasks/quality/eval）+ Data & Quality 页 + compose 连接池复议（D1）。下一步 Phase 11 Docker + CI + Documentation——先写 docs/plans/ 计划）
-11. ~~进入 Phase 11~~ ✅ 已完成（2026-09-24，PHASE_11_REVIEW.md；compose 全栈（Dockerfile+entrypoint 幂等+ADR-012）+ C1 延后五端点（contribute/tasks/quality/eval/deletion——16 端点=14 HTTP+2 CLI）+ Data & Quality 页（导航七页）+ CI docker build job + README 七段/DATA.md/DEVELOPMENT.md/DEMO.md 文档终版（零偏差抽查 12 项）+ 全新环境三命令自演示走查（两真实缺陷当次修复），540 测试全绿。**MVP（M1-M11）至此全部达成**。开放项：①Phase 10/11 共 18 笔待用户批准 push（push 后盯 CI 三 job 首跑——docker job 从未在远端执行）②E1 dispatch 待 GitHub secret ③E3 标注双人复核 ④Adzuna 首批拉取 ⑤自演示录制（用户侧，DEMO.md 已入库）
+11. ~~进入 Phase 11~~ ✅ 已完成（2026-09-24，PHASE_11_REVIEW.md；compose 全栈（Dockerfile+entrypoint 幂等+ADR-012）+ C1 延后五端点（contribute/tasks/quality/eval/deletion——16 端点=14 HTTP+2 CLI）+ Data & Quality 页（导航七页）+ CI docker build job + README 七段/DATA.md/DEVELOPMENT.md/DEMO.md 文档终版（零偏差抽查 12 项）+ 全新环境三命令自演示走查（两真实缺陷当次修复），540 测试全绿。**MVP（M1-M11）至此全部达成**。开放项：①~~Phase 10/11 待 push~~ ✅ 已闭环（2026-10-03 十九笔全量 push，CI 首跑三 job 全绿 run 37092541082 @753abd7——pytest 58s / docker build 25s 远端首次执行 / e1 skipped 正常）②E1 dispatch 待 GitHub secret ③E3 标注双人复核 ④Adzuna 首批拉取 ⑤自演示录制（用户侧，DEMO.md 已入库）
 
 ## 10. 已知问题与坑
 
@@ -237,17 +237,15 @@ cd "E:\codexproject\SkillGap Agent"; & "E:\codexproject\SkillGap Agent\.venv\Scr
 
 个人学习文档（面试题库/知识缺口/学习路线/简历映射）：根目录 `docs/INTERVIEW_QUESTION_BANK.md`、`KNOWLEDGE_GAPS.md`、`LEARNING_ROADMAP.md`、`PROJECT_LEARNING_GUIDE.md`、`PROJECT_TECH_MAP.md`、`RESUME_TECH_MAPPING.md`（均为未跟踪文件，未入库）。
 
-## 13. 账号切换与环境迁移清单（2026-09-24 更新）
+## 13. 账号切换与环境迁移清单（2026-10-03 更新）
 
 > 换账号（GitHub / IDE·AI 助手）或换机前逐项核对。两类场景影响面不同：**同机换账号**——磁盘文件、git 仓库、Docker 数据库全部保留，受影响的只有账号凭证与 AI 会话上下文；**换机 / 重新克隆**——下表"仅本地"文件一律不随 git 走，必须单独带走。
 
 ### 13.1 Git 与远端（换 GitHub 账号必读）
 
-- 远端：`origin = https://github.com/Xhan-985/SkillGap-Agent.git`，`origin/master = 6b1d277`（Phase 9 收官；push 后 CI test job 首跑绿 run 35686447520）
-- 本地：`master` = Phase 11 T9 收口，**领先远端 18 笔提交**——Phase 10 八笔（62bac30~fd4249f）+ Phase 11 十笔（4622f63/4fd5583~f738982，含 2026-09-22 事故修复 e90c76b）
-- ⚠️ **切换前必须先推送**（或 `git bundle create skillgap.bundle master` 带走）：新环境重新克隆只能拿到 Phase 9，Phase 10/11 全部工作不在远端
-- 推送纪律：push 需用户明确批准；本地代理 127.0.0.1:2019 不可用时直连单次覆盖：`git -c http.proxy= -c https.proxy= push origin master`
-- 换账号后动作：`git remote set-url origin <新仓库地址>`；新仓库 GitHub Secrets 重配 `LLM_API_KEY`（E1 dispatch workflow 依赖）；推送后盯 **CI 三 job 首跑**（test + docker 双绿——**docker build job 从未在远端执行过**，属 Phase 11 遗留验收；e1 skipped 正常）
+- 远端：`origin = https://github.com/Xhan-985/SkillGap-Agent.git`，`origin/master` 与本地 master **已同步**（Phase 11 收官 753abd7 + CI 闭环补注；2026-10-03 push 后 CI 首跑三 job 全绿 run 37092541082——pytest 58s / docker build 25s 远端首次执行 / e1 skipped 正常）
+- 推送纪律：push 需用户明确批准；本地代理 127.0.0.1:7890（git http.proxy 已配）；代理不可用时直连单次覆盖：`git -c http.proxy= -c https.proxy= push origin master`
+- 换账号后动作：`git remote set-url origin <新仓库地址>`；新仓库 GitHub Secrets 重配 `LLM_API_KEY`（E1 dispatch workflow 依赖）；推送后看 Actions 页确认三 job 绿（历史 run 见上）
 
 ### 13.2 仅本地文件（git 不跟踪——换机/重新克隆会丢）
 

@@ -28,7 +28,7 @@
 | 验收项 | 结果 | 证据 |
 |---|---|---|
 | 全新环境 clone 后按 README 三条命令内跑通 | ✅ | T2 本机干净重拉：`docker compose up -d` 单命令全栈 health ok/db:true/llm configured + 重启幂等 + 容器内 MIGRATIONS_DIR=/app/migrations 实证；T8 干净目录三命令（clone/cp .env/compose up）再验 + entrypoint 三段日志预期 + 幂等重启（DEMO.md §1 固化） |
-| CI 全绿（远端首跑） | ⚠️ 部分达成 | Phase 9 test job 首跑绿已确认（run 35686447520 @6b1d277：test completed success + e1 skipped 属正常——Phase 9 遗留验收项闭环）；**Phase 11 的 docker build job 未在远端执行过**（Phase 10/11 共 18 笔待 push，push 需用户批准）——本地仅 YAML 解析三 job 结构验证，远端首跑绿为遗留开放项（§5） |
+| CI 全绿（远端首跑） | ✅ | Phase 9 test job 首跑绿（run 35686447520 @6b1d277）；**Phase 10/11 十九笔于 2026-10-03 push 后首跑三 job 全绿**（run 37092541082 @753abd7：pytest ✅ 58s / docker build ✅ 25s 远端首次执行 / e1 skipped 属正常——仅 dispatch）。防假绿核验：服务容器初始化 + 迁移预检成功 → CI 内 DB 在线，测试真实执行 |
 | 文档与实现零偏差抽查 | ✅ | T7 抽查 12 项全过（README 命令逐条可执行 / API.md 端点表与 routes_*.py 13 端点一一对应 / ARCHITECTURE 与 compose 一致 / DATA.md 数字全部 psql 实查锚定 / ADR 12 份状态核对 / 禁用词扫描 0 命中 / cid 引用分流核实）；T9 复核：API.md 16 行=14 ✅+2 🔧、DB 实查 202 岗（201 批次+1 E2 物化，DATA.md §2 如实记载）与 §13.3 一致 |
 | 面试三问三文档可答 | ✅ | 数据从哪来（DATA.md：三通道×Tier/批次历史/口径/事故全记录）/ 为什么这么设计（ADR-001~012 全部已接受/已复议）/ 怎么证明有效（EVALUATION.md：E1 0.8644 warn·E2 0.8277 pass·E3 0.6497 pass 库内真实基线） |
 | API.md 16 端点契约收口 | ✅ | 14 HTTP 实现（Phase 10 十端点 + T3 三端点 + T4 contribute/tasks）+ 2 管理端点标注 CLI 通道（jd/import、ingest/adzuna——C1 裁决：无鉴权 HTTP 暴露管理面扩大攻击面）；API.md §1 实现状态列全标 |
@@ -44,7 +44,7 @@
 | C3 | 连接池维持无池（D1 复议关闭） | ✅ DECISION_LOG D-2026-09-18-19：compose 不改变 §0 本地单用户语义，引池回归成本高于收益 |
 | C4 | entrypoint 自动 migrate+seed+serve（幂等）；compose environment 注入服务名连接串 | ✅ 三步幂等 fail-fast；用户 .env 零改动（T2 验收用例）；重启幂等 T2/T8 双验 |
 | C5 | DEMO 脚本入库、录制产物不入库 | ✅ docs/DEMO.md（0 前置条件表+三命令+七页操作+常见问题）；走查记录固化本 Review §4；录制（用户侧执行）不阻塞验收 |
-| C6 | CI 加 docker build job（build only、并行不阻塞） | ✅ ci.yml 三 job（test/e1/docker）；compose 全栈 e2e 不进 CI（时长+Docker Desktop 依赖，T8 手动覆盖）；远端首跑待 push（§5） |
+| C6 | CI 加 docker build job（build only、并行不阻塞） | ✅ ci.yml 三 job（test/e1/docker）；compose 全栈 e2e 不进 CI（时长+Docker Desktop 依赖，T8 手动覆盖）；远端首跑绿（run 37092541082，2026-10-03 push 后） |
 | C7 | 演示数据可选导入（空库灰态也算过） | ✅ DEMO.md §2 可选 batch_1 导入段（预期报告数字写明）；README Demo 段同口径 |
 
 冻结决策抽查：D5 一次性展示（task.result 首查置 null、DB 本体只存哈希——T8 服务端实证）、D7 opt-in 默认未勾（T5 测试锚定）、D8 README 七段（T7 禁用词扫描 0 命中）均与实现一致。
@@ -127,8 +127,8 @@ task.result 置 null）；empty_title quarantine 失败横幅如实渲染（不
 
 | 项 | 状态 | 处置 |
 |---|---|---|
-| CI docker build job 远端首跑绿 | ⏳ 待 push | Phase 10/11 共 18 笔本地待审批推送（origin/master 现至 6b1d277 = Phase 9 收口）；push 后盯三 job 首跑（test+docker 双绿、e1 skipped 正常） |
-| E1 dispatch 验收 | ⏳ 待 push + secret | GitHub 配 `LLM_API_KEY` 后手动 dispatch 一次（Phase 9 遗留延续） |
+| ~~CI docker build job 远端首跑绿~~ | ✅ 已闭环（2026-10-03） | Phase 10/11 十九笔 push 后 run 37092541082 @753abd7 三 job 全绿（§1 验收表）；Phase 11 验收清单全项达成 |
+| E1 dispatch 验收 | ⏳ 待 secret | GitHub 配 `LLM_API_KEY` 后手动 dispatch 一次（Phase 9 遗留延续） |
 | E3 标注双人复核 | ⏳ 用户 + 同学 | 不阻塞（Phase 8 遗留延续） |
 | Adzuna 首批拉取 | ⏳ 待办 | global 市场 N=0 灰态（README Limitations 如实声明）；250 req/day 额度节奏 |
 | 自演示录制 | ⏳ 用户侧执行 | DEMO.md 脚本已入库（C5），Windows 录屏工具链用户执行，产物不入库 |

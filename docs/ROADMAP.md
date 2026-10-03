@@ -139,7 +139,7 @@ Phase 11 Docker + CI + Documentation
 | 产出 | 六视图：画像（星级+置信度）/ Match Score / 技能雷达 / 热门技能（频率+样本量标注）/ 缺口（ROI 排序）/ 推荐学习与项目；每个数字可点击溯源（evidence_ref → JD/证据页） |
 | 验收 | 六视图数据全部来自 API（无前端硬编码数字）；样本量守门在 UI 呈现；端到端用户流程走通（PRODUCT_SPEC §3） |
 | 自检重点 | Product：展示数据和决策；Engineering：无花哨前端框架依赖 |
-| 状态 | ✅ **完成（2026-09-16）**：505 测试（+62）。FastAPI 10 端点（ADR-011；match jd_text 双模式同分锚定 C4；D2 双口径——market/skills 200+insufficient 展示侧 vs recommendations 422 决策侧）+ Jinja2 SSR 六页 + 原生 JS（C6 localStorage 会话模型；零框架零构建零 CDN C2）+ 真实 LLM 全流程走查七步全通（简历→画像→JD→匹配 78.1 分→推荐→市场溯源→六视图→global 灰态 N=0）；走查捕获并修复 7 真实缺陷（含 dependency_overrides 测试盲区案例——结构级回归测试固化），详见 PHASE_10_REVIEW §4；开放项 CI 首跑绿**已闭环**（test job 随 Phase 9 push 首跑绿 run 35686447520；Phase 10/11 待 push，Phase 11 T9 核对补注）。详见 PHASE_10_REVIEW.md |
+| 状态 | ✅ **完成（2026-09-16）**：505 测试（+62）。FastAPI 10 端点（ADR-011；match jd_text 双模式同分锚定 C4；D2 双口径——market/skills 200+insufficient 展示侧 vs recommendations 422 决策侧）+ Jinja2 SSR 六页 + 原生 JS（C6 localStorage 会话模型；零框架零构建零 CDN C2）+ 真实 LLM 全流程走查七步全通（简历→画像→JD→匹配 78.1 分→推荐→市场溯源→六视图→global 灰态 N=0）；走查捕获并修复 7 真实缺陷（含 dependency_overrides 测试盲区案例——结构级回归测试固化），详见 PHASE_10_REVIEW §4；CI 首跑绿**已闭环**（test job 随 Phase 9 push 首跑绿 run 35686447520；Phase 10/11 十九笔 2026-10-03 push 后 run 37092541082 三 job 全绿）。详见 PHASE_10_REVIEW.md |
 
 ## Phase 11：Docker + CI + Documentation（发布就绪）
 
@@ -149,7 +149,7 @@ Phase 11 Docker + CI + Documentation
 | 产出 | Docker Compose 全栈编排；README（Problem/Solution/Architecture/Demo/Evaluation/Limitations/Roadmap，非营销文案）；ARCHITECTURE/DESIGN_DECISIONS/EVALUATION/DATA/API/DEVELOPMENT 文档终版；`docs/adr/` 归档（≥5 个 ADR 全部"已接受/已复议"）；一次完整自演示录制 |
 | 验收 | 全新环境 clone 后按 README 三条命令内跑通；CI 全绿；文档与实现零偏差抽查 |
 | 自检重点 | Resume：面试三问可答——数据从哪来（DATA.md）/为什么这么设计（ADR）/怎么证明有效（EVALUATION.md） |
-| 状态 | ✅ **完成（2026-09-24）**：540 测试（+35）。compose 全栈（Dockerfile 单阶段非 root + entrypoint 幂等 migrate→seed→serve + 端口 127.0.0.1 红线延续，ADR-012）+ C1 延后端点收口（contribute/tasks 异步任务表 migration 005 + quality/eval/deletion——16 端点=14 HTTP+2 CLI 通道）+ Data & Quality 页（导航七页）+ CI docker build job（Phase 9 test job 首跑绿已确认 run 35686447520；**docker job 远端首跑待 push**）+ README 七段 + DATA.md/DEVELOPMENT.md/DEMO.md 新建（零偏差抽查 12 项全过）+ 全新环境三命令自演示走查（两真实缺陷当次修复：空标题 quarantine UI 可发现性 / PII 处置记录低报透传）；同期 2026-09-22 卷事故恢复收口（E2 内容寻址修复 e90c76b，DECISION_LOG D-2026-09-22-20）。详见 PHASE_11_REVIEW.md |
+| 状态 | ✅ **完成（2026-09-24；CI 验收项 2026-10-03 闭环）**：540 测试（+35）。compose 全栈（Dockerfile 单阶段非 root + entrypoint 幂等 migrate→seed→serve + 端口 127.0.0.1 红线延续，ADR-012）+ C1 延后端点收口（contribute/tasks 异步任务表 migration 005 + quality/eval/deletion——16 端点=14 HTTP+2 CLI 通道）+ Data & Quality 页（导航七页）+ CI docker build job（**2026-10-03 push 后远端首跑三 job 全绿** run 37092541082 @753abd7：pytest 58s / docker 25s / e1 skipped 正常）+ README 七段 + DATA.md/DEVELOPMENT.md/DEMO.md 新建（零偏差抽查 12 项全过）+ 全新环境三命令自演示走查（两真实缺陷当次修复：空标题 quarantine UI 可发现性 / PII 处置记录低报透传）；同期 2026-09-22 卷事故恢复收口（E2 内容寻址修复 e90c76b，DECISION_LOG D-2026-09-22-20）。详见 PHASE_11_REVIEW.md |
 
 ---
 
