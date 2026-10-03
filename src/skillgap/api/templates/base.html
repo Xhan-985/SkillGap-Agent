@@ -9,7 +9,7 @@
 </head>
 <body>
 <header class="topbar">
-  <span class="brand">SkillGap Agent</span>
+  <span class="brand">SkillGap<i>·</i>Agent</span>
   <nav>
     <a href="/">总览</a>
     <a href="/resume">简历分析</a>
@@ -19,13 +19,12 @@
     <a href="/market">市场</a>
     <a href="/quality">数据与质量</a>
   </nav>
-  <span class="market-switch">
-    市场：
-    <a class="{{ 'active' if market == 'china' else '' }}"
-       href="/?market=china{% if candidate_id %}&amp;candidate_id={{ candidate_id }}{% endif %}">China</a>
-    <a class="{{ 'active' if market == 'global' else '' }}"
-       href="/?market=global{% if candidate_id %}&amp;candidate_id={{ candidate_id }}{% endif %}">Global</a>
-  </span>
+  <nav class="segmented" aria-label="市场切换">
+    <a class="{{ 'on' if market == 'china' else '' }}"
+       href="/?market=china{% if candidate_id %}&amp;candidate_id={{ candidate_id }}{% endif %}">CHINA</a>
+    <a class="{{ 'on' if market == 'global' else '' }}"
+       href="/?market=global{% if candidate_id %}&amp;candidate_id={{ candidate_id }}{% endif %}">GLOBAL</a>
+  </nav>
 </header>
 <main>
 {% block content %}{% endblock %}
