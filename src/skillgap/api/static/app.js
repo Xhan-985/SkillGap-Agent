@@ -82,7 +82,7 @@ function renderResumeSkills(skills) {
   $("resume-skills").innerHTML = skills.map((s) =>
     `<div class="skill-card conf-${confClass(s.confidence)}">
        <span class="skill-name">${esc(s.skill_id)}</span>
-       <span class="stars">${"★".repeat(s.level)}${"☆".repeat(5 - s.level)}</span>
+       <span class="stars">${"●".repeat(s.level)}${"○".repeat(5 - s.level)}</span>
        <span class="conf">置信度 ${(+s.confidence).toFixed(2)}</span>
        <details><summary class="meta">证据链（${s.evidences.length}）</summary>
          <ul class="meta">${s.evidences.map((ev) =>
@@ -252,7 +252,7 @@ function renderMatch(body) {
      <div class="bar"><div class="bar-fill" style="width:${(bd[k] * 100).toFixed(1)}%"></div></div>
      <span class="bar-note">${(bd[k] * 100).toFixed(1)}%</span></div>`).join("");
   $("match-overview-main").innerHTML =
-    `<div class="action-card"><strong style="font-size:22px">${body.overall_score.toFixed(1)}</strong>
+    `<div class="action-card"><strong class="score-big">${body.overall_score.toFixed(1)}<small> /100</small></strong>
      <ul class="bars">${bars}</ul></div>`;
   const lane = (arr, tpl) => arr.map(tpl).join("") || "（无）";
   $("match-strong").innerHTML = lane(body.strong_skills, (s) =>
@@ -326,7 +326,7 @@ function initDashboardMatchOverview() {
        <span class="bar-note">${(bd[k] * 100).toFixed(1)}%</span></div>`).join("");
     el.innerHTML =
       `<div class="action-card">
-       <strong style="font-size:22px">${body.overall_score.toFixed(1)}</strong>
+       <strong class="score-big">${body.overall_score.toFixed(1)}<small> /100</small></strong>
        <span class="meta">（最近一次匹配 · scoring_version ${esc(body.scoring_version)}）</span>
        <ul class="bars">${bars}</ul></div>`;
   } catch (_) { /* 损坏缓存视同无记录 */ }
@@ -403,4 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initRecommend();
   initDashboardMatchOverview();
   initQuality();
+  document.querySelectorAll(".topbar nav a").forEach((a) => {
+    if (a.getAttribute("href") === location.pathname) a.classList.add("on");
+  });
 });
