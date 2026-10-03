@@ -1,0 +1,112 @@
+{
+  "review_version": "e3-review-v1",
+  "dataset_version": "e3-v1",
+  "reviewed_at": "2026-10-03",
+  "reviewer": "GLM-5.3（AI 跨模型交叉复核）",
+  "review_composition": {
+    "初标": "claude（2026-09-03，Phase 8 D8）",
+    "交叉复核": "GLM-5.3（2026-10-03，本报告）",
+    "终审": "user（待办——判断点见 findings F1/F2/F3）",
+    "同学抽标": "降级为可选（DECISION_LOG D-2026-10-03-21 复议）"
+  },
+  "independence_disclosure": "初标与复核均为 LLM（非同源模型）。存在相关性偏差风险：不同 LLM 对『AI 岗位该学什么』的先验可能部分同源（训练语料交叉）。人工终审因此不可省略——这是本复核不能等价替代 D8 原设计『user 复核 + 同学抽标』的根本原因，复议后的构成（AI 交叉复核 + user 终审）以此为前提。",
+  "method": [
+    "M1 结构解析核验：35 条标注逐条过 e3.relevance_of 三档关键词解析（必补/高价值→2，值得补→1，其余→0），验证标注文本与意图档位一致（无关键词冲突/误解析）",
+    "M2 市场频次实证：psql 实查 snapshot#1（s11-v1，N=202，2026-09-22 重建）频次表，对照标注中全部显式数字声明；并与标注时代 snapshot#4（N=201）存档数值交叉",
+    "M3 跨画像一致性：同一技能在相同事实模式（完全缺失/已具备/弱证据自评）下跨画像分层比对",
+    "M4 逐条判断复核：persona 语境下档位合理性独立判断（先独立结论后看原标，非对齐初标）",
+    "M5 词表锚定：test_e3_seed_skills_within_taxonomy（画像技能+标注键 ⊆ 词表）通过"
+  ],
+  "market_evidence": {
+    "snapshot": "snapshot#1 s11-v1 N=202 high（2026-09-22 重建；标注时代 snapshot#4 N=201 2026-09-02，两快照频次接近）",
+    "pool_ge_020": [
+      {"skill": "Python", "freq": 0.6584, "jd_count": 133},
+      {"skill": "RAG", "freq": 0.4455, "jd_count": 90},
+      {"skill": "Prompt Engineering", "freq": 0.4010, "jd_count": 81},
+      {"skill": "Java", "freq": 0.3465, "jd_count": 70},
+      {"skill": "AI Coding", "freq": 0.2723, "jd_count": 55},
+      {"skill": "Function Calling", "freq": 0.2475, "jd_count": 50},
+      {"skill": "Go", "freq": 0.2426, "jd_count": 49},
+      {"skill": "多模态", "freq": 0.2228, "jd_count": 45}
+    ],
+    "claims_check": [
+      {"claim": "P1 AI Coding『市场 0.27 高频』", "snapshot1_actual": 0.2723, "snapshot4_era": 0.27, "verdict": "属实"},
+      {"claim": "P2/P3 Prompt Engineering『市场 0.40 高频』", "snapshot1_actual": 0.4010, "snapshot4_era": 0.40, "verdict": "属实"}
+    ]
+  },
+  "parse_check": {
+    "total_items": 35,
+    "parsed_as_intended": 35,
+    "keyword_collisions": 0,
+    "note": "relevance_of 按子串匹配且『必补』优先于『值得补』——35 条理由串无一条同时含两关键词，全部解析与意图档位一致"
+  },
+  "tier_distribution": {"rel2_必补": 8, "rel1_值得补": 11, "rel0_其余": 16},
+  "consistency_matrix": {
+    "Prompt Engineering": "缺失→2（P2/P3/P4/P5 一致）；已具备 level3→0（P1）。一致",
+    "RAG": "缺失→2（P3/P4）；已具备高置信→0（P1 显式；P2 省略）；弱证据自评 level3→1（P5 对抗型设计）。逻辑自洽",
+    "Function Calling": "P1=1/P2=2/P3=1/P4=1/P5=1——见 F2",
+    "AI Coding": "P1=2/P2=1/P3=1/P4=1/P5=1——见 F1",
+    "多模态": "有 RAG 方向纵深→1（P1/P2）；新手/转型期→0（P3/P4/P5）。一致",
+    "Java/Go": "全部 0（P4 Java 已具备 level5→0）。一致"
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "judgment-flag（终审点）",
+      "item": "P1 AI Coding=必补(2)——五画像中该技能均完全缺失，仅 P1 给 2，P2-P5 均 1",
+      "analysis": "同事实模式（缺失+市场 0.27）不同档。可辩护理由：P1 persona『强 RAG 弱工程』，AI Coding 直接补工程生产力短板（persona 语境价值差异）；复核者独立倾向：对 Agent 方向画像，Function Calling（技术支柱）优先于 AI Coding（工具杠杆），P1 的必补名额给 FC 而非 AI Coding 亦可辩护——即 P1 的 2/1 分配顺序可议",
+      "reviewer_verdict": "保留原标（persona 语境可辩护、且 v1 已冻结），复核者分歧倾向记入 v2 校准清单；终审请确认是否接受 persona 差异化口径"
+    },
+    {
+      "id": "F2",
+      "severity": "judgment-flag（终审点）",
+      "item": "P2 Function Calling=2 vs P4 Function Calling=1（两画像均有框架经验且 FC 均缺失）",
+      "analysis": "隐含规则：必补 ≈ 每画像 top-2 核心缺口。P2 的 LLM 应用栈几近完整（RAG3/LangGraph3），FC 是仅存的两块单列短板之一→2；P4 缺口更多（RAG+PE 为转型必经）→FC 顺位第三=1。档位可辩护；但 P4-FC 理由串『有后端功底，上手快』是易学性论证，与档位定义（价值优先级）不同轴，理由文本质量弱于 P2",
+      "reviewer_verdict": "同意原标档位；P4-FC 理由串质量问题记录（不改值）；终审知悉隐含的『必补≈top-2 核心缺口』惯例即可"
+    },
+    {
+      "id": "F3",
+      "severity": "judgment-flag（终审点）",
+      "item": "P5 RAG=值得补(1)（『自评 level 3 但无项目证据应深化』），但 P5 Python 同为 level 3 + conf 0.3 弱证据却未列入标注（隐含 0）",
+      "analysis": "同画像内同事实模式（弱证据自评）不对称处理。可辩护理由：P5 persona 方向为 RAG 应用，重建 RAG 项目证据是方向命脉，Python 补课 ROI 较低；且 P5 为对抗型设计用例（D8），本就测试系统对裸声明的处理。若系统为 P5 推荐 Python，现标注判 0 无奖励——严格按『弱证据应深化』逻辑 Python 也应 ≥1",
+      "reviewer_verdict": "倾向保留原标（persona 方向优先口径自洽 + 对抗用例意图），v2 可考虑补 Python 弱证据条目；终审确认口径"
+    },
+    {
+      "id": "F4",
+      "severity": "observation（无指标影响）",
+      "item": "P1 显式列出已具备技能（RAG/PE/Python→『已具备』=0），P2-P5 省略已具备技能不列",
+      "analysis": "标注风格不一致。指标无影响：e3.run_e3 用 rel.get(s,0)，显式 0 与省略等价；ideal 集额外 0 不改变 top-k 理想排序（各画像候选池 ≥6）",
+      "reviewer_verdict": "记录；v2 统一风格（建议全部显式列出，可读性更好）"
+    },
+    {
+      "id": "F5",
+      "severity": "metadata（措辞修正，随本复核执行）",
+      "item": "annotation_guidelines 原文『独立人工判断』与 annotators 披露（初标 claude）冲突",
+      "analysis": "『非系统输出』（非被测 recommend() 产出）是评测方法论关键属性且属实；『人工』对初标不准确",
+      "reviewer_verdict": "已修正数据集元数据措辞（见 e3_seed_v1.json 同步更新）；标注内容 35 条零改动"
+    },
+    {
+      "id": "F6",
+      "severity": "metadata（DB 落库归因失真，如实记录不重灌）",
+      "item": "evaluation_sample 表 E3 五行 annotator 落库为 'user'（seed_eval3 的 case.get('annotator','user') 默认值），实际初标 claude",
+      "analysis": "数据集文件级元数据诚实（annotators 字段披露），行级落库失真（cases 未携带 per-case annotator）；幂等 seed 不重写已有行，v1 已冻结",
+      "reviewer_verdict": "不重灌（冻结纪律 + 无指标影响）；v2 数据集须按 case 携带真实 annotator 字段落库"
+    }
+  ],
+  "per_case": [
+    {"case_id": "e3-001", "profile": "P1 强RAG弱工程", "items": 8, "tiers": {"2": 1, "1": 2, "0": 5}, "parse_ok": true, "agree": 8, "flags": ["F1", "F4"]},
+    {"case_id": "e3-002", "profile": "P2 全栈均衡", "items": 6, "tiers": {"2": 2, "1": 2, "0": 2}, "parse_ok": true, "agree": 6, "flags": ["F2"]},
+    {"case_id": "e3-003", "profile": "P3 新手缺Agent", "items": 7, "tiers": {"2": 2, "1": 2, "0": 3}, "parse_ok": true, "agree": 7, "flags": []},
+    {"case_id": "e3-004", "profile": "P4 Java后端转AI", "items": 7, "tiers": {"2": 2, "1": 2, "0": 3}, "parse_ok": true, "agree": 7, "flags": ["F2"]},
+    {"case_id": "e3-005", "profile": "P5 裸声明对抗型", "items": 7, "tiers": {"2": 1, "1": 3, "0": 3}, "parse_ok": true, "agree": 7, "flags": ["F3"]}
+  ],
+  "summary": {
+    "total_items": 35,
+    "full_agree": 31,
+    "agree_with_flag": 4,
+    "disagree": 0,
+    "frequency_claims_verified": "2/2 显式数字声明属实（对照 snapshot#1 实查与 snapshot#4 时代存档）",
+    "baseline_impact": "复核不改任何标注值 → 基线 eval_run #3（nDCG@5=0.6497 pass）不受影响，无需重跑",
+    "user_final_review": "待办：F1/F2/F3 三个判断点（复核者均倾向保留原标，分歧倾向已记 v2 校准清单）"
+  }
+}

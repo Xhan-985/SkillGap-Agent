@@ -171,6 +171,20 @@
 
 ---
 
+## D-2026-10-03-21 ｜ E3 双人复核构成复议（D8 复议）：AI 跨模型交叉复核 + user 终审；默认分支治理（main 快进 + 默认切 master）
+
+> Phase 11 收口后开放项清理；用户批准（2026-10-03）
+
+- **背景**：Phase 8 D8 原设计 E3 标注复核 = "user 复核 + 同学抽标 ≥1 画像"，至今未执行；用户提议由 AI 助手执行复核
+- **关键事实**：e3_seed_v1.json 元数据披露初标者为 claude（LLM）——"LLM 复核 LLM 标注"存在相关性偏差风险（不同模型对『AI 岗位该学什么』的先验可能部分同源），不能无声等价替换人工独立复核
+- **复议（C1）**：复核构成改为 **初标（claude）+ 跨模型交叉复核（GLM-5.3）+ user 终审（F1/F2/F3 判断点）**；同学抽标降级为可选（不再作为验收条件）；人工终审保留为关闭该开放项的必要条件
+- **复核执行（C2）**：`data/eval/e3_review_v1.json`（e3-review-v1）——35 条标注：结构解析 35/35 无关键词冲突；频次实证 2/2 显式声明属实（psql 实查 snapshot#1 s11-v1 N=202：AI Coding 0.2723 / Prompt Engineering 0.4010）；跨画像一致性矩阵；逐条判断 31 全同意 + 4 带判断标记（F1 P1-AI Coding 档位口径 / F2 P2-P4 FC 档位惯例+理由串质量 / F3 P5 RAG-Python 弱证据不对称）+ 0 分歧；**不改任何标注值，基线 eval_run #3 无需重跑**
+- **元数据修正（C3）**：annotation_guidelines "独立人工判断"→"独立判断（初标 LLM-claude，非被测系统输出）"——措辞与 annotators 披露对齐；**标注内容 35 条零改动**（不触发 dataset_version+1 冻结条款；冻结针对标注内容而非披露元数据）；如实记录 F6：evaluation_sample 落库 annotator='user' 系 seed 默认值失真（不重灌，v2 须按 case 携带真实 annotator）
+- **默认分支治理（C4，同日）**：GitHub default_branch main→master（CI 触发/推送纪律/README 均 master 口径）；main 快进 3419a71→1213545（main 为 master 严格祖先，纯快进零冲突，不触发 CI）；main 保留不删
+- **影响**：EVALUATION.md §2 开放项改写（AI 复核完成/user 终审待）；v2 校准清单新增 F1（P1 必补名额 FC vs AI Coding 顺序可议）/F3（P5 Python 弱证据条目）/F4（已具备技能显式列出风格统一）
+
+---
+
 ## 待议决策
 
 - **E1 verdict 对 LLM 可用性敏感**（T6 发现，见 D-2026-09-04-17 C5/D8）：DeepSeek 瞬时失败即触发 evidence_rate<1.0 一票 block——若未来频繁误拦，复议方向：失败样本重试一次或 evidence_rate 阈值分级（如 ≥0.98 warn）。Phase 9 内不改冻结规则。
