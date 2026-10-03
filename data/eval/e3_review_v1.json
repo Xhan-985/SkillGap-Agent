@@ -6,7 +6,7 @@
   "review_composition": {
     "初标": "claude（2026-09-03，Phase 8 D8）",
     "交叉复核": "GLM-5.3（2026-10-03，本报告）",
-    "终审": "user（待办——判断点见 findings F1/F2/F3）",
+    "终审": "user（已完成 2026-10-03：F1/F2/F3 裁决保留原标，35 条全部确认，开放项闭环）",
     "同学抽标": "降级为可选（DECISION_LOG D-2026-10-03-21 复议）"
   },
   "independence_disclosure": "初标与复核均为 LLM（非同源模型）。存在相关性偏差风险：不同 LLM 对『AI 岗位该学什么』的先验可能部分同源（训练语料交叉）。人工终审因此不可省略——这是本复核不能等价替代 D8 原设计『user 复核 + 同学抽标』的根本原因，复议后的构成（AI 交叉复核 + user 终审）以此为前提。",
@@ -107,6 +107,6 @@
     "disagree": 0,
     "frequency_claims_verified": "2/2 显式数字声明属实（对照 snapshot#1 实查与 snapshot#4 时代存档）",
     "baseline_impact": "复核不改任何标注值 → 基线 eval_run #3（nDCG@5=0.6497 pass）不受影响，无需重跑",
-    "user_final_review": "待办：F1/F2/F3 三个判断点（复核者均倾向保留原标，分歧倾向已记 v2 校准清单）"
+    "user_final_review": "已完成（2026-10-03）：F1/F2/F3 三判断点 user 终审裁决 = 保留原标，35 条标注全部确认，E3 标注复核开放项闭环"
   }
 }

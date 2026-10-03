@@ -2,8 +2,8 @@
   "dataset_version": "e3-v1",
   "spec_ref": "docs/plans/2026-09-03-phase8-recommendation.md D8；EVALUATION_PLAN §4",
   "annotation_guidelines": "相关性三档（note → 分）：必补/高价值=2；值得补=1；其余（已具备/方向不符/低价值）=0。仅标注 china 市场词表技能（2026-09 快照频次 ≥0.20 的候选池为主）；标注基于市场频次与画像证据的独立判断——初标为 LLM（claude），非被测系统 recommend() 输出；跨模型交叉复核（GLM-5.3，2026-10-03，data/eval/e3_review_v1.json）+ user 终审。",
-  "annotators": ["claude（初标 2026-09-03）", "GLM-5.3（跨模型交叉复核 2026-10-03）", "user（终审待）"],
-  "peer_review": "D8 复议（DECISION_LOG D-2026-10-03-21）：同学抽标降级为可选；复核构成 = 初标（claude）+ 跨模型交叉复核（GLM-5.3，e3_review_v1.json）+ user 终审（F1/F2/F3 判断点）。",
+  "annotators": ["claude（初标 2026-09-03）", "GLM-5.3（跨模型交叉复核 2026-10-03）", "user（终审 2026-10-03：F1/F2/F3 保留原标，35 条全部确认）"],
+  "peer_review": "已闭环（2026-10-03，D-2026-10-03-21）：复核构成 = 初标（claude）+ 跨模型交叉复核（GLM-5.3，e3_review_v1.json）+ user 终审（F1/F2/F3 裁决保留原标）；同学抽标降级为可选。",
   "cases": [
     {
       "case_id": "e3-001",

@@ -182,6 +182,7 @@
 - **元数据修正（C3）**：annotation_guidelines "独立人工判断"→"独立判断（初标 LLM-claude，非被测系统输出）"——措辞与 annotators 披露对齐；**标注内容 35 条零改动**（不触发 dataset_version+1 冻结条款；冻结针对标注内容而非披露元数据）；如实记录 F6：evaluation_sample 落库 annotator='user' 系 seed 默认值失真（不重灌，v2 须按 case 携带真实 annotator）
 - **默认分支治理（C4，同日）**：GitHub default_branch main→master（CI 触发/推送纪律/README 均 master 口径）；main 快进 3419a71→1213545（main 为 master 严格祖先，纯快进零冲突，不触发 CI）；main 保留不删
 - **影响**：EVALUATION.md §2 开放项改写（AI 复核完成/user 终审待）；v2 校准清单新增 F1（P1 必补名额 FC vs AI Coding 顺序可议）/F3（P5 Python 弱证据条目）/F4（已具备技能显式列出风格统一）
+- **终审执行（同日）**：user 裁决 F1/F2/F3 = 保留原标，35 条标注全部确认——E3 标注复核开放项正式闭环（e3_review_v1.json / e3_seed_v1.json 元数据 / EVALUATION.md / HANDOVER §9 ③ 已同步闭环状态）
 
 ---
 
