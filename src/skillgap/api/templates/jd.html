@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 {% block title %}JD 分析 · SkillGap Agent{% endblock %}
 {% block content %}
-<h1>JD 分析</h1>
-<p class="hint">粘贴 JD 文本 → 结构化分析（无状态即时计算，默认不落库；贡献到市场数据集需另行明确勾选）。</p>
+<header class="page-head">
+  <div>
+    <h1>JD 分析</h1>
+    <p class="hint">粘贴 JD 文本 → 结构化分析（无状态即时计算，默认不落库；贡献到市场数据集需另行明确勾选）。</p>
+  </div>
+  <span class="page-meta">JD</span>
+</header>
 
 <form id="jd-form" data-endpoint="/api/jd/analyze">
   <input type="text" id="jd-title" placeholder="岗位标题（可选）" style="width:60%">
   <textarea id="jd-text" rows="12" style="width:100%"
             placeholder="粘贴 JD 全文：职责、要求、加分项……"></textarea>
   <p class="meta" id="jd-counter">0 字符</p>
-  <button type="submit">分析 JD</button>
+  <button type="submit" class="btn-accent">分析 JD</button>
 </form>
 
 <div id="jd-error" class="banner-error" hidden></div>
 <div id="jd-result" hidden>
-  <h2>分析结果</h2>
+  <div class="panel-head"><span class="panel-num">01</span><h2>分析结果</h2><span class="panel-tag">Result</span></div>
   <div id="jd-job-card"></div>
   <h3>核心技能（must_have）</h3><div id="jd-core"></div>
   <h3>次要技能（nice_to_have）</h3><div id="jd-secondary"></div>
@@ -23,7 +28,7 @@
     <pre id="jd-meta" class="meta"></pre>
   </details>
   <div id="jd-contribute" hidden>
-    <h3>匿名贡献到市场数据集</h3>
+    <div class="panel-head"><span class="panel-num">02</span><h3>匿名贡献到市场数据集</h3><span class="panel-tag">Contribute</span></div>
     <p class="meta">opt-in：默认不贡献。提交即表示同意将此 JD（PII 自动检测替换后）匿名纳入市场统计；将生成 deletion_code（一次性展示，请自行保存）供你随时删除。</p>
     <p class="meta">提示：岗位标题（上方"岗位标题"输入框）为空时，贡献将进入质检隔离队列（人工复核，不入统计）——请先填写标题再提交。</p>
     <label><input type="checkbox" id="jd-consent"> 我同意匿名贡献此 JD（consent）</label>
@@ -35,7 +40,7 @@
         <option value="other" selected>其他</option>
       </select>
     </label>
-    <button type="button" id="jd-contribute-btn">提交贡献</button>
+    <button type="button" id="jd-contribute-btn" class="btn-accent">提交贡献</button>
   </div>
 </div>
 <div id="jd-contribute-result" hidden></div>

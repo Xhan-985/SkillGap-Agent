@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% block title %}简历分析 · SkillGap Agent{% endblock %}
 {% block content %}
-<h1>简历分析</h1>
-<p class="hint">粘贴简历文本（50-20000 字符）→ 生成画像。画像 ID 由本浏览器持有（localStorage），各页自动携带。</p>
+<header class="page-head">
+  <div>
+    <h1>简历分析</h1>
+    <p class="hint">粘贴简历文本（50-20000 字符）→ 生成画像。画像 ID 由本浏览器持有（localStorage），各页自动携带。</p>
+  </div>
+  <span class="page-meta">RESUME</span>
+</header>
 
 <form id="resume-form" data-endpoint="/api/resumes/analyze">
   <textarea id="resume-text" rows="14" style="width:100%"
             placeholder="粘贴简历全文：项目经历、技能描述、教育背景……"></textarea>
   <p class="meta" id="resume-counter">0 字符</p>
-  <button type="submit">分析简历</button>
+  <button type="submit" class="btn-accent">分析简历</button>
 </form>
 
 <div id="resume-error" class="banner-error" hidden></div>
 <div id="resume-result" hidden>
-  <h2>画像结果</h2>
+  <div class="panel-head"><span class="panel-num">01</span><h2>画像结果</h2><span class="panel-tag">Profile</span></div>
   <p class="meta">candidate_id：<strong id="resume-cid"></strong>（已保存到本浏览器，关闭页面不丢失；清空画像入口见下方）</p>
   <div id="resume-skills"></div>
   <form id="resume-delete" data-endpoint="" data-method="DELETE">
