@@ -44,7 +44,7 @@ def test_dashboard_six_views_and_fixture_numbers(client, tmp_path):
         assert f'id="{block}"' in html, block
     # 画像 fixture：技能名 + 星级（A：RAG L4 / Python L3）
     assert "RAG" in html and "Python" in html
-    assert "★★★★☆" in html and "★★★☆☆" in html
+    assert "●●●●○" in html and "●●●○○" in html
     # 市场 fixture：N=32 + 频次 47%（Docker 15/32=0.4688 诊断实证）+ 置信度 low
     assert "N=32" in html and "47%" in html
     # 缺口表五列表头 + 推荐卡片
@@ -71,9 +71,8 @@ def test_market_selector_persistent(client):
     html = c.get("/?market=china").text
     assert 'href="/?market=china' in html
     assert 'href="/?market=global' in html
-    # 当前市场高亮
-    assert 'class="active"\n       href="/?market=china' in html.replace(
-        'class="active"       href=', 'class="active"\n       href=')
+    # 当前市场高亮（瑞士化分段控件：class="on"）
+    assert 'class="on"\n       href="/?market=china">CHINA' in html
 
 
 def test_radar_svg_dual_polygons(client, tmp_path):
