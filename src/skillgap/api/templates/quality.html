@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% block title %}数据与质量 · SkillGap Agent{% endblock %}
 {% block content %}
-<h1>数据与质量</h1>
-<p class="hint">数据透明度页（UI_SPEC §2.7）：来源分布与条款核查日期由服务端直出；质量五指标与评测历史在页面加载后异步获取（数据来自 /api/quality/report 与 /api/eval/results）。</p>
+<header class="page-head">
+  <div>
+    <h1>数据与质量</h1>
+    <p class="hint">数据透明度页（UI_SPEC §2.7）：来源分布与条款核查日期由服务端直出；质量五指标与评测历史在页面加载后异步获取（数据来自 /api/quality/report 与 /api/eval/results）。</p>
+  </div>
+  <span class="page-meta">DATA &amp; QUALITY</span>
+</header>
 
-<h2>来源分布（Tier 与条款核查）</h2>
+<div class="panel-head"><span class="panel-num">01</span><h2>来源分布（Tier 与条款核查）</h2><span class="panel-tag">Sources</span></div>
 <table class="roi" id="quality-sources">
   <thead><tr><th>来源</th><th>类型</th><th>信任层级</th><th>覆盖市场</th><th>条款核查日期</th></tr></thead>
   <tbody>
@@ -21,7 +26,7 @@
 </table>
 <p class="meta">治理声明：反爬边界 / PII 处理 / 保留策略见 docs/DATA_GOVERNANCE.md；匿名贡献（user_contribution）PII 自动检测替换，deletion_code 一次性展示。</p>
 
-<h2>数据质量指标（E5）</h2>
+<div class="panel-head"><span class="panel-num">02</span><h2>数据质量指标（E5）</h2><span class="panel-tag">Quality</span></div>
 <p class="meta" id="quality-computed-at">质量指标加载中……</p>
 <div id="quality-metrics">
   <div class="action-card" id="qm-duplicate"><strong>重复率（duplicate_rate）</strong><p class="meta" id="qm-duplicate-val">…</p></div>
@@ -31,7 +36,7 @@
   <div class="action-card" id="qm-pii"><strong>PII 检测（pii_detection）</strong><p class="meta" id="qm-pii-val">…</p></div>
 </div>
 
-<h2>评测历史</h2>
+<div class="panel-head"><span class="panel-num">03</span><h2>评测历史</h2><span class="panel-tag">Eval</span></div>
 <p class="meta" id="quality-eval-note">评测历史加载中……</p>
 <table class="roi" id="quality-eval-table">
   <thead><tr><th>#</th><th>类型</th><th>数据集</th><th>Prompt</th><th>Scoring</th><th>N</th><th>主指标</th><th>结论</th><th>对比基线</th></tr></thead>
