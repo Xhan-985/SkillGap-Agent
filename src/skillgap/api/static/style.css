@@ -33,13 +33,14 @@ a:hover { color: var(--accent); }
 }
 .topbar .brand { font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
 .topbar .brand i { color: var(--accent); font-style: normal; }
-.topbar nav { display: flex; gap: 4px; }
-.topbar nav a {
+/* 主导航专属（:not(.segmented)——分段切换控件不服从此组规则） */
+.topbar nav:not(.segmented) { display: flex; gap: 4px; }
+.topbar nav:not(.segmented) a {
   color: var(--ink); text-decoration: none; font-size: 13px;
   letter-spacing: 0.05em; padding: 3px 10px; border-radius: var(--radius);
 }
-.topbar nav a:hover { border: 1.5px solid var(--line); padding: 1.5px 8.5px; color: var(--ink); }
-.topbar nav a.on { background: var(--ink); color: var(--paper); font-weight: 600; }
+.topbar nav:not(.segmented) a:hover { border: 1.5px solid var(--line); padding: 1.5px 8.5px; color: var(--ink); }
+.topbar nav:not(.segmented) a.on { background: var(--ink); color: var(--paper); font-weight: 600; }
 
 /* 分段市场切换（base.html 配合） */
 .segmented { margin-left: auto; display: flex; border: 1.5px solid var(--line); border-radius: var(--radius); overflow: hidden; }
@@ -48,7 +49,9 @@ a:hover { color: var(--accent); }
   letter-spacing: 0.08em; padding: 4px 12px; font-weight: 600;
 }
 .segmented a + a { border-left: 1.5px solid var(--line); }
+.segmented a:hover { color: var(--accent); }
 .segmented a.on { background: var(--accent); color: var(--paper); }
+.segmented a.on:hover { color: var(--paper); }
 /* 兼容旧 .market-switch（过渡期保险，base.html 已换 .segmented） */
 .market-switch { margin-left: auto; font-size: 13px; }
 .market-switch a { margin-left: 6px; color: var(--faint); text-decoration: none; }
