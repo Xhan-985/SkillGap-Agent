@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block title %}推荐 · SkillGap Agent{% endblock %}
 {% block content %}
-<h1>学习推荐</h1>
-<p class="hint">画像 × 市场快照 → ROI 优先级与项目建议。市场样本 &lt;30 时拒推（不编造——ADR-008）。</p>
+<header class="page-head">
+  <div>
+    <h1>学习推荐</h1>
+    <p class="hint">画像 × 市场快照 → ROI 优先级与项目建议。市场样本 &lt;30 时拒推（不编造——ADR-008）。</p>
+  </div>
+  <span class="page-meta">RECOMMEND</span>
+</header>
 
 <form id="recommend-form" data-endpoint="/api/recommendations">
   <label class="meta">画像 ID<input type="number" id="recommend-cid" min="1" style="width:90px"></label>
@@ -19,17 +24,17 @@
       <option value="global">Global</option>
     </select>
   </label>
-  <button type="submit">生成推荐</button>
+  <button type="submit" class="btn-accent">生成推荐</button>
 </form>
 
 <div id="recommend-error" class="banner-error" hidden></div>
 <div id="recommend-result" hidden>
-  <h2>ROI 优先级 <span class="meta" id="recommend-version"></span></h2>
+  <div class="panel-head"><span class="panel-num">01</span><h2>ROI 优先级</h2><span class="meta" id="recommend-version"></span><span class="panel-tag">ROI</span></div>
   <table class="roi" id="recommend-table">
     <thead><tr><th>Skill</th><th>Demand</th><th>Gap</th><th>Cost</th><th>Potential Gain</th></tr></thead>
     <tbody></tbody>
   </table>
-  <h3>项目建议</h3>
+  <div class="panel-head"><span class="panel-num">02</span><h3>项目建议</h3><span class="panel-tag">Projects</span></div>
   <div id="recommend-projects"></div>
   <p class="meta">Demand 引用市场快照口径；项目模板为人工策划内容。</p>
 </div>

@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block title %}匹配 · SkillGap Agent{% endblock %}
 {% block content %}
-<h1>岗位匹配</h1>
-<p class="hint">画像 × JD → 匹配分与四维 breakdown（数字由 breakdown 渲染，模板解释默认；LLM 叙事可选）。粘贴 JD 走即时模式（不落库）。</p>
+<header class="page-head">
+  <div>
+    <h1>岗位匹配</h1>
+    <p class="hint">画像 × JD → 匹配分与四维 breakdown（数字由 breakdown 渲染，模板解释默认；LLM 叙事可选）。粘贴 JD 走即时模式（不落库）。</p>
+  </div>
+  <span class="page-meta">MATCH</span>
+</header>
 
 <form id="match-form" data-endpoint="/api/match">
   <label class="meta">画像 ID<input type="number" id="match-cid" min="1" style="width:90px"></label>
@@ -11,12 +16,12 @@
   <textarea id="match-jd" rows="10" style="width:100%"
             placeholder="粘贴 JD 全文（50-20000 字符）"></textarea>
   <label class="meta"><input type="checkbox" id="match-explain"> 生成 LLM 解释（可选，走真实 LLM）</label>
-  <button type="submit">开始匹配</button>
+  <button type="submit" class="btn-accent">开始匹配</button>
 </form>
 
 <div id="match-error" class="banner-error" hidden></div>
 <div id="match-result" hidden>
-  <h2>匹配结果 <span class="meta" id="match-version"></span></h2>
+  <div class="panel-head"><span class="panel-num">01</span><h2>匹配结果</h2><span class="meta" id="match-version"></span><span class="panel-tag">Result</span></div>
   <div id="match-overview-main"></div>
   <div class="swimlanes">
     <div><h3>Strong</h3><div id="match-strong"></div></div>
