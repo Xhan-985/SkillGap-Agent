@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% block title %}总览 · SkillGap Agent{% endblock %}
 {% block content %}
-<h1>总览</h1>
-<p class="hint">六视图数据全部来自服务端，可点击溯源；样本不足处如实灰显。</p>
+<header class="page-head">
+  <div>
+    <h1>总览</h1>
+    <p class="hint">六视图数据全部来自服务端，可点击溯源；样本不足处如实灰显。</p>
+  </div>
+  <span class="page-meta">DASHBOARD · SSR</span>
+</header>
 
 <div class="grid">
 
   <!-- 1 我的画像 -->
   <section class="view" id="view-profile">
-    <h2>我的画像</h2>
+    <div class="panel-head"><span class="panel-num">01</span><h2>我的画像</h2><span class="panel-tag">Profile</span></div>
     {% if profile %}
       {% for s in profile.skills %}
       <div class="skill-card conf-{{ 'high' if s.confidence >= 0.7 else ('mid' if s.confidence >= 0.4 else 'low') }}">
         <span class="skill-name">{{ s.skill_id }}</span>
-        <span class="stars">{{ '★' * s.level }}{{ '☆' * (5 - s.level) }}</span>
+        <span class="stars">{{ '●' * s.level }}{{ '○' * (5 - s.level) }}</span>
         <span class="conf">置信度 {{ '%.2f'|format(s.confidence) }}</span>
       </div>
       {% endfor %}
@@ -27,7 +32,7 @@
 
   <!-- 2 技能雷达 -->
   <section class="view" id="view-radar">
-    <h2>技能雷达</h2>
+    <div class="panel-head"><span class="panel-num">02</span><h2>技能雷达</h2><span class="panel-tag">Radar</span></div>
     {% if radar and radar.enough %}
     <svg viewBox="0 0 260 260" class="radar" role="img"
          aria-label="画像水平与类目要求雷达图">
@@ -50,7 +55,7 @@
 
   <!-- 3 市场热门技能 -->
   <section class="view" id="view-market">
-    <h2>市场热门技能</h2>
+    <div class="panel-head"><span class="panel-num">03</span><h2>市场热门技能</h2><span class="panel-tag">Market</span></div>
     {% if market_view.insufficient %}
     <div class="gate-gray">样本量不足以判断趋势（N={{ market_view.sample_size }}）</div>
     {% else %}
@@ -77,7 +82,7 @@
 
   <!-- 4 我的缺口 -->
   <section class="view" id="view-gaps">
-    <h2>我的缺口</h2>
+    <div class="panel-head"><span class="panel-num">04</span><h2>我的缺口</h2><span class="panel-tag">Gap</span></div>
     {% if last_rec %}
     <table class="roi">
       <thead><tr>
@@ -103,7 +108,7 @@
 
   <!-- 5 推荐行动 -->
   <section class="view" id="view-actions">
-    <h2>推荐行动</h2>
+    <div class="panel-head"><span class="panel-num">05</span><h2>推荐行动</h2><span class="panel-tag">Actions</span></div>
     {% if last_rec %}
       {% for it in last_rec.priority_items[:3] %}
       <div class="action-card">
@@ -119,7 +124,7 @@
 
   <!-- 6 匹配概览（C6：前端 localStorage 呈现，SSR 渲染容器） -->
   <section class="view" id="view-match">
-    <h2>匹配概览</h2>
+    <div class="panel-head"><span class="panel-num">06</span><h2>匹配概览</h2><span class="panel-tag">Match</span></div>
     <div id="match-overview" data-candidate="{{ candidate_id if candidate_id else '' }}">
       <p class="empty">暂无匹配记录——先到「匹配」页跑一次匹配；最近一次结果将在此展示。</p>
     </div>
