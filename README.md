@@ -34,6 +34,8 @@ JD 采集（三通道，无爬虫红线）→ LLM 结构化抽取（带原文证
 
 ## Demo
 
+演示视频（[Release v1.0.0](https://github.com/Xhan-985/SkillGap-Agent/releases/download/v1.0.0/skillgap-explainer.mp4)）：全流程走查——简历分析 → 匹配 → ROI 推荐 → 市场统计 → 六视图总览。
+
 前置：Docker。三条命令起全栈（postgres + app；entrypoint 自动迁移、种子、起服）：
 
 ```bash
