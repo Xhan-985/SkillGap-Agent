@@ -34,7 +34,14 @@ JD 采集（三通道，无爬虫红线）→ LLM 结构化抽取（带原文证
 
 ## Demo
 
-演示视频（[Release v1.0.0](https://github.com/Xhan-985/SkillGap-Agent/releases/download/v1.0.0/skillgap-explainer.mp4)）：全流程走查——简历分析 → 匹配 → ROI 推荐 → 市场统计 → 六视图总览。
+▶ **60 秒演示视频**：全流程走查——简历分析 → 匹配 → ROI 推荐 → 市场统计 → 六视图总览。
+
+<!-- ▼ 视频内嵌位置：在 GitHub 网页编辑器里把 skillgap-explainer.mp4 拖到本行下方，
+     GitHub 会自动上传并生成内嵌播放器（手机、电脑都能直接播放）。
+     上传完成后，可删掉这条注释与下面的"直接下载观看"一行。 -->
+
+- 直接下载观看：[skillgap-explainer.mp4](https://github.com/Xhan-985/SkillGap-Agent/releases/download/v1.0.0/skillgap-explainer.mp4)（10 MB，Release v1.0.0 托管）
+- 视频用 Remotion 制作，成片经 GitHub Release 分发
 
 前置：Docker。三条命令起全栈（postgres + app；entrypoint 自动迁移、种子、起服）：
 
